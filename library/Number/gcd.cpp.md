@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Number/Verify/lcm.test.cpp.html">Number/Verify/lcm.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Number/Verify/gcd.test.cpp.html">Number/Verify/gcd.test.cpp</a>
 
 
 ## Code

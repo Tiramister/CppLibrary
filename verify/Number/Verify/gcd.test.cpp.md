@@ -25,15 +25,15 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Number/Verify/lcm.test.cpp
+# :heavy_check_mark: Number/Verify/gcd.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/Number/Verify/lcm.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-22 22:14:42+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Number/Verify/gcd.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-23 06:13:47+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C">https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B">https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B</a>
 
 
 ## Depends on
@@ -46,22 +46,15 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B"
 
 #include <iostream>
 #include "../gcd.cpp"
 
 int main() {
-    int n;
-    std::cin >> n;
-
-    uint ans = 1;
-    for (int i = 0; i < n; ++i) {
-        uint a;
-        std::cin >> a;
-        ans *= a / gcd(ans, a);
-    }
-    std::cout << ans << std::endl;
+    int x, y;
+    std::cin >> x >> y;
+    std::cout << gcd(x, y) << std::endl;
 }
 
 ```
@@ -70,8 +63,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Number/Verify/lcm.test.cpp"
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C"
+#line 1 "Number/Verify/gcd.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B"
 
 #include <iostream>
 #line 1 "Number/Verify/../gcd.cpp"
@@ -85,19 +78,12 @@ T gcd(T n, T m) {
     }
     return n;
 }
-#line 5 "Number/Verify/lcm.test.cpp"
+#line 5 "Number/Verify/gcd.test.cpp"
 
 int main() {
-    int n;
-    std::cin >> n;
-
-    uint ans = 1;
-    for (int i = 0; i < n; ++i) {
-        uint a;
-        std::cin >> a;
-        ans *= a / gcd(ans, a);
-    }
-    std::cout << ans << std::endl;
+    int x, y;
+    std::cin >> x >> y;
+    std::cout << gcd(x, y) << std::endl;
 }
 
 ```

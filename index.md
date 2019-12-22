@@ -56,11 +56,13 @@ layout: default
 ### Number
 
 * :heavy_check_mark: <a href="library/Number/gcd.cpp.html">Number/gcd.cpp</a>
+* :heavy_check_mark: <a href="library/Number/prime.cpp.html">Number/prime.cpp</a>
 
 
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/union_find.test.cpp.html">DataStructure/Verify/union_find.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Number/Verify/lcm.test.cpp.html">Number/Verify/lcm.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Number/Verify/factorize.test.cpp.html">Number/Verify/factorize.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Number/Verify/gcd.test.cpp.html">Number/Verify/gcd.test.cpp</a>
 
 
