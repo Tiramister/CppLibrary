@@ -1,5 +1,6 @@
 {
 "DataStructure/Verify/union_find.test.cpp": "2019-12-22 22:36:55 +0900",
-"Number/Verify/lcm.test.cpp": "2019-12-22 22:14:42 +0900",
+"Number/Verify/factorize.test.cpp": "2019-12-23 06:32:57 +0900",
+"Number/Verify/gcd.test.cpp": "2019-12-23 06:13:47 +0900",
 "~": "dummy"
 }
