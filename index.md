@@ -34,6 +34,13 @@ layout: default
 
 ## Library Files
 
+<div id="5e248f107086635fddcead5bf28943fc"></div>
+
+### DataStructure
+
+* :heavy_check_mark: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
+
+
 <div id="a603905470e2a5b8c13e96b579ef0dba"></div>
 
 ### Debug
@@ -53,6 +60,7 @@ layout: default
 
 ## Verify Files
 
+* :heavy_check_mark: <a href="verify/DataStructure/Verify/union_find.test.cpp.html">DataStructure/Verify/union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/lcm.test.cpp.html">Number/Verify/lcm.test.cpp</a>
 
 
