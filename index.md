@@ -38,6 +38,8 @@ layout: default
 
 ### DataStructure
 
+* :heavy_check_mark: <a href="library/DataStructure/segment_tree_builtin.cpp.html">DataStructure/segment_tree_builtin.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/segment_tree_lambda.cpp.html">DataStructure/segment_tree_lambda.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
 
 
@@ -55,13 +57,17 @@ layout: default
 
 ### Number
 
+* :heavy_check_mark: <a href="library/Number/extgcd.cpp.html">Number/extgcd.cpp</a>
 * :heavy_check_mark: <a href="library/Number/gcd.cpp.html">Number/gcd.cpp</a>
 * :heavy_check_mark: <a href="library/Number/prime.cpp.html">Number/prime.cpp</a>
 
 
 ## Verify Files
 
+* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_builtin_rsq.test.cpp.html">DataStructure/Verify/segment_tree_builtin_rsq.test.cpp</a>
+* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_lambda_rsq.test.cpp.html">DataStructure/Verify/segment_tree_lambda_rsq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/union_find.test.cpp.html">DataStructure/Verify/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Number/Verify/extgcd.test.cpp.html">Number/Verify/extgcd.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/factorize.test.cpp.html">Number/Verify/factorize.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/gcd.test.cpp.html">Number/Verify/gcd.test.cpp</a>
 
