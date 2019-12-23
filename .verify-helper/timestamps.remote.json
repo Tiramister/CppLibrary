@@ -1,5 +1,6 @@
 {
 "DataStructure/Verify/segment_tree_builtin_rsq.test.cpp": "2019-12-23 08:32:42 +0900",
+"DataStructure/Verify/segment_tree_lambda_linear.test.cpp": "2019-12-23 17:06:52 +0900",
 "DataStructure/Verify/segment_tree_lambda_rsq.test.cpp": "2019-12-23 09:07:44 +0900",
 "DataStructure/Verify/union_find.test.cpp": "2019-12-22 22:36:55 +0900",
 "Graph/Verify/bellman_ford.test.cpp": "2019-12-23 14:22:40 +0900",
