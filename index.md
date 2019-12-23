@@ -73,8 +73,10 @@ layout: default
 
 ### Number
 
+* :heavy_check_mark: <a href="library/Number/combination.cpp.html">Number/combination.cpp</a>
 * :heavy_check_mark: <a href="library/Number/extgcd.cpp.html">Number/extgcd.cpp</a>
 * :heavy_check_mark: <a href="library/Number/gcd.cpp.html">Number/gcd.cpp</a>
+* :heavy_check_mark: <a href="library/Number/modint.cpp.html">Number/modint.cpp</a>
 * :heavy_check_mark: <a href="library/Number/prime.cpp.html">Number/prime.cpp</a>
 
 
@@ -85,8 +87,10 @@ layout: default
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/union_find.test.cpp.html">DataStructure/Verify/union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/bellman_ford.test.cpp.html">Graph/Verify/bellman_ford.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/dijkstra.test.cpp.html">Graph/Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Number/Verify/combination.test.cpp.html">Number/Verify/combination.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/extgcd.test.cpp.html">Number/Verify/extgcd.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/factorize.test.cpp.html">Number/Verify/factorize.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/gcd.test.cpp.html">Number/Verify/gcd.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Number/Verify/mod_pow.test.cpp.html">Number/Verify/mod_pow.test.cpp</a>
 
 
