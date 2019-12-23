@@ -40,12 +40,14 @@ layout: default
 
 * :heavy_check_mark: <a href="bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
 * :heavy_check_mark: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Graph/Verify/bellman_ford.test.cpp.html">Graph/Verify/bellman_ford.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Graph/Verify/dijkstra.test.cpp.html">Graph/Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Graph/Verify/strongly_connected_component.test.cpp.html">Graph/Verify/strongly_connected_component.test.cpp</a>
 
 
 ## Code
