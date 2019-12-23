@@ -83,6 +83,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_builtin_rsq.test.cpp.html">DataStructure/Verify/segment_tree_builtin_rsq.test.cpp</a>
+* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_lambda_linear.test.cpp.html">DataStructure/Verify/segment_tree_lambda_linear.test.cpp</a>
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_lambda_rsq.test.cpp.html">DataStructure/Verify/segment_tree_lambda_rsq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/union_find.test.cpp.html">DataStructure/Verify/union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/bellman_ford.test.cpp.html">Graph/Verify/bellman_ford.test.cpp</a>

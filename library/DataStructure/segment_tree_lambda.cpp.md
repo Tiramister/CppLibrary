@@ -38,6 +38,7 @@ layout: default
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../verify/DataStructure/Verify/segment_tree_lambda_linear.test.cpp.html">DataStructure/Verify/segment_tree_lambda_linear.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/DataStructure/Verify/segment_tree_lambda_rsq.test.cpp.html">DataStructure/Verify/segment_tree_lambda_rsq.test.cpp</a>
 
 
