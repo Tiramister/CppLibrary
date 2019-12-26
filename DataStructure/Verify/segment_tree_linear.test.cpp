@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../segment_tree_lambda.cpp"
+#include "../segment_tree.cpp"
 #include "../../Number/modint.cpp"
 
 constexpr int MOD = 998244353;

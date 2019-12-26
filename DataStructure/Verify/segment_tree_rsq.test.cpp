@@ -1,12 +1,12 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
 
 #include <iostream>
-#include "../segment_tree_builtin.cpp"
+#include "../segment_tree.cpp"
 
 int main() {
     int n;
     std::cin >> n;
-    SegmentTree<int> seg(n);
+    SegmentTree<int> seg(n, 0, [](int a, int b) { return a + b; });
 
     int q;
     std::cin >> q;
@@ -18,11 +18,12 @@ int main() {
             int i, x;
             std::cin >> i >> x;
             --i;
-            seg.update(i, x);
+            seg.update(i, seg.query(i, i + 1) + x);
         } else {
             int l, r;
             std::cin >> l >> r;
-            std::cout << seg.query(l - 1, r) << std::endl;
+            --l, --r;
+            std::cout << seg.query(l, r + 1) << std::endl;
         }
     }
     return 0;
