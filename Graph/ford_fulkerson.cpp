@@ -21,13 +21,11 @@ struct MaxFlow {
         : graph(n), visited(n) {}
 
     void span(int u, int v, Cap cap) {
-        int eidx = edges.size();
+        graph[u].push_back(edges.size());
         edges.emplace_back(u, v, cap);
-        graph[u].push_back(eidx);
 
-        ++eidx;
+        graph[v].push_back(edges.size());
         edges.emplace_back(v, u, (isDirect ? 0 : cap));
-        graph[v].push_back(eidx);
     }
 
     int dfs(int v, int g, Cap f) {
