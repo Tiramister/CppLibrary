@@ -13,7 +13,7 @@ struct SegmentTree {
     explicit SegmentTree(int n, T unit, Merger merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
-        dat.assign(length * 2 - 1, unit);
+        dat.assign(length * 2, unit);
     }
 
     T query(int ql, int qr, int nidx, int nl, int nr) {
@@ -21,25 +21,22 @@ struct SegmentTree {
         if (ql <= nl && nr <= qr) return dat[nidx];
 
         int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 1, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 2, nm, nr);
+        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
+        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
         return merge(vl, vr);
     }
 
-    T query(int ql, int qr) { return query(ql, qr, 0, 0, length); }
+    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
 
     void update(int nidx, T elem) {
-        nidx += length - 1;
+        nidx += length;
         dat[nidx] = elem;
 
         while (nidx > 0) {
-            nidx = (nidx - 1) >> 1;
-            T vl = dat[nidx * 2 + 1];
-            T vr = dat[nidx * 2 + 2];
+            nidx >>= 1;
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
             dat[nidx] = merge(vl, vr);
         }
     }
 };
-
-// example:
-// SegmentTree<int>(n, 0, [](int a, int b) { return a + b; });
