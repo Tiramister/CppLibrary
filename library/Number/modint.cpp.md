@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/DataStructure/Verify/segment_tree_lambda_linear.test.cpp.html">DataStructure/Verify/segment_tree_lambda_linear.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/DataStructure/Verify/segment_tree_linear.test.cpp.html">DataStructure/Verify/segment_tree_linear.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Number/Verify/combination.test.cpp.html">Number/Verify/combination.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Number/Verify/mod_pow.test.cpp.html">Number/Verify/mod_pow.test.cpp</a>
 

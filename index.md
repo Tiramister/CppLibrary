@@ -38,8 +38,8 @@ layout: default
 
 ### DataStructure
 
-* :heavy_check_mark: <a href="library/DataStructure/segment_tree_builtin.cpp.html">DataStructure/segment_tree_builtin.cpp</a>
-* :heavy_check_mark: <a href="library/DataStructure/segment_tree_lambda.cpp.html">DataStructure/segment_tree_lambda.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
 
 
@@ -61,12 +61,14 @@ layout: default
 * :heavy_check_mark: <a href="library/Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/graph.cpp.html">Graph/graph.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 <div id="74248c725e00bf9fe04df4e35b249a19"></div>
 
 ### Misc
 
+* :warning: <a href="library/Misc/compress.cpp.html">Misc/compress.cpp</a>
 * :heavy_check_mark: <a href="library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
@@ -83,13 +85,14 @@ layout: default
 
 ## Verify Files
 
-* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_builtin_rsq.test.cpp.html">DataStructure/Verify/segment_tree_builtin_rsq.test.cpp</a>
-* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_lambda_linear.test.cpp.html">DataStructure/Verify/segment_tree_lambda_linear.test.cpp</a>
-* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_lambda_rsq.test.cpp.html">DataStructure/Verify/segment_tree_lambda_rsq.test.cpp</a>
+* :heavy_check_mark: <a href="verify/DataStructure/Verify/lazy_segment_tree_add_sum.test.cpp.html">DataStructure/Verify/lazy_segment_tree_add_sum.test.cpp</a>
+* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_linear.test.cpp.html">DataStructure/Verify/segment_tree_linear.test.cpp</a>
+* :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_rsq.test.cpp.html">DataStructure/Verify/segment_tree_rsq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/union_find.test.cpp.html">DataStructure/Verify/union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/bellman_ford.test.cpp.html">Graph/Verify/bellman_ford.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/dijkstra.test.cpp.html">Graph/Verify/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/strongly_connected_component.test.cpp.html">Graph/Verify/strongly_connected_component.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Graph/Verify/two_sat.test.cpp.html">Graph/Verify/two_sat.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/combination.test.cpp.html">Number/Verify/combination.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/extgcd.test.cpp.html">Number/Verify/extgcd.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Number/Verify/factorize.test.cpp.html">Number/Verify/factorize.test.cpp</a>

@@ -25,20 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: DataStructure/segment_tree_builtin.cpp
+# :heavy_check_mark: DataStructure/segment_tree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/segment_tree_builtin.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 08:32:42+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/segment_tree.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-28 02:41:36+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/DataStructure/Verify/segment_tree_builtin_rsq.test.cpp.html">DataStructure/Verify/segment_tree_builtin_rsq.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/DataStructure/Verify/segment_tree_linear.test.cpp.html">DataStructure/Verify/segment_tree_linear.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/DataStructure/Verify/segment_tree_rsq.test.cpp.html">DataStructure/Verify/segment_tree_rsq.test.cpp</a>
 
 
 ## Code
@@ -47,21 +48,21 @@ layout: default
 {% raw %}
 ```cpp
 #include <vector>
+#include <functional>
 
-// update: add
-// query : sum
-// unit  : 0
 template <class T>
 struct SegmentTree {
+    using Merger = std::function<T(T, T)>;
+
     int length;
     std::vector<T> dat;
-    T unit = 0;  // unit
+    T unit;
+    Merger merge;
 
-    explicit SegmentTree(int n) : length(1) {
-        while (length < n) {
-            length <<= 1;
-        }
-        dat.assign(length * 2 - 1, unit);
+    explicit SegmentTree(int n, T unit, Merger merge)
+        : length(1), unit(unit), merge(merge) {
+        while (length < n) length <<= 1;
+        dat.assign(length * 2, unit);
     }
 
     T query(int ql, int qr, int nidx, int nl, int nr) {
@@ -69,22 +70,22 @@ struct SegmentTree {
         if (ql <= nl && nr <= qr) return dat[nidx];
 
         int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 1, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 2, nm, nr);
-        return vl + vr;  // query
+        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
+        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
+        return merge(vl, vr);
     }
 
-    T query(int ql, int qr) { return query(ql, qr, 0, 0, length); }
+    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
 
     void update(int nidx, T elem) {
-        nidx += length - 1;
-        dat[nidx] += elem;  // update
+        nidx += length;
+        dat[nidx] = elem;
 
         while (nidx > 0) {
-            nidx = (nidx - 1) >> 1;
-            T vl = dat[nidx * 2 + 1];
-            T vr = dat[nidx * 2 + 2];
-            dat[nidx] = vl + vr;  // query
+            nidx >>= 1;
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
         }
     }
 };
@@ -95,23 +96,23 @@ struct SegmentTree {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/segment_tree_builtin.cpp"
+#line 1 "DataStructure/segment_tree.cpp"
 #include <vector>
+#include <functional>
 
-// update: add
-// query : sum
-// unit  : 0
 template <class T>
 struct SegmentTree {
+    using Merger = std::function<T(T, T)>;
+
     int length;
     std::vector<T> dat;
-    T unit = 0;  // unit
+    T unit;
+    Merger merge;
 
-    explicit SegmentTree(int n) : length(1) {
-        while (length < n) {
-            length <<= 1;
-        }
-        dat.assign(length * 2 - 1, unit);
+    explicit SegmentTree(int n, T unit, Merger merge)
+        : length(1), unit(unit), merge(merge) {
+        while (length < n) length <<= 1;
+        dat.assign(length * 2, unit);
     }
 
     T query(int ql, int qr, int nidx, int nl, int nr) {
@@ -119,22 +120,22 @@ struct SegmentTree {
         if (ql <= nl && nr <= qr) return dat[nidx];
 
         int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 1, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 2, nm, nr);
-        return vl + vr;  // query
+        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
+        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
+        return merge(vl, vr);
     }
 
-    T query(int ql, int qr) { return query(ql, qr, 0, 0, length); }
+    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
 
     void update(int nidx, T elem) {
-        nidx += length - 1;
-        dat[nidx] += elem;  // update
+        nidx += length;
+        dat[nidx] = elem;
 
         while (nidx > 0) {
-            nidx = (nidx - 1) >> 1;
-            T vl = dat[nidx * 2 + 1];
-            T vr = dat[nidx * 2 + 2];
-            dat[nidx] = vl + vr;  // query
+            nidx >>= 1;
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
         }
     }
 };

@@ -25,12 +25,12 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: DataStructure/Verify/segment_tree_lambda_linear.test.cpp
+# :heavy_check_mark: DataStructure/Verify/segment_tree_linear.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Verify/segment_tree_lambda_linear.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 17:06:52+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Verify/segment_tree_linear.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-28 02:41:36+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/DataStructure/segment_tree_lambda.cpp.html">DataStructure/segment_tree_lambda.cpp</a>
+* :heavy_check_mark: <a href="../../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
 * :heavy_check_mark: <a href="../../../library/Number/modint.cpp.html">Number/modint.cpp</a>
 
 
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../segment_tree_lambda.cpp"
+#include "../segment_tree.cpp"
 #include "../../Number/modint.cpp"
 
 constexpr int MOD = 998244353;
@@ -101,10 +101,10 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/Verify/segment_tree_lambda_linear.test.cpp"
+#line 1 "DataStructure/Verify/segment_tree_linear.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#line 1 "DataStructure/Verify/../segment_tree_lambda.cpp"
+#line 1 "DataStructure/Verify/../segment_tree.cpp"
 #include <vector>
 #include <functional>
 
@@ -120,7 +120,7 @@ struct SegmentTree {
     explicit SegmentTree(int n, T unit, Merger merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
-        dat.assign(length * 2 - 1, unit);
+        dat.assign(length * 2, unit);
     }
 
     T query(int ql, int qr, int nidx, int nl, int nr) {
@@ -128,28 +128,25 @@ struct SegmentTree {
         if (ql <= nl && nr <= qr) return dat[nidx];
 
         int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 1, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 2, nm, nr);
+        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
+        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
         return merge(vl, vr);
     }
 
-    T query(int ql, int qr) { return query(ql, qr, 0, 0, length); }
+    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
 
     void update(int nidx, T elem) {
-        nidx += length - 1;
+        nidx += length;
         dat[nidx] = elem;
 
         while (nidx > 0) {
-            nidx = (nidx - 1) >> 1;
-            T vl = dat[nidx * 2 + 1];
-            T vr = dat[nidx * 2 + 2];
+            nidx >>= 1;
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
             dat[nidx] = merge(vl, vr);
         }
     }
 };
-
-// example:
-// SegmentTree<int>(n, 0, [](int a, int b) { return a + b; });
 #line 1 "DataStructure/Verify/../../Number/modint.cpp"
 #include <iostream>
 
@@ -209,7 +206,7 @@ struct ModInt {
 
 // constexpr int MOD = 1e9 + 7;
 // using mint = ModInt<MOD>;
-#line 5 "DataStructure/Verify/segment_tree_lambda_linear.test.cpp"
+#line 5 "DataStructure/Verify/segment_tree_linear.test.cpp"
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;

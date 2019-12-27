@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/strongly_connected_component.cpp
+# :heavy_check_mark: Graph/two_sat.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/strongly_connected_component.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 18:48:58+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/two_sat.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-26 20:37:58+09:00
 
 
 
@@ -39,16 +39,11 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
-
-
-## Required by
-
-* :heavy_check_mark: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
+* :heavy_check_mark: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/strongly_connected_component.test.cpp.html">Graph/Verify/strongly_connected_component.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Graph/Verify/two_sat.test.cpp.html">Graph/Verify/two_sat.test.cpp</a>
 
 
@@ -60,59 +55,43 @@ layout: default
 #ifndef __guard__
 #define __guard__
 #include "graph.cpp"
+#include "strongly_connected_component.cpp"
 #undef __guard__
 #endif
 
-#include <algorithm>
-#include <vector>
+struct TwoSat {
+    int vnum;
+    Graph<> graph;
 
-template <class Cost = int>
-struct StronglyConnectedComponents {
-    Graph<Cost> graph, rgraph;
-    std::vector<bool> visited;
-    std::vector<int> stk;
+    explicit TwoSat(int n) : vnum(n), graph(n * 2) {}
 
-    // id[v] = 頂点vはgroups[id[v]]に属する
-    std::vector<int> id;
-    std::vector<std::vector<int>> groups;
+    // t=1 <=> true
+    int enc(int x, bool t) {
+        return x + (t ? vnum : 0);
+    }
 
-    explicit StronglyConnectedComponents(const Graph<Cost>& g)
-        : graph(g), visited(graph.size(), false), id(graph.size(), -1) {
-        revinit();
+    // [tx]x V [ty]y
+    void span(int x, bool tx, int y, bool ty) {
+        graph[enc(x, !tx)].emplace_back(enc(x, !tx), enc(y, ty));
+        graph[enc(y, !ty)].emplace_back(enc(y, !ty), enc(x, tx));
+    }
 
-        for (int v = 0; v < graph.size(); ++v) dfs(v);
+    // if unsatisfiable, return an empty vector
+    std::vector<bool> exec() {
+        StronglyConnectedComponents scc(graph);
 
-        while (!stk.empty()) {
-            int v = stk.back();
-            stk.pop_back();
-            if (id[v] < 0) {
-                groups.push_back(std::vector<int>());
-                rdfs(v);
+        std::vector<bool> assign(vnum);
+        for (int x = 0; x < vnum; ++x) {
+            int fid = scc.id[enc(x, false)],
+                tid = scc.id[enc(x, true)];
+
+            if (fid == tid) {
+                return std::vector<bool>();
+            } else {
+                assign[x] = (fid < tid);
             }
         }
-    }
-
-    void revinit() {
-        rgraph = Graph<Cost>(graph.size());
-        for (int v = 0; v < graph.size(); ++v) {
-            for (const auto& e : graph[v]) {
-                rgraph[e.dst].emplace_back(e.dst, v, e.cost);
-            }
-        }
-    }
-
-    void dfs(int v) {
-        if (visited[v]) return;
-        visited[v] = true;
-        for (const auto& e : graph[v]) dfs(e.dst);
-        stk.push_back(v);
-    }
-
-    void rdfs(int v) {
-        if (id[v] >= 0) return;
-        id[v] = groups.size() - 1;
-        groups.back().push_back(v);
-        for (const auto& e : rgraph[v]) rdfs(e.dst);
+        return assign;
     }
 };
 
@@ -125,6 +104,8 @@ struct StronglyConnectedComponents {
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 328, in write_contents
     bundler.update(self.file_class.file_path)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 154, in update
+    self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
 onlinejudge_verify.bundle.BundleError: Graph/strongly_connected_component.cpp: line 6: found codes out of include guard
