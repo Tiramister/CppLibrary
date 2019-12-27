@@ -25,20 +25,26 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/ford_fulkerson.cpp
+# :heavy_check_mark: Graph/dinic.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/ford_fulkerson.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-28 03:20:01+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/dinic.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-28 03:34:17+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="bimatching.cpp.html">Graph/bimatching.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/ford_fulkerson.test.cpp.html">Graph/Verify/ford_fulkerson.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Graph/Verify/bimatching.test.cpp.html">Graph/Verify/bimatching.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Graph/Verify/dinic.test.cpp.html">Graph/Verify/dinic.test.cpp</a>
 
 
 ## Code
@@ -46,8 +52,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <vector>
 #include <limits>
+#include <vector>
+#include <queue>
 
 template <class Cap, bool isDirect>
 struct MaxFlow {
@@ -63,10 +70,10 @@ struct MaxFlow {
 
     Edges edges;
     Graph graph;
-    std::vector<bool> visited;
+    std::vector<int> dist, iter;
 
     explicit MaxFlow(int n)
-        : graph(n), visited(n) {}
+        : graph(n), dist(n), iter(n) {}
 
     void span(int u, int v, Cap cap) {
         graph[u].push_back(edges.size());
@@ -76,14 +83,35 @@ struct MaxFlow {
         edges.emplace_back(v, u, (isDirect ? 0 : cap));
     }
 
+    void bfs(int s) {
+        std::fill(dist.begin(), dist.end(), -1);
+        dist[s] = 0;
+        std::queue<int> que;
+        que.push(s);
+
+        while (!que.empty()) {
+            int v = que.front();
+            que.pop();
+
+            for (int eidx : graph[v]) {
+                const auto& edge = edges[eidx];
+
+                if (edge.cap > 0 && dist[edge.dst] < 0) {
+                    dist[edge.dst] = dist[v] + 1;
+                    que.push(edge.dst);
+                }
+            }
+        }
+    }
+
     int dfs(int v, int g, Cap f) {
         if (v == g) return f;
 
-        visited[v] = true;
-        for (auto eidx : graph[v]) {
+        for (int& itr = iter[v]; itr < (int)graph[v].size(); ++itr) {
+            int eidx = graph[v][itr];
             auto& edge = edges[eidx];
 
-            if (edge.cap > 0 && !visited[edge.dst]) {
+            if (edge.cap > 0 && dist[v] < dist[edge.dst]) {
                 Cap df = dfs(edge.dst, g, std::min(f, edge.cap));
 
                 if (df > 0) {
@@ -98,14 +126,19 @@ struct MaxFlow {
     }
 
     Cap exec(int s, int g) {
-        constexpr Cap INF = std::numeric_limits<Cap>::max();
+        const Cap INF = std::numeric_limits<Cap>::max();
 
         Cap ret = 0;
         while (true) {
-            std::fill(visited.begin(), visited.end(), false);
-            Cap flow = dfs(s, g, INF);
-            if (flow == 0) return ret;
-            ret += flow;
+            bfs(s);
+            if (dist[g] < 0) return ret;
+
+            std::fill(iter.begin(), iter.end(), 0);
+            while (true) {
+                Cap flow = dfs(s, g, INF);
+                if (flow == 0) break;
+                ret += flow;
+            }
         }
     }
 };
@@ -116,9 +149,10 @@ struct MaxFlow {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Graph/ford_fulkerson.cpp"
-#include <vector>
+#line 1 "Graph/dinic.cpp"
 #include <limits>
+#include <vector>
+#include <queue>
 
 template <class Cap, bool isDirect>
 struct MaxFlow {
@@ -134,10 +168,10 @@ struct MaxFlow {
 
     Edges edges;
     Graph graph;
-    std::vector<bool> visited;
+    std::vector<int> dist, iter;
 
     explicit MaxFlow(int n)
-        : graph(n), visited(n) {}
+        : graph(n), dist(n), iter(n) {}
 
     void span(int u, int v, Cap cap) {
         graph[u].push_back(edges.size());
@@ -147,14 +181,35 @@ struct MaxFlow {
         edges.emplace_back(v, u, (isDirect ? 0 : cap));
     }
 
+    void bfs(int s) {
+        std::fill(dist.begin(), dist.end(), -1);
+        dist[s] = 0;
+        std::queue<int> que;
+        que.push(s);
+
+        while (!que.empty()) {
+            int v = que.front();
+            que.pop();
+
+            for (int eidx : graph[v]) {
+                const auto& edge = edges[eidx];
+
+                if (edge.cap > 0 && dist[edge.dst] < 0) {
+                    dist[edge.dst] = dist[v] + 1;
+                    que.push(edge.dst);
+                }
+            }
+        }
+    }
+
     int dfs(int v, int g, Cap f) {
         if (v == g) return f;
 
-        visited[v] = true;
-        for (auto eidx : graph[v]) {
+        for (int& itr = iter[v]; itr < (int)graph[v].size(); ++itr) {
+            int eidx = graph[v][itr];
             auto& edge = edges[eidx];
 
-            if (edge.cap > 0 && !visited[edge.dst]) {
+            if (edge.cap > 0 && dist[v] < dist[edge.dst]) {
                 Cap df = dfs(edge.dst, g, std::min(f, edge.cap));
 
                 if (df > 0) {
@@ -169,14 +224,19 @@ struct MaxFlow {
     }
 
     Cap exec(int s, int g) {
-        constexpr Cap INF = std::numeric_limits<Cap>::max();
+        const Cap INF = std::numeric_limits<Cap>::max();
 
         Cap ret = 0;
         while (true) {
-            std::fill(visited.begin(), visited.end(), false);
-            Cap flow = dfs(s, g, INF);
-            if (flow == 0) return ret;
-            ret += flow;
+            bfs(s);
+            if (dist[g] < 0) return ret;
+
+            std::fill(iter.begin(), iter.end(), 0);
+            while (true) {
+                Cap flow = dfs(s, g, INF);
+                if (flow == 0) break;
+                ret += flow;
+            }
         }
     }
 };

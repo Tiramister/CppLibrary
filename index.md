@@ -58,7 +58,9 @@ layout: default
 ### Graph
 
 * :heavy_check_mark: <a href="library/Graph/bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/bimatching.cpp.html">Graph/bimatching.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/graph.cpp.html">Graph/graph.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
@@ -91,7 +93,9 @@ layout: default
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/segment_tree_rsq.test.cpp.html">DataStructure/Verify/segment_tree_rsq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/DataStructure/Verify/union_find.test.cpp.html">DataStructure/Verify/union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/bellman_ford.test.cpp.html">Graph/Verify/bellman_ford.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Graph/Verify/bimatching.test.cpp.html">Graph/Verify/bimatching.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/dijkstra.test.cpp.html">Graph/Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Graph/Verify/dinic.test.cpp.html">Graph/Verify/dinic.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/ford_fulkerson.test.cpp.html">Graph/Verify/ford_fulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/strongly_connected_component.test.cpp.html">Graph/Verify/strongly_connected_component.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Graph/Verify/two_sat.test.cpp.html">Graph/Verify/two_sat.test.cpp</a>
