@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/graph.cpp
+# :warning: Graph/graph.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -39,17 +39,17 @@ layout: default
 ## Required by
 
 * :heavy_check_mark: <a href="bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
-* :heavy_check_mark: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
-* :heavy_check_mark: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
-* :heavy_check_mark: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
+* :warning: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
+* :warning: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :warning: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/bellman_ford.test.cpp.html">Graph/Verify/bellman_ford.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/dijkstra.test.cpp.html">Graph/Verify/dijkstra.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/strongly_connected_component.test.cpp.html">Graph/Verify/strongly_connected_component.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/two_sat.test.cpp.html">Graph/Verify/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
+* :warning: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :warning: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
+* :warning: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
 
 
 ## Code

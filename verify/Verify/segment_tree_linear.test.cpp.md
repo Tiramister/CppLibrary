@@ -21,16 +21,16 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: DataStructure/Verify/segment_tree_linear.test.cpp
+# :warning: Verify/segment_tree_linear.test.cpp
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Verify/segment_tree_linear.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-28 02:41:36+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_linear.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:37:49+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -38,8 +38,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
-* :heavy_check_mark: <a href="../../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :warning: <a href="../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
+* :warning: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
 
 
 ## Code
@@ -49,8 +49,10 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../segment_tree.cpp"
-#include "../../Number/modint.cpp"
+#define __guard__
+#include "../DataStructure/segment_tree.cpp"
+#include "../Number/modint.cpp"
+#undef __guard__
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;
@@ -101,10 +103,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/Verify/segment_tree_linear.test.cpp"
+#line 1 "Verify/segment_tree_linear.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#line 1 "DataStructure/Verify/../segment_tree.cpp"
+#define __guard__
+#line 1 "Verify/../DataStructure/segment_tree.cpp"
 #include <vector>
 #include <functional>
 
@@ -147,7 +150,7 @@ struct SegmentTree {
         }
     }
 };
-#line 1 "DataStructure/Verify/../../Number/modint.cpp"
+#line 1 "Verify/../Number/modint.cpp"
 #include <iostream>
 
 template <int MOD>
@@ -206,7 +209,8 @@ struct ModInt {
 
 // constexpr int MOD = 1e9 + 7;
 // using mint = ModInt<MOD>;
-#line 5 "DataStructure/Verify/segment_tree_linear.test.cpp"
+#line 6 "Verify/segment_tree_linear.test.cpp"
+#undef __guard__
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;
@@ -254,5 +258,5 @@ int main() {
 ```
 {% endraw %}
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 

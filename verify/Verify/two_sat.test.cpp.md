@@ -25,26 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Graph/dijkstra.cpp
+# :warning: Verify/two_sat.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 10:15:08+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/two_sat.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:38:14+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/two_sat">https://judge.yosupo.jp/problem/two_sat</a>
 
 
 ## Depends on
 
-* :warning: <a href="graph.cpp.html">Graph/graph.cpp</a>
-* :warning: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
-
-
-## Verified with
-
-* :warning: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :warning: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
+* :warning: <a href="../../library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :warning: <a href="../../library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 ## Code
@@ -52,40 +48,42 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
+#define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
+
 #define __guard__
-#include "../Misc/heap_alias.cpp"
-#include "graph.cpp"
+#include "../Graph/graph.cpp"
+#include "../Graph/strongly_connected_component.cpp"
+#include "../Graph/two_sat.cpp"
 #undef __guard__
-#endif
 
-#include <queue>
-#include <limits>
-#include <tuple>
+#include <iostream>
+#include <cmath>
+#include <string>
 
-template <class Cost>
-std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
+int main() {
+    std::string tmp;
+    int n, m;
+    std::cin >> tmp >> tmp >> n >> m;
 
-    std::vector<Cost> dist(graph.size(), INF);
-    dist[s] = 0;
-    MinHeap<std::pair<Cost, int>> que;
-    que.emplace(0, s);
-
-    while (!que.empty()) {
-        int v;
-        Cost d;
-        std::tie(d, v) = que.top();
-        que.pop();
-        if (d > dist[v]) continue;
-
-        for (auto e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
-            dist[e.dst] = dist[v] + e.cost;
-            que.emplace(dist[e.dst], e.dst);
-        }
+    TwoSat ts(n);
+    while (m--) {
+        int x, y;
+        std::cin >> x >> y >> tmp;
+        ts.span(std::abs(x) - 1, x > 0, std::abs(y) - 1, y > 0);
     }
-    return dist;
+
+    auto assign = ts.exec();
+    if (assign.empty()) {
+        std::cout << "s UNSATISFIABLE" << std::endl;
+    } else {
+        std::cout << "s SATISFIABLE" << std::endl;
+        std::cout << "v ";
+        for (int x = 1; x <= n; ++x) {
+            std::cout << (assign[x - 1] ? x : -x) << " ";
+        }
+        std::cout << "0" << std::endl;
+    }
+    return 0;
 }
 
 ```
@@ -112,9 +110,11 @@ During handling of the above exception, another exception occurred:
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 328, in write_contents
     bundler.update(self.file_class.file_path)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 154, in update
+    self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/dijkstra.cpp: line 7: found codes out of include guard
+onlinejudge_verify.bundle.BundleError: Graph/strongly_connected_component.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

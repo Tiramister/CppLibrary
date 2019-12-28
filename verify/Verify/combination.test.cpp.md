@@ -21,16 +21,16 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Number/Verify/combination.test.cpp
+# :warning: Verify/combination.test.cpp
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/Number/Verify/combination.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 16:21:21+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/combination.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:37:49+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C">https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C</a>
@@ -38,8 +38,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/Number/combination.cpp.html">Number/combination.cpp</a>
-* :heavy_check_mark: <a href="../../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :warning: <a href="../../library/Number/combination.cpp.html">Number/combination.cpp</a>
+* :warning: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
 
 
 ## Code
@@ -49,8 +49,10 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
-#include "../modint.cpp"
-#include "../combination.cpp"
+#define __guard__
+#include "../Number/modint.cpp"
+#include "../Number/combination.cpp"
+#undef __guard__
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
@@ -75,10 +77,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Number/Verify/combination.test.cpp"
+#line 1 "Verify/combination.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
-#line 1 "Number/Verify/../modint.cpp"
+#define __guard__
+#line 1 "Verify/../Number/modint.cpp"
 #include <iostream>
 
 template <int MOD>
@@ -137,7 +140,7 @@ struct ModInt {
 
 // constexpr int MOD = 1e9 + 7;
 // using mint = ModInt<MOD>;
-#line 1 "Number/Verify/../combination.cpp"
+#line 1 "Verify/../Number/combination.cpp"
 #include <vector>
 
 template <class T>
@@ -167,7 +170,8 @@ struct Combination {
         return a < b ? T(0) : f[a] * invf[a - b] * invf[b];
     }
 };
-#line 5 "Number/Verify/combination.test.cpp"
+#line 6 "Verify/combination.test.cpp"
+#undef __guard__
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
@@ -189,5 +193,5 @@ int main() {
 ```
 {% endraw %}
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 

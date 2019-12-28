@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Number/prime.cpp
+# :warning: Number/prime.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Number/Verify/factorize.test.cpp.html">Number/Verify/factorize.test.cpp</a>
+* :warning: <a href="../../verify/Verify/factorize.test.cpp.html">Verify/factorize.test.cpp</a>
 
 
 ## Code

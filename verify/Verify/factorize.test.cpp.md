@@ -21,16 +21,16 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Number/Verify/factorize.test.cpp
+# :warning: Verify/factorize.test.cpp
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/Number/Verify/factorize.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 06:32:57+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/factorize.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:37:49+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A</a>
@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/Number/prime.cpp.html">Number/prime.cpp</a>
+* :warning: <a href="../../library/Number/prime.cpp.html">Number/prime.cpp</a>
 
 
 ## Code
@@ -48,8 +48,11 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A"
 
+#define __guard__
+#include "../Number/prime.cpp"
+#undef __guard__
+
 #include <iostream>
-#include "../prime.cpp"
 
 const Prime P(100000);
 
@@ -73,11 +76,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Number/Verify/factorize.test.cpp"
+#line 1 "Verify/factorize.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A"
 
-#include <iostream>
-#line 1 "Number/Verify/../prime.cpp"
+#define __guard__
+#line 1 "Verify/../Number/prime.cpp"
 #include <vector>
 
 struct Prime {
@@ -130,7 +133,10 @@ struct Prime {
         return facts;
     }
 };
-#line 5 "Number/Verify/factorize.test.cpp"
+#line 5 "Verify/factorize.test.cpp"
+#undef __guard__
+
+#include <iostream>
 
 const Prime P(100000);
 
@@ -151,5 +157,5 @@ int main() {
 ```
 {% endraw %}
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 

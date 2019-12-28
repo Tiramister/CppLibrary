@@ -21,16 +21,16 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: DataStructure/Verify/union_find.test.cpp
+# :warning: Verify/union_find.test.cpp
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Verify/union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-22 22:36:55+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/union_find.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:37:49+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
+* :warning: <a href="../../library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
 
 
 ## Code
@@ -48,7 +48,10 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#include "../union_find.cpp"
+#define __guard__
+#include "../DataStructure/union_find.cpp"
+#undef __guard__
+
 #include <iostream>
 
 int main() {
@@ -74,10 +77,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/Verify/union_find.test.cpp"
+#line 1 "Verify/union_find.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#line 1 "DataStructure/Verify/../union_find.cpp"
+#define __guard__
+#line 1 "Verify/../DataStructure/union_find.cpp"
 #include <numeric>
 #include <vector>
 
@@ -108,7 +112,9 @@ struct UnionFind {
     bool ispar(int v) { return v == find(v); }
     int size(int v) { return sz[find(v)]; }
 };
-#line 4 "DataStructure/Verify/union_find.test.cpp"
+#line 5 "Verify/union_find.test.cpp"
+#undef __guard__
+
 #include <iostream>
 
 int main() {
@@ -131,5 +137,5 @@ int main() {
 ```
 {% endraw %}
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 

@@ -25,26 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Graph/dijkstra.cpp
+# :warning: Verify/lazy_segment_tree_add_sum.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 10:15:08+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/lazy_segment_tree_add_sum.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:37:49+09:00
 
 
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G</a>
 
 
 ## Depends on
 
-* :warning: <a href="graph.cpp.html">Graph/graph.cpp</a>
-* :warning: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
-
-
-## Verified with
-
-* :warning: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :warning: <a href="../../library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
 
 
 ## Code
@@ -52,40 +46,46 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G"
+
 #ifndef __guard__
 #define __guard__
-#include "../Misc/heap_alias.cpp"
-#include "graph.cpp"
+#include "../DataStructure/lazy_segment_tree.cpp"
 #undef __guard__
 #endif
 
-#include <queue>
-#include <limits>
-#include <tuple>
+#include <iostream>
 
-template <class Cost>
-std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
+using lint = long long;
 
-    std::vector<Cost> dist(graph.size(), INF);
-    dist[s] = 0;
-    MinHeap<std::pair<Cost, int>> que;
-    que.emplace(0, s);
+int main() {
+    int n, q;
+    std::cin >> n >> q;
 
-    while (!que.empty()) {
-        int v;
-        Cost d;
-        std::tie(d, v) = que.top();
-        que.pop();
-        if (d > dist[v]) continue;
+    LazySegmentTree<lint, lint> seg(
+        n, 0, 0,
+        [](auto a, auto b) { return a + b; },
+        [](auto e, auto f) { return e + f; },
+        [](auto a, auto e, int l) { return a + e * l; });
 
-        for (auto e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
-            dist[e.dst] = dist[v] + e.cost;
-            que.emplace(dist[e.dst], e.dst);
+    while (q--) {
+        int t;
+        std::cin >> t;
+
+        if (t == 0) {
+            int l, r;
+            lint x;
+            std::cin >> l >> r >> x;
+            --l, --r;
+            seg.update(l, r + 1, x);
+        } else {
+            int l, r;
+            std::cin >> l >> r;
+            --l, --r;
+            std::cout << seg.query(l, r + 1) << std::endl;
         }
     }
-    return dist;
+    return 0;
 }
 
 ```
@@ -112,9 +112,9 @@ During handling of the above exception, another exception occurred:
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 328, in write_contents
     bundler.update(self.file_class.file_path)
-  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/dijkstra.cpp: line 7: found codes out of include guard
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 153, in update
+    raise BundleError(path, i + 1, "unable to process #include in #if / #ifdef / #ifndef other than include guards")
+onlinejudge_verify.bundle.BundleError: Verify/lazy_segment_tree_add_sum.test.cpp: line 5: unable to process #include in #if / #ifdef / #ifndef other than include guards
 
 ```
 {% endraw %}

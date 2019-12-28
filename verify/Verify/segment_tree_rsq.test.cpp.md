@@ -21,16 +21,16 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: DataStructure/Verify/segment_tree_rsq.test.cpp
+# :warning: Verify/segment_tree_rsq.test.cpp
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/DataStructure/Verify/segment_tree_rsq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-28 02:41:36+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_rsq.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:37:49+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B</a>
@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
+* :warning: <a href="../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
 
 
 ## Code
@@ -48,8 +48,11 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
 
+#define __guard__
+#include "../DataStructure/segment_tree.cpp"
+#undef __guard__
+
 #include <iostream>
-#include "../segment_tree.cpp"
 
 int main() {
     int n;
@@ -83,11 +86,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/Verify/segment_tree_rsq.test.cpp"
+#line 1 "Verify/segment_tree_rsq.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
 
-#include <iostream>
-#line 1 "DataStructure/Verify/../segment_tree.cpp"
+#define __guard__
+#line 1 "Verify/../DataStructure/segment_tree.cpp"
 #include <vector>
 #include <functional>
 
@@ -130,7 +133,10 @@ struct SegmentTree {
         }
     }
 };
-#line 5 "DataStructure/Verify/segment_tree_rsq.test.cpp"
+#line 5 "Verify/segment_tree_rsq.test.cpp"
+#undef __guard__
+
+#include <iostream>
 
 int main() {
     int n;
@@ -161,5 +167,5 @@ int main() {
 ```
 {% endraw %}
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 

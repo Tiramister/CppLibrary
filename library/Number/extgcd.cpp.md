@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Number/extgcd.cpp
+# :warning: Number/extgcd.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Number/Verify/extgcd.test.cpp.html">Number/Verify/extgcd.test.cpp</a>
+* :warning: <a href="../../verify/Verify/extgcd.test.cpp.html">Verify/extgcd.test.cpp</a>
 
 
 ## Code

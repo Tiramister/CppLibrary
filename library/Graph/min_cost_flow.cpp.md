@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/min_cost_flow.cpp
+# :warning: Graph/min_cost_flow.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,12 +38,12 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
+* :warning: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/min_cost_flow.test.cpp.html">Graph/Verify/min_cost_flow.test.cpp</a>
+* :warning: <a href="../../verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
 
 
 ## Code
@@ -162,6 +162,21 @@ struct MinCostFlow {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/main.py", line 169, in main
+    subcommand_run(paths=[], jobs=parsed.jobs)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/main.py", line 66, in subcommand_run
+    onlinejudge_verify.verify.main(paths, marker=marker, timeout=timeout, jobs=jobs)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/verify.py", line 68, in main
+    exec_command(['oj', 'download', '--system', '-d', shlex.quote(str(directory / 'test')), url])
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/verify.py", line 26, in exec_command
+    subprocess.check_call(command)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/subprocess.py", line 364, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['oj', 'download', '--system', '-d', '.verify-helper/cache/de2a20b2f4f2e91bd80377115ed6307e/test', 'https://judge.yosupo.jp/problem/bipartitematching']' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 328, in write_contents
     bundler.update(self.file_class.file_path)

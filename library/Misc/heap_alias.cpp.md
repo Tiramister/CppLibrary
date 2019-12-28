@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Misc/heap_alias.cpp
+# :warning: Misc/heap_alias.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,14 +38,14 @@ layout: default
 
 ## Required by
 
-* :heavy_check_mark: <a href="../Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
-* :heavy_check_mark: <a href="../Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
+* :warning: <a href="../Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
+* :warning: <a href="../Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/dijkstra.test.cpp.html">Graph/Verify/dijkstra.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/min_cost_flow.test.cpp.html">Graph/Verify/min_cost_flow.test.cpp</a>
+* :warning: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :warning: <a href="../../verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
 
 
 ## Code

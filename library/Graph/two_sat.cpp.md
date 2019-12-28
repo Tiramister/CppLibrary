@@ -25,26 +25,26 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/two_sat.cpp
+# :warning: Graph/two_sat.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/two_sat.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-26 20:37:58+09:00
+    - Last commit date: 2019-12-29 02:38:14+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :warning: <a href="graph.cpp.html">Graph/graph.cpp</a>
+* :warning: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Graph/Verify/two_sat.test.cpp.html">Graph/Verify/two_sat.test.cpp</a>
+* :warning: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
 
 
 ## Code
@@ -101,6 +101,21 @@ struct TwoSat {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/main.py", line 169, in main
+    subcommand_run(paths=[], jobs=parsed.jobs)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/main.py", line 66, in subcommand_run
+    onlinejudge_verify.verify.main(paths, marker=marker, timeout=timeout, jobs=jobs)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/verify.py", line 68, in main
+    exec_command(['oj', 'download', '--system', '-d', shlex.quote(str(directory / 'test')), url])
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/verify.py", line 26, in exec_command
+    subprocess.check_call(command)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/subprocess.py", line 364, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['oj', 'download', '--system', '-d', '.verify-helper/cache/de2a20b2f4f2e91bd80377115ed6307e/test', 'https://judge.yosupo.jp/problem/bipartitematching']' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 328, in write_contents
     bundler.update(self.file_class.file_path)
