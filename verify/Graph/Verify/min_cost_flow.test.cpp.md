@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/Verify/bimatching.test.cpp
+# :heavy_check_mark: Graph/Verify/min_cost_flow.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/Verify/bimatching.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 00:18:44+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/Verify/min_cost_flow.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 02:01:46+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/bipartitematching">https://judge.yosupo.jp/problem/bipartitematching</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/Graph/bimatching.cpp.html">Graph/bimatching.cpp</a>
-* :heavy_check_mark: <a href="../../../library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
+* :heavy_check_mark: <a href="../../../library/Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
+* :heavy_check_mark: <a href="../../../library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
 ## Code
@@ -47,31 +47,22 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#define __guard__
-#include "../dinic.cpp"
-#include "../bimatching.cpp"
-#undef __guard__
-
+#include "../min_cost_flow.cpp"
 #include <iostream>
 
 int main() {
-    int n, m, k;
-    std::cin >> n >> m >> k;
+    int n, m, f;
+    std::cin >> n >> m >> f;
 
-    BiMatching bm(n, m);
-    while (k--) {
-        int u, v;
-        std::cin >> u >> v;
-        bm.span(u, v);
+    MinCostFlow<int, int> mcf(n);
+    while (m--) {
+        int u, v, c, d;
+        std::cin >> u >> v >> c >> d;
+        mcf.span(u, v, c, d);
     }
-
-    auto match = bm.matching();
-    std::cout << match.size() << std::endl;
-    for (auto p : match) {
-        std::cout << p.first << ' ' << p.second << std::endl;
-    }
+    std::cout << mcf.exec(0, n - 1, f) << std::endl;
     return 0;
 }
 
@@ -88,7 +79,7 @@ Traceback (most recent call last):
     self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/bimatching.cpp: line 6: found codes out of include guard
+onlinejudge_verify.bundle.BundleError: Graph/min_cost_flow.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

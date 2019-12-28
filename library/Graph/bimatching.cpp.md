@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/bimatching.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-28 04:02:01+09:00
+    - Last commit date: 2019-12-29 00:18:07+09:00
 
 
 
@@ -81,6 +81,19 @@ struct BiMatching {
 
     int exec() {
         return mf.exec(s, g);
+    }
+
+    std::vector<std::pair<int, int>> matching() {
+        mf.exec(s, g);
+        std::vector<std::pair<int, int>> ret;
+        for (auto e : mf.edges) {
+            if (e.src < e.dst &&
+                e.src < n && e.dst < n + m &&
+                e.cap == 0) {
+                ret.emplace_back(e.src, e.dst - n);
+            }
+        }
+        return ret;
     }
 };
 
