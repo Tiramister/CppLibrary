@@ -1,6 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A"
 
-#include "../dinic.cpp"
+#define __guard__
+#include "../Graph/dinic.cpp"
+#undef __guard__
 
 #include <iostream>
 

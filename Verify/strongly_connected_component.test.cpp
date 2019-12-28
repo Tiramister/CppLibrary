@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
 #define __guard__
-#include "../graph.cpp"
-#include "../strongly_connected_component.cpp"
+#include "../Graph/graph.cpp"
+#include "../Graph/strongly_connected_component.cpp"
 #undef __guard__
 
 #include <iostream>

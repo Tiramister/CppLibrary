@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
 #define __guard__
-#include "../dinic.cpp"
-#include "../bimatching.cpp"
+#include "../Graph/dinic.cpp"
+#include "../Graph/bimatching.cpp"
 #undef __guard__
 
 #include <iostream>

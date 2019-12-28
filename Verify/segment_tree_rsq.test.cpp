@@ -1,7 +1,10 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
 
+#define __guard__
+#include "../DataStructure/segment_tree.cpp"
+#undef __guard__
+
 #include <iostream>
-#include "../segment_tree.cpp"
 
 int main() {
     int n;

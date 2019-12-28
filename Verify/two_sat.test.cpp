@@ -1,12 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-#ifndef __guard__
 #define __guard__
-#include "../graph.cpp"
-#include "../strongly_connected_component.cpp"
-#include "../two_sat.cpp"
+#include "../Graph/graph.cpp"
+#include "../Graph/strongly_connected_component.cpp"
+#include "../Graph/two_sat.cpp"
 #undef __guard__
-#endif
 
 #include <iostream>
 #include <cmath>

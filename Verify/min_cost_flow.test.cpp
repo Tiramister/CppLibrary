@@ -1,6 +1,10 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#include "../min_cost_flow.cpp"
+#define __guard__
+#include "../Misc/heap_alias.cpp"
+#include "../Graph/min_cost_flow.cpp"
+#undef __guard__
+
 #include <iostream>
 
 int main() {

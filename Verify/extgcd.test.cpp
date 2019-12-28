@@ -1,8 +1,11 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E"
 
+#define __guard__
+#include "../Number/extgcd.cpp"
+#undef __guard__
+
 #include <iostream>
 #include <cassert>
-#include "../extgcd.cpp"
 
 int main() {
     int a, b;

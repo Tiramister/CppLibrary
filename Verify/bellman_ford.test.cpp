@@ -1,9 +1,8 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
 
 #define __guard__
-#include "../../Misc/heap_alias.cpp"
-#include "../graph.cpp"
-#include "../dijkstra.cpp"
+#include "../Graph/graph.cpp"
+#include "../Graph/bellman_ford.cpp"
 #undef __guard__
 
 #include <iostream>
@@ -21,8 +20,12 @@ int main() {
         graph[u].emplace_back(u, v, d);
     }
 
-    auto dist = dijkstra(graph, s);
-    for (auto d : dist) {
+    auto dist = bellman_ford(graph, s);
+    if (dist.empty()) {
+        std::cout << "NEGATIVE CYCLE" << std::endl;
+        return 0;
+    }
+    for (int d : dist) {
         if (d == INF) {
             std::cout << "INF" << std::endl;
         } else {
