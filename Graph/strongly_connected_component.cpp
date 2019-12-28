@@ -21,13 +21,13 @@ struct StronglyConnectedComponents {
         : graph(g), visited(graph.size(), false), id(graph.size(), -1) {
         revinit();
 
-        for (int v = 0; v < graph.size(); ++v) dfs(v);
+        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);
 
         while (!stk.empty()) {
             int v = stk.back();
             stk.pop_back();
             if (id[v] < 0) {
-                groups.push_back(std::vector<int>());
+                groups.emplace_back();
                 rdfs(v);
             }
         }
@@ -35,7 +35,7 @@ struct StronglyConnectedComponents {
 
     void revinit() {
         rgraph = Graph<Cost>(graph.size());
-        for (int v = 0; v < graph.size(); ++v) {
+        for (int v = 0; v < (int)graph.size(); ++v) {
             for (const auto& e : graph[v]) {
                 rgraph[e.dst].emplace_back(e.dst, v, e.cost);
             }
