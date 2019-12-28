@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_7_A"
+#define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
 #define __guard__
 #include "../dinic.cpp"
@@ -18,6 +18,10 @@ int main() {
         bm.span(u, v);
     }
 
-    std::cout << bm.exec() << std::endl;
+    auto match = bm.matching();
+    std::cout << match.size() << std::endl;
+    for (auto p : match) {
+        std::cout << p.first << ' ' << p.second << std::endl;
+    }
     return 0;
 }
