@@ -29,4 +29,17 @@ struct BiMatching {
     int exec() {
         return mf.exec(s, g);
     }
+
+    std::vector<std::pair<int, int>> matching() {
+        mf.exec(s, g);
+        std::vector<std::pair<int, int>> ret;
+        for (auto e : mf.edges) {
+            if (e.src < e.dst &&
+                e.src < n && e.dst < n + m &&
+                e.cap == 0) {
+                ret.emplace_back(e.src, e.dst - n);
+            }
+        }
+        return ret;
+    }
 };
