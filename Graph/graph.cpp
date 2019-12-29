@@ -6,6 +6,9 @@ struct Edge {
     Cost cost;
     Edge(int src = -1, int dst = -1, Cost cost = 1)
         : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
 };
 
 template <class Cost = int>
