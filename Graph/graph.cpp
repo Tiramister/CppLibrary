@@ -9,4 +9,7 @@ struct Edge {
 };
 
 template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
 using Graph = std::vector<std::vector<Edge<Cost>>>;
