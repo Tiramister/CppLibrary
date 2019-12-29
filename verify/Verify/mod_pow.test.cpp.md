@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Verify/mod_pow.test.cpp
+# :heavy_check_mark: Verify/mod_pow.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 

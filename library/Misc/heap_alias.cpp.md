@@ -39,13 +39,13 @@ layout: default
 ## Required by
 
 * :heavy_check_mark: <a href="../Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
-* :x: <a href="../Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
+* :heavy_check_mark: <a href="../Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
-* :x: <a href="../../verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
 
 
 ## Code

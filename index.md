@@ -38,9 +38,9 @@ layout: default
 
 ### DataStructure
 
-* :x: <a href="library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
-* :x: <a href="library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
-* :x: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
 
 
 <div id="a603905470e2a5b8c13e96b579ef0dba"></div>
@@ -63,10 +63,10 @@ layout: default
 * :heavy_check_mark: <a href="library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :x: <a href="library/Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
-* :x: <a href="library/Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
-* :x: <a href="library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
-* :x: <a href="library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 <div id="74248c725e00bf9fe04df4e35b249a19"></div>
@@ -99,14 +99,14 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/factorize.test.cpp.html">Verify/factorize.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/ford_fulkerson.test.cpp.html">Verify/ford_fulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/gcd.test.cpp.html">Verify/gcd.test.cpp</a>
-* :x: <a href="verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
-* :x: <a href="verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
-* :x: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
-* :x: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
-* :x: <a href="verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
-* :x: <a href="verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
-* :x: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
-* :x: <a href="verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
-* :x: <a href="verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
 
 

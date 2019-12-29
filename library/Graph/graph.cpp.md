@@ -40,18 +40,18 @@ layout: default
 
 * :heavy_check_mark: <a href="bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
 * :heavy_check_mark: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
-* :x: <a href="kruskal.cpp.html">Graph/kruskal.cpp</a>
-* :x: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
-* :x: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
+* :heavy_check_mark: <a href="kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :heavy_check_mark: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
-* :x: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
-* :x: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
-* :x: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
 
 
 ## Code
