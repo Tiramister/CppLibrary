@@ -5,6 +5,8 @@
 #undef __guard__
 #endif
 
+#include <algorithm>
+
 template <class Cost>
 Cost kruskal(int vnum, std::vector<Edge<Cost>>& edges) {
     std::sort(edges.begin(), edges.end(),
