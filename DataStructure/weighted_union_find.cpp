@@ -51,8 +51,3 @@ struct WeightedUnionFind {
     bool ispar(int v) { return v == find(v); }
     int size(int v) { return sz[find(v)]; }
 };
-
-/* -----------------------------------------------------------------------------
-Verify : https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B
-
------------------------------------------------------------------------------ */
