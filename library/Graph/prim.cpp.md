@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/dijkstra.cpp
+# :heavy_check_mark: Graph/prim.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/prim.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 13:23:01+09:00
 
 
 
@@ -44,7 +44,7 @@ layout: default
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
 
 
 ## Code
@@ -60,32 +60,30 @@ layout: default
 #endif
 
 #include <queue>
-#include <limits>
-#include <tuple>
 
-template <class Cost>
-std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
+template <class Cost, class Cap = int>
+Cost prim(const Graph<Cost>& graph) {
+    std::vector<bool> used(graph.size(), false);
+    used[0] = true;
 
-    std::vector<Cost> dist(graph.size(), INF);
-    dist[s] = 0;
-    MinHeap<std::pair<Cost, int>> que;
-    que.emplace(0, s);
+    MinHeap<Edge<Cost>> heap;
+    for (const auto& e : graph[0]) {
+        heap.push(e);
+    }
 
-    while (!que.empty()) {
-        int v;
-        Cost d;
-        std::tie(d, v) = que.top();
-        que.pop();
-        if (d > dist[v]) continue;
+    Cost sum = 0;
+    while (!heap.empty()) {
+        auto e = heap.top();
+        heap.pop();
+        if (used[e.dst]) continue;
 
-        for (auto e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
-            dist[e.dst] = dist[v] + e.cost;
-            que.emplace(dist[e.dst], e.dst);
+        sum += e.cost;
+        used[e.dst] = true;
+        for (const auto& se : graph[e.dst]) {
+            heap.push(se);
         }
     }
-    return dist;
+    return sum;
 }
 
 ```
@@ -99,7 +97,7 @@ Traceback (most recent call last):
     bundler.update(self.file_class.file_path)
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/dijkstra.cpp: line 7: found codes out of include guard
+onlinejudge_verify.bundle.BundleError: Graph/prim.cpp: line 7: found codes out of include guard
 
 ```
 {% endraw %}

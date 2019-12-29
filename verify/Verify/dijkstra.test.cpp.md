@@ -30,7 +30,7 @@ layout: default
 <a href="../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/dijkstra.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 12:50:10+09:00
+    - Last commit date: 2019-12-29 13:22:44+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A</a>

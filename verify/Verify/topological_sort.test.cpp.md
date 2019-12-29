@@ -25,26 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/dijkstra.cpp
+# :heavy_check_mark: Verify/topological_sort.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/topological_sort.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 14:56:54+09:00
 
 
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/topological_sort.cpp.html">Graph/topological_sort.cpp</a>
 
 
 ## Code
@@ -52,40 +47,31 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
+
 #define __guard__
-#include "../Misc/heap_alias.cpp"
-#include "graph.cpp"
+#include "../Graph/graph.cpp"
+#include "../Graph/topological_sort.cpp"
 #undef __guard__
-#endif
 
-#include <queue>
-#include <limits>
-#include <tuple>
+#include <iostream>
 
-template <class Cost>
-std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+    Graph<> graph(n);
 
-    std::vector<Cost> dist(graph.size(), INF);
-    dist[s] = 0;
-    MinHeap<std::pair<Cost, int>> que;
-    que.emplace(0, s);
-
-    while (!que.empty()) {
-        int v;
-        Cost d;
-        std::tie(d, v) = que.top();
-        que.pop();
-        if (d > dist[v]) continue;
-
-        for (auto e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
-            dist[e.dst] = dist[v] + e.cost;
-            que.emplace(dist[e.dst], e.dst);
-        }
+    while (m--) {
+        int u, v;
+        std::cin >> u >> v;
+        graph[u].emplace_back(u, v);
     }
-    return dist;
+
+    TopologicalSort<> ts(graph);
+    for (int v : ts.order) {
+        std::cout << v << std::endl;
+    }
+    return 0;
 }
 
 ```
@@ -97,9 +83,11 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
     bundler.update(self.file_class.file_path)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 154, in update
+    self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/dijkstra.cpp: line 7: found codes out of include guard
+onlinejudge_verify.bundle.BundleError: Graph/topological_sort.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

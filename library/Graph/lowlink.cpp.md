@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/dijkstra.cpp
+# :heavy_check_mark: Graph/lowlink.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/lowlink.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 14:42:46+09:00
 
 
 
@@ -39,12 +39,12 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/articulation_points.test.cpp.html">Verify/articulation_points.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/bridges.test.cpp.html">Verify/bridges.test.cpp</a>
 
 
 ## Code
@@ -54,39 +54,49 @@ layout: default
 ```cpp
 #ifndef __guard__
 #define __guard__
-#include "../Misc/heap_alias.cpp"
 #include "graph.cpp"
 #undef __guard__
 #endif
 
-#include <queue>
-#include <limits>
-#include <tuple>
+template <class Cost = int>
+struct Lowlink {
+    Graph<Cost> graph;
+    int time;
+    std::vector<int> order, low;
 
-template <class Cost>
-std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
+    std::vector<int> artics;
+    std::vector<Edge<Cost>> bridges;
 
-    std::vector<Cost> dist(graph.size(), INF);
-    dist[s] = 0;
-    MinHeap<std::pair<Cost, int>> que;
-    que.emplace(0, s);
-
-    while (!que.empty()) {
-        int v;
-        Cost d;
-        std::tie(d, v) = que.top();
-        que.pop();
-        if (d > dist[v]) continue;
-
-        for (auto e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
-            dist[e.dst] = dist[v] + e.cost;
-            que.emplace(dist[e.dst], e.dst);
+    explicit Lowlink(const Graph<Cost>& graph)
+        : graph(graph), order(graph.size(), -1), low(graph.size(), graph.size()) {
+        time = 0;
+        for (int v = 0; v < (int)graph.size(); ++v) {
+            if (order[v] < 0) dfs(v, -1);
         }
     }
-    return dist;
-}
+
+    void dfs(int v, int r) {
+        order[v] = low[v] = time++;
+        int deg = 0;
+        bool is_artic = false;
+
+        for (auto e : graph[v]) {
+            if (order[e.dst] < 0) {
+                ++deg;
+                dfs(e.dst, e.src);
+                low[e.src] = std::min(low[e.src], low[e.dst]);
+
+                if (order[e.src] <= low[e.dst]) is_artic = true;
+                if (order[e.src] < low[e.dst]) bridges.push_back(e);
+            } else if (e.dst != r) {
+                low[e.src] = std::min(low[e.src], order[e.dst]);
+            }
+        }
+
+        if (r < 0) is_artic = (deg > 1);
+        if (is_artic) artics.push_back(v);
+    }
+};
 
 ```
 {% endraw %}
@@ -99,7 +109,7 @@ Traceback (most recent call last):
     bundler.update(self.file_class.file_path)
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/dijkstra.cpp: line 7: found codes out of include guard
+onlinejudge_verify.bundle.BundleError: Graph/lowlink.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

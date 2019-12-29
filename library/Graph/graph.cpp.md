@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/graph.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 12:50:10+09:00
+    - Last commit date: 2019-12-29 13:22:44+09:00
 
 
 
@@ -41,16 +41,23 @@ layout: default
 * :heavy_check_mark: <a href="bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
 * :heavy_check_mark: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="lowlink.cpp.html">Graph/lowlink.cpp</a>
+* :heavy_check_mark: <a href="prim.cpp.html">Graph/prim.cpp</a>
 * :heavy_check_mark: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :heavy_check_mark: <a href="topological_sort.cpp.html">Graph/topological_sort.cpp</a>
 * :heavy_check_mark: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../verify/Verify/articulation_points.test.cpp.html">Verify/articulation_points.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/bridges.test.cpp.html">Verify/bridges.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
 
 
@@ -67,6 +74,9 @@ struct Edge {
     Cost cost;
     Edge(int src = -1, int dst = -1, Cost cost = 1)
         : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
 };
 
 template <class Cost = int>
@@ -90,6 +100,9 @@ struct Edge {
     Cost cost;
     Edge(int src = -1, int dst = -1, Cost cost = 1)
         : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
 };
 
 template <class Cost = int>

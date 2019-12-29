@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/strongly_connected_component.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 12:50:10+09:00
+    - Last commit date: 2019-12-29 13:22:44+09:00
 
 
 

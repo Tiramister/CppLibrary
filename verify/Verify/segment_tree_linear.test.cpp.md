@@ -30,7 +30,7 @@ layout: default
 <a href="../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_linear.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 02:37:49+09:00
+    - Last commit date: 2019-12-29 16:26:29+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -204,6 +204,7 @@ struct ModInt {
     bool operator!=(const ModInt& b) const { return val != b.val; }
 
     // I/O
+    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 

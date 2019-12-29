@@ -31,15 +31,21 @@ layout: default
 
 * category: <a href="../../index.html#b2ee912b91d69b435159c7c3f6df7f5f">Number</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Number/modint.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 15:39:32+09:00
+    - Last commit date: 2019-12-29 16:26:29+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="../Convolution/number_theoretical_transform.cpp.html">Convolution/number_theoretical_transform.cpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
 
 
@@ -101,6 +107,7 @@ struct ModInt {
     bool operator!=(const ModInt& b) const { return val != b.val; }
 
     // I/O
+    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 
@@ -167,6 +174,7 @@ struct ModInt {
     bool operator!=(const ModInt& b) const { return val != b.val; }
 
     // I/O
+    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 

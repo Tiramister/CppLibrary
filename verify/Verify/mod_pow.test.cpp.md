@@ -30,7 +30,7 @@ layout: default
 <a href="../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/mod_pow.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 02:37:49+09:00
+    - Last commit date: 2019-12-29 16:26:29+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B</a>
@@ -126,6 +126,7 @@ struct ModInt {
     bool operator!=(const ModInt& b) const { return val != b.val; }
 
     // I/O
+    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 
