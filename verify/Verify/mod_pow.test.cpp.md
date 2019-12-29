@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Verify/mod_pow.test.cpp
+# :x: Verify/mod_pow.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :heavy_check_mark: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
 
 
 ## Code

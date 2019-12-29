@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/segment_tree.cpp
+# :x: DataStructure/segment_tree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,8 +38,8 @@ layout: default
 
 ## Verified with
 
-* :warning: <a href="../../verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
-* :warning: <a href="../../verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
+* :x: <a href="../../verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
+* :x: <a href="../../verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
 
 
 ## Code

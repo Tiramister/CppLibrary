@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/union_find.cpp
+# :x: DataStructure/union_find.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -36,9 +36,15 @@ layout: default
 
 
 
+## Required by
+
+* :x: <a href="../Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
+
+
 ## Verified with
 
-* :warning: <a href="../../verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
+* :x: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
+* :x: <a href="../../verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
 
 
 ## Code

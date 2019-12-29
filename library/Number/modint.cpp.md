@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Number/modint.cpp
+# :heavy_check_mark: Number/modint.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,9 +38,9 @@ layout: default
 
 ## Verified with
 
-* :warning: <a href="../../verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
-* :warning: <a href="../../verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
-* :warning: <a href="../../verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
+* :x: <a href="../../verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
+* :x: <a href="../../verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
 
 
 ## Code

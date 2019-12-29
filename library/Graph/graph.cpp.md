@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Graph/graph.cpp
+# :heavy_check_mark: Graph/graph.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/graph.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 09:19:46+09:00
+    - Last commit date: 2019-12-29 12:50:10+09:00
 
 
 
@@ -39,17 +39,19 @@ layout: default
 ## Required by
 
 * :heavy_check_mark: <a href="bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
-* :warning: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
-* :warning: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
-* :warning: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
+* :heavy_check_mark: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
+* :x: <a href="kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :x: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :x: <a href="two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
-* :warning: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
-* :warning: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
-* :warning: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :x: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
+* :x: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
+* :x: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
 
 
 ## Code
@@ -66,6 +68,9 @@ struct Edge {
     Edge(int src = -1, int dst = -1, Cost cost = 1)
         : src(src), dst(dst), cost(cost){};
 };
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
 
 template <class Cost = int>
 using Graph = std::vector<std::vector<Edge<Cost>>>;
@@ -86,6 +91,9 @@ struct Edge {
     Edge(int src = -1, int dst = -1, Cost cost = 1)
         : src(src), dst(dst), cost(cost){};
 };
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
 
 template <class Cost = int>
 using Graph = std::vector<std::vector<Edge<Cost>>>;

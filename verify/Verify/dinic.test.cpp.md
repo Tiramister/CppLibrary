@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Verify/dinic.test.cpp
+# :heavy_check_mark: Verify/dinic.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../../library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
 
 
 ## Code

@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Verify/ford_fulkerson.test.cpp
+# :heavy_check_mark: Verify/ford_fulkerson.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../../library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
 
 
 ## Code

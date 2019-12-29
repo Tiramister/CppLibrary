@@ -25,25 +25,26 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/bimatching.cpp
+# :x: Graph/kruskal.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/bimatching.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 00:18:07+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/kruskal.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 12:50:33+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="dinic.cpp.html">Graph/dinic.cpp</a>
+* :x: <a href="../DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
+* :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Verify/bimatching.test.cpp.html">Verify/bimatching.test.cpp</a>
+* :x: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
 
 
 ## Code
@@ -53,49 +54,25 @@ layout: default
 ```cpp
 #ifndef __guard__
 #define __guard__
-#include "dinic.cpp"
+#include "graph.cpp"
+#include "../DataStructure/union_find.cpp"
 #undef __guard__
 #endif
 
-struct BiMatching {
-    MaxFlow<int, true> mf;
-    int n, m, s, g;
+template <class Cost>
+Cost kruskal(int vnum, std::vector<Edge<Cost>>& edges) {
+    std::sort(edges.begin(), edges.end(),
+              [](const auto& lhs, const auto& rhs) { return lhs.cost < rhs.cost; });
 
-    explicit BiMatching(int n, int m)
-        : mf(n + m + 2), n(n), m(m), s(n + m), g(n + m + 1) {
-        for (int u = 0; u < n; ++u) {
-            mf.span(s, enc(u, false), 1);
-        }
-        for (int v = 0; v < m; ++v) {
-            mf.span(enc(v, true), g, 1);
-        }
+    UnionFind uf(vnum);
+    Cost sum = 0;
+    for (const auto& e : edges) {
+        if (uf.same(e.src, e.dst)) continue;
+        sum += e.cost;
+        uf.unite(e.src, e.dst);
     }
-
-    int enc(int v, bool side) {
-        return v + (side ? n : 0);
-    }
-
-    void span(int u, int v) {
-        mf.span(enc(u, false), enc(v, true), 1);
-    }
-
-    int exec() {
-        return mf.exec(s, g);
-    }
-
-    std::vector<std::pair<int, int>> matching() {
-        mf.exec(s, g);
-        std::vector<std::pair<int, int>> ret;
-        for (auto e : mf.edges) {
-            if (e.src < e.dst &&
-                e.src < n && e.dst < n + m &&
-                e.cap == 0) {
-                ret.emplace_back(e.src, e.dst - n);
-            }
-        }
-        return ret;
-    }
-};
+    return sum;
+}
 
 ```
 {% endraw %}
@@ -123,7 +100,7 @@ Traceback (most recent call last):
     bundler.update(self.file_class.file_path)
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/bimatching.cpp: line 6: found codes out of include guard
+onlinejudge_verify.bundle.BundleError: Graph/kruskal.cpp: line 7: found codes out of include guard
 
 ```
 {% endraw %}

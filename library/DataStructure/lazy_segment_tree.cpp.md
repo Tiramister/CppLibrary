@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: DataStructure/lazy_segment_tree.cpp
+# :x: DataStructure/lazy_segment_tree.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :warning: <a href="../../verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
+* :x: <a href="../../verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
 
 
 ## Code

@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Verify/segment_tree_linear.test.cpp
+# :x: Verify/segment_tree_linear.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,8 +38,8 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
-* :warning: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :x: <a href="../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
+* :heavy_check_mark: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
 
 
 ## Code

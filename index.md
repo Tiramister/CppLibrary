@@ -38,9 +38,9 @@ layout: default
 
 ### DataStructure
 
-* :warning: <a href="library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
-* :warning: <a href="library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
-* :warning: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
+* :x: <a href="library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
+* :x: <a href="library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
+* :x: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
 
 
 <div id="a603905470e2a5b8c13e96b579ef0dba"></div>
@@ -58,14 +58,15 @@ layout: default
 ### Graph
 
 * :heavy_check_mark: <a href="library/Graph/bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
-* :warning: <a href="library/Graph/bimatching.cpp.html">Graph/bimatching.cpp</a>
-* :warning: <a href="library/Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
-* :warning: <a href="library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
-* :warning: <a href="library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
-* :warning: <a href="library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :warning: <a href="library/Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
-* :warning: <a href="library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
-* :warning: <a href="library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/bimatching.cpp.html">Graph/bimatching.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/graph.cpp.html">Graph/graph.cpp</a>
+* :x: <a href="library/Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :x: <a href="library/Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
+* :x: <a href="library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :x: <a href="library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
 
 
 <div id="74248c725e00bf9fe04df4e35b249a19"></div>
@@ -73,38 +74,39 @@ layout: default
 ### Misc
 
 * :warning: <a href="library/Misc/compress.cpp.html">Misc/compress.cpp</a>
-* :warning: <a href="library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
+* :heavy_check_mark: <a href="library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
 <div id="b2ee912b91d69b435159c7c3f6df7f5f"></div>
 
 ### Number
 
-* :warning: <a href="library/Number/combination.cpp.html">Number/combination.cpp</a>
-* :warning: <a href="library/Number/extgcd.cpp.html">Number/extgcd.cpp</a>
-* :warning: <a href="library/Number/gcd.cpp.html">Number/gcd.cpp</a>
-* :warning: <a href="library/Number/modint.cpp.html">Number/modint.cpp</a>
-* :warning: <a href="library/Number/prime.cpp.html">Number/prime.cpp</a>
+* :heavy_check_mark: <a href="library/Number/combination.cpp.html">Number/combination.cpp</a>
+* :heavy_check_mark: <a href="library/Number/extgcd.cpp.html">Number/extgcd.cpp</a>
+* :heavy_check_mark: <a href="library/Number/gcd.cpp.html">Number/gcd.cpp</a>
+* :heavy_check_mark: <a href="library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :heavy_check_mark: <a href="library/Number/prime.cpp.html">Number/prime.cpp</a>
 
 
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
-* :warning: <a href="verify/Verify/bimatching.test.cpp.html">Verify/bimatching.test.cpp</a>
-* :warning: <a href="verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
-* :warning: <a href="verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
-* :warning: <a href="verify/Verify/dinic.test.cpp.html">Verify/dinic.test.cpp</a>
-* :warning: <a href="verify/Verify/extgcd.test.cpp.html">Verify/extgcd.test.cpp</a>
-* :warning: <a href="verify/Verify/factorize.test.cpp.html">Verify/factorize.test.cpp</a>
-* :warning: <a href="verify/Verify/ford_fulkerson.test.cpp.html">Verify/ford_fulkerson.test.cpp</a>
-* :warning: <a href="verify/Verify/gcd.test.cpp.html">Verify/gcd.test.cpp</a>
-* :warning: <a href="verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
-* :warning: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
-* :warning: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
-* :warning: <a href="verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
-* :warning: <a href="verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
-* :warning: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
-* :warning: <a href="verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
-* :warning: <a href="verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/bimatching.test.cpp.html">Verify/bimatching.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/dinic.test.cpp.html">Verify/dinic.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/extgcd.test.cpp.html">Verify/extgcd.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/factorize.test.cpp.html">Verify/factorize.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/ford_fulkerson.test.cpp.html">Verify/ford_fulkerson.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/gcd.test.cpp.html">Verify/gcd.test.cpp</a>
+* :x: <a href="verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
+* :x: <a href="verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
+* :x: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
+* :x: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
+* :x: <a href="verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
+* :x: <a href="verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
+* :x: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
+* :x: <a href="verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
+* :x: <a href="verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
 
 

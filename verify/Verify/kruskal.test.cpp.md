@@ -25,25 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/bimatching.cpp
+# :x: Verify/kruskal.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/bimatching.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 00:18:07+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/kruskal.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2019-12-29 12:51:04+09:00
 
 
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="dinic.cpp.html">Graph/dinic.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../verify/Verify/bimatching.test.cpp.html">Verify/bimatching.test.cpp</a>
+* :x: <a href="../../library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
+* :x: <a href="../../library/Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
 
 
 ## Code
@@ -51,51 +48,28 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
+
 #define __guard__
-#include "dinic.cpp"
+#include "../DataStructure/union_find.cpp"
+#include "../Graph/graph.cpp"
+#include "../Graph/kruskal.cpp"
 #undef __guard__
-#endif
 
-struct BiMatching {
-    MaxFlow<int, true> mf;
-    int n, m, s, g;
+#include <iostream>
 
-    explicit BiMatching(int n, int m)
-        : mf(n + m + 2), n(n), m(m), s(n + m), g(n + m + 1) {
-        for (int u = 0; u < n; ++u) {
-            mf.span(s, enc(u, false), 1);
-        }
-        for (int v = 0; v < m; ++v) {
-            mf.span(enc(v, true), g, 1);
-        }
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+
+    Edges<int> edges(m);
+    for (auto& e : edges) {
+        std::cin >> e.src >> e.dst >> e.cost;
     }
 
-    int enc(int v, bool side) {
-        return v + (side ? n : 0);
-    }
-
-    void span(int u, int v) {
-        mf.span(enc(u, false), enc(v, true), 1);
-    }
-
-    int exec() {
-        return mf.exec(s, g);
-    }
-
-    std::vector<std::pair<int, int>> matching() {
-        mf.exec(s, g);
-        std::vector<std::pair<int, int>> ret;
-        for (auto e : mf.edges) {
-            if (e.src < e.dst &&
-                e.src < n && e.dst < n + m &&
-                e.cap == 0) {
-                ret.emplace_back(e.src, e.dst - n);
-            }
-        }
-        return ret;
-    }
-};
+    std::cout << kruskal(n, edges) << std::endl;
+    return 0;
+}
 
 ```
 {% endraw %}
@@ -121,9 +95,11 @@ During handling of the above exception, another exception occurred:
 Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
     bundler.update(self.file_class.file_path)
+  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 154, in update
+    self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Graph/bimatching.cpp: line 6: found codes out of include guard
+onlinejudge_verify.bundle.BundleError: Graph/kruskal.cpp: line 7: found codes out of include guard
 
 ```
 {% endraw %}

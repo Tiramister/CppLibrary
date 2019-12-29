@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Verify/combination.test.cpp
+# :heavy_check_mark: Verify/combination.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,8 +38,8 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../../library/Number/combination.cpp.html">Number/combination.cpp</a>
-* :warning: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :heavy_check_mark: <a href="../../library/Number/combination.cpp.html">Number/combination.cpp</a>
+* :heavy_check_mark: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
 
 
 ## Code
