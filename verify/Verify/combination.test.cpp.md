@@ -30,7 +30,7 @@ layout: default
 <a href="../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/combination.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 16:26:29+09:00
+    - Last commit date: 2020-01-19 01:36:28+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C">https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C</a>
@@ -165,10 +165,10 @@ struct Combination {
     T fact(int n) const { return f[n]; }
     T invfact(int n) const { return invf[n]; }
     T perm(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b];
     }
     T comb(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b] * invf[b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b] * invf[b];
     }
 };
 #line 6 "Verify/combination.test.cpp"

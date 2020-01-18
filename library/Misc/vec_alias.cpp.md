@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Misc/compress.cpp
+# :warning: Misc/vec_alias.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#74248c725e00bf9fe04df4e35b249a19">Misc</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Misc/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-01-19 01:35:47+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Misc/vec_alias.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-01-19 01:37:01+09:00
 
 
 
@@ -42,18 +42,9 @@ layout: default
 {% raw %}
 ```cpp
 #include <vector>
-#include <algorithm>
-#include <map>
 
 template <class T>
-std::map<T, int> compress(std::vector<T>& v) {
-    std::sort(v.begin(), v.end());
-    v.erase(std::unique(v.begin(), v.end()), v.end());
-
-    std::map<T, int> rev;
-    for (int i = 0; i < (int)v.size(); ++i) rev[v[i]] = i;
-    return rev;
-}
+std::vector<T> vec(int len, T elem) { return std::vector<T>(len, elem); }
 
 ```
 {% endraw %}
@@ -61,20 +52,11 @@ std::map<T, int> compress(std::vector<T>& v) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Misc/compress.cpp"
+#line 1 "Misc/vec_alias.cpp"
 #include <vector>
-#include <algorithm>
-#include <map>
 
 template <class T>
-std::map<T, int> compress(std::vector<T>& v) {
-    std::sort(v.begin(), v.end());
-    v.erase(std::unique(v.begin(), v.end()), v.end());
-
-    std::map<T, int> rev;
-    for (int i = 0; i < (int)v.size(); ++i) rev[v[i]] = i;
-    return rev;
-}
+std::vector<T> vec(int len, T elem) { return std::vector<T>(len, elem); }
 
 ```
 {% endraw %}

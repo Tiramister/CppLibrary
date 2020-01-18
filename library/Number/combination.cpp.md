@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2ee912b91d69b435159c7c3f6df7f5f">Number</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Number/combination.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 16:10:28+09:00
+    - Last commit date: 2020-01-19 01:36:28+09:00
 
 
 
@@ -69,10 +69,10 @@ struct Combination {
     T fact(int n) const { return f[n]; }
     T invfact(int n) const { return invf[n]; }
     T perm(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b];
     }
     T comb(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b] * invf[b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b] * invf[b];
     }
 };
 
@@ -106,10 +106,10 @@ struct Combination {
     T fact(int n) const { return f[n]; }
     T invfact(int n) const { return invf[n]; }
     T perm(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b];
     }
     T comb(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b] * invf[b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b] * invf[b];
     }
 };
 
