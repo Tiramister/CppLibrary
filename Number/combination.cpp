@@ -21,9 +21,9 @@ struct Combination {
     T fact(int n) const { return f[n]; }
     T invfact(int n) const { return invf[n]; }
     T perm(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b];
     }
     T comb(int a, int b) const {
-        return a < b ? T(0) : f[a] * invf[a - b] * invf[b];
+        return a < b || b < 0 ? T(0) : f[a] * invf[a - b] * invf[b];
     }
 };
