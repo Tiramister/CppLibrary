@@ -3,6 +3,7 @@
 "Verify/bellman_ford.test.cpp": "2019-12-29 13:22:44 +0900",
 "Verify/bimatching.test.cpp": "2019-12-29 02:37:49 +0900",
 "Verify/bridges.test.cpp": "2019-12-29 14:43:25 +0900",
+"Verify/centroid_decomposition_diameter.test.cpp": "2020-02-13 16:35:43 +0900",
 "Verify/combination.test.cpp": "2020-01-19 01:36:28 +0900",
 "Verify/dijkstra.test.cpp": "2019-12-29 13:22:44 +0900",
 "Verify/dinic.test.cpp": "2019-12-29 02:37:49 +0900",
@@ -14,7 +15,7 @@
 "Verify/lazy_segment_tree_add_sum.test.cpp": "2019-12-29 02:37:49 +0900",
 "Verify/min_cost_flow.test.cpp": "2019-12-29 02:37:49 +0900",
 "Verify/mod_pow.test.cpp": "2019-12-29 16:26:29 +0900",
-"Verify/number_theoretical_transform.test.cpp": "2019-12-29 16:27:14 +0900",
+"Verify/number_theoretical_transform.test.cpp": "2020-02-13 21:25:13 +0900",
 "Verify/prim.test.cpp": "2019-12-29 13:23:21 +0900",
 "Verify/segment_tree_linear.test.cpp": "2019-12-29 16:26:29 +0900",
 "Verify/segment_tree_rsq.test.cpp": "2019-12-29 02:37:49 +0900",
@@ -23,6 +24,5 @@
 "Verify/topological_sort.test.cpp": "2019-12-29 14:56:54 +0900",
 "Verify/two_sat.test.cpp": "2019-12-29 13:22:44 +0900",
 "Verify/union_find.test.cpp": "2019-12-29 02:37:49 +0900",
-"Verify/weighted_union_find.test.cpp": "2019-12-29 14:50:01 +0900",
-"~": "dummy"
+"Verify/weighted_union_find.test.cpp": "2019-12-29 14:50:01 +0900"
 }
