@@ -25,21 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/topological_sort.test.cpp
+# :heavy_check_mark: Graph/centroid_decomposition.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/topological_sort.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 14:56:54+09:00
+* category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/centroid_decomposition.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-02-13 16:35:43+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/topological_sort.cpp.html">Graph/topological_sort.cpp</a>
+* :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Verify/centroid_decomposition_diameter.test.cpp.html">Verify/centroid_decomposition_diameter.test.cpp</a>
 
 
 ## Code
@@ -47,32 +51,47 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
-
+#ifndef __guard__
 #define __guard__
 #include "../Graph/graph.cpp"
-#include "../Graph/topological_sort.cpp"
 #undef __guard__
+#endif
 
-#include <iostream>
+template <class Cost = int>
+struct Centroid {
+    Graph<Cost> graph;
+    std::vector<bool> deleted;
+    std::vector<int> sz;
 
-int main() {
-    int n, m;
-    std::cin >> n >> m;
-    Graph<> graph(n);
+    explicit Centroid(const Graph<Cost>& graph)
+        : graph(graph), deleted(graph.size(), false), sz(graph.size()) {}
 
-    while (m--) {
-        int u, v;
-        std::cin >> u >> v;
-        graph[u].emplace_back(u, v);
+    int szdfs(int v, int p = -1) {
+        sz[v] = 1;
+        for (auto e : graph[v]) {
+            if (e.dst == p || deleted[e.dst]) continue;
+            sz[v] += szdfs(e.dst, v);
+        }
+        return sz[v];
     }
 
-    TopologicalSort<> ts(graph);
-    for (int v : ts.order) {
-        std::cout << v << std::endl;
+    int find(int v) {
+        int n = szdfs(v);
+
+        int p = -1;
+        while (true) {
+            int nxt = -1;
+            for (auto e : graph[v]) {
+                if (e.dst == p || deleted[e.dst]) continue;
+                if (nxt == -1 || sz[e.dst] > sz[nxt]) nxt = e.dst;
+            }
+
+            if (nxt == -1 || sz[nxt] <= n / 2) return v;
+            p = v;
+            v = nxt;
+        }
     }
-    return 0;
-}
+};
 
 ```
 {% endraw %}
@@ -85,11 +104,9 @@ Traceback (most recent call last):
     bundled_code = language.bundle(self.file_class.file_path, basedir=self.cpp_source_path)
   File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 63, in bundle
     bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 182, in update
-    self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 151, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/topological_sort.cpp: line 6: found codes out of include guard
+onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/centroid_decomposition.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#fa0f0ae43fdca46d1d68255409ec0b89">Convolution</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Convolution/number_theoretical_transform.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 16:26:48+09:00
+    - Last commit date: 2020-02-13 21:25:13+09:00
 
 
 
@@ -134,9 +134,7 @@ struct NumberTheoreticalTransform {
             gdeg = g.size();
 
         int k = 0;
-        while ((1 << k) < fdeg + gdeg) {
-            ++k;
-        }
+        while ((1 << k) < fdeg + gdeg) ++k;
 
         int n = (1 << k);
         f.resize(n, mint(0));
@@ -146,21 +144,17 @@ struct NumberTheoreticalTransform {
         dft(g, false);
 
         mints h(n);
-        for (int i = 0; i < n; ++i) {
-            h[i] = f[i] * g[i];
-        }
+        for (int i = 0; i < n; ++i) h[i] = f[i] * g[i];
 
         dft(h, true);
-        while (h.size() > fdeg + gdeg - 1) {
-            h.pop_back();
-        }
+        h.resize(fdeg + gdeg - 1);
         for (auto& x : h) x /= n;
         return h;
     }
 };
 
 // constexpr int MOD = 998244353;
-// using NTT = NumberTheoreticalTransform<MOD, 3>;
+// const NumberTheoreticalTransform<MOD, 3> NTT;
 
 ```
 {% endraw %}
@@ -169,11 +163,13 @@ struct NumberTheoreticalTransform {
 {% raw %}
 ```cpp
 Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundler.update(self.file_class.file_path)
-  File "/opt/hostedtoolcache/Python/3.8.0/x64/lib/python3.8/site-packages/onlinejudge_verify/bundle.py", line 123, in update
+  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 343, in write_contents
+    bundled_code = language.bundle(self.file_class.file_path, basedir=self.cpp_source_path)
+  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 63, in bundle
+    bundler.update(path)
+  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 151, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.bundle.BundleError: Convolution/number_theoretical_transform.cpp: line 6: found codes out of include guard
+onlinejudge_verify.languages.cplusplus_bundle.BundleError: Convolution/number_theoretical_transform.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

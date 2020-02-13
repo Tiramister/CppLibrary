@@ -68,6 +68,7 @@ layout: default
 
 * :heavy_check_mark: <a href="library/Graph/bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/bimatching.cpp.html">Graph/bimatching.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/centroid_decomposition.cpp.html">Graph/centroid_decomposition.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
@@ -108,6 +109,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/bimatching.test.cpp.html">Verify/bimatching.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/bridges.test.cpp.html">Verify/bridges.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/centroid_decomposition_diameter.test.cpp.html">Verify/centroid_decomposition_diameter.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/dinic.test.cpp.html">Verify/dinic.test.cpp</a>

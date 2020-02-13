@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/topological_sort.test.cpp
+# :heavy_check_mark: Verify/centroid_decomposition_diameter.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/topological_sort.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 14:56:54+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/centroid_decomposition_diameter.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-02-13 16:35:43+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A</a>
 
 
 ## Depends on
 
+* :heavy_check_mark: <a href="../../library/Graph/centroid_decomposition.cpp.html">Graph/centroid_decomposition.cpp</a>
 * :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/topological_sort.cpp.html">Graph/topological_sort.cpp</a>
 
 
 ## Code
@@ -47,30 +47,74 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
 #define __guard__
 #include "../Graph/graph.cpp"
-#include "../Graph/topological_sort.cpp"
+#include "../Graph/centroid_decomposition.cpp"
 #undef __guard__
 
 #include <iostream>
+#include <algorithm>
+#include <queue>
+#include <tuple>
 
 int main() {
-    int n, m;
-    std::cin >> n >> m;
-    Graph<> graph(n);
+    int n;
+    std::cin >> n;
 
-    while (m--) {
-        int u, v;
-        std::cin >> u >> v;
-        graph[u].emplace_back(u, v);
+    Graph<int> graph(n);
+    for (int i = 0; i < n - 1; ++i) {
+        int u, v, w;
+        std::cin >> u >> v >> w;
+        graph[u].emplace_back(u, v, w);
+        graph[v].emplace_back(v, u, w);
     }
 
-    TopologicalSort<> ts(graph);
-    for (int v : ts.order) {
-        std::cout << v << std::endl;
+    Centroid<int> cent(graph);
+
+    int ans = 0;
+    std::queue<int> cents;
+    cents.push(0);
+
+    std::vector<int> dist(n);
+    while (!cents.empty()) {
+        int r = cents.front();
+        cents.pop();
+        r = cent.find(r);
+        cent.deleted[r] = true;
+
+        std::vector<int> fars({0, 0});
+        for (auto e : graph[r]) {
+            if (cent.deleted[e.dst]) continue;
+            cents.push(e.dst);
+
+            // BFS
+            std::queue<std::pair<int, int>> que;
+            que.emplace(e.dst, -1);
+            dist[e.dst] = e.cost;
+
+            int far = 0;
+            while (!que.empty()) {
+                int v, p;
+                std::tie(v, p) = que.front();
+                que.pop();
+                far = std::max(far, dist[v]);
+
+                for (auto f : graph[v]) {
+                    if (f.dst == p || cent.deleted[f.dst]) continue;
+                    dist[f.dst] = dist[v] + f.cost;
+                    que.emplace(f.dst, v);
+                }
+            }
+            fars.push_back(far);
+        }
+
+        std::sort(fars.rbegin(), fars.rend());
+        if (fars.size() >= 2) ans = std::max(ans, fars[0] + fars[1]);
     }
+
+    std::cout << ans << std::endl;
     return 0;
 }
 
@@ -89,7 +133,7 @@ Traceback (most recent call last):
     self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 151, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/topological_sort.cpp: line 6: found codes out of include guard
+onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/centroid_decomposition.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}
