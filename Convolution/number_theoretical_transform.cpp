@@ -81,9 +81,7 @@ struct NumberTheoreticalTransform {
             gdeg = g.size();
 
         int k = 0;
-        while ((1 << k) < fdeg + gdeg) {
-            ++k;
-        }
+        while ((1 << k) < fdeg + gdeg) ++k;
 
         int n = (1 << k);
         f.resize(n, mint(0));
@@ -93,18 +91,14 @@ struct NumberTheoreticalTransform {
         dft(g, false);
 
         mints h(n);
-        for (int i = 0; i < n; ++i) {
-            h[i] = f[i] * g[i];
-        }
+        for (int i = 0; i < n; ++i) h[i] = f[i] * g[i];
 
         dft(h, true);
-        while (h.size() > fdeg + gdeg - 1) {
-            h.pop_back();
-        }
+        h.resize(fdeg + gdeg - 1);
         for (auto& x : h) x /= n;
         return h;
     }
 };
 
 // constexpr int MOD = 998244353;
-// using NTT = NumberTheoreticalTransform<MOD, 3>;
+// const NumberTheoreticalTransform<MOD, 3> NTT;
