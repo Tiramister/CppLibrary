@@ -21,6 +21,7 @@
 "Verify/segment_tree_rsq.test.cpp": "2019-12-29 02:37:49 +0900",
 "Verify/sliding_window.test.cpp": "2019-12-29 14:15:56 +0900",
 "Verify/strongly_connected_component.test.cpp": "2019-12-29 13:22:44 +0900",
+"Verify/suffix_array.test.cpp": "2020-02-18 17:50:16 +0900",
 "Verify/topological_sort.test.cpp": "2019-12-29 14:56:54 +0900",
 "Verify/two_sat.test.cpp": "2019-12-29 13:22:44 +0900",
 "Verify/union_find.test.cpp": "2019-12-29 02:37:49 +0900",
