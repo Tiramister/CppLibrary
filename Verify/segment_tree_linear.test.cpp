@@ -18,6 +18,9 @@ struct Linear {
 using linear = Linear<mint>;
 
 int main() {
+    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+
     int n, q;
     std::cin >> n >> q;
 
@@ -42,7 +45,7 @@ int main() {
             int l, r, x;
             std::cin >> l >> r >> x;
             auto f = seg.query(l, r);
-            std::cout << f(x) << std::endl;
+            std::cout << f(x) << "\n";
         }
     }
     return 0;
