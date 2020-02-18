@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
+#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #define __guard__
 #include "../DataStructure/segment_tree.cpp"
@@ -6,27 +6,35 @@
 
 #include <iostream>
 
-int main() {
-    int n;
-    std::cin >> n;
-    SegmentTree<int> seg(n, 0, [](int a, int b) { return a + b; });
+using lint = long long;
 
-    int q;
-    std::cin >> q;
+int main() {
+    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+
+    int n, q;
+    std::cin >> n >> q;
+
+    SegmentTree<lint> seg(n, 0, [](auto a, auto b) { return a + b; });
+    for (int i = 0; i < n; ++i) {
+        lint x;
+        std::cin >> x;
+        seg.update(i, x);
+    }
+
     while (q--) {
         int t;
         std::cin >> t;
 
         if (t == 0) {
-            int i, x;
+            int i;
+            lint x;
             std::cin >> i >> x;
-            --i;
             seg.update(i, seg.query(i, i + 1) + x);
         } else {
             int l, r;
             std::cin >> l >> r;
-            --l, --r;
-            std::cout << seg.query(l, r + 1) << std::endl;
+            std::cout << seg.query(l, r) << "\n";
         }
     }
     return 0;
