@@ -39,8 +39,9 @@ layout: default
 ## Required by
 
 * :heavy_check_mark: <a href="../Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
-* :heavy_check_mark: <a href="../Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
 * :heavy_check_mark: <a href="../Graph/prim.cpp.html">Graph/prim.cpp</a>
+* :heavy_check_mark: <a href="../Graph/primal_dual.cpp.html">Graph/primal_dual.cpp</a>
+* :warning: <a href="../Verify/min_cost_flow.cpp.html">Verify/min_cost_flow.cpp</a>
 
 
 ## Verified with
@@ -48,6 +49,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/primal_dual.test.cpp.html">Verify/primal_dual.test.cpp</a>
 
 
 ## Code

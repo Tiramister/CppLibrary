@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-28 02:41:36+09:00
+    - Last commit date: 2020-02-18 18:37:29+09:00
 
 
 
@@ -65,17 +65,25 @@ struct SegmentTree {
         dat.assign(length * 2, unit);
     }
 
-    T query(int ql, int qr, int nidx, int nl, int nr) {
-        if (nr <= ql || qr <= nl) return unit;
-        if (ql <= nl && nr <= qr) return dat[nidx];
+    T query(int ql, int qr) {
+        ql = std::max(ql, 0);
+        qr = std::min(qr, length);
+        ql += length, qr += length;
 
-        int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
-        return merge(vl, vr);
+        T lacc = unit, racc = unit;
+        while (ql < qr) {
+            if (ql & 1) {
+                lacc = merge(lacc, dat[ql]);
+                ++ql;
+            }
+            if (qr & 1) {
+                --qr;
+                racc = merge(dat[qr], racc);
+            }
+            ql >>= 1, qr >>= 1;
+        }
+        return merge(lacc, racc);
     }
-
-    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
 
     void update(int nidx, T elem) {
         nidx += length;
@@ -115,17 +123,25 @@ struct SegmentTree {
         dat.assign(length * 2, unit);
     }
 
-    T query(int ql, int qr, int nidx, int nl, int nr) {
-        if (nr <= ql || qr <= nl) return unit;
-        if (ql <= nl && nr <= qr) return dat[nidx];
+    T query(int ql, int qr) {
+        ql = std::max(ql, 0);
+        qr = std::min(qr, length);
+        ql += length, qr += length;
 
-        int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
-        return merge(vl, vr);
+        T lacc = unit, racc = unit;
+        while (ql < qr) {
+            if (ql & 1) {
+                lacc = merge(lacc, dat[ql]);
+                ++ql;
+            }
+            if (qr & 1) {
+                --qr;
+                racc = merge(dat[qr], racc);
+            }
+            ql >>= 1, qr >>= 1;
+        }
+        return merge(lacc, racc);
     }
-
-    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
 
     void update(int nidx, T elem) {
         nidx += length;

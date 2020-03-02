@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/bellman_ford.test.cpp
+# :heavy_check_mark: Verify/primal_dual.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/bellman_ford.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/primal_dual.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-03-03 05:19:20+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/primal_dual.cpp.html">Graph/primal_dual.cpp</a>
+* :heavy_check_mark: <a href="../../library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
 ## Code
@@ -47,40 +47,26 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
 #define __guard__
-#include "../Graph/graph.cpp"
-#include "../Graph/bellman_ford.cpp"
+#include "../Misc/heap_alias.cpp"
+#include "../Graph/primal_dual.cpp"
 #undef __guard__
 
 #include <iostream>
 
-constexpr int INF = std::numeric_limits<int>::max();
-
 int main() {
-    int n, m, s;
-    std::cin >> n >> m >> s;
+    int n, m, f;
+    std::cin >> n >> m >> f;
 
-    Graph<int> graph(n);
+    MinCostFlow<int, int> mcf(n);
     while (m--) {
-        int u, v, d;
-        std::cin >> u >> v >> d;
-        graph[u].emplace_back(u, v, d);
+        int u, v, c, d;
+        std::cin >> u >> v >> c >> d;
+        mcf.span(u, v, c, d);
     }
-
-    auto dist = bellman_ford(graph, s);
-    if (dist.empty()) {
-        std::cout << "NEGATIVE CYCLE" << std::endl;
-        return 0;
-    }
-    for (int d : dist) {
-        if (d == INF) {
-            std::cout << "INF" << std::endl;
-        } else {
-            std::cout << d << std::endl;
-        }
-    }
+    std::cout << mcf.exec(0, n - 1, f) << std::endl;
     return 0;
 }
 
@@ -99,7 +85,7 @@ Traceback (most recent call last):
     self.update(self._resolve(included, included_from=path))
   File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 151, in update
     raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/bellman_ford.cpp: line 6: found codes out of include guard
+onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/primal_dual.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

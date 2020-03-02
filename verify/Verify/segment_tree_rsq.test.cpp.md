@@ -30,10 +30,10 @@ layout: default
 <a href="../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_rsq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 02:37:49+09:00
+    - Last commit date: 2020-02-18 18:37:29+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B</a>
+* see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
 
 
 ## Depends on
@@ -46,7 +46,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
+#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #define __guard__
 #include "../DataStructure/segment_tree.cpp"
@@ -54,27 +54,35 @@ layout: default
 
 #include <iostream>
 
-int main() {
-    int n;
-    std::cin >> n;
-    SegmentTree<int> seg(n, 0, [](int a, int b) { return a + b; });
+using lint = long long;
 
-    int q;
-    std::cin >> q;
+int main() {
+    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+
+    int n, q;
+    std::cin >> n >> q;
+
+    SegmentTree<lint> seg(n, 0, [](auto a, auto b) { return a + b; });
+    for (int i = 0; i < n; ++i) {
+        lint x;
+        std::cin >> x;
+        seg.update(i, x);
+    }
+
     while (q--) {
         int t;
         std::cin >> t;
 
         if (t == 0) {
-            int i, x;
+            int i;
+            lint x;
             std::cin >> i >> x;
-            --i;
             seg.update(i, seg.query(i, i + 1) + x);
         } else {
             int l, r;
             std::cin >> l >> r;
-            --l, --r;
-            std::cout << seg.query(l, r + 1) << std::endl;
+            std::cout << seg.query(l, r) << "\n";
         }
     }
     return 0;
@@ -87,7 +95,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "Verify/segment_tree_rsq.test.cpp"
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
+#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #define __guard__
 #line 1 "Verify/../DataStructure/segment_tree.cpp"
@@ -109,17 +117,25 @@ struct SegmentTree {
         dat.assign(length * 2, unit);
     }
 
-    T query(int ql, int qr, int nidx, int nl, int nr) {
-        if (nr <= ql || qr <= nl) return unit;
-        if (ql <= nl && nr <= qr) return dat[nidx];
+    T query(int ql, int qr) {
+        ql = std::max(ql, 0);
+        qr = std::min(qr, length);
+        ql += length, qr += length;
 
-        int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
-        return merge(vl, vr);
+        T lacc = unit, racc = unit;
+        while (ql < qr) {
+            if (ql & 1) {
+                lacc = merge(lacc, dat[ql]);
+                ++ql;
+            }
+            if (qr & 1) {
+                --qr;
+                racc = merge(dat[qr], racc);
+            }
+            ql >>= 1, qr >>= 1;
+        }
+        return merge(lacc, racc);
     }
-
-    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
 
     void update(int nidx, T elem) {
         nidx += length;
@@ -138,27 +154,35 @@ struct SegmentTree {
 
 #include <iostream>
 
-int main() {
-    int n;
-    std::cin >> n;
-    SegmentTree<int> seg(n, 0, [](int a, int b) { return a + b; });
+using lint = long long;
 
-    int q;
-    std::cin >> q;
+int main() {
+    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+
+    int n, q;
+    std::cin >> n >> q;
+
+    SegmentTree<lint> seg(n, 0, [](auto a, auto b) { return a + b; });
+    for (int i = 0; i < n; ++i) {
+        lint x;
+        std::cin >> x;
+        seg.update(i, x);
+    }
+
     while (q--) {
         int t;
         std::cin >> t;
 
         if (t == 0) {
-            int i, x;
+            int i;
+            lint x;
             std::cin >> i >> x;
-            --i;
             seg.update(i, seg.query(i, i + 1) + x);
         } else {
             int l, r;
             std::cin >> l >> r;
-            --l, --r;
-            std::cout << seg.query(l, r + 1) << std::endl;
+            std::cout << seg.query(l, r) << "\n";
         }
     }
     return 0;

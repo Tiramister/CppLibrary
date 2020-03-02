@@ -25,25 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/min_cost_flow.cpp
+# :heavy_check_mark: Graph/primal_dual.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/min_cost_flow.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/primal_dual.cpp">View this file on GitHub</a>
     - Last commit date: 2020-03-03 05:19:20+09:00
 
 
 
 
-## Required by
+## Depends on
 
-* :warning: <a href="../Verify/min_cost_flow.cpp.html">Verify/min_cost_flow.cpp</a>
+* :heavy_check_mark: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/primal_dual.test.cpp.html">Verify/primal_dual.test.cpp</a>
 
 
 ## Code
@@ -51,7 +51,14 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#ifndef __guard__
+#define __guard__
+#include "../Misc/heap_alias.cpp"
+#undef __guard__
+#endif
+
 #include <vector>
+#include <tuple>
 #include <limits>
 
 template <class Cap, class Cost>
@@ -69,12 +76,12 @@ struct MinCostFlow {
 
     Edges edges;
     Graph graph;
-    std::vector<Cost> dist;
+    std::vector<Cost> dist, pot;
     std::vector<int> rev;
 
     const Cost INF = std::numeric_limits<Cost>::max() / 2;
 
-    explicit MinCostFlow(int n) : graph(n), dist(n), rev(n) {}
+    explicit MinCostFlow(int n) : graph(n), dist(n), pot(n), rev(n) {}
 
     void span(int u, int v, Cap cap, Cost cost) {
         graph[u].push_back(edges.size());
@@ -84,20 +91,29 @@ struct MinCostFlow {
         edges.emplace_back(v, u, 0, -cost);
     }
 
-    void bellman_ford(int s) {
+    void dijkstra(int s) {
         std::fill(dist.begin(), dist.end(), INF);
         dist[s] = 0;
+        MinHeap<std::pair<Cost, int>> heap;
+        heap.emplace(0, s);
 
-        for (int i = 0; i < (int)graph.size(); ++i) {
-            for (int eidx = 0; eidx < (int)edges.size(); ++eidx) {
+        while (!heap.empty()) {
+            int u;
+            Cost d;
+            std::tie(d, u) = heap.top();
+            heap.pop();
+            if (d > dist[u]) continue;
+
+            for (auto eidx : graph[u]) {
                 const auto& edge = edges[eidx];
-                int u = edge.src, v = edge.dst;
+                int v = edge.dst;
 
                 if (edge.cap > 0 &&
                     dist[u] < INF &&
-                    dist[v] > dist[u] + edge.cost) {
-                    dist[v] = dist[u] + edge.cost;
+                    dist[v] > dist[u] + edge.cost + pot[u] - pot[v]) {
+                    dist[v] = dist[u] + edge.cost + pot[u] - pot[v];
                     rev[v] = eidx;
+                    heap.emplace(dist[v], v);
                 }
             }
         }
@@ -105,10 +121,15 @@ struct MinCostFlow {
 
     Cost exec(int s, int g, Cap flow) {
         Cost ret = 0;
+        std::fill(pot.begin(), pot.end(), 0);
 
         while (flow > 0) {
-            bellman_ford(s);
+            dijkstra(s);
             if (dist[g] == INF) break;
+
+            for (int v = 0; v < (int)graph.size(); ++v) {
+                pot[v] = std::min(pot[v] + dist[v], INF);
+            }
 
             Cap f = flow;
             int v = g;
@@ -119,7 +140,7 @@ struct MinCostFlow {
             }
 
             flow -= f;
-            ret += f * dist[g];
+            ret += f * pot[g];
 
             v = g;
             while (v != s) {
@@ -140,89 +161,14 @@ struct MinCostFlow {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Graph/min_cost_flow.cpp"
-#include <vector>
-#include <limits>
-
-template <class Cap, class Cost>
-struct MinCostFlow {
-    struct Edge {
-        int src, dst;
-        Cap cap;
-        Cost cost;
-        Edge(int src, int dst, Cap cap, Cost cost)
-            : src(src), dst(dst), cap(cap), cost(cost){};
-    };
-
-    using Edges = std::vector<Edge>;
-    using Graph = std::vector<std::vector<int>>;
-
-    Edges edges;
-    Graph graph;
-    std::vector<Cost> dist;
-    std::vector<int> rev;
-
-    const Cost INF = std::numeric_limits<Cost>::max() / 2;
-
-    explicit MinCostFlow(int n) : graph(n), dist(n), rev(n) {}
-
-    void span(int u, int v, Cap cap, Cost cost) {
-        graph[u].push_back(edges.size());
-        edges.emplace_back(u, v, cap, cost);
-
-        graph[v].push_back(edges.size());
-        edges.emplace_back(v, u, 0, -cost);
-    }
-
-    void bellman_ford(int s) {
-        std::fill(dist.begin(), dist.end(), INF);
-        dist[s] = 0;
-
-        for (int i = 0; i < (int)graph.size(); ++i) {
-            for (int eidx = 0; eidx < (int)edges.size(); ++eidx) {
-                const auto& edge = edges[eidx];
-                int u = edge.src, v = edge.dst;
-
-                if (edge.cap > 0 &&
-                    dist[u] < INF &&
-                    dist[v] > dist[u] + edge.cost) {
-                    dist[v] = dist[u] + edge.cost;
-                    rev[v] = eidx;
-                }
-            }
-        }
-    }
-
-    Cost exec(int s, int g, Cap flow) {
-        Cost ret = 0;
-
-        while (flow > 0) {
-            bellman_ford(s);
-            if (dist[g] == INF) break;
-
-            Cap f = flow;
-            int v = g;
-            while (v != s) {
-                const auto& edge = edges[rev[v]];
-                f = std::min(f, edge.cap);
-                v = edge.src;
-            }
-
-            flow -= f;
-            ret += f * dist[g];
-
-            v = g;
-            while (v != s) {
-                auto& edge = edges[rev[v]];
-                auto& redge = edges[rev[v] ^ 1];
-                edge.cap -= f;
-                redge.cap += f;
-                v = edge.src;
-            }
-        }
-        return (flow > 0 ? -1 : ret);
-    }
-};
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 347, in write_contents
+    bundled_code = language.bundle(self.file_class.file_path, basedir=self.cpp_source_path)
+  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 68, in bundle
+    bundler.update(path)
+  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 151, in update
+    raise BundleError(path, i + 1, "found codes out of include guard")
+onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/primal_dual.cpp: line 6: found codes out of include guard
 
 ```
 {% endraw %}

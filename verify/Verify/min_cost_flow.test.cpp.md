@@ -30,7 +30,7 @@ layout: default
 <a href="../../index.html">Back to top page</a>
 
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/min_cost_flow.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 02:37:49+09:00
+    - Last commit date: 2020-03-03 05:19:20+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B</a>
@@ -76,16 +76,118 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 347, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=self.cpp_source_path)
-  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 63, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 182, in update
-    self.update(self._resolve(included, included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.1/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 151, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/min_cost_flow.cpp: line 6: found codes out of include guard
+#line 1 "Verify/min_cost_flow.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
+
+#define __guard__
+#line 1 "Verify/../Misc/heap_alias.cpp"
+#include <queue>
+
+template <class T>
+using MaxHeap = std::priority_queue<T>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+#line 1 "Verify/../Graph/min_cost_flow.cpp"
+#include <vector>
+#include <limits>
+
+template <class Cap, class Cost>
+struct MinCostFlow {
+    struct Edge {
+        int src, dst;
+        Cap cap;
+        Cost cost;
+        Edge(int src, int dst, Cap cap, Cost cost)
+            : src(src), dst(dst), cap(cap), cost(cost){};
+    };
+
+    using Edges = std::vector<Edge>;
+    using Graph = std::vector<std::vector<int>>;
+
+    Edges edges;
+    Graph graph;
+    std::vector<Cost> dist;
+    std::vector<int> rev;
+
+    const Cost INF = std::numeric_limits<Cost>::max() / 2;
+
+    explicit MinCostFlow(int n) : graph(n), dist(n), rev(n) {}
+
+    void span(int u, int v, Cap cap, Cost cost) {
+        graph[u].push_back(edges.size());
+        edges.emplace_back(u, v, cap, cost);
+
+        graph[v].push_back(edges.size());
+        edges.emplace_back(v, u, 0, -cost);
+    }
+
+    void bellman_ford(int s) {
+        std::fill(dist.begin(), dist.end(), INF);
+        dist[s] = 0;
+
+        for (int i = 0; i < (int)graph.size(); ++i) {
+            for (int eidx = 0; eidx < (int)edges.size(); ++eidx) {
+                const auto& edge = edges[eidx];
+                int u = edge.src, v = edge.dst;
+
+                if (edge.cap > 0 &&
+                    dist[u] < INF &&
+                    dist[v] > dist[u] + edge.cost) {
+                    dist[v] = dist[u] + edge.cost;
+                    rev[v] = eidx;
+                }
+            }
+        }
+    }
+
+    Cost exec(int s, int g, Cap flow) {
+        Cost ret = 0;
+
+        while (flow > 0) {
+            bellman_ford(s);
+            if (dist[g] == INF) break;
+
+            Cap f = flow;
+            int v = g;
+            while (v != s) {
+                const auto& edge = edges[rev[v]];
+                f = std::min(f, edge.cap);
+                v = edge.src;
+            }
+
+            flow -= f;
+            ret += f * dist[g];
+
+            v = g;
+            while (v != s) {
+                auto& edge = edges[rev[v]];
+                auto& redge = edges[rev[v] ^ 1];
+                edge.cap -= f;
+                redge.cap += f;
+                v = edge.src;
+            }
+        }
+        return (flow > 0 ? -1 : ret);
+    }
+};
+#line 6 "Verify/min_cost_flow.test.cpp"
+#undef __guard__
+
+#include <iostream>
+
+int main() {
+    int n, m, f;
+    std::cin >> n >> m >> f;
+
+    MinCostFlow<int, int> mcf(n);
+    while (m--) {
+        int u, v, c, d;
+        std::cin >> u >> v >> c >> d;
+        mcf.span(u, v, c, d);
+    }
+    std::cout << mcf.exec(0, n - 1, f) << std::endl;
+    return 0;
+}
 
 ```
 {% endraw %}
