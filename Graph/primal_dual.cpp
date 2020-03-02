@@ -1,4 +1,11 @@
+#ifndef __guard__
+#define __guard__
+#include "../Misc/heap_alias.cpp"
+#undef __guard__
+#endif
+
 #include <vector>
+#include <tuple>
 #include <limits>
 
 template <class Cap, class Cost>
@@ -16,12 +23,12 @@ struct MinCostFlow {
 
     Edges edges;
     Graph graph;
-    std::vector<Cost> dist;
+    std::vector<Cost> dist, pot;
     std::vector<int> rev;
 
     const Cost INF = std::numeric_limits<Cost>::max() / 2;
 
-    explicit MinCostFlow(int n) : graph(n), dist(n), rev(n) {}
+    explicit MinCostFlow(int n) : graph(n), dist(n), pot(n), rev(n) {}
 
     void span(int u, int v, Cap cap, Cost cost) {
         graph[u].push_back(edges.size());
@@ -31,20 +38,29 @@ struct MinCostFlow {
         edges.emplace_back(v, u, 0, -cost);
     }
 
-    void bellman_ford(int s) {
+    void dijkstra(int s) {
         std::fill(dist.begin(), dist.end(), INF);
         dist[s] = 0;
+        MinHeap<std::pair<Cost, int>> heap;
+        heap.emplace(0, s);
 
-        for (int i = 0; i < (int)graph.size(); ++i) {
-            for (int eidx = 0; eidx < (int)edges.size(); ++eidx) {
+        while (!heap.empty()) {
+            int u;
+            Cost d;
+            std::tie(d, u) = heap.top();
+            heap.pop();
+            if (d > dist[u]) continue;
+
+            for (auto eidx : graph[u]) {
                 const auto& edge = edges[eidx];
-                int u = edge.src, v = edge.dst;
+                int v = edge.dst;
 
                 if (edge.cap > 0 &&
                     dist[u] < INF &&
-                    dist[v] > dist[u] + edge.cost) {
-                    dist[v] = dist[u] + edge.cost;
+                    dist[v] > dist[u] + edge.cost + pot[u] - pot[v]) {
+                    dist[v] = dist[u] + edge.cost + pot[u] - pot[v];
                     rev[v] = eidx;
+                    heap.emplace(dist[v], v);
                 }
             }
         }
@@ -52,10 +68,15 @@ struct MinCostFlow {
 
     Cost exec(int s, int g, Cap flow) {
         Cost ret = 0;
+        std::fill(pot.begin(), pot.end(), 0);
 
         while (flow > 0) {
-            bellman_ford(s);
+            dijkstra(s);
             if (dist[g] == INF) break;
+
+            for (int v = 0; v < (int)graph.size(); ++v) {
+                pot[v] = std::min(pot[v] + dist[v], INF);
+            }
 
             Cap f = flow;
             int v = g;
@@ -66,7 +87,7 @@ struct MinCostFlow {
             }
 
             flow -= f;
-            ret += f * dist[g];
+            ret += f * pot[g];
 
             v = g;
             while (v != s) {
