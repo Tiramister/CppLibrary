@@ -21,8 +21,6 @@ int main() {
 
     auto& ans = ll.artics;
     std::sort(ans.begin(), ans.end());
-    for (auto v : ans) {
-        std::cout << v << std::endl;
-    }
+    for (auto v : ans) std::cout << v << "\n";
     return 0;
 }

@@ -26,11 +26,12 @@ int main() {
             std::cin >> l >> r >> x;
             --l, --r;
             seg.update(l, r + 1, x);
+
         } else {
             int l, r;
             std::cin >> l >> r;
             --l, --r;
-            std::cout << seg.query(l, r + 1) << std::endl;
+            std::cout << seg.query(l, r + 1) << "\n";
         }
     }
     return 0;

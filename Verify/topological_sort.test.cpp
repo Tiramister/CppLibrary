@@ -16,8 +16,6 @@ int main() {
     }
 
     TopologicalSort<> ts(graph);
-    for (int v : ts.order) {
-        std::cout << v << std::endl;
-    }
+    for (int v : ts.order) std::cout << v << "\n";
     return 0;
 }

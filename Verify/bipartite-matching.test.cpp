@@ -16,9 +16,10 @@ int main() {
     }
 
     auto match = bm.matching();
-    std::cout << match.size() << std::endl;
+
+    std::cout << match.size() << "\n";
     for (auto p : match) {
-        std::cout << p.first << ' ' << p.second << std::endl;
+        std::cout << p.first << ' ' << p.second << "\n";
     }
     return 0;
 }

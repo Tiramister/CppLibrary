@@ -16,6 +16,6 @@ int main() {
     for (int i = 0; i <= k; ++i) {
         ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
     }
-    std::cout << ans << std::endl;
+    std::cout << ans << "\n";
     return 0;
 }

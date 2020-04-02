@@ -15,7 +15,7 @@ int main() {
         if (t == 0) {
             uf.unite(u, v);
         } else {
-            std::cout << uf.same(u, v) << std::endl;
+            std::cout << uf.same(u, v) << "\n";
         }
     }
     return 0;

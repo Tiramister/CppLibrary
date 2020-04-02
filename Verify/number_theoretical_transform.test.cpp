@@ -18,9 +18,7 @@ int main() {
 
     auto zs = NTT.ntt(xs, ys);
 
-    for (auto z : zs) {
-        std::cout << z << ' ';
-    }
-    std::cout << std::endl;
+    for (auto z : zs) std::cout << z << ' ';
+    std::cout << "\n";
     return 0;
 }

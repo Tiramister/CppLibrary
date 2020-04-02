@@ -13,6 +13,6 @@ int main() {
     int g = extgcd(a, b, x, y);
     assert(a * x + b * y == g);
 
-    std::cout << x << " " << y << std::endl;
+    std::cout << x << " " << y << "\n";
     return 0;
 }

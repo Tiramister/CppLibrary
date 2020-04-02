@@ -17,11 +17,12 @@ int main() {
             int d;
             std::cin >> d;
             wuf.unite(v, u, d);
+
         } else {
             if (!wuf.same(u, v)) {
-                std::cout << '?' << std::endl;
+                std::cout << "?\n";
             } else {
-                std::cout << wuf.diff(u, v) << std::endl;
+                std::cout << wuf.diff(u, v) << "\n";
             }
         }
     }

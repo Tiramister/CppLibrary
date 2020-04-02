@@ -19,10 +19,8 @@ int main() {
     std::cout << scc.groups.size() << std::endl;
     for (auto& g : scc.groups) {
         std::cout << g.size();
-        for (auto v : g) {
-            std::cout << ' ' << v;
-        }
-        std::cout << std::endl;
+        for (auto v : g) std::cout << ' ' << v;
+        std::cout << "\n";
     }
     return 0;
 }

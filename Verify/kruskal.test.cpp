@@ -13,6 +13,6 @@ int main() {
         std::cin >> e.src >> e.dst >> e.cost;
     }
 
-    std::cout << kruskal(n, edges) << std::endl;
+    std::cout << kruskal(n, edges) << "\n";
     return 0;
 }

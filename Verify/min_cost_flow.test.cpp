@@ -14,6 +14,6 @@ int main() {
         std::cin >> u >> v >> c >> d;
         mcf.span(u, v, c, d);
     }
-    std::cout << mcf.exec(0, n - 1, f) << std::endl;
+    std::cout << mcf.exec(0, n - 1, f) << "\n";
     return 0;
 }

@@ -27,7 +27,7 @@ int main() {
         for (int x = 1; x <= n; ++x) {
             std::cout << (assign[x - 1] ? x : -x) << " ";
         }
-        std::cout << "0" << std::endl;
+        std::cout << "0\n";
     }
     return 0;
 }

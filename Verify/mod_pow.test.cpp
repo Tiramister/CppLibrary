@@ -8,6 +8,6 @@ using mint = ModInt<MOD>;
 int main() {
     int m, n;
     std::cin >> m >> n;
-    std::cout << mint(m).pow(n) << std::endl;
+    std::cout << mint(m).pow(n) << "\n";
     return 0;
 }

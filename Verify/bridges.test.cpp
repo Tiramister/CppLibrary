@@ -29,7 +29,7 @@ int main() {
     std::sort(ans.begin(), ans.end());
 
     for (const auto& p : ans) {
-        std::cout << p.first << ' ' << p.second << std::endl;
+        std::cout << p.first << ' ' << p.second << "\n";
     }
     return 0;
 }

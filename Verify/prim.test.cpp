@@ -16,6 +16,6 @@ int main() {
         graph[v].emplace_back(v, u, d);
     }
 
-    std::cout << prim(graph) << std::endl;
+    std::cout << prim(graph) << "\n";
     return 0;
 }

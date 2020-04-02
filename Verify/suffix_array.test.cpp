@@ -12,7 +12,7 @@ int main() {
     for (int i = 1; i <= (int)s.length(); ++i) {
         std::cout << sa.ord[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << "\n";
 
     return 0;
 }

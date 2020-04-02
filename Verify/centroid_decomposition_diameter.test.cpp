@@ -62,6 +62,6 @@ int main() {
         if (fars.size() >= 2) ans = std::max(ans, fars[0] + fars[1]);
     }
 
-    std::cout << ans << std::endl;
+    std::cout << ans << "\n";
     return 0;
 }

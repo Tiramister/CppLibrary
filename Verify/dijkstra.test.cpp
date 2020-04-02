@@ -20,10 +20,11 @@ int main() {
     auto dist = dijkstra(graph, s);
     for (auto d : dist) {
         if (d == INF) {
-            std::cout << "INF" << std::endl;
+            std::cout << "INF";
         } else {
-            std::cout << d << std::endl;
+            std::cout << d;
         }
+        std::cout << "\n";
     }
     return 0;
 }

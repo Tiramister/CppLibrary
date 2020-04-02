@@ -17,5 +17,5 @@ int main() {
             std::cout << " " << p.first;
         }
     }
-    std::cout << std::endl;
+    std::cout << "\n";
 }

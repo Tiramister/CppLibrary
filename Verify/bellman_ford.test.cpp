@@ -19,15 +19,17 @@ int main() {
 
     auto dist = bellman_ford(graph, s);
     if (dist.empty()) {
-        std::cout << "NEGATIVE CYCLE" << std::endl;
+        std::cout << "NEGATIVE CYCLE\n";
         return 0;
     }
+
     for (int d : dist) {
         if (d == INF) {
-            std::cout << "INF" << std::endl;
+            std::cout << "INF";
         } else {
-            std::cout << d << std::endl;
+            std::cout << d;
         }
+        std::cout << "\n";
     }
     return 0;
 }

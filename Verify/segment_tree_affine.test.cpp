@@ -39,6 +39,7 @@ int main() {
             int i, a, b;
             std::cin >> i >> a >> b;
             seg.update(i, affine(a, b));
+
         } else {
             int l, r, x;
             std::cin >> l >> r >> x;
