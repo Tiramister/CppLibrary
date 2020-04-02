@@ -1,6 +1,8 @@
-#include <limits>
+#pragma once
+
 #include <vector>
 #include <queue>
+#include <limits>
 
 template <class Cap, bool isDirect>
 struct MaxFlow {

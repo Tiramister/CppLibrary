@@ -1,10 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#define __guard__
-#include "../DataStructure/union_find.cpp"
-#include "../Graph/graph.cpp"
 #include "../Graph/kruskal.cpp"
-#undef __guard__
 
 #include <iostream>
 

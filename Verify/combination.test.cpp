@@ -1,9 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
-#define __guard__
 #include "../Number/modint.cpp"
 #include "../Number/combination.cpp"
-#undef __guard__
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;

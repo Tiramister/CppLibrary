@@ -1,8 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#define __guard__
 #include "../String/z_algorithm.cpp"
-#undef __guard__
 
 #include <iostream>
 #include <string>

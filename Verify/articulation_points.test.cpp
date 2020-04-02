@@ -1,9 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_3_A"
 
-#define __guard__
-#include "../Graph/graph.cpp"
 #include "../Graph/lowlink.cpp"
-#undef __guard__
 
 #include <iostream>
 #include <algorithm>

@@ -1,8 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
-#define __guard__
 #include "../String/suffix_array.cpp"
-#undef __guard__
 
 #include <iostream>
 

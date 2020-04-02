@@ -1,8 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B"
 
-#define __guard__
 #include "../DataStructure/weighted_union_find.cpp"
-#undef __guard__
 
 #include <iostream>
 

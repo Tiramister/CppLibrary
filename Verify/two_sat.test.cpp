@@ -1,10 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-#define __guard__
-#include "../Graph/graph.cpp"
-#include "../Graph/strongly_connected_component.cpp"
 #include "../Graph/two_sat.cpp"
-#undef __guard__
 
 #include <iostream>
 #include <cmath>

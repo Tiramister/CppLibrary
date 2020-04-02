@@ -1,8 +1,6 @@
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "dinic.cpp"
-#undef __guard__
-#endif
 
 struct BiMatching {
     MaxFlow<int, true> mf;

@@ -1,9 +1,7 @@
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "graph.cpp"
 #include "strongly_connected_component.cpp"
-#undef __guard__
-#endif
 
 struct TwoSat {
     int vnum;

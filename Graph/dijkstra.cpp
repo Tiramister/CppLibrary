@@ -1,13 +1,10 @@
-#ifndef __guard__
-#define __guard__
-#include "../Misc/heap_alias.cpp"
-#include "graph.cpp"
-#undef __guard__
-#endif
+#pragma once
 
-#include <queue>
-#include <limits>
+#include "../Tools/heap_alias.cpp"
+#include "graph.cpp"
+
 #include <tuple>
+#include <limits>
 
 template <class Cost>
 std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <algorithm>
 #include <numeric>
 #include <vector>
@@ -26,7 +28,6 @@ struct SuffixArray {
             }
         }
 
-        // sentinel
         ord.insert(ord.begin(), n);
         rank.push_back(0);
 
@@ -35,7 +36,6 @@ struct SuffixArray {
         for (int k = 1; k < n; k <<= 1) {
             std::fill(bucket.begin(), bucket.end(), 0);
 
-            // idxs is in acsending order by the last k characters
             for (int i = 0; i <= n; ++i) {
                 idxs[i] = (ord[i] - k + n + 1) % (n + 1);
                 ++bucket[rank[idxs[i]]];

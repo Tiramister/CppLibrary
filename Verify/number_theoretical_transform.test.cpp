@@ -1,9 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#define __guard__
-#include "../Number/modint.cpp"
 #include "../Convolution/number_theoretical_transform.cpp"
-#undef __guard__
 
 #include <iostream>
 

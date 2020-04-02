@@ -1,9 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
 
-#define __guard__
-#include "../Graph/graph.cpp"
 #include "../Graph/bellman_ford.cpp"
-#undef __guard__
 
 #include <iostream>
 

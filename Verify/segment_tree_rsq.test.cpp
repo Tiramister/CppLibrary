@@ -1,8 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#define __guard__
 #include "../DataStructure/segment_tree.cpp"
-#undef __guard__
 
 #include <iostream>
 

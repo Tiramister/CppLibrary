@@ -1,8 +1,4 @@
-#ifndef __guard__
-#define __guard__
-#include "../Misc/heap_alias.cpp"
-#undef __guard__
-#endif
+#include "../Tools/heap_alias.cpp"
 
 #include <vector>
 #include <tuple>

@@ -1,8 +1,6 @@
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "graph.cpp"
-#undef __guard__
-#endif
 
 template <class Cost = int>
 struct Lowlink {

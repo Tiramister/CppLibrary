@@ -1,9 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#define __guard__
-#include "../Misc/heap_alias.cpp"
 #include "../Graph/primal_dual.cpp"
-#undef __guard__
 
 #include <iostream>
 

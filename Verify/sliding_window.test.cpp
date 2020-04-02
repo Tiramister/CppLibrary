@@ -1,8 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D"
 
-#define __guard__
 #include "../DataStructure/sliding_window.cpp"
-#undef __guard__
 
 #include <iostream>
 

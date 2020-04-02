@@ -1,9 +1,7 @@
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "graph.cpp"
 #include "../DataStructure/union_find.cpp"
-#undef __guard__
-#endif
 
 #include <algorithm>
 

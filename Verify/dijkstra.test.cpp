@@ -1,10 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A"
 
-#define __guard__
-#include "../Misc/heap_alias.cpp"
-#include "../Graph/graph.cpp"
 #include "../Graph/dijkstra.cpp"
-#undef __guard__
 
 #include <iostream>
 

@@ -1,9 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
-#define __guard__
-#include "../Graph/graph.cpp"
 #include "../Graph/centroid_decomposition.cpp"
-#undef __guard__
 
 #include <iostream>
 #include <algorithm>

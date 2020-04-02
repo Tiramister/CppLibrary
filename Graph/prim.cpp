@@ -1,9 +1,7 @@
-#ifndef __guard__
-#define __guard__
-#include "../Misc/heap_alias.cpp"
+#pragma once
+
+#include "../Tools/heap_alias.cpp"
 #include "graph.cpp"
-#undef __guard__
-#endif
 
 #include <queue>
 

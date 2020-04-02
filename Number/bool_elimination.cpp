@@ -1,7 +1,10 @@
+#pragma once
+
 #include <algorithm>
 #include <vector>
 
-void bool_elimination(std::vector<std::vector<int>>& mat) {
+template <class T>
+void bool_elimination(std::vector<std::vector<T>>& mat) {
     int n = mat.size(), m = mat.front().size();
 
     for (int l = 0; l < n; ++l) {

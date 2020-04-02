@@ -1,9 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
-#define __guard__
-#include "../Graph/dinic.cpp"
-#include "../Graph/bimatching.cpp"
-#undef __guard__
+#include "../Graph/bipartite_matching.cpp"
 
 #include <iostream>
 

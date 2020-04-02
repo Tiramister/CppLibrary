@@ -1,8 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#define __guard__
 #include "../DataStructure/union_find.cpp"
-#undef __guard__
 
 #include <iostream>
 
