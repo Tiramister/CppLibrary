@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/sliding_window.test.cpp">View this file on GitHub</a>
     - Last commit date: 2019-12-29 14:15:56+09:00
 
@@ -82,7 +83,7 @@ int main() {
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D"
 
 #define __guard__
-#line 1 "Verify/../DataStructure/sliding_window.cpp"
+#line 1 "DataStructure/sliding_window.cpp"
 #include <deque>
 #include <functional>
 

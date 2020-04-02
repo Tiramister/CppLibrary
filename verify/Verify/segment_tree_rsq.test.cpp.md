@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_rsq.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-02-18 18:37:29+09:00
 
@@ -98,7 +99,7 @@ int main() {
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #define __guard__
-#line 1 "Verify/../DataStructure/segment_tree.cpp"
+#line 1 "DataStructure/segment_tree.cpp"
 #include <vector>
 #include <functional>
 

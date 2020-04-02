@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/min_cost_flow.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-03-03 05:19:20+09:00
 
@@ -80,14 +81,14 @@ int main() {
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
 #define __guard__
-#line 1 "Verify/../Misc/heap_alias.cpp"
+#line 1 "Misc/heap_alias.cpp"
 #include <queue>
 
 template <class T>
 using MaxHeap = std::priority_queue<T>;
 template <class T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-#line 1 "Verify/../Graph/min_cost_flow.cpp"
+#line 1 "Graph/min_cost_flow.cpp"
 #include <vector>
 #include <limits>
 

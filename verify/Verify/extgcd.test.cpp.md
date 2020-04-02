@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/extgcd.test.cpp">View this file on GitHub</a>
     - Last commit date: 2019-12-29 02:37:49+09:00
 
@@ -77,7 +78,7 @@ int main() {
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E"
 
 #define __guard__
-#line 1 "Verify/../Number/extgcd.cpp"
+#line 1 "Number/extgcd.cpp"
 #include <algorithm>
 
 template <typename T>

@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/z_algorithm.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-03-03 05:11:30+09:00
 
@@ -80,7 +81,7 @@ int main() {
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
 #define __guard__
-#line 1 "Verify/../String/z_algorithm.cpp"
+#line 1 "String/z_algorithm.cpp"
 #include <vector>
 
 template <class Container>

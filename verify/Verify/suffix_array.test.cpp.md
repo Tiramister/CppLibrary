@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/suffix_array.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-02-18 17:50:16+09:00
 
@@ -77,7 +78,7 @@ int main() {
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
 #define __guard__
-#line 1 "Verify/../String/suffix_array.cpp"
+#line 1 "String/suffix_array.cpp"
 #include <algorithm>
 #include <numeric>
 #include <vector>

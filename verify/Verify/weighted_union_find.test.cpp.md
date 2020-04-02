@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/weighted_union_find.test.cpp">View this file on GitHub</a>
     - Last commit date: 2019-12-29 14:50:01+09:00
 
@@ -88,7 +89,7 @@ int main() {
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B"
 
 #define __guard__
-#line 1 "Verify/../DataStructure/weighted_union_find.cpp"
+#line 1 "DataStructure/weighted_union_find.cpp"
 #include <numeric>
 #include <vector>
 

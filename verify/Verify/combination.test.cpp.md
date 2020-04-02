@@ -29,6 +29,7 @@ layout: default
 
 <a href="../../index.html">Back to top page</a>
 
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/combination.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-01-19 01:36:28+09:00
 
@@ -81,7 +82,7 @@ int main() {
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
 #define __guard__
-#line 1 "Verify/../Number/modint.cpp"
+#line 1 "Number/modint.cpp"
 #include <iostream>
 
 template <int MOD>
@@ -141,7 +142,7 @@ struct ModInt {
 
 // constexpr int MOD = 1e9 + 7;
 // using mint = ModInt<MOD>;
-#line 1 "Verify/../Number/combination.cpp"
+#line 1 "Number/combination.cpp"
 #include <vector>
 
 template <class T>

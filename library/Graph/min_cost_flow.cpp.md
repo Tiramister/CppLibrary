@@ -36,11 +36,6 @@ layout: default
 
 
 
-## Required by
-
-* :warning: <a href="../Verify/min_cost_flow.cpp.html">Verify/min_cost_flow.cpp</a>
-
-
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
