@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/z_algorithm.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-03 05:11:30+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/zalgorithm">https://judge.yosupo.jp/problem/zalgorithm</a>
@@ -49,24 +49,18 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#define __guard__
 #include "../String/z_algorithm.cpp"
-#undef __guard__
 
 #include <iostream>
 #include <string>
 
 int main() {
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-    std::ios::sync_with_stdio(false);
-
     std::string s;
     std::cin >> s;
 
     auto ans = zalgo(s);
     for (auto a : ans) std::cout << a << " ";
-    std::cout << std::endl;
+    std::cout << "\n";
 
     return 0;
 }
@@ -80,8 +74,8 @@ int main() {
 #line 1 "Verify/z_algorithm.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#define __guard__
-#line 1 "String/z_algorithm.cpp"
+#line 2 "String/z_algorithm.cpp"
+
 #include <vector>
 
 template <class Container>
@@ -115,23 +109,18 @@ std::vector<int> zalgo(const Container& dat) {
 
     return ret;
 }
-#line 5 "Verify/z_algorithm.test.cpp"
-#undef __guard__
+#line 4 "Verify/z_algorithm.test.cpp"
 
 #include <iostream>
 #include <string>
 
 int main() {
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-    std::ios::sync_with_stdio(false);
-
     std::string s;
     std::cin >> s;
 
     auto ans = zalgo(s);
     for (auto a : ans) std::cout << a << " ";
-    std::cout << std::endl;
+    std::cout << "\n";
 
     return 0;
 }

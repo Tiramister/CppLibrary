@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/strongly_connected_component.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -57,11 +57,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "graph.cpp"
-#undef __guard__
-#endif
 
 #include <algorithm>
 #include <vector>
@@ -122,14 +120,82 @@ struct StronglyConnectedComponents {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/strongly_connected_component.cpp: line 6: found codes out of include guard
+#line 2 "Graph/strongly_connected_component.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/strongly_connected_component.cpp"
+
+#include <algorithm>
+#line 7 "Graph/strongly_connected_component.cpp"
+
+template <class Cost = int>
+struct StronglyConnectedComponents {
+    Graph<Cost> graph, rgraph;
+    std::vector<bool> visited;
+    std::vector<int> stk;
+
+    // id[v] = 頂点vはgroups[id[v]]に属する
+    std::vector<int> id;
+    std::vector<std::vector<int>> groups;
+
+    explicit StronglyConnectedComponents(const Graph<Cost>& g)
+        : graph(g), visited(graph.size(), false), id(graph.size(), -1) {
+        revinit();
+
+        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);
+
+        while (!stk.empty()) {
+            int v = stk.back();
+            stk.pop_back();
+            if (id[v] < 0) {
+                groups.emplace_back();
+                rdfs(v);
+            }
+        }
+    }
+
+    void revinit() {
+        rgraph = Graph<Cost>(graph.size());
+        for (int v = 0; v < (int)graph.size(); ++v) {
+            for (const auto& e : graph[v]) {
+                rgraph[e.dst].emplace_back(e.dst, v, e.cost);
+            }
+        }
+    }
+
+    void dfs(int v) {
+        if (visited[v]) return;
+        visited[v] = true;
+        for (const auto& e : graph[v]) dfs(e.dst);
+        stk.push_back(v);
+    }
+
+    void rdfs(int v) {
+        if (id[v] >= 0) return;
+        id[v] = groups.size() - 1;
+        groups.back().push_back(v);
+        for (const auto& e : rgraph[v]) rdfs(e.dst);
+    }
+};
 
 ```
 {% endraw %}

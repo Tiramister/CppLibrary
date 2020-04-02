@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/bellman_ford.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B</a>
@@ -50,10 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
 
-#define __guard__
-#include "../Graph/graph.cpp"
 #include "../Graph/bellman_ford.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -72,15 +69,17 @@ int main() {
 
     auto dist = bellman_ford(graph, s);
     if (dist.empty()) {
-        std::cout << "NEGATIVE CYCLE" << std::endl;
+        std::cout << "NEGATIVE CYCLE\n";
         return 0;
     }
+
     for (int d : dist) {
         if (d == INF) {
-            std::cout << "INF" << std::endl;
+            std::cout << "INF";
         } else {
-            std::cout << d << std::endl;
+            std::cout << d;
         }
+        std::cout << "\n";
     }
     return 0;
 }
@@ -91,16 +90,96 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/bellman_ford.cpp: line 6: found codes out of include guard
+#line 1 "Verify/bellman_ford.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
+
+#line 2 "Graph/bellman_ford.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/bellman_ford.cpp"
+
+#line 6 "Graph/bellman_ford.cpp"
+#include <limits>
+
+template <class Cost>
+std::vector<Cost> bellman_ford(const Graph<Cost>& graph, int s) {
+    constexpr Cost INF = std::numeric_limits<Cost>::max();
+
+    int n = graph.size();
+    std::vector<Cost> dist(n, INF);
+    dist[s] = 0;
+
+    for (int t = 0; t < n; ++t) {
+        bool update = false;
+        for (int v = 0; v < n; ++v) {
+            for (const auto& e : graph[v]) {
+                if (dist[v] != INF && dist[e.dst] > dist[v] + e.cost) {
+                    dist[e.dst] = dist[v] + e.cost;
+                    update = true;
+                }
+            }
+        }
+
+        if (!update) break;
+        if (t == n - 1) {
+            // if there is a negative cycle, return empty array
+            return std::vector<Cost>();
+        }
+    }
+    return dist;
+}
+#line 4 "Verify/bellman_ford.test.cpp"
+
+#include <iostream>
+
+constexpr int INF = std::numeric_limits<int>::max();
+
+int main() {
+    int n, m, s;
+    std::cin >> n >> m >> s;
+
+    Graph<int> graph(n);
+    while (m--) {
+        int u, v, d;
+        std::cin >> u >> v >> d;
+        graph[u].emplace_back(u, v, d);
+    }
+
+    auto dist = bellman_ford(graph, s);
+    if (dist.empty()) {
+        std::cout << "NEGATIVE CYCLE\n";
+        return 0;
+    }
+
+    for (int d : dist) {
+        if (d == INF) {
+            std::cout << "INF";
+        } else {
+            std::cout << d;
+        }
+        std::cout << "\n";
+    }
+    return 0;
+}
 
 ```
 {% endraw %}

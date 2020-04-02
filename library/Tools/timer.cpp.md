@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Misc/compress.cpp
+# :warning: Tools/timer.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#74248c725e00bf9fe04df4e35b249a19">Misc</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Misc/compress.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:00:12+09:00
+* category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Tools/timer.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -41,19 +41,24 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <algorithm>
-#include <vector>
-#include <map>
+#pragma once
 
-template <class T>
-std::map<T, int> compress(std::vector<T>& v) {
-    std::sort(v.begin(), v.end());
-    v.erase(std::unique(v.begin(), v.end()), v.end());
+#include <chrono>
 
-    std::map<T, int> rev;
-    for (int i = 0; i < (int)v.size(); ++i) rev[v[i]] = i;
-    return rev;
-}
+struct Timer {
+    std::chrono::time_point<std::chrono::system_clock> begin;
+
+    void init() {
+        begin = std::chrono::system_clock::now();
+    }
+
+    int get_ms() {
+        auto cur = std::chrono::system_clock::now();
+        return std::chrono::
+            duration_cast<std::chrono::milliseconds>(cur - begin)
+                .count();
+    }
+};
 
 ```
 {% endraw %}
@@ -61,20 +66,24 @@ std::map<T, int> compress(std::vector<T>& v) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Misc/compress.cpp"
-#include <algorithm>
-#include <vector>
-#include <map>
+#line 2 "Tools/timer.cpp"
 
-template <class T>
-std::map<T, int> compress(std::vector<T>& v) {
-    std::sort(v.begin(), v.end());
-    v.erase(std::unique(v.begin(), v.end()), v.end());
+#include <chrono>
 
-    std::map<T, int> rev;
-    for (int i = 0; i < (int)v.size(); ++i) rev[v[i]] = i;
-    return rev;
-}
+struct Timer {
+    std::chrono::time_point<std::chrono::system_clock> begin;
+
+    void init() {
+        begin = std::chrono::system_clock::now();
+    }
+
+    int get_ms() {
+        auto cur = std::chrono::system_clock::now();
+        return std::chrono::
+            duration_cast<std::chrono::milliseconds>(cur - begin)
+                .count();
+    }
+};
 
 ```
 {% endraw %}

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2ee912b91d69b435159c7c3f6df7f5f">Number</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Number/modint.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 16:26:29+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -46,7 +46,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/segment_tree_affine.test.cpp.html">Verify/segment_tree_affine.test.cpp</a>
 
 
 ## Code
@@ -54,6 +54,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #include <iostream>
 
 template <int MOD>
@@ -120,7 +122,8 @@ struct ModInt {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Number/modint.cpp"
+#line 2 "Number/modint.cpp"
+
 #include <iostream>
 
 template <int MOD>

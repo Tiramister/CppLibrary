@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/prim.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:23:01+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -39,7 +39,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
+* :heavy_check_mark: <a href="../Tools/heap_alias.cpp.html">Tools/heap_alias.cpp</a>
 
 
 ## Verified with
@@ -52,12 +52,10 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
-#define __guard__
-#include "../Misc/heap_alias.cpp"
+#pragma once
+
+#include "../Tools/heap_alias.cpp"
 #include "graph.cpp"
-#undef __guard__
-#endif
 
 #include <queue>
 
@@ -92,14 +90,64 @@ Cost prim(const Graph<Cost>& graph) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/prim.cpp: line 7: found codes out of include guard
+#line 2 "Graph/prim.cpp"
+
+#line 2 "Tools/heap_alias.cpp"
+
+#include <queue>
+
+template <class T>
+using MaxHeap = std::priority_queue<T>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 5 "Graph/prim.cpp"
+
+#line 7 "Graph/prim.cpp"
+
+template <class Cost, class Cap = int>
+Cost prim(const Graph<Cost>& graph) {
+    std::vector<bool> used(graph.size(), false);
+    used[0] = true;
+
+    MinHeap<Edge<Cost>> heap;
+    for (const auto& e : graph[0]) {
+        heap.push(e);
+    }
+
+    Cost sum = 0;
+    while (!heap.empty()) {
+        auto e = heap.top();
+        heap.pop();
+        if (used[e.dst]) continue;
+
+        sum += e.cost;
+        used[e.dst] = true;
+        for (const auto& se : graph[e.dst]) {
+            heap.push(se);
+        }
+    }
+    return sum;
+}
 
 ```
 {% endraw %}

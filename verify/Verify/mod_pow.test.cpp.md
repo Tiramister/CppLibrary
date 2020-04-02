@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/mod_pow.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 16:26:29+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B</a>
@@ -49,9 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B"
 
-#define __guard__
 #include "../Number/modint.cpp"
-#undef __guard__
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
@@ -59,7 +57,7 @@ using mint = ModInt<MOD>;
 int main() {
     int m, n;
     std::cin >> m >> n;
-    std::cout << mint(m).pow(n) << std::endl;
+    std::cout << mint(m).pow(n) << "\n";
     return 0;
 }
 
@@ -72,8 +70,8 @@ int main() {
 #line 1 "Verify/mod_pow.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B"
 
-#define __guard__
-#line 1 "Number/modint.cpp"
+#line 2 "Number/modint.cpp"
+
 #include <iostream>
 
 template <int MOD>
@@ -133,8 +131,7 @@ struct ModInt {
 
 // constexpr int MOD = 1e9 + 7;
 // using mint = ModInt<MOD>;
-#line 5 "Verify/mod_pow.test.cpp"
-#undef __guard__
+#line 4 "Verify/mod_pow.test.cpp"
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
@@ -142,7 +139,7 @@ using mint = ModInt<MOD>;
 int main() {
     int m, n;
     std::cin >> m >> n;
-    std::cout << mint(m).pow(n) << std::endl;
+    std::cout << mint(m).pow(n) << "\n";
     return 0;
 }
 

@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/segment_tree_linear.test.cpp
+# :heavy_check_mark: Verify/segment_tree_affine.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_linear.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-02-18 18:37:29+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_affine.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -50,22 +50,20 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#define __guard__
 #include "../DataStructure/segment_tree.cpp"
 #include "../Number/modint.cpp"
-#undef __guard__
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;
 
 template <class T>
-struct Linear {
+struct Affine {
     T a, b;
-    explicit Linear(T a, T b) : a(a), b(b) {}
+    explicit Affine(T a, T b) : a(a), b(b) {}
     T operator()(T x) const { return a * x + b; }
 };
 
-using linear = Linear<mint>;
+using affine = Affine<mint>;
 
 int main() {
     std::cin.tie(nullptr);
@@ -74,13 +72,13 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegmentTree<linear>
-        seg(n, linear(1, 0),
-            [](linear f, linear g) { return linear(f.a * g.a, g.a * f.b + g.b); });
+    SegmentTree<affine>
+        seg(n, affine(1, 0),
+            [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });
     for (int i = 0; i < n; ++i) {
         int a, b;
         std::cin >> a >> b;
-        seg.update(i, linear(a, b));
+        seg.update(i, affine(a, b));
     }
 
     while (q--) {
@@ -90,7 +88,8 @@ int main() {
         if (t == 0) {
             int i, a, b;
             std::cin >> i >> a >> b;
-            seg.update(i, linear(a, b));
+            seg.update(i, affine(a, b));
+
         } else {
             int l, r, x;
             std::cin >> l >> r >> x;
@@ -107,11 +106,11 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Verify/segment_tree_linear.test.cpp"
+#line 1 "Verify/segment_tree_affine.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#define __guard__
-#line 1 "DataStructure/segment_tree.cpp"
+#line 2 "DataStructure/segment_tree.cpp"
+
 #include <vector>
 #include <functional>
 
@@ -162,7 +161,8 @@ struct SegmentTree {
         }
     }
 };
-#line 1 "Number/modint.cpp"
+#line 2 "Number/modint.cpp"
+
 #include <iostream>
 
 template <int MOD>
@@ -222,20 +222,19 @@ struct ModInt {
 
 // constexpr int MOD = 1e9 + 7;
 // using mint = ModInt<MOD>;
-#line 6 "Verify/segment_tree_linear.test.cpp"
-#undef __guard__
+#line 5 "Verify/segment_tree_affine.test.cpp"
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;
 
 template <class T>
-struct Linear {
+struct Affine {
     T a, b;
-    explicit Linear(T a, T b) : a(a), b(b) {}
+    explicit Affine(T a, T b) : a(a), b(b) {}
     T operator()(T x) const { return a * x + b; }
 };
 
-using linear = Linear<mint>;
+using affine = Affine<mint>;
 
 int main() {
     std::cin.tie(nullptr);
@@ -244,13 +243,13 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegmentTree<linear>
-        seg(n, linear(1, 0),
-            [](linear f, linear g) { return linear(f.a * g.a, g.a * f.b + g.b); });
+    SegmentTree<affine>
+        seg(n, affine(1, 0),
+            [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });
     for (int i = 0; i < n; ++i) {
         int a, b;
         std::cin >> a >> b;
-        seg.update(i, linear(a, b));
+        seg.update(i, affine(a, b));
     }
 
     while (q--) {
@@ -260,7 +259,8 @@ int main() {
         if (t == 0) {
             int i, a, b;
             std::cin >> i >> a >> b;
-            seg.update(i, linear(a, b));
+            seg.update(i, affine(a, b));
+
         } else {
             int l, r, x;
             std::cin >> l >> r >> x;

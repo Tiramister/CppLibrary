@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/centroid_decomposition_diameter.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-02-13 16:35:43+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A</a>
@@ -50,10 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
-#define __guard__
-#include "../Graph/graph.cpp"
 #include "../Graph/centroid_decomposition.cpp"
-#undef __guard__
 
 #include <iostream>
 #include <algorithm>
@@ -115,7 +112,7 @@ int main() {
         if (fars.size() >= 2) ans = std::max(ans, fars[0] + fars[1]);
     }
 
-    std::cout << ans << std::endl;
+    std::cout << ans << "\n";
     return 0;
 }
 
@@ -125,16 +122,133 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/centroid_decomposition.cpp: line 6: found codes out of include guard
+#line 1 "Verify/centroid_decomposition_diameter.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
+
+#line 2 "Graph/centroid_decomposition.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/centroid_decomposition.cpp"
+
+template <class Cost = int>
+struct Centroid {
+    Graph<Cost> graph;
+    std::vector<bool> deleted;
+    std::vector<int> sz;
+
+    explicit Centroid(const Graph<Cost>& graph)
+        : graph(graph), deleted(graph.size(), false), sz(graph.size()) {}
+
+    int szdfs(int v, int p = -1) {
+        sz[v] = 1;
+        for (auto e : graph[v]) {
+            if (e.dst == p || deleted[e.dst]) continue;
+            sz[v] += szdfs(e.dst, v);
+        }
+        return sz[v];
+    }
+
+    int find(int v) {
+        int n = szdfs(v);
+
+        int p = -1;
+        while (true) {
+            int nxt = -1;
+            for (auto e : graph[v]) {
+                if (e.dst == p || deleted[e.dst]) continue;
+                if (nxt == -1 || sz[e.dst] > sz[nxt]) nxt = e.dst;
+            }
+
+            if (nxt == -1 || sz[nxt] <= n / 2) return v;
+            p = v;
+            v = nxt;
+        }
+    }
+};
+#line 4 "Verify/centroid_decomposition_diameter.test.cpp"
+
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#include <tuple>
+
+int main() {
+    int n;
+    std::cin >> n;
+
+    Graph<int> graph(n);
+    for (int i = 0; i < n - 1; ++i) {
+        int u, v, w;
+        std::cin >> u >> v >> w;
+        graph[u].emplace_back(u, v, w);
+        graph[v].emplace_back(v, u, w);
+    }
+
+    Centroid<int> cent(graph);
+
+    int ans = 0;
+    std::queue<int> cents;
+    cents.push(0);
+
+    std::vector<int> dist(n);
+    while (!cents.empty()) {
+        int r = cents.front();
+        cents.pop();
+        r = cent.find(r);
+        cent.deleted[r] = true;
+
+        std::vector<int> fars({0, 0});
+        for (auto e : graph[r]) {
+            if (cent.deleted[e.dst]) continue;
+            cents.push(e.dst);
+
+            // BFS
+            std::queue<std::pair<int, int>> que;
+            que.emplace(e.dst, -1);
+            dist[e.dst] = e.cost;
+
+            int far = 0;
+            while (!que.empty()) {
+                int v, p;
+                std::tie(v, p) = que.front();
+                que.pop();
+                far = std::max(far, dist[v]);
+
+                for (auto f : graph[v]) {
+                    if (f.dst == p || cent.deleted[f.dst]) continue;
+                    dist[f.dst] = dist[v] + f.cost;
+                    que.emplace(f.dst, v);
+                }
+            }
+            fars.push_back(far);
+        }
+
+        std::sort(fars.rbegin(), fars.rend());
+        if (fars.size() >= 2) ans = std::max(ans, fars[0] + fars[1]);
+    }
+
+    std::cout << ans << "\n";
+    return 0;
+}
 
 ```
 {% endraw %}

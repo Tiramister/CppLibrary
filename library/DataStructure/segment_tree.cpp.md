@@ -31,14 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-02-18 18:37:29+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/segment_tree_affine.test.cpp.html">Verify/segment_tree_affine.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
 
 
@@ -47,6 +47,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #include <vector>
 #include <functional>
 
@@ -104,7 +106,8 @@ struct SegmentTree {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/segment_tree.cpp"
+#line 2 "DataStructure/segment_tree.cpp"
+
 #include <vector>
 #include <functional>
 

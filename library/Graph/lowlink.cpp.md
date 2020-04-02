@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/lowlink.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 14:42:46+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -52,11 +52,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "graph.cpp"
-#undef __guard__
-#endif
 
 template <class Cost = int>
 struct Lowlink {
@@ -104,14 +102,69 @@ struct Lowlink {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/lowlink.cpp: line 6: found codes out of include guard
+#line 2 "Graph/lowlink.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/lowlink.cpp"
+
+template <class Cost = int>
+struct Lowlink {
+    Graph<Cost> graph;
+    int time;
+    std::vector<int> order, low;
+
+    std::vector<int> artics;
+    std::vector<Edge<Cost>> bridges;
+
+    explicit Lowlink(const Graph<Cost>& graph)
+        : graph(graph), order(graph.size(), -1), low(graph.size(), graph.size()) {
+        time = 0;
+        for (int v = 0; v < (int)graph.size(); ++v) {
+            if (order[v] < 0) dfs(v, -1);
+        }
+    }
+
+    void dfs(int v, int r) {
+        order[v] = low[v] = time++;
+        int deg = 0;
+        bool is_artic = false;
+
+        for (auto e : graph[v]) {
+            if (order[e.dst] < 0) {
+                ++deg;
+                dfs(e.dst, e.src);
+                low[e.src] = std::min(low[e.src], low[e.dst]);
+
+                if (order[e.src] <= low[e.dst]) is_artic = true;
+                if (order[e.src] < low[e.dst]) bridges.push_back(e);
+            } else if (e.dst != r) {
+                low[e.src] = std::min(low[e.src], order[e.dst]);
+            }
+        }
+
+        if (r < 0) is_artic = (deg > 1);
+        if (is_artic) artics.push_back(v);
+    }
+};
 
 ```
 {% endraw %}

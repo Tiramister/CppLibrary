@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/kruskal.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -52,12 +52,10 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "graph.cpp"
 #include "../DataStructure/union_find.cpp"
-#undef __guard__
-#endif
 
 #include <algorithm>
 
@@ -82,14 +80,78 @@ Cost kruskal(int vnum, std::vector<Edge<Cost>>& edges) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/kruskal.cpp: line 7: found codes out of include guard
+#line 2 "Graph/kruskal.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 2 "DataStructure/union_find.cpp"
+
+#include <numeric>
+#line 5 "DataStructure/union_find.cpp"
+
+struct UnionFind {
+    std::vector<int> par, sz;
+    int gnum;
+
+    explicit UnionFind(int n)
+        : par(n), sz(n, 1), gnum(n) {
+        std::iota(par.begin(), par.end(), 0);
+    }
+
+    int find(int v) {
+        return (par[v] == v) ? v : (par[v] = find(par[v]));
+    }
+
+    void unite(int u, int v) {
+        u = find(u), v = find(v);
+        if (u == v) return;
+
+        if (sz[u] < sz[v]) std::swap(u, v);
+        sz[u] += sz[v];
+        par[v] = u;
+        --gnum;
+    }
+
+    bool same(int u, int v) { return find(u) == find(v); }
+    bool ispar(int v) { return v == find(v); }
+    int size(int v) { return sz[find(v)]; }
+};
+#line 5 "Graph/kruskal.cpp"
+
+#include <algorithm>
+
+template <class Cost>
+Cost kruskal(int vnum, std::vector<Edge<Cost>>& edges) {
+    std::sort(edges.begin(), edges.end(),
+              [](const auto& lhs, const auto& rhs) { return lhs.cost < rhs.cost; });
+
+    UnionFind uf(vnum);
+    Cost sum = 0;
+    for (const auto& e : edges) {
+        if (uf.same(e.src, e.dst)) continue;
+        sum += e.cost;
+        uf.unite(e.src, e.dst);
+    }
+    return sum;
+}
 
 ```
 {% endraw %}

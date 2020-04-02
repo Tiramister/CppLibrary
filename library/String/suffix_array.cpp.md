@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#27118326006d3829667a400ad23d5d98">String</a>
 * <a href="{{ site.github.repository_url }}/blob/master/String/suffix_array.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-02-18 17:50:16+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -46,6 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #include <algorithm>
 #include <numeric>
 #include <vector>
@@ -74,7 +76,6 @@ struct SuffixArray {
             }
         }
 
-        // sentinel
         ord.insert(ord.begin(), n);
         rank.push_back(0);
 
@@ -83,7 +84,6 @@ struct SuffixArray {
         for (int k = 1; k < n; k <<= 1) {
             std::fill(bucket.begin(), bucket.end(), 0);
 
-            // idxs is in acsending order by the last k characters
             for (int i = 0; i <= n; ++i) {
                 idxs[i] = (ord[i] - k + n + 1) % (n + 1);
                 ++bucket[rank[idxs[i]]];
@@ -116,7 +116,8 @@ struct SuffixArray {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "String/suffix_array.cpp"
+#line 2 "String/suffix_array.cpp"
+
 #include <algorithm>
 #include <numeric>
 #include <vector>
@@ -145,7 +146,6 @@ struct SuffixArray {
             }
         }
 
-        // sentinel
         ord.insert(ord.begin(), n);
         rank.push_back(0);
 
@@ -154,7 +154,6 @@ struct SuffixArray {
         for (int k = 1; k < n; k <<= 1) {
             std::fill(bucket.begin(), bucket.end(), 0);
 
-            // idxs is in acsending order by the last k characters
             for (int i = 0; i <= n; ++i) {
                 idxs[i] = (ord[i] - k + n + 1) % (n + 1);
                 ++bucket[rank[idxs[i]]];

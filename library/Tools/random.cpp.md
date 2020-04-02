@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Debug/map.cpp
+# :warning: Tools/random.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#a603905470e2a5b8c13e96b579ef0dba">Debug</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Debug/map.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-22 17:40:44+09:00
+* category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Tools/random.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -41,17 +41,27 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <iostream>
-#include <map>
+#pragma once
 
-template <class K, class T>
-std::ostream& operator<<(std::ostream& os, const std::map<K, T>& map) {
-    os << "{";
-    for (const auto& elem : map) {
-        os << "(" << elem.first << "->" << elem.second << "),";
+#include <chrono>
+
+struct Random {
+    using ulint = uint64_t;
+    ulint x;
+
+    explicit Random() {
+        x = std::chrono::steady_clock::now()
+                .time_since_epoch()
+                .count();
     }
-    return os << "}";
-}
+
+    ulint next() {
+        x ^= (x << 13);
+        x ^= (x >> 7);
+        x ^= (x << 17);
+        return x;
+    }
+};
 
 ```
 {% endraw %}
@@ -59,18 +69,27 @@ std::ostream& operator<<(std::ostream& os, const std::map<K, T>& map) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Debug/map.cpp"
-#include <iostream>
-#include <map>
+#line 2 "Tools/random.cpp"
 
-template <class K, class T>
-std::ostream& operator<<(std::ostream& os, const std::map<K, T>& map) {
-    os << "{";
-    for (const auto& elem : map) {
-        os << "(" << elem.first << "->" << elem.second << "),";
+#include <chrono>
+
+struct Random {
+    using ulint = uint64_t;
+    ulint x;
+
+    explicit Random() {
+        x = std::chrono::steady_clock::now()
+                .time_since_epoch()
+                .count();
     }
-    return os << "}";
-}
+
+    ulint next() {
+        x ^= (x << 13);
+        x ^= (x >> 7);
+        x ^= (x << 17);
+        return x;
+    }
+};
 
 ```
 {% endraw %}

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/sliding_window.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 14:15:40+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -46,6 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #include <deque>
 #include <functional>
 
@@ -84,7 +86,8 @@ struct SlidingWindow {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "DataStructure/sliding_window.cpp"
+#line 2 "DataStructure/sliding_window.cpp"
+
 #include <deque>
 #include <functional>
 

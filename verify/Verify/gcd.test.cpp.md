@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/gcd.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 02:37:49+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B">https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B</a>
@@ -49,16 +49,14 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B"
 
-#define __guard__
 #include "../Number/gcd.cpp"
-#undef __guard__
 
 #include <iostream>
 
 int main() {
     int x, y;
     std::cin >> x >> y;
-    std::cout << gcd(x, y) << std::endl;
+    std::cout << gcd(x, y) << "\n";
     return 0;
 }
 
@@ -71,8 +69,8 @@ int main() {
 #line 1 "Verify/gcd.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_1_B"
 
-#define __guard__
-#line 1 "Number/gcd.cpp"
+#line 2 "Number/gcd.cpp"
+
 #include <algorithm>
 
 template <class T>
@@ -83,15 +81,14 @@ T gcd(T n, T m) {
     }
     return n;
 }
-#line 5 "Verify/gcd.test.cpp"
-#undef __guard__
+#line 4 "Verify/gcd.test.cpp"
 
 #include <iostream>
 
 int main() {
     int x, y;
     std::cin >> x >> y;
-    std::cout << gcd(x, y) << std::endl;
+    std::cout << gcd(x, y) << "\n";
     return 0;
 }
 

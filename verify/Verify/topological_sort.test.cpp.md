@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/topological_sort.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 14:56:54+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B</a>
@@ -50,10 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
 
-#define __guard__
-#include "../Graph/graph.cpp"
 #include "../Graph/topological_sort.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -69,9 +66,7 @@ int main() {
     }
 
     TopologicalSort<> ts(graph);
-    for (int v : ts.order) {
-        std::cout << v << std::endl;
-    }
+    for (int v : ts.order) std::cout << v << "\n";
     return 0;
 }
 
@@ -81,16 +76,75 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/topological_sort.cpp: line 6: found codes out of include guard
+#line 1 "Verify/topological_sort.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
+
+#line 2 "Graph/topological_sort.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/topological_sort.cpp"
+
+#include <algorithm>
+
+template <class Cost = int>
+struct TopologicalSort {
+    Graph<Cost> graph;
+    std::vector<bool> visited;
+    std::vector<int> order, id;
+
+    explicit TopologicalSort(const Graph<Cost>& graph)
+        : graph(graph), visited(graph.size(), false), id(graph.size()) {
+        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);
+        std::reverse(order.begin(), order.end());
+
+        for (int i = 0; i < (int)graph.size(); ++i) id[order[i]] = i;
+    }
+
+    void dfs(int v) {
+        if (visited[v]) return;
+        visited[v] = true;
+        for (const auto& e : graph[v]) dfs(e.dst);
+        order.push_back(v);
+    }
+};
+#line 4 "Verify/topological_sort.test.cpp"
+
+#include <iostream>
+
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+    Graph<> graph(n);
+
+    while (m--) {
+        int u, v;
+        std::cin >> u >> v;
+        graph[u].emplace_back(u, v);
+    }
+
+    TopologicalSort<> ts(graph);
+    for (int v : ts.order) std::cout << v << "\n";
+    return 0;
+}
 
 ```
 {% endraw %}

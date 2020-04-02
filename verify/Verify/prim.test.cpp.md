@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/prim.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:23:21+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A</a>
@@ -41,7 +41,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
 * :heavy_check_mark: <a href="../../library/Graph/prim.cpp.html">Graph/prim.cpp</a>
-* :heavy_check_mark: <a href="../../library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
+* :heavy_check_mark: <a href="../../library/Tools/heap_alias.cpp.html">Tools/heap_alias.cpp</a>
 
 
 ## Code
@@ -51,11 +51,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#define __guard__
-#include "../Misc/heap_alias.cpp"
-#include "../Graph/graph.cpp"
 #include "../Graph/prim.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -71,7 +67,7 @@ int main() {
         graph[v].emplace_back(v, u, d);
     }
 
-    std::cout << prim(graph) << std::endl;
+    std::cout << prim(graph) << "\n";
     return 0;
 }
 
@@ -81,16 +77,86 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/prim.cpp: line 7: found codes out of include guard
+#line 1 "Verify/prim.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
+
+#line 2 "Graph/prim.cpp"
+
+#line 2 "Tools/heap_alias.cpp"
+
+#include <queue>
+
+template <class T>
+using MaxHeap = std::priority_queue<T>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 5 "Graph/prim.cpp"
+
+#line 7 "Graph/prim.cpp"
+
+template <class Cost, class Cap = int>
+Cost prim(const Graph<Cost>& graph) {
+    std::vector<bool> used(graph.size(), false);
+    used[0] = true;
+
+    MinHeap<Edge<Cost>> heap;
+    for (const auto& e : graph[0]) {
+        heap.push(e);
+    }
+
+    Cost sum = 0;
+    while (!heap.empty()) {
+        auto e = heap.top();
+        heap.pop();
+        if (used[e.dst]) continue;
+
+        sum += e.cost;
+        used[e.dst] = true;
+        for (const auto& se : graph[e.dst]) {
+            heap.push(se);
+        }
+    }
+    return sum;
+}
+#line 4 "Verify/prim.test.cpp"
+
+#include <iostream>
+
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+
+    Graph<int> graph(n);
+    while (m--) {
+        int u, v, d;
+        std::cin >> u >> v >> d;
+        graph[u].emplace_back(u, v, d);
+        graph[v].emplace_back(v, u, d);
+    }
+
+    std::cout << prim(graph) << "\n";
+    return 0;
+}
 
 ```
 {% endraw %}

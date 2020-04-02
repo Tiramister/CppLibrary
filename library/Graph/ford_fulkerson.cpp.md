@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/ford_fulkerson.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-28 03:20:01+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -46,6 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #include <vector>
 #include <limits>
 
@@ -116,7 +118,8 @@ struct MaxFlow {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Graph/ford_fulkerson.cpp"
+#line 2 "Graph/ford_fulkerson.cpp"
+
 #include <vector>
 #include <limits>
 

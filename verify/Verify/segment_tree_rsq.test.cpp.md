@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_rsq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-02-18 18:37:29+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
@@ -49,9 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#define __guard__
 #include "../DataStructure/segment_tree.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -98,8 +96,8 @@ int main() {
 #line 1 "Verify/segment_tree_rsq.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#define __guard__
-#line 1 "DataStructure/segment_tree.cpp"
+#line 2 "DataStructure/segment_tree.cpp"
+
 #include <vector>
 #include <functional>
 
@@ -150,8 +148,7 @@ struct SegmentTree {
         }
     }
 };
-#line 5 "Verify/segment_tree_rsq.test.cpp"
-#undef __guard__
+#line 4 "Verify/segment_tree_rsq.test.cpp"
 
 #include <iostream>
 

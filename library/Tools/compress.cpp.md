@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Misc/runlength.cpp
+# :warning: Tools/compress.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#74248c725e00bf9fe04df4e35b249a19">Misc</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Misc/runlength.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-01-19 01:37:19+09:00
+* category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Tools/compress.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -41,19 +41,20 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <vector>
-#include <string>
+#pragma once
 
-std::vector<std::pair<char, int>> runlength(const std::string& s) {
-    std::vector<std::pair<char, int>> res;
-    for (char c : s) {
-        if (res.empty() || c != res.back().first) {
-            res.emplace_back(c, 1);
-        } else {
-            ++res.back().second;
-        }
-    }
-    return res;
+#include <algorithm>
+#include <vector>
+#include <map>
+
+template <class T>
+std::map<T, int> compress(std::vector<T>& v) {
+    std::sort(v.begin(), v.end());
+    v.erase(std::unique(v.begin(), v.end()), v.end());
+
+    std::map<T, int> rev;
+    for (int i = 0; i < (int)v.size(); ++i) rev[v[i]] = i;
+    return rev;
 }
 
 ```
@@ -62,20 +63,20 @@ std::vector<std::pair<char, int>> runlength(const std::string& s) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Misc/runlength.cpp"
-#include <vector>
-#include <string>
+#line 2 "Tools/compress.cpp"
 
-std::vector<std::pair<char, int>> runlength(const std::string& s) {
-    std::vector<std::pair<char, int>> res;
-    for (char c : s) {
-        if (res.empty() || c != res.back().first) {
-            res.emplace_back(c, 1);
-        } else {
-            ++res.back().second;
-        }
-    }
-    return res;
+#include <algorithm>
+#include <vector>
+#include <map>
+
+template <class T>
+std::map<T, int> compress(std::vector<T>& v) {
+    std::sort(v.begin(), v.end());
+    v.erase(std::unique(v.begin(), v.end()), v.end());
+
+    std::map<T, int> rev;
+    for (int i = 0; i < (int)v.size(); ++i) rev[v[i]] = i;
+    return rev;
 }
 
 ```

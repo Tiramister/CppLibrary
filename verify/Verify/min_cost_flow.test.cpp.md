@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/min_cost_flow.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-03 05:19:20+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B</a>
@@ -40,7 +40,6 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
-* :heavy_check_mark: <a href="../../library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
 
 
 ## Code
@@ -50,10 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#define __guard__
-#include "../Misc/heap_alias.cpp"
 #include "../Graph/min_cost_flow.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -67,7 +63,7 @@ int main() {
         std::cin >> u >> v >> c >> d;
         mcf.span(u, v, c, d);
     }
-    std::cout << mcf.exec(0, n - 1, f) << std::endl;
+    std::cout << mcf.exec(0, n - 1, f) << "\n";
     return 0;
 }
 
@@ -80,15 +76,8 @@ int main() {
 #line 1 "Verify/min_cost_flow.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#define __guard__
-#line 1 "Misc/heap_alias.cpp"
-#include <queue>
+#line 2 "Graph/min_cost_flow.cpp"
 
-template <class T>
-using MaxHeap = std::priority_queue<T>;
-template <class T>
-using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-#line 1 "Graph/min_cost_flow.cpp"
 #include <vector>
 #include <limits>
 
@@ -171,8 +160,7 @@ struct MinCostFlow {
         return (flow > 0 ? -1 : ret);
     }
 };
-#line 6 "Verify/min_cost_flow.test.cpp"
-#undef __guard__
+#line 4 "Verify/min_cost_flow.test.cpp"
 
 #include <iostream>
 
@@ -186,7 +174,7 @@ int main() {
         std::cin >> u >> v >> c >> d;
         mcf.span(u, v, c, d);
     }
-    std::cout << mcf.exec(0, n - 1, f) << std::endl;
+    std::cout << mcf.exec(0, n - 1, f) << "\n";
     return 0;
 }
 

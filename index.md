@@ -52,22 +52,12 @@ layout: default
 * :heavy_check_mark: <a href="library/DataStructure/weighted_union_find.cpp.html">DataStructure/weighted_union_find.cpp</a>
 
 
-<div id="a603905470e2a5b8c13e96b579ef0dba"></div>
-
-### Debug
-
-* :warning: <a href="library/Debug/map.cpp.html">Debug/map.cpp</a>
-* :warning: <a href="library/Debug/pair.cpp.html">Debug/pair.cpp</a>
-* :warning: <a href="library/Debug/set.cpp.html">Debug/set.cpp</a>
-* :warning: <a href="library/Debug/vector.cpp.html">Debug/vector.cpp</a>
-
-
 <div id="4cdbd2bafa8193091ba09509cedf94fd"></div>
 
 ### Graph
 
 * :heavy_check_mark: <a href="library/Graph/bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
-* :heavy_check_mark: <a href="library/Graph/bimatching.cpp.html">Graph/bimatching.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/bipartite_matching.cpp.html">Graph/bipartite_matching.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/centroid_decomposition.cpp.html">Graph/centroid_decomposition.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/dinic.cpp.html">Graph/dinic.cpp</a>
@@ -81,18 +71,6 @@ layout: default
 * :heavy_check_mark: <a href="library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/topological_sort.cpp.html">Graph/topological_sort.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
-
-
-<div id="74248c725e00bf9fe04df4e35b249a19"></div>
-
-### Misc
-
-* :warning: <a href="library/Misc/compress.cpp.html">Misc/compress.cpp</a>
-* :heavy_check_mark: <a href="library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
-* :warning: <a href="library/Misc/random.cpp.html">Misc/random.cpp</a>
-* :warning: <a href="library/Misc/runlength.cpp.html">Misc/runlength.cpp</a>
-* :warning: <a href="library/Misc/timer.cpp.html">Misc/timer.cpp</a>
-* :warning: <a href="library/Misc/vec_alias.cpp.html">Misc/vec_alias.cpp</a>
 
 
 <div id="b2ee912b91d69b435159c7c3f6df7f5f"></div>
@@ -115,11 +93,23 @@ layout: default
 * :heavy_check_mark: <a href="library/String/z_algorithm.cpp.html">String/z_algorithm.cpp</a>
 
 
+<div id="8625e1de7be14c39b1d14dc03d822497"></div>
+
+### Tools
+
+* :warning: <a href="library/Tools/compress.cpp.html">Tools/compress.cpp</a>
+* :heavy_check_mark: <a href="library/Tools/heap_alias.cpp.html">Tools/heap_alias.cpp</a>
+* :warning: <a href="library/Tools/random.cpp.html">Tools/random.cpp</a>
+* :warning: <a href="library/Tools/runlength.cpp.html">Tools/runlength.cpp</a>
+* :warning: <a href="library/Tools/timer.cpp.html">Tools/timer.cpp</a>
+* :warning: <a href="library/Tools/vec_alias.cpp.html">Tools/vec_alias.cpp</a>
+
+
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/Verify/articulation_points.test.cpp.html">Verify/articulation_points.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/bimatching.test.cpp.html">Verify/bimatching.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/bipartite-matching.test.cpp.html">Verify/bipartite-matching.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/bridges.test.cpp.html">Verify/bridges.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/centroid_decomposition_diameter.test.cpp.html">Verify/centroid_decomposition_diameter.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
@@ -136,7 +126,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/primal_dual.test.cpp.html">Verify/primal_dual.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/segment_tree_linear.test.cpp.html">Verify/segment_tree_linear.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/segment_tree_affine.test.cpp.html">Verify/segment_tree_affine.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/sliding_window.test.cpp.html">Verify/sliding_window.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>

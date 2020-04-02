@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/primal_dual.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-03-03 05:19:20+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/Graph/primal_dual.cpp.html">Graph/primal_dual.cpp</a>
-* :heavy_check_mark: <a href="../../library/Misc/heap_alias.cpp.html">Misc/heap_alias.cpp</a>
+* :heavy_check_mark: <a href="../../library/Tools/heap_alias.cpp.html">Tools/heap_alias.cpp</a>
 
 
 ## Code
@@ -50,10 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#define __guard__
-#include "../Misc/heap_alias.cpp"
 #include "../Graph/primal_dual.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -67,7 +64,8 @@ int main() {
         std::cin >> u >> v >> c >> d;
         mcf.span(u, v, c, d);
     }
-    std::cout << mcf.exec(0, n - 1, f) << std::endl;
+
+    std::cout << mcf.exec(0, n - 1, f) << "\n";
     return 0;
 }
 
@@ -77,16 +75,134 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/primal_dual.cpp: line 6: found codes out of include guard
+#line 1 "Verify/primal_dual.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
+
+#line 2 "Tools/heap_alias.cpp"
+
+#include <queue>
+
+template <class T>
+using MaxHeap = std::priority_queue<T>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+#line 2 "Graph/primal_dual.cpp"
+
+#include <vector>
+#include <tuple>
+#include <limits>
+
+template <class Cap, class Cost>
+struct MinCostFlow {
+    struct Edge {
+        int src, dst;
+        Cap cap;
+        Cost cost;
+        Edge(int src, int dst, Cap cap, Cost cost)
+            : src(src), dst(dst), cap(cap), cost(cost){};
+    };
+
+    using Edges = std::vector<Edge>;
+    using Graph = std::vector<std::vector<int>>;
+
+    Edges edges;
+    Graph graph;
+    std::vector<Cost> dist, pot;
+    std::vector<int> rev;
+
+    const Cost INF = std::numeric_limits<Cost>::max() / 2;
+
+    explicit MinCostFlow(int n) : graph(n), dist(n), pot(n), rev(n) {}
+
+    void span(int u, int v, Cap cap, Cost cost) {
+        graph[u].push_back(edges.size());
+        edges.emplace_back(u, v, cap, cost);
+
+        graph[v].push_back(edges.size());
+        edges.emplace_back(v, u, 0, -cost);
+    }
+
+    void dijkstra(int s) {
+        std::fill(dist.begin(), dist.end(), INF);
+        dist[s] = 0;
+        MinHeap<std::pair<Cost, int>> heap;
+        heap.emplace(0, s);
+
+        while (!heap.empty()) {
+            int u;
+            Cost d;
+            std::tie(d, u) = heap.top();
+            heap.pop();
+            if (d > dist[u]) continue;
+
+            for (auto eidx : graph[u]) {
+                const auto& edge = edges[eidx];
+                int v = edge.dst;
+
+                if (edge.cap > 0 &&
+                    dist[u] < INF &&
+                    dist[v] > dist[u] + edge.cost + pot[u] - pot[v]) {
+                    dist[v] = dist[u] + edge.cost + pot[u] - pot[v];
+                    rev[v] = eidx;
+                    heap.emplace(dist[v], v);
+                }
+            }
+        }
+    }
+
+    Cost exec(int s, int g, Cap flow) {
+        Cost ret = 0;
+        std::fill(pot.begin(), pot.end(), 0);
+
+        while (flow > 0) {
+            dijkstra(s);
+            if (dist[g] == INF) break;
+
+            for (int v = 0; v < (int)graph.size(); ++v) {
+                pot[v] = std::min(pot[v] + dist[v], INF);
+            }
+
+            Cap f = flow;
+            int v = g;
+            while (v != s) {
+                const auto& edge = edges[rev[v]];
+                f = std::min(f, edge.cap);
+                v = edge.src;
+            }
+
+            flow -= f;
+            ret += f * pot[g];
+
+            v = g;
+            while (v != s) {
+                auto& edge = edges[rev[v]];
+                auto& redge = edges[rev[v] ^ 1];
+                edge.cap -= f;
+                redge.cap += f;
+                v = edge.src;
+            }
+        }
+        return (flow > 0 ? -1 : ret);
+    }
+};
+#line 4 "Verify/primal_dual.test.cpp"
+
+#include <iostream>
+
+int main() {
+    int n, m, f;
+    std::cin >> n >> m >> f;
+
+    MinCostFlow<int, int> mcf(n);
+    while (m--) {
+        int u, v, c, d;
+        std::cin >> u >> v >> c >> d;
+        mcf.span(u, v, c, d);
+    }
+
+    std::cout << mcf.exec(0, n - 1, f) << "\n";
+    return 0;
+}
 
 ```
 {% endraw %}

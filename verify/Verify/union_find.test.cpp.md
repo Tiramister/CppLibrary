@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 02:37:49+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
@@ -49,9 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#define __guard__
 #include "../DataStructure/union_find.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -66,7 +64,7 @@ int main() {
         if (t == 0) {
             uf.unite(u, v);
         } else {
-            std::cout << uf.same(u, v) << std::endl;
+            std::cout << uf.same(u, v) << "\n";
         }
     }
     return 0;
@@ -81,8 +79,8 @@ int main() {
 #line 1 "Verify/union_find.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#define __guard__
-#line 1 "DataStructure/union_find.cpp"
+#line 2 "DataStructure/union_find.cpp"
+
 #include <numeric>
 #include <vector>
 
@@ -113,8 +111,7 @@ struct UnionFind {
     bool ispar(int v) { return v == find(v); }
     int size(int v) { return sz[find(v)]; }
 };
-#line 5 "Verify/union_find.test.cpp"
-#undef __guard__
+#line 4 "Verify/union_find.test.cpp"
 
 #include <iostream>
 
@@ -129,7 +126,7 @@ int main() {
         if (t == 0) {
             uf.unite(u, v);
         } else {
-            std::cout << uf.same(u, v) << std::endl;
+            std::cout << uf.same(u, v) << "\n";
         }
     }
     return 0;

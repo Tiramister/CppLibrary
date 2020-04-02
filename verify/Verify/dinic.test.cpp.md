@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/dinic.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 02:37:49+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A</a>
@@ -49,9 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A"
 
-#define __guard__
 #include "../Graph/dinic.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -66,7 +64,7 @@ int main() {
         mf.span(u, v, c);
     }
 
-    std::cout << mf.exec(0, n - 1) << std::endl;
+    std::cout << mf.exec(0, n - 1) << "\n";
     return 0;
 }
 
@@ -79,11 +77,11 @@ int main() {
 #line 1 "Verify/dinic.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A"
 
-#define __guard__
-#line 1 "Graph/dinic.cpp"
-#include <limits>
+#line 2 "Graph/dinic.cpp"
+
 #include <vector>
 #include <queue>
+#include <limits>
 
 template <class Cap, bool isDirect>
 struct MaxFlow {
@@ -171,8 +169,7 @@ struct MaxFlow {
         }
     }
 };
-#line 5 "Verify/dinic.test.cpp"
-#undef __guard__
+#line 4 "Verify/dinic.test.cpp"
 
 #include <iostream>
 
@@ -187,7 +184,7 @@ int main() {
         mf.span(u, v, c);
     }
 
-    std::cout << mf.exec(0, n - 1) << std::endl;
+    std::cout << mf.exec(0, n - 1) << "\n";
     return 0;
 }
 

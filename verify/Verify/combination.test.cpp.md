@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/combination.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-01-19 01:36:28+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C">https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C</a>
@@ -50,10 +50,8 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
-#define __guard__
 #include "../Number/modint.cpp"
 #include "../Number/combination.cpp"
-#undef __guard__
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
@@ -68,7 +66,7 @@ int main() {
     for (int i = 0; i <= k; ++i) {
         ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
     }
-    std::cout << ans << std::endl;
+    std::cout << ans << "\n";
     return 0;
 }
 
@@ -81,8 +79,8 @@ int main() {
 #line 1 "Verify/combination.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
-#define __guard__
-#line 1 "Number/modint.cpp"
+#line 2 "Number/modint.cpp"
+
 #include <iostream>
 
 template <int MOD>
@@ -142,7 +140,8 @@ struct ModInt {
 
 // constexpr int MOD = 1e9 + 7;
 // using mint = ModInt<MOD>;
-#line 1 "Number/combination.cpp"
+#line 2 "Number/combination.cpp"
+
 #include <vector>
 
 template <class T>
@@ -172,8 +171,7 @@ struct Combination {
         return a < b || b < 0 ? T(0) : f[a] * invf[a - b] * invf[b];
     }
 };
-#line 6 "Verify/combination.test.cpp"
-#undef __guard__
+#line 5 "Verify/combination.test.cpp"
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
@@ -188,7 +186,7 @@ int main() {
     for (int i = 0; i <= k; ++i) {
         ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
     }
-    std::cout << ans << std::endl;
+    std::cout << ans << "\n";
     return 0;
 }
 

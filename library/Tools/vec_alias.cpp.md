@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Misc/timer.cpp
+# :warning: Tools/vec_alias.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#74248c725e00bf9fe04df4e35b249a19">Misc</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Misc/timer.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:04:23+09:00
+* category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Tools/vec_alias.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -41,22 +41,12 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <chrono>
+#pragma once
 
-struct Timer {
-    std::chrono::time_point<std::chrono::system_clock> begin;
+#include <vector>
 
-    void init() {
-        begin = std::chrono::system_clock::now();
-    }
-
-    int get_ms() {
-        auto cur = std::chrono::system_clock::now();
-        return std::chrono::
-            duration_cast<std::chrono::milliseconds>(cur - begin)
-                .count();
-    }
-};
+template <class T>
+std::vector<T> vec(int len, T elem) { return std::vector<T>(len, elem); }
 
 ```
 {% endraw %}
@@ -64,23 +54,12 @@ struct Timer {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Misc/timer.cpp"
-#include <chrono>
+#line 2 "Tools/vec_alias.cpp"
 
-struct Timer {
-    std::chrono::time_point<std::chrono::system_clock> begin;
+#include <vector>
 
-    void init() {
-        begin = std::chrono::system_clock::now();
-    }
-
-    int get_ms() {
-        auto cur = std::chrono::system_clock::now();
-        return std::chrono::
-            duration_cast<std::chrono::milliseconds>(cur - begin)
-                .count();
-    }
-};
+template <class T>
+std::vector<T> vec(int len, T elem) { return std::vector<T>(len, elem); }
 
 ```
 {% endraw %}

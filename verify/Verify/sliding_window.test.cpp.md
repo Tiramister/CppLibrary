@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/sliding_window.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 14:15:56+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D</a>
@@ -49,9 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D"
 
-#define __guard__
 #include "../DataStructure/sliding_window.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -82,8 +80,8 @@ int main() {
 #line 1 "Verify/sliding_window.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D"
 
-#define __guard__
-#line 1 "DataStructure/sliding_window.cpp"
+#line 2 "DataStructure/sliding_window.cpp"
+
 #include <deque>
 #include <functional>
 
@@ -115,8 +113,7 @@ struct SlidingWindow {
         }
     }
 };
-#line 5 "Verify/sliding_window.test.cpp"
-#undef __guard__
+#line 4 "Verify/sliding_window.test.cpp"
 
 #include <iostream>
 

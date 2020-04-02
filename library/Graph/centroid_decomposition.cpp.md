@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/centroid_decomposition.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-02-13 16:35:43+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -51,11 +51,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "../Graph/graph.cpp"
-#undef __guard__
-#endif
 
 template <class Cost = int>
 struct Centroid {
@@ -99,14 +97,65 @@ struct Centroid {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/centroid_decomposition.cpp: line 6: found codes out of include guard
+#line 2 "Graph/centroid_decomposition.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/centroid_decomposition.cpp"
+
+template <class Cost = int>
+struct Centroid {
+    Graph<Cost> graph;
+    std::vector<bool> deleted;
+    std::vector<int> sz;
+
+    explicit Centroid(const Graph<Cost>& graph)
+        : graph(graph), deleted(graph.size(), false), sz(graph.size()) {}
+
+    int szdfs(int v, int p = -1) {
+        sz[v] = 1;
+        for (auto e : graph[v]) {
+            if (e.dst == p || deleted[e.dst]) continue;
+            sz[v] += szdfs(e.dst, v);
+        }
+        return sz[v];
+    }
+
+    int find(int v) {
+        int n = szdfs(v);
+
+        int p = -1;
+        while (true) {
+            int nxt = -1;
+            for (auto e : graph[v]) {
+                if (e.dst == p || deleted[e.dst]) continue;
+                if (nxt == -1 || sz[e.dst] > sz[nxt]) nxt = e.dst;
+            }
+
+            if (nxt == -1 || sz[nxt] <= n / 2) return v;
+            p = v;
+            v = nxt;
+        }
+    }
+};
 
 ```
 {% endraw %}

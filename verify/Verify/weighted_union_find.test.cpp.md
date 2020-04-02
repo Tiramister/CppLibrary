@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/weighted_union_find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 14:50:01+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B</a>
@@ -49,9 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B"
 
-#define __guard__
 #include "../DataStructure/weighted_union_find.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -68,11 +66,12 @@ int main() {
             int d;
             std::cin >> d;
             wuf.unite(v, u, d);
+
         } else {
             if (!wuf.same(u, v)) {
-                std::cout << '?' << std::endl;
+                std::cout << "?\n";
             } else {
-                std::cout << wuf.diff(u, v) << std::endl;
+                std::cout << wuf.diff(u, v) << "\n";
             }
         }
     }
@@ -88,8 +87,8 @@ int main() {
 #line 1 "Verify/weighted_union_find.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B"
 
-#define __guard__
-#line 1 "DataStructure/weighted_union_find.cpp"
+#line 2 "DataStructure/weighted_union_find.cpp"
+
 #include <numeric>
 #include <vector>
 
@@ -143,8 +142,7 @@ struct WeightedUnionFind {
     bool ispar(int v) { return v == find(v); }
     int size(int v) { return sz[find(v)]; }
 };
-#line 5 "Verify/weighted_union_find.test.cpp"
-#undef __guard__
+#line 4 "Verify/weighted_union_find.test.cpp"
 
 #include <iostream>
 
@@ -161,11 +159,12 @@ int main() {
             int d;
             std::cin >> d;
             wuf.unite(v, u, d);
+
         } else {
             if (!wuf.same(u, v)) {
-                std::cout << '?' << std::endl;
+                std::cout << "?\n";
             } else {
-                std::cout << wuf.diff(u, v) << std::endl;
+                std::cout << wuf.diff(u, v) << "\n";
             }
         }
     }

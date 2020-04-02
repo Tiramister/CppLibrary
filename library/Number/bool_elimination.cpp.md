@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2ee912b91d69b435159c7c3f6df7f5f">Number</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Number/bool_elimination.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:05:02+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -41,10 +41,13 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #include <algorithm>
 #include <vector>
 
-void bool_elimination(std::vector<std::vector<int>>& mat) {
+template <class T>
+void bool_elimination(std::vector<std::vector<T>>& mat) {
     int n = mat.size(), m = mat.front().size();
 
     for (int l = 0; l < n; ++l) {
@@ -68,11 +71,13 @@ void bool_elimination(std::vector<std::vector<int>>& mat) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Number/bool_elimination.cpp"
+#line 2 "Number/bool_elimination.cpp"
+
 #include <algorithm>
 #include <vector>
 
-void bool_elimination(std::vector<std::vector<int>>& mat) {
+template <class T>
+void bool_elimination(std::vector<std::vector<T>>& mat) {
     int n = mat.size(), m = mat.front().size();
 
     for (int l = 0; l < n; ++l) {

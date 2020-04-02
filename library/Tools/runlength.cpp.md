@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Debug/vector.cpp
+# :warning: Tools/runlength.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#a603905470e2a5b8c13e96b579ef0dba">Debug</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Debug/vector.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-22 17:40:44+09:00
+* category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Tools/runlength.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -41,16 +41,21 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <iostream>
-#include <vector>
+#pragma once
 
-template <class T>
-std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
-    os << "[";
-    for (const auto& elem : vec) {
-        os << elem << ",";
+#include <vector>
+#include <string>
+
+std::vector<std::pair<char, int>> runlength(const std::string& s) {
+    std::vector<std::pair<char, int>> res;
+    for (char c : s) {
+        if (res.empty() || c != res.back().first) {
+            res.emplace_back(c, 1);
+        } else {
+            ++res.back().second;
+        }
     }
-    return os << "]";
+    return res;
 }
 
 ```
@@ -59,17 +64,21 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Debug/vector.cpp"
-#include <iostream>
-#include <vector>
+#line 2 "Tools/runlength.cpp"
 
-template <class T>
-std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec) {
-    os << "[";
-    for (const auto& elem : vec) {
-        os << elem << ",";
+#include <vector>
+#include <string>
+
+std::vector<std::pair<char, int>> runlength(const std::string& s) {
+    std::vector<std::pair<char, int>> res;
+    for (char c : s) {
+        if (res.empty() || c != res.back().first) {
+            res.emplace_back(c, 1);
+        } else {
+            ++res.back().second;
+        }
     }
-    return os << "]";
+    return res;
 }
 
 ```

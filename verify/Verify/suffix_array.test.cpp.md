@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/suffix_array.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-02-18 17:50:16+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/suffixarray">https://judge.yosupo.jp/problem/suffixarray</a>
@@ -49,9 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
-#define __guard__
 #include "../String/suffix_array.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -63,7 +61,7 @@ int main() {
     for (int i = 1; i <= (int)s.length(); ++i) {
         std::cout << sa.ord[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << "\n";
 
     return 0;
 }
@@ -77,8 +75,8 @@ int main() {
 #line 1 "Verify/suffix_array.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
-#define __guard__
-#line 1 "String/suffix_array.cpp"
+#line 2 "String/suffix_array.cpp"
+
 #include <algorithm>
 #include <numeric>
 #include <vector>
@@ -107,7 +105,6 @@ struct SuffixArray {
             }
         }
 
-        // sentinel
         ord.insert(ord.begin(), n);
         rank.push_back(0);
 
@@ -116,7 +113,6 @@ struct SuffixArray {
         for (int k = 1; k < n; k <<= 1) {
             std::fill(bucket.begin(), bucket.end(), 0);
 
-            // idxs is in acsending order by the last k characters
             for (int i = 0; i <= n; ++i) {
                 idxs[i] = (ord[i] - k + n + 1) % (n + 1);
                 ++bucket[rank[idxs[i]]];
@@ -142,8 +138,7 @@ struct SuffixArray {
         }
     }
 };
-#line 5 "Verify/suffix_array.test.cpp"
-#undef __guard__
+#line 4 "Verify/suffix_array.test.cpp"
 
 #include <iostream>
 
@@ -155,7 +150,7 @@ int main() {
     for (int i = 1; i <= (int)s.length(); ++i) {
         std::cout << sa.ord[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << "\n";
 
     return 0;
 }

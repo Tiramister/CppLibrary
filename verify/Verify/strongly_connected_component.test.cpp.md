@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/strongly_connected_component.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/scc">https://judge.yosupo.jp/problem/scc</a>
@@ -50,10 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
-#define __guard__
-#include "../Graph/graph.cpp"
 #include "../Graph/strongly_connected_component.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -72,10 +69,8 @@ int main() {
     std::cout << scc.groups.size() << std::endl;
     for (auto& g : scc.groups) {
         std::cout << g.size();
-        for (auto v : g) {
-            std::cout << ' ' << v;
-        }
-        std::cout << std::endl;
+        for (auto v : g) std::cout << ' ' << v;
+        std::cout << "\n";
     }
     return 0;
 }
@@ -86,16 +81,109 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/strongly_connected_component.cpp: line 6: found codes out of include guard
+#line 1 "Verify/strongly_connected_component.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/scc"
+
+#line 2 "Graph/strongly_connected_component.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/strongly_connected_component.cpp"
+
+#include <algorithm>
+#line 7 "Graph/strongly_connected_component.cpp"
+
+template <class Cost = int>
+struct StronglyConnectedComponents {
+    Graph<Cost> graph, rgraph;
+    std::vector<bool> visited;
+    std::vector<int> stk;
+
+    // id[v] = 頂点vはgroups[id[v]]に属する
+    std::vector<int> id;
+    std::vector<std::vector<int>> groups;
+
+    explicit StronglyConnectedComponents(const Graph<Cost>& g)
+        : graph(g), visited(graph.size(), false), id(graph.size(), -1) {
+        revinit();
+
+        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);
+
+        while (!stk.empty()) {
+            int v = stk.back();
+            stk.pop_back();
+            if (id[v] < 0) {
+                groups.emplace_back();
+                rdfs(v);
+            }
+        }
+    }
+
+    void revinit() {
+        rgraph = Graph<Cost>(graph.size());
+        for (int v = 0; v < (int)graph.size(); ++v) {
+            for (const auto& e : graph[v]) {
+                rgraph[e.dst].emplace_back(e.dst, v, e.cost);
+            }
+        }
+    }
+
+    void dfs(int v) {
+        if (visited[v]) return;
+        visited[v] = true;
+        for (const auto& e : graph[v]) dfs(e.dst);
+        stk.push_back(v);
+    }
+
+    void rdfs(int v) {
+        if (id[v] >= 0) return;
+        id[v] = groups.size() - 1;
+        groups.back().push_back(v);
+        for (const auto& e : rgraph[v]) rdfs(e.dst);
+    }
+};
+#line 4 "Verify/strongly_connected_component.test.cpp"
+
+#include <iostream>
+
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+
+    Graph<> graph(n);
+    while (m--) {
+        int u, v;
+        std::cin >> u >> v;
+        graph[u].emplace_back(u, v);
+    }
+
+    StronglyConnectedComponents scc(graph);
+    std::cout << scc.groups.size() << std::endl;
+    for (auto& g : scc.groups) {
+        std::cout << g.size();
+        for (auto v : g) std::cout << ' ' << v;
+        std::cout << "\n";
+    }
+    return 0;
+}
 
 ```
 {% endraw %}

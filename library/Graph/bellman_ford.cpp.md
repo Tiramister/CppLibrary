@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/bellman_ford.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -51,11 +51,9 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#ifndef __guard__
-#define __guard__
+#pragma once
+
 #include "graph.cpp"
-#undef __guard__
-#endif
 
 #include <vector>
 #include <limits>
@@ -94,14 +92,60 @@ std::vector<Cost> bellman_ford(const Graph<Cost>& graph, int s) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/bellman_ford.cpp: line 6: found codes out of include guard
+#line 2 "Graph/bellman_ford.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 4 "Graph/bellman_ford.cpp"
+
+#line 6 "Graph/bellman_ford.cpp"
+#include <limits>
+
+template <class Cost>
+std::vector<Cost> bellman_ford(const Graph<Cost>& graph, int s) {
+    constexpr Cost INF = std::numeric_limits<Cost>::max();
+
+    int n = graph.size();
+    std::vector<Cost> dist(n, INF);
+    dist[s] = 0;
+
+    for (int t = 0; t < n; ++t) {
+        bool update = false;
+        for (int v = 0; v < n; ++v) {
+            for (const auto& e : graph[v]) {
+                if (dist[v] != INF && dist[e.dst] > dist[v] + e.cost) {
+                    dist[e.dst] = dist[v] + e.cost;
+                    update = true;
+                }
+            }
+        }
+
+        if (!update) break;
+        if (t == n - 1) {
+            // if there is a negative cycle, return empty array
+            return std::vector<Cost>();
+        }
+    }
+    return dist;
+}
 
 ```
 {% endraw %}

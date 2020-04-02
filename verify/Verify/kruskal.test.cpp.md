@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/kruskal.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A</a>
@@ -51,11 +51,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#define __guard__
-#include "../DataStructure/union_find.cpp"
-#include "../Graph/graph.cpp"
 #include "../Graph/kruskal.cpp"
-#undef __guard__
 
 #include <iostream>
 
@@ -68,7 +64,7 @@ int main() {
         std::cin >> e.src >> e.dst >> e.cost;
     }
 
-    std::cout << kruskal(n, edges) << std::endl;
+    std::cout << kruskal(n, edges) << "\n";
     return 0;
 }
 
@@ -78,16 +74,97 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/kruskal.cpp: line 7: found codes out of include guard
+#line 1 "Verify/kruskal.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
+
+#line 2 "Graph/kruskal.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 2 "DataStructure/union_find.cpp"
+
+#include <numeric>
+#line 5 "DataStructure/union_find.cpp"
+
+struct UnionFind {
+    std::vector<int> par, sz;
+    int gnum;
+
+    explicit UnionFind(int n)
+        : par(n), sz(n, 1), gnum(n) {
+        std::iota(par.begin(), par.end(), 0);
+    }
+
+    int find(int v) {
+        return (par[v] == v) ? v : (par[v] = find(par[v]));
+    }
+
+    void unite(int u, int v) {
+        u = find(u), v = find(v);
+        if (u == v) return;
+
+        if (sz[u] < sz[v]) std::swap(u, v);
+        sz[u] += sz[v];
+        par[v] = u;
+        --gnum;
+    }
+
+    bool same(int u, int v) { return find(u) == find(v); }
+    bool ispar(int v) { return v == find(v); }
+    int size(int v) { return sz[find(v)]; }
+};
+#line 5 "Graph/kruskal.cpp"
+
+#include <algorithm>
+
+template <class Cost>
+Cost kruskal(int vnum, std::vector<Edge<Cost>>& edges) {
+    std::sort(edges.begin(), edges.end(),
+              [](const auto& lhs, const auto& rhs) { return lhs.cost < rhs.cost; });
+
+    UnionFind uf(vnum);
+    Cost sum = 0;
+    for (const auto& e : edges) {
+        if (uf.same(e.src, e.dst)) continue;
+        sum += e.cost;
+        uf.unite(e.src, e.dst);
+    }
+    return sum;
+}
+#line 4 "Verify/kruskal.test.cpp"
+
+#include <iostream>
+
+int main() {
+    int n, m;
+    std::cin >> n >> m;
+
+    Edges<int> edges(m);
+    for (auto& e : edges) {
+        std::cin >> e.src >> e.dst >> e.cost;
+    }
+
+    std::cout << kruskal(n, edges) << "\n";
+    return 0;
+}
 
 ```
 {% endraw %}

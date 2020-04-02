@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2ee912b91d69b435159c7c3f6df7f5f">Number</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Number/prime.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-23 06:32:01+09:00
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
 
@@ -46,6 +46,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#pragma once
+
 #include <vector>
 
 struct Prime {
@@ -105,7 +107,8 @@ struct Prime {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Number/prime.cpp"
+#line 2 "Number/prime.cpp"
+
 #include <vector>
 
 struct Prime {

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/two_sat.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2019-12-29 13:22:44+09:00
+    - Last commit date: 2020-04-02 23:11:18+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/two_sat">https://judge.yosupo.jp/problem/two_sat</a>
@@ -51,11 +51,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-#define __guard__
-#include "../Graph/graph.cpp"
-#include "../Graph/strongly_connected_component.cpp"
 #include "../Graph/two_sat.cpp"
-#undef __guard__
 
 #include <iostream>
 #include <cmath>
@@ -82,7 +78,7 @@ int main() {
         for (int x = 1; x <= n; ++x) {
             std::cout << (assign[x - 1] ? x : -x) << " ";
         }
-        std::cout << "0" << std::endl;
+        std::cout << "0\n";
     }
     return 0;
 }
@@ -93,16 +89,155 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/docs.py", line 340, in write_contents
-    bundled_code = language.bundle(self.file_class.file_path, basedir=pathlib.Path.cwd())
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus.py", line 170, in bundle
-    bundler.update(path)
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 282, in update
-    self.update(self._resolve(pathlib.Path(included), included_from=path))
-  File "/opt/hostedtoolcache/Python/3.8.2/x64/lib/python3.8/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py", line 257, in update
-    raise BundleError(path, i + 1, "found codes out of include guard")
-onlinejudge_verify.languages.cplusplus_bundle.BundleError: Graph/strongly_connected_component.cpp: line 6: found codes out of include guard
+#line 1 "Verify/two_sat.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
+
+#line 2 "Graph/two_sat.cpp"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+using Graph = std::vector<std::vector<Edge<Cost>>>;
+#line 2 "Graph/strongly_connected_component.cpp"
+
+#line 4 "Graph/strongly_connected_component.cpp"
+
+#include <algorithm>
+#line 7 "Graph/strongly_connected_component.cpp"
+
+template <class Cost = int>
+struct StronglyConnectedComponents {
+    Graph<Cost> graph, rgraph;
+    std::vector<bool> visited;
+    std::vector<int> stk;
+
+    // id[v] = 頂点vはgroups[id[v]]に属する
+    std::vector<int> id;
+    std::vector<std::vector<int>> groups;
+
+    explicit StronglyConnectedComponents(const Graph<Cost>& g)
+        : graph(g), visited(graph.size(), false), id(graph.size(), -1) {
+        revinit();
+
+        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);
+
+        while (!stk.empty()) {
+            int v = stk.back();
+            stk.pop_back();
+            if (id[v] < 0) {
+                groups.emplace_back();
+                rdfs(v);
+            }
+        }
+    }
+
+    void revinit() {
+        rgraph = Graph<Cost>(graph.size());
+        for (int v = 0; v < (int)graph.size(); ++v) {
+            for (const auto& e : graph[v]) {
+                rgraph[e.dst].emplace_back(e.dst, v, e.cost);
+            }
+        }
+    }
+
+    void dfs(int v) {
+        if (visited[v]) return;
+        visited[v] = true;
+        for (const auto& e : graph[v]) dfs(e.dst);
+        stk.push_back(v);
+    }
+
+    void rdfs(int v) {
+        if (id[v] >= 0) return;
+        id[v] = groups.size() - 1;
+        groups.back().push_back(v);
+        for (const auto& e : rgraph[v]) rdfs(e.dst);
+    }
+};
+#line 5 "Graph/two_sat.cpp"
+
+struct TwoSat {
+    int vnum;
+    Graph<> graph;
+
+    explicit TwoSat(int n) : vnum(n), graph(n * 2) {}
+
+    // t=1 <=> true
+    int enc(int x, bool t) {
+        return x + (t ? vnum : 0);
+    }
+
+    // [tx]x V [ty]y
+    void span(int x, bool tx, int y, bool ty) {
+        graph[enc(x, !tx)].emplace_back(enc(x, !tx), enc(y, ty));
+        graph[enc(y, !ty)].emplace_back(enc(y, !ty), enc(x, tx));
+    }
+
+    // if unsatisfiable, return an empty vector
+    std::vector<bool> exec() {
+        StronglyConnectedComponents scc(graph);
+
+        std::vector<bool> assign(vnum);
+        for (int x = 0; x < vnum; ++x) {
+            int fid = scc.id[enc(x, false)],
+                tid = scc.id[enc(x, true)];
+
+            if (fid == tid) {
+                return std::vector<bool>();
+            } else {
+                assign[x] = (fid < tid);
+            }
+        }
+        return assign;
+    }
+};
+#line 4 "Verify/two_sat.test.cpp"
+
+#include <iostream>
+#include <cmath>
+#include <string>
+
+int main() {
+    std::string tmp;
+    int n, m;
+    std::cin >> tmp >> tmp >> n >> m;
+
+    TwoSat ts(n);
+    while (m--) {
+        int x, y;
+        std::cin >> x >> y >> tmp;
+        ts.span(std::abs(x) - 1, x > 0, std::abs(y) - 1, y > 0);
+    }
+
+    auto assign = ts.exec();
+    if (assign.empty()) {
+        std::cout << "s UNSATISFIABLE" << std::endl;
+    } else {
+        std::cout << "s SATISFIABLE" << std::endl;
+        std::cout << "v ";
+        for (int x = 1; x <= n; ++x) {
+            std::cout << (assign[x - 1] ? x : -x) << " ";
+        }
+        std::cout << "0\n";
+    }
+    return 0;
+}
 
 ```
 {% endraw %}

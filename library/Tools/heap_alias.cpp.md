@@ -25,15 +25,29 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Misc/vec_alias.cpp
+# :heavy_check_mark: Tools/heap_alias.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#74248c725e00bf9fe04df4e35b249a19">Misc</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Misc/vec_alias.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-01-19 01:37:01+09:00
+* category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Tools/heap_alias.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-02 22:58:51+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="../Graph/dijkstra.cpp.html">Graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="../Graph/prim.cpp.html">Graph/prim.cpp</a>
+* :heavy_check_mark: <a href="../Graph/primal_dual.cpp.html">Graph/primal_dual.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/primal_dual.test.cpp.html">Verify/primal_dual.test.cpp</a>
 
 
 ## Code
@@ -41,10 +55,14 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#include <vector>
+#pragma once
+
+#include <queue>
 
 template <class T>
-std::vector<T> vec(int len, T elem) { return std::vector<T>(len, elem); }
+using MaxHeap = std::priority_queue<T>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 ```
 {% endraw %}
@@ -52,11 +70,14 @@ std::vector<T> vec(int len, T elem) { return std::vector<T>(len, elem); }
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Misc/vec_alias.cpp"
-#include <vector>
+#line 2 "Tools/heap_alias.cpp"
+
+#include <queue>
 
 template <class T>
-std::vector<T> vec(int len, T elem) { return std::vector<T>(len, elem); }
+using MaxHeap = std::priority_queue<T>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 ```
 {% endraw %}
