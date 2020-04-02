@@ -14,3 +14,16 @@ std::vector<std::pair<char, int>> runlength(const std::string& s) {
     }
     return res;
 }
+
+template <class T>
+std::vector<std::pair<T, int>> runlength(const std::vector<T>& s) {
+    std::vector<std::pair<T, int>> res;
+    for (char c : s) {
+        if (res.empty() || c != res.back().first) {
+            res.emplace_back(c, 1);
+        } else {
+            ++res.back().second;
+        }
+    }
+    return res;
+}
