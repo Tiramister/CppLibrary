@@ -5,6 +5,9 @@
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m;
     std::cin >> n >> m;
 
@@ -16,11 +19,13 @@ int main() {
     }
 
     StronglyConnectedComponents scc(graph);
+
     std::cout << scc.groups.size() << std::endl;
     for (auto& g : scc.groups) {
         std::cout << g.size();
         for (auto v : g) std::cout << ' ' << v;
         std::cout << "\n";
     }
+
     return 0;
 }

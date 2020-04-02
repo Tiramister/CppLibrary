@@ -6,6 +6,9 @@
 #include <algorithm>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m;
     std::cin >> n >> m;
 
@@ -22,5 +25,6 @@ int main() {
     auto& ans = ll.artics;
     std::sort(ans.begin(), ans.end());
     for (auto v : ans) std::cout << v << "\n";
+
     return 0;
 }

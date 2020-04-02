@@ -6,6 +6,9 @@
 #include <algorithm>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m;
     std::cin >> n >> m;
 
@@ -20,10 +23,9 @@ int main() {
     Lowlink<> ll(graph);
 
     std::vector<std::pair<int, int>> ans;
+
     for (auto& e : ll.bridges) {
-        if (e.src > e.dst) {
-            std::swap(e.src, e.dst);
-        }
+        if (e.src > e.dst) std::swap(e.src, e.dst);
         ans.emplace_back(e.src, e.dst);
     }
     std::sort(ans.begin(), ans.end());
@@ -31,5 +33,6 @@ int main() {
     for (const auto& p : ans) {
         std::cout << p.first << ' ' << p.second << "\n";
     }
+
     return 0;
 }

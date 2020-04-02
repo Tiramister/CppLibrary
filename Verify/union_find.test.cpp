@@ -5,6 +5,9 @@
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, q;
     std::cin >> n >> q;
 
@@ -18,5 +21,6 @@ int main() {
             std::cout << uf.same(u, v) << "\n";
         }
     }
+
     return 0;
 }

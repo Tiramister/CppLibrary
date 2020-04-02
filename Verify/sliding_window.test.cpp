@@ -5,6 +5,9 @@
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, l;
     std::cin >> n >> l;
 
@@ -14,10 +17,12 @@ int main() {
         int a;
         std::cin >> a;
         sw.push(a);
+
         if (i >= l - 1) {
             std::cout << sw.get() << " \n"[i == n - 1];
             sw.pop();
         }
     }
+
     return 0;
 }

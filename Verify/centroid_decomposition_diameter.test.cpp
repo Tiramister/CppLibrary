@@ -8,6 +8,9 @@
 #include <tuple>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n;
     std::cin >> n;
 

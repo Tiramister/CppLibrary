@@ -7,6 +7,9 @@
 const Prime P(100000);
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n;
     std::cin >> n;
     std::cout << n << ":";
@@ -18,4 +21,6 @@ int main() {
         }
     }
     std::cout << "\n";
+
+    return 0;
 }

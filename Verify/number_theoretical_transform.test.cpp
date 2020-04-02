@@ -9,6 +9,9 @@ using mint = ModInt<MOD>;
 const NumberTheoreticalTransform<MOD, 3> NTT;
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m;
     std::cin >> n >> m;
 
@@ -17,8 +20,8 @@ int main() {
     for (auto& y : ys) std::cin >> y;
 
     auto zs = NTT.ntt(xs, ys);
-
     for (auto z : zs) std::cout << z << ' ';
     std::cout << "\n";
+
     return 0;
 }

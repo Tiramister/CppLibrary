@@ -5,6 +5,9 @@
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m, f;
     std::cin >> n >> m >> f;
 

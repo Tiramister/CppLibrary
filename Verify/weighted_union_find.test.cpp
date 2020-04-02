@@ -5,6 +5,9 @@
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, q;
     std::cin >> n >> q;
     WeightedUnionFind<int> wuf(n);
@@ -26,5 +29,6 @@ int main() {
             }
         }
     }
+
     return 0;
 }

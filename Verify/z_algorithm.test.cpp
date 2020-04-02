@@ -6,6 +6,9 @@
 #include <string>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     std::string s;
     std::cin >> s;
 

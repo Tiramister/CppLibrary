@@ -6,6 +6,9 @@
 #include <cassert>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int a, b;
     std::cin >> a >> b;
 

@@ -7,6 +7,9 @@
 constexpr int INF = std::numeric_limits<int>::max();
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m, s;
     std::cin >> n >> m >> s;
 
@@ -26,5 +29,6 @@ int main() {
         }
         std::cout << "\n";
     }
+
     return 0;
 }

@@ -6,8 +6,12 @@ constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int m, n;
     std::cin >> m >> n;
     std::cout << mint(m).pow(n) << "\n";
+
     return 0;
 }

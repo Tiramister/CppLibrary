@@ -25,6 +25,7 @@ int main() {
     SegmentTree<affine>
         seg(n, affine(1, 0),
             [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });
+
     for (int i = 0; i < n; ++i) {
         int a, b;
         std::cin >> a >> b;
@@ -47,5 +48,6 @@ int main() {
             std::cout << f(x) << "\n";
         }
     }
+
     return 0;
 }

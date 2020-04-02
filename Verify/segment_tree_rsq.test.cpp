@@ -35,5 +35,6 @@ int main() {
             std::cout << seg.query(l, r) << "\n";
         }
     }
+
     return 0;
 }
