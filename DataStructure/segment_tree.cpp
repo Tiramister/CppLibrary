@@ -12,11 +12,30 @@ struct SegmentTree {
     T unit;
     Merger merge;
 
-    explicit SegmentTree(int n, T unit, Merger merge)
+    explicit SegmentTree(int n, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
         dat.assign(length * 2, unit);
     }
+
+    template <class Container>
+    explicit SegmentTree(const Container& elems, const T& unit, const Merger& merge)
+        : length(1), unit(unit), merge(merge) {
+        int n = elems.size();
+        while (length < n) length <<= 1;
+        dat.assign(length * 2, unit);
+
+        std::copy(elems.begin(), elems.end(), dat.begin() + length);
+
+        for (int nidx = length - 1; nidx >= 1; --nidx) {
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
+        }
+    }
+
+    T get(int idx) { return dat[idx + length]; }
+    T whole() { return dat[1]; }
 
     T query(int ql, int qr) {
         ql = std::max(ql, 0);
@@ -35,10 +54,11 @@ struct SegmentTree {
             }
             ql >>= 1, qr >>= 1;
         }
+
         return merge(lacc, racc);
     }
 
-    void update(int nidx, T elem) {
+    void update(int nidx, const T& elem) {
         nidx += length;
         dat[nidx] = elem;
 

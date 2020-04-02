@@ -9,7 +9,9 @@ using mint = ModInt<MOD>;
 template <class T>
 struct Affine {
     T a, b;
-    explicit Affine(T a, T b) : a(a), b(b) {}
+    Affine() = default;
+    Affine(T a, T b) : a(a), b(b) {}
+
     T operator()(T x) const { return a * x + b; }
 };
 
@@ -22,15 +24,12 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegmentTree<affine>
-        seg(n, affine(1, 0),
-            [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });
+    std::vector<affine> xs(n);
+    for (auto& x : xs) std::cin >> x.a >> x.b;
 
-    for (int i = 0; i < n; ++i) {
-        int a, b;
-        std::cin >> a >> b;
-        seg.update(i, affine(a, b));
-    }
+    SegmentTree<affine>
+        seg(xs, affine(1, 0),
+            [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });
 
     while (q--) {
         int t;

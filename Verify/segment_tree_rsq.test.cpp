@@ -13,12 +13,9 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegmentTree<lint> seg(n, 0, [](auto a, auto b) { return a + b; });
-    for (int i = 0; i < n; ++i) {
-        lint x;
-        std::cin >> x;
-        seg.update(i, x);
-    }
+    std::vector<lint> xs(n);
+    for (auto& x : xs) std::cin >> x;
+    SegmentTree<lint> seg(xs, 0, [](auto a, auto b) { return a + b; });
 
     while (q--) {
         int t;
@@ -28,7 +25,8 @@ int main() {
             int i;
             lint x;
             std::cin >> i >> x;
-            seg.update(i, seg.query(i, i + 1) + x);
+            seg.update(i, seg.get(i) + x);
+
         } else {
             int l, r;
             std::cin >> l >> r;
