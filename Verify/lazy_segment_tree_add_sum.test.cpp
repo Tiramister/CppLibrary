@@ -34,7 +34,7 @@ int main() {
             int l, r;
             std::cin >> l >> r;
             --l, --r;
-            std::cout << seg.query(l, r + 1) << "\n";
+            std::cout << seg.fold(l, r + 1) << "\n";
         }
     }
 

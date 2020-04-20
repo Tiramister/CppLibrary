@@ -43,7 +43,7 @@ int main() {
         } else {
             int l, r, x;
             std::cin >> l >> r >> x;
-            auto f = seg.query(l, r);
+            auto f = seg.fold(l, r);
             std::cout << f(x) << "\n";
         }
     }

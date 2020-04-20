@@ -21,7 +21,51 @@ struct LazySegmentTree {
     OMerger omerge;
     Applier app;
 
-    void eval(int nidx, int len) {
+    explicit LazySegmentTree(int n,
+                             T d_unit, E o_unit,
+                             DMerger dmerge,
+                             OMerger omerge,
+                             Applier app)
+        : length(1),
+          d_unit(d_unit),
+          o_unit(o_unit),
+          dmerge(dmerge),
+          omerge(omerge),
+          app(app) {
+        while (length < n) length <<= 1;
+
+        dat.assign(length * 2, d_unit);
+        ope.assign(length * 2, o_unit);
+    }
+
+    template <class Container>
+    explicit LazySegmentTree(const Container& elems,
+                             T d_unit, E o_unit,
+                             DMerger dmerge,
+                             OMerger omerge,
+                             Applier app)
+        : length(1),
+          d_unit(d_unit),
+          o_unit(o_unit),
+          dmerge(dmerge),
+          omerge(omerge),
+          app(app) {
+        int n = elems.size();
+        while (length < n) length <<= 1;
+
+        dat.assign(length * 2, d_unit);
+        ope.assign(length * 2, o_unit);
+
+        std::copy(elems.begin(), elems.end(), dat.begin() + length);
+
+        for (int nidx = length - 1; nidx >= 1; --nidx) {
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = dmerge(vl, vr);
+        }
+    }
+
+    void propagate(int nidx, int len) {
         if (ope[nidx] == o_unit) return;
 
         // propagate
@@ -36,12 +80,12 @@ struct LazySegmentTree {
     }
 
     void update(int ql, int qr, E e, int nidx, int nl, int nr) {
-        eval(nidx, nr - nl);
+        propagate(nidx, nr - nl);
 
         if (nr <= ql || qr <= nl) return;
         if (ql <= nl && nr <= qr) {
             ope[nidx] = omerge(ope[nidx], e);
-            eval(nidx, nr - nl);
+            propagate(nidx, nr - nl);
             return;
         }
 
@@ -55,31 +99,20 @@ struct LazySegmentTree {
 
     void update(int ql, int qr, E e) { return update(ql, qr, e, 1, 0, length); }
 
-    T query(int ql, int qr, int nidx, int nl, int nr) {
-        eval(nidx, nr - nl);
+    T fold(int ql, int qr, int nidx, int nl, int nr) {
+        propagate(nidx, nr - nl);
+
         if (nr <= ql || qr <= nl) return d_unit;
         if (ql <= nl && nr <= qr) return dat[nidx];
 
         int nm = (nl + nr) / 2;
-        T vl = query(ql, qr, nidx * 2 + 0, nl, nm);
-        T vr = query(ql, qr, nidx * 2 + 1, nm, nr);
+        T vl = fold(ql, qr, nidx * 2 + 0, nl, nm);
+        T vr = fold(ql, qr, nidx * 2 + 1, nm, nr);
         return dmerge(vl, vr);
     }
 
-    T query(int ql, int qr) { return query(ql, qr, 1, 0, length); }
+    T fold(int ql, int qr) { return fold(ql, qr, 1, 0, length); }
 
-    explicit LazySegmentTree(int n, T d_unit, E o_unit,
-                             DMerger dmerge,
-                             OMerger omerge,
-                             Applier app)
-        : length(1),
-          d_unit(d_unit),
-          o_unit(o_unit),
-          dmerge(dmerge),
-          omerge(omerge),
-          app(app) {
-        while (length < n) length <<= 1;
-        dat.assign(length * 2, d_unit);
-        ope.assign(length * 2, o_unit);
-    }
+    T get(int idx) { return fold(idx, idx + 1); }
+    T whole() { return fold(0, length); }
 };

@@ -30,7 +30,7 @@ int main() {
         } else {
             int l, r;
             std::cin >> l >> r;
-            std::cout << seg.query(l, r) << "\n";
+            std::cout << seg.fold(l, r) << "\n";
         }
     }
 

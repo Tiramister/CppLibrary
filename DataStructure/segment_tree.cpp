@@ -23,6 +23,7 @@ struct SegmentTree {
         : length(1), unit(unit), merge(merge) {
         int n = elems.size();
         while (length < n) length <<= 1;
+
         dat.assign(length * 2, unit);
 
         std::copy(elems.begin(), elems.end(), dat.begin() + length);
@@ -34,10 +35,19 @@ struct SegmentTree {
         }
     }
 
-    T get(int idx) { return dat[idx + length]; }
-    T whole() { return dat[1]; }
+    void update(int nidx, const T& elem) {
+        nidx += length;
+        dat[nidx] = elem;
 
-    T query(int ql, int qr) {
+        while (nidx > 0) {
+            nidx >>= 1;
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
+        }
+    }
+
+    T fold(int ql, int qr) {
         ql = std::max(ql, 0);
         qr = std::min(qr, length);
         ql += length, qr += length;
@@ -58,15 +68,6 @@ struct SegmentTree {
         return merge(lacc, racc);
     }
 
-    void update(int nidx, const T& elem) {
-        nidx += length;
-        dat[nidx] = elem;
-
-        while (nidx > 0) {
-            nidx >>= 1;
-            T vl = dat[nidx * 2 + 0];
-            T vr = dat[nidx * 2 + 1];
-            dat[nidx] = merge(vl, vr);
-        }
-    }
+    T get(int idx) { return dat[idx + length]; }
+    T whole() { return dat[1]; }
 };
