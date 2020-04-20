@@ -15,8 +15,7 @@ int main() {
     while (m--) {
         int u, v, d;
         std::cin >> u >> v >> d;
-        graph[u].emplace_back(u, v, d);
-        graph[v].emplace_back(v, u, d);
+        graph.span(false, u, v, d);
     }
 
     std::cout << prim(graph) << "\n";

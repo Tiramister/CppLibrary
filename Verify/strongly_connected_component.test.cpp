@@ -15,7 +15,7 @@ int main() {
     while (m--) {
         int u, v;
         std::cin >> u >> v;
-        graph[u].emplace_back(u, v);
+        graph.span(true, u, v);
     }
 
     StronglyConnectedComponents scc(graph);

@@ -22,11 +22,12 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
         que.pop();
         if (d > dist[v]) continue;
 
-        for (auto e : graph[v]) {
+        for (const auto& e : graph[v]) {
             if (dist[e.dst] <= dist[v] + e.cost) continue;
             dist[e.dst] = dist[v] + e.cost;
             que.emplace(dist[e.dst], e.dst);
         }
     }
+
     return dist;
 }

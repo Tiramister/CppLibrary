@@ -18,8 +18,7 @@ int main() {
     for (int i = 0; i < n - 1; ++i) {
         int u, v, w;
         std::cin >> u >> v >> w;
-        graph[u].emplace_back(u, v, w);
-        graph[v].emplace_back(v, u, w);
+        graph.span(false, u, v, w);
     }
 
     Centroid<int> cent(graph);

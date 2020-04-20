@@ -17,7 +17,7 @@ int main() {
     while (m--) {
         int u, v, d;
         std::cin >> u >> v >> d;
-        graph[u].emplace_back(u, v, d);
+        graph.span(true, u, v, d);
     }
 
     auto dist = bellman_ford(graph, s);

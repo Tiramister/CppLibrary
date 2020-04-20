@@ -11,7 +11,7 @@ int main() {
     int n, m, k;
     std::cin >> n >> m >> k;
 
-    BiMatching bm(n, m);
+    BipartiteMatching bm(n, m);
     while (k--) {
         int u, v;
         std::cin >> u >> v;

@@ -2,11 +2,11 @@
 
 #include "dinic.cpp"
 
-struct BiMatching {
+struct BipartiteMatching {
     MaxFlow<int, true> mf;
     int n, m, s, g;
 
-    explicit BiMatching(int n, int m)
+    explicit BipartiteMatching(int n, int m)
         : mf(n + m + 2), n(n), m(m), s(n + m), g(n + m + 1) {
         for (int u = 0; u < n; ++u) {
             mf.span(s, enc(u, false), 1);
@@ -16,7 +16,7 @@ struct BiMatching {
         }
     }
 
-    int enc(int v, bool side) {
+    int enc(int v, bool side) const {
         return v + (side ? n : 0);
     }
 
@@ -24,12 +24,11 @@ struct BiMatching {
         mf.span(enc(u, false), enc(v, true), 1);
     }
 
-    int exec() {
-        return mf.exec(s, g);
-    }
+    int exec() { return mf.exec(s, g); }
 
     std::vector<std::pair<int, int>> matching() {
         mf.exec(s, g);
+
         std::vector<std::pair<int, int>> ret;
         for (auto e : mf.edges) {
             if (e.src < e.dst &&

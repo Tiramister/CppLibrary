@@ -16,8 +16,7 @@ int main() {
     while (m--) {
         int u, v;
         std::cin >> u >> v;
-        graph[u].emplace_back(u, v);
-        graph[v].emplace_back(v, u);
+        graph.span(false, u, v);
     }
 
     Lowlink<> ll(graph);
