@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5e248f107086635fddcead5bf28943fc">DataStructure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/DataStructure/segment_tree.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-03 00:27:37+09:00
+    - Last commit date: 2020-04-21 00:48:01+09:00
 
 
 
@@ -72,6 +72,7 @@ struct SegmentTree {
         : length(1), unit(unit), merge(merge) {
         int n = elems.size();
         while (length < n) length <<= 1;
+
         dat.assign(length * 2, unit);
 
         std::copy(elems.begin(), elems.end(), dat.begin() + length);
@@ -83,10 +84,19 @@ struct SegmentTree {
         }
     }
 
-    T get(int idx) { return dat[idx + length]; }
-    T whole() { return dat[1]; }
+    void update(int nidx, const T& elem) {
+        nidx += length;
+        dat[nidx] = elem;
 
-    T query(int ql, int qr) {
+        while (nidx > 0) {
+            nidx >>= 1;
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
+        }
+    }
+
+    T fold(int ql, int qr) {
         ql = std::max(ql, 0);
         qr = std::min(qr, length);
         ql += length, qr += length;
@@ -107,17 +117,8 @@ struct SegmentTree {
         return merge(lacc, racc);
     }
 
-    void update(int nidx, const T& elem) {
-        nidx += length;
-        dat[nidx] = elem;
-
-        while (nidx > 0) {
-            nidx >>= 1;
-            T vl = dat[nidx * 2 + 0];
-            T vr = dat[nidx * 2 + 1];
-            dat[nidx] = merge(vl, vr);
-        }
-    }
+    T get(int idx) { return dat[idx + length]; }
+    T whole() { return dat[1]; }
 };
 
 ```
@@ -151,6 +152,7 @@ struct SegmentTree {
         : length(1), unit(unit), merge(merge) {
         int n = elems.size();
         while (length < n) length <<= 1;
+
         dat.assign(length * 2, unit);
 
         std::copy(elems.begin(), elems.end(), dat.begin() + length);
@@ -162,10 +164,19 @@ struct SegmentTree {
         }
     }
 
-    T get(int idx) { return dat[idx + length]; }
-    T whole() { return dat[1]; }
+    void update(int nidx, const T& elem) {
+        nidx += length;
+        dat[nidx] = elem;
 
-    T query(int ql, int qr) {
+        while (nidx > 0) {
+            nidx >>= 1;
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
+        }
+    }
+
+    T fold(int ql, int qr) {
         ql = std::max(ql, 0);
         qr = std::min(qr, length);
         ql += length, qr += length;
@@ -186,17 +197,8 @@ struct SegmentTree {
         return merge(lacc, racc);
     }
 
-    void update(int nidx, const T& elem) {
-        nidx += length;
-        dat[nidx] = elem;
-
-        while (nidx > 0) {
-            nidx >>= 1;
-            T vl = dat[nidx * 2 + 0];
-            T vr = dat[nidx * 2 + 1];
-            dat[nidx] = merge(vl, vr);
-        }
-    }
+    T get(int idx) { return dat[idx + length]; }
+    T whole() { return dat[1]; }
 };
 
 ```

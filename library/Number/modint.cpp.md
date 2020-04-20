@@ -44,6 +44,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/lazy_segment_tree_affine.test.cpp.html">Verify/lazy_segment_tree_affine.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/segment_tree_affine.test.cpp.html">Verify/segment_tree_affine.test.cpp</a>

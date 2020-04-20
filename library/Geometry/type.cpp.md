@@ -25,20 +25,15 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Tools/random.cpp
+# :warning: Geometry/type.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Tools/random.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:58:51+09:00
+* category: <a href="../../index.html#d9c6333623e6357515fcbf17be806273">Geometry</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Geometry/type.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-21 00:48:01+09:00
 
 
-
-
-## Required by
-
-* :warning: <a href="../DataStructure/treap.cpp.html">DataStructure/treap.cpp</a>
 
 
 ## Code
@@ -48,25 +43,22 @@ layout: default
 ```cpp
 #pragma once
 
-#include <chrono>
+#include <cmath>
 
-struct Random {
-    using ulint = uint64_t;
-    ulint x;
+using Real = long double;
+constexpr Real EPS = 1e-10L;
+constexpr Real PI = 3.14159265358979323846L;
 
-    explicit Random() {
-        x = std::chrono::steady_clock::now()
-                .time_since_epoch()
-                .count();
-    }
+template <class T>
+T sq(T x) { return x * x; }
 
-    ulint next() {
-        x ^= (x << 13);
-        x ^= (x >> 7);
-        x ^= (x << 17);
-        return x;
-    }
-};
+int compare(Real a, Real b) {
+    if (std::abs(a - b) < EPS) return 0;
+    return a - b > 0 ? 1 : -1;
+}
+
+Real deg2rad(Real theta) { return theta / 180 * PI; }
+Real rad2deg(Real theta) { return theta / PI * 180; }
 
 ```
 {% endraw %}
@@ -74,27 +66,24 @@ struct Random {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "Tools/random.cpp"
+#line 2 "Geometry/type.cpp"
 
-#include <chrono>
+#include <cmath>
 
-struct Random {
-    using ulint = uint64_t;
-    ulint x;
+using Real = long double;
+constexpr Real EPS = 1e-10L;
+constexpr Real PI = 3.14159265358979323846L;
 
-    explicit Random() {
-        x = std::chrono::steady_clock::now()
-                .time_since_epoch()
-                .count();
-    }
+template <class T>
+T sq(T x) { return x * x; }
 
-    ulint next() {
-        x ^= (x << 13);
-        x ^= (x >> 7);
-        x ^= (x << 17);
-        return x;
-    }
-};
+int compare(Real a, Real b) {
+    if (std::abs(a - b) < EPS) return 0;
+    return a - b > 0 ? 1 : -1;
+}
+
+Real deg2rad(Real theta) { return theta / 180 * PI; }
+Real rad2deg(Real theta) { return theta / PI * 180; }
 
 ```
 {% endraw %}

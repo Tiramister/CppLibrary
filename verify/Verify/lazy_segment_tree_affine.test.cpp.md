@@ -25,21 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/lazy_segment_tree_add_sum.test.cpp
+# :heavy_check_mark: Verify/lazy_segment_tree_affine.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/lazy_segment_tree_add_sum.test.cpp">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/lazy_segment_tree_affine.test.cpp">View this file on GitHub</a>
     - Last commit date: 2020-04-21 00:48:01+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G</a>
+* see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
 
 
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
+* :heavy_check_mark: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
 
 
 ## Code
@@ -47,43 +48,58 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G"
+#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #include "../DataStructure/lazy_segment_tree.cpp"
+#include "../Number/modint.cpp"
 
-#include <iostream>
+constexpr int MOD = 998244353;
+using mint = ModInt<MOD>;
 
-using lint = long long;
+template <class T>
+struct Affine {
+    T a, b;
+    Affine() = default;
+    Affine(T a, T b) : a(a), b(b) {}
+
+    T operator()(T x) const { return a * x + b; }
+    bool operator==(const Affine<T>& rhs) const {
+        return a == rhs.a && b == rhs.b;
+    }
+};
+
+using affine = Affine<mint>;
 
 int main() {
-    std::cin.tie();
+    std::cin.tie(nullptr);
     std::ios::sync_with_stdio(false);
 
     int n, q;
     std::cin >> n >> q;
 
-    LazySegmentTree<lint, lint> seg(
-        n, 0, 0,
-        [](auto a, auto b) { return a + b; },
-        [](auto e, auto f) { return e + f; },
-        [](auto a, auto e, int l) { return a + e * l; });
+    std::vector<mint> xs(n);
+    for (auto& x : xs) std::cin >> x;
+
+    LazySegmentTree<mint, affine>
+        seg(
+            xs, 0, affine(1, 0),
+            [](mint a, mint b) { return a + b; },
+            [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); },
+            [](mint a, affine f, int k) { return f.a * a + f.b * k; });
 
     while (q--) {
         int t;
         std::cin >> t;
 
         if (t == 0) {
-            int l, r;
-            lint x;
-            std::cin >> l >> r >> x;
-            --l, --r;
-            seg.update(l, r + 1, x);
+            int l, r, a, b;
+            std::cin >> l >> r >> a >> b;
+            seg.update(l, r, affine(a, b));
 
         } else {
             int l, r;
             std::cin >> l >> r;
-            --l, --r;
-            std::cout << seg.fold(l, r + 1) << "\n";
+            std::cout << seg.fold(l, r) << "\n";
         }
     }
 
@@ -96,8 +112,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Verify/lazy_segment_tree_add_sum.test.cpp"
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G"
+#line 1 "Verify/lazy_segment_tree_affine.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #line 2 "DataStructure/lazy_segment_tree.cpp"
 
@@ -217,41 +233,116 @@ struct LazySegmentTree {
     T get(int idx) { return fold(idx, idx + 1); }
     T whole() { return fold(0, length); }
 };
-#line 4 "Verify/lazy_segment_tree_add_sum.test.cpp"
+#line 2 "Number/modint.cpp"
 
 #include <iostream>
 
-using lint = long long;
+template <int MOD>
+struct ModInt {
+    using lint = long long;
+    int val;
+
+    // constructor
+    ModInt(lint v = 0) : val(v % MOD) {
+        if (val < 0) val += MOD;
+    };
+
+    // unary operator
+    ModInt operator+() const { return ModInt(val); }
+    ModInt operator-() const { return ModInt(MOD - val); }
+    ModInt inv() const { return this->pow(MOD - 2); }
+
+    // arithmetic
+    ModInt operator+(const ModInt& x) const { return ModInt(*this) += x; }
+    ModInt operator-(const ModInt& x) const { return ModInt(*this) -= x; }
+    ModInt operator*(const ModInt& x) const { return ModInt(*this) *= x; }
+    ModInt operator/(const ModInt& x) const { return ModInt(*this) /= x; }
+    ModInt pow(lint n) const {
+        auto x = ModInt(1);
+        auto b = *this;
+        while (n > 0) {
+            if (n & 1) x *= b;
+            n >>= 1;
+            b *= b;
+        }
+        return x;
+    }
+
+    // compound assignment
+    ModInt& operator+=(const ModInt& x) {
+        if ((val += x.val) >= MOD) val -= MOD;
+        return *this;
+    }
+    ModInt& operator-=(const ModInt& x) {
+        if ((val -= x.val) < 0) val += MOD;
+        return *this;
+    }
+    ModInt& operator*=(const ModInt& x) {
+        val = lint(val) * x.val % MOD;
+        return *this;
+    }
+    ModInt& operator/=(const ModInt& x) { return *this *= x.inv(); }
+
+    // compare
+    bool operator==(const ModInt& b) const { return val == b.val; }
+    bool operator!=(const ModInt& b) const { return val != b.val; }
+
+    // I/O
+    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
+    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
+};
+
+// constexpr int MOD = 1e9 + 7;
+// using mint = ModInt<MOD>;
+#line 5 "Verify/lazy_segment_tree_affine.test.cpp"
+
+constexpr int MOD = 998244353;
+using mint = ModInt<MOD>;
+
+template <class T>
+struct Affine {
+    T a, b;
+    Affine() = default;
+    Affine(T a, T b) : a(a), b(b) {}
+
+    T operator()(T x) const { return a * x + b; }
+    bool operator==(const Affine<T>& rhs) const {
+        return a == rhs.a && b == rhs.b;
+    }
+};
+
+using affine = Affine<mint>;
 
 int main() {
-    std::cin.tie();
+    std::cin.tie(nullptr);
     std::ios::sync_with_stdio(false);
 
     int n, q;
     std::cin >> n >> q;
 
-    LazySegmentTree<lint, lint> seg(
-        n, 0, 0,
-        [](auto a, auto b) { return a + b; },
-        [](auto e, auto f) { return e + f; },
-        [](auto a, auto e, int l) { return a + e * l; });
+    std::vector<mint> xs(n);
+    for (auto& x : xs) std::cin >> x;
+
+    LazySegmentTree<mint, affine>
+        seg(
+            xs, 0, affine(1, 0),
+            [](mint a, mint b) { return a + b; },
+            [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); },
+            [](mint a, affine f, int k) { return f.a * a + f.b * k; });
 
     while (q--) {
         int t;
         std::cin >> t;
 
         if (t == 0) {
-            int l, r;
-            lint x;
-            std::cin >> l >> r >> x;
-            --l, --r;
-            seg.update(l, r + 1, x);
+            int l, r, a, b;
+            std::cin >> l >> r >> a >> b;
+            seg.update(l, r, affine(a, b));
 
         } else {
             int l, r;
             std::cin >> l >> r;
-            --l, --r;
-            std::cout << seg.fold(l, r + 1) << "\n";
+            std::cout << seg.fold(l, r) << "\n";
         }
     }
 

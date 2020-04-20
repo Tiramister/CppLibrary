@@ -48,8 +48,17 @@ layout: default
 * :heavy_check_mark: <a href="library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/sliding_window.cpp.html">DataStructure/sliding_window.cpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/sparse_table.cpp.html">DataStructure/sparse_table.cpp</a>
+* :warning: <a href="library/DataStructure/treap.cpp.html">DataStructure/treap.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/weighted_union_find.cpp.html">DataStructure/weighted_union_find.cpp</a>
+
+
+<div id="d9c6333623e6357515fcbf17be806273"></div>
+
+### Geometry
+
+* :warning: <a href="library/Geometry/type.cpp.html">Geometry/type.cpp</a>
 
 
 <div id="4cdbd2bafa8193091ba09509cedf94fd"></div>
@@ -66,6 +75,7 @@ layout: default
 * :heavy_check_mark: <a href="library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/graph.cpp.html">Graph/graph.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="library/Graph/level_ancestor.cpp.html">Graph/level_ancestor.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/lowlink.cpp.html">Graph/lowlink.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/min_cost_flow.cpp.html">Graph/min_cost_flow.cpp</a>
 * :heavy_check_mark: <a href="library/Graph/prim.cpp.html">Graph/prim.cpp</a>
@@ -124,6 +134,8 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/gcd.test.cpp.html">Verify/gcd.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/lazy_segment_tree_affine.test.cpp.html">Verify/lazy_segment_tree_affine.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/level_ancestor.test.cpp.html">Verify/level_ancestor.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
@@ -132,6 +144,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/segment_tree_affine.test.cpp.html">Verify/segment_tree_affine.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/sliding_window.test.cpp.html">Verify/sliding_window.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/sparse_table_rmq.test.cpp.html">Verify/sparse_table_rmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/suffix_array.test.cpp.html">Verify/suffix_array.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>

@@ -44,6 +44,7 @@ layout: default
 * :heavy_check_mark: <a href="diameter.cpp.html">Graph/diameter.cpp</a>
 * :heavy_check_mark: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :heavy_check_mark: <a href="level_ancestor.cpp.html">Graph/level_ancestor.cpp</a>
 * :heavy_check_mark: <a href="lowlink.cpp.html">Graph/lowlink.cpp</a>
 * :heavy_check_mark: <a href="prim.cpp.html">Graph/prim.cpp</a>
 * :heavy_check_mark: <a href="strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
@@ -60,6 +61,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/Verify/diameter.test.cpp.html">Verify/diameter.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/level_ancestor.test.cpp.html">Verify/level_ancestor.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>

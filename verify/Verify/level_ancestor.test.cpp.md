@@ -1,0 +1,224 @@
+---
+layout: default
+---
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" }},
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { matchFontHeight: false },
+    displayAlign: "left",
+    displayIndent: "2em"
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+
+
+# :heavy_check_mark: Verify/level_ancestor.test.cpp
+
+<a href="../../index.html">Back to top page</a>
+
+* category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/level_ancestor.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-21 00:03:55+09:00
+
+
+* see: <a href="https://judge.yosupo.jp/problem/lca">https://judge.yosupo.jp/problem/lca</a>
+
+
+## Depends on
+
+* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/level_ancestor.cpp.html">Graph/level_ancestor.cpp</a>
+
+
+## Code
+
+<a id="unbundled"></a>
+{% raw %}
+```cpp
+#define PROBLEM "https://judge.yosupo.jp/problem/lca"
+
+#include "../Graph/graph.cpp"
+#include "../Graph/level_ancestor.cpp"
+
+#include <iostream>
+
+int main() {
+    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+
+    int n, q;
+    std::cin >> n >> q;
+
+    Graph<> graph(n);
+    for (int v = 1; v < n; ++v) {
+        int p;
+        std::cin >> p;
+        graph.span(false, p, v);
+    }
+
+    LevelAncestor la(graph, 0);
+
+    while (q--) {
+        int u, v;
+        std::cin >> u >> v;
+        std::cout << la.lca(u, v) << "\n";
+    }
+
+    return 0;
+}
+
+```
+{% endraw %}
+
+<a id="bundled"></a>
+{% raw %}
+```cpp
+#line 1 "Verify/level_ancestor.test.cpp"
+#define PROBLEM "https://judge.yosupo.jp/problem/lca"
+
+#line 2 "Graph/graph.cpp"
+
+#include <vector>
+
+template <class Cost = int>
+struct Edge {
+    int src, dst;
+    Cost cost;
+    Edge(int src = -1, int dst = -1, Cost cost = 1)
+        : src(src), dst(dst), cost(cost){};
+
+    bool operator<(const Edge<Cost>& e) const { return this->cost < e.cost; }
+    bool operator>(const Edge<Cost>& e) const { return this->cost > e.cost; }
+};
+
+template <class Cost = int>
+using Edges = std::vector<Edge<Cost>>;
+
+template <class Cost = int>
+struct Graph {
+    std::vector<std::vector<Edge<Cost>>> graph;
+
+    Graph(int n = 0) : graph(n) {}
+
+    void span(bool direct, int src, int dst, Cost cost = 1) {
+        graph[src].emplace_back(src, dst, cost);
+        if (!direct) graph[dst].emplace_back(dst, src, cost);
+    }
+
+    std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
+    std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
+
+    int size() const { return graph.size(); }
+};
+#line 2 "Graph/level_ancestor.cpp"
+
+#line 4 "Graph/level_ancestor.cpp"
+
+template <class Cost>
+struct LevelAncestor {
+    Graph<Cost> tree;
+    std::vector<std::vector<int>> par;
+    std::vector<int> depth;
+    int kmax;
+
+    void dfs(int v, int p = -1, int d = 0) {
+        par[v][0] = p;
+        depth[v] = d;
+
+        for (const auto& e : tree[v]) {
+            if (e.dst == p) continue;
+            dfs(e.dst, v, d + 1);
+        }
+    }
+
+    LevelAncestor(const Graph<Cost>& tree, int root)
+        : tree(tree), par(tree.size()), depth(tree.size(), -1) {
+        kmax = 0;
+        while ((1 << kmax) < (int)tree.size()) ++kmax;
+        for (auto& v : par) v.resize(kmax + 1);
+
+        dfs(root);
+
+        for (int k = 1; k <= kmax; ++k) {
+            for (int v = 0; v < tree.size(); ++v) {
+                int p = par[v][k - 1];
+                par[v][k] = (p == -1 ? -1 : par[p][k - 1]);
+            }
+        }
+    }
+
+    int climb(int v, int d) const {
+        for (int k = kmax; k >= 0 && v != -1; --k) {
+            if ((1 << k) > d) continue;
+
+            v = par[v][k];
+            d -= (1 << k);
+        }
+        return v;
+    }
+
+    int lca(int u, int v) const {
+        if (depth[u] < depth[v]) std::swap(u, v);
+
+        if (depth[u] > depth[v]) {
+            u = climb(u, depth[u] - depth[v]);
+        }
+
+        if (u == v) return u;
+
+        for (int k = kmax; k >= 0; --k) {
+            if (par[u][k] != par[v][k]) {
+                u = par[u][k];
+                v = par[v][k];
+            }
+        }
+        return par[u][0];
+    }
+};
+#line 5 "Verify/level_ancestor.test.cpp"
+
+#include <iostream>
+
+int main() {
+    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+
+    int n, q;
+    std::cin >> n >> q;
+
+    Graph<> graph(n);
+    for (int v = 1; v < n; ++v) {
+        int p;
+        std::cin >> p;
+        graph.span(false, p, v);
+    }
+
+    LevelAncestor la(graph, 0);
+
+    while (q--) {
+        int u, v;
+        std::cin >> u >> v;
+        std::cout << la.lca(u, v) << "\n";
+    }
+
+    return 0;
+}
+
+```
+{% endraw %}
+
+<a href="../../index.html">Back to top page</a>
+
