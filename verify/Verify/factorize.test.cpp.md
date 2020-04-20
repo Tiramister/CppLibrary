@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/factorize.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-02 23:42:37+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A</a>
@@ -56,6 +56,9 @@ layout: default
 const Prime P(100000);
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n;
     std::cin >> n;
     std::cout << n << ":";
@@ -67,6 +70,8 @@ int main() {
         }
     }
     std::cout << "\n";
+
+    return 0;
 }
 
 ```
@@ -139,6 +144,9 @@ struct Prime {
 const Prime P(100000);
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n;
     std::cin >> n;
     std::cout << n << ":";
@@ -150,6 +158,8 @@ int main() {
         }
     }
     std::cout << "\n";
+
+    return 0;
 }
 
 ```

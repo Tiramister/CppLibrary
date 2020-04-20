@@ -25,26 +25,26 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Graph/prim.cpp
+# :heavy_check_mark: Graph/diameter.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Graph/prim.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-20 22:04:26+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Graph/diameter.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-20 22:05:44+09:00
 
 
 
 
 ## Depends on
 
+* :heavy_check_mark: <a href="bfs.cpp.html">Graph/bfs.cpp</a>
 * :heavy_check_mark: <a href="graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../Tools/heap_alias.cpp.html">Tools/heap_alias.cpp</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/diameter.test.cpp.html">Verify/diameter.test.cpp</a>
 
 
 ## Code
@@ -54,34 +54,25 @@ layout: default
 ```cpp
 #pragma once
 
-#include "../Tools/heap_alias.cpp"
 #include "graph.cpp"
+#include "bfs.cpp"
 
-#include <queue>
+#include <algorithm>
 
-template <class Cost, class Cap = int>
-Cost prim(const Graph<Cost>& graph) {
-    std::vector<bool> used(graph.size(), false);
-    used[0] = true;
-
-    MinHeap<Edge<Cost>> heap;
-    for (const auto& e : graph[0]) {
-        heap.push(e);
+template <class Cost>
+std::pair<int, std::pair<int, int>> diameter(const Graph<Cost>& graph) {
+    int u, v;
+    {
+        auto dist = bfs(graph, 0);
+        u = std::distance(dist.begin(),
+                          std::max_element(dist.begin(), dist.end()));
     }
 
-    Cost sum = 0;
-    while (!heap.empty()) {
-        auto e = heap.top();
-        heap.pop();
-        if (used[e.dst]) continue;
+    auto dist = bfs(graph, u);
+    v = std::distance(dist.begin(),
+                      std::max_element(dist.begin(), dist.end()));
 
-        sum += e.cost;
-        used[e.dst] = true;
-        for (const auto& se : graph[e.dst]) {
-            heap.push(se);
-        }
-    }
-    return sum;
+    return std::make_pair(dist[v], std::make_pair(u, v));
 }
 
 ```
@@ -90,16 +81,8 @@ Cost prim(const Graph<Cost>& graph) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "Graph/prim.cpp"
+#line 2 "Graph/diameter.cpp"
 
-#line 2 "Tools/heap_alias.cpp"
-
-#include <queue>
-
-template <class T>
-using MaxHeap = std::priority_queue<T>;
-template <class T>
-using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 #line 2 "Graph/graph.cpp"
 
 #include <vector>
@@ -134,33 +117,50 @@ struct Graph {
 
     int size() const { return graph.size(); }
 };
-#line 5 "Graph/prim.cpp"
+#line 2 "Graph/bfs.cpp"
 
-#line 7 "Graph/prim.cpp"
+#line 4 "Graph/bfs.cpp"
 
-template <class Cost, class Cap = int>
-Cost prim(const Graph<Cost>& graph) {
-    std::vector<bool> used(graph.size(), false);
-    used[0] = true;
+#include <queue>
 
-    MinHeap<Edge<Cost>> heap;
-    for (const auto& e : graph[0]) {
-        heap.push(e);
-    }
+template <class Cost>
+std::vector<int> bfs(const Graph<Cost>& graph, int s) {
+    std::vector<Cost> dist(graph.size(), -1);
+    dist[s] = 0;
+    std::queue<int> que;
+    que.push(s);
 
-    Cost sum = 0;
-    while (!heap.empty()) {
-        auto e = heap.top();
-        heap.pop();
-        if (used[e.dst]) continue;
+    while (!que.empty()) {
+        int v = que.front();
+        que.pop();
 
-        sum += e.cost;
-        used[e.dst] = true;
-        for (const auto& se : graph[e.dst]) {
-            heap.push(se);
+        for (const auto& e : graph[v]) {
+            if (dist[e.dst] != -1) continue;
+            dist[e.dst] = dist[v] + e.cost;
+            que.push(e.dst);
         }
     }
-    return sum;
+
+    return dist;
+}
+#line 5 "Graph/diameter.cpp"
+
+#include <algorithm>
+
+template <class Cost>
+std::pair<int, std::pair<int, int>> diameter(const Graph<Cost>& graph) {
+    int u, v;
+    {
+        auto dist = bfs(graph, 0);
+        u = std::distance(dist.begin(),
+                          std::max_element(dist.begin(), dist.end()));
+    }
+
+    auto dist = bfs(graph, u);
+    v = std::distance(dist.begin(),
+                      std::max_element(dist.begin(), dist.end()));
+
+    return std::make_pair(dist[v], std::make_pair(u, v));
 }
 
 ```

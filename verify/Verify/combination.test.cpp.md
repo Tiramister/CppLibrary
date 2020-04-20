@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/combination.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-02 23:42:37+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C">https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C</a>
@@ -59,6 +59,9 @@ using mint = ModInt<MOD>;
 const Combination<mint> C(1000);
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, k;
     std::cin >> n >> k;
 
@@ -67,6 +70,7 @@ int main() {
         ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
     }
     std::cout << ans << "\n";
+
     return 0;
 }
 
@@ -179,6 +183,9 @@ using mint = ModInt<MOD>;
 const Combination<mint> C(1000);
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, k;
     std::cin >> n >> k;
 
@@ -187,6 +194,7 @@ int main() {
         ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
     }
     std::cout << ans << "\n";
+
     return 0;
 }
 

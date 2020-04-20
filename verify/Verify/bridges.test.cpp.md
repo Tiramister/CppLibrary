@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/bridges.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-20 22:04:26+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_3_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_3_B</a>
@@ -56,6 +56,9 @@ layout: default
 #include <algorithm>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m;
     std::cin >> n >> m;
 
@@ -63,17 +66,15 @@ int main() {
     while (m--) {
         int u, v;
         std::cin >> u >> v;
-        graph[u].emplace_back(u, v);
-        graph[v].emplace_back(v, u);
+        graph.span(false, u, v);
     }
 
     Lowlink<> ll(graph);
 
     std::vector<std::pair<int, int>> ans;
+
     for (auto& e : ll.bridges) {
-        if (e.src > e.dst) {
-            std::swap(e.src, e.dst);
-        }
+        if (e.src > e.dst) std::swap(e.src, e.dst);
         ans.emplace_back(e.src, e.dst);
     }
     std::sort(ans.begin(), ans.end());
@@ -81,6 +82,7 @@ int main() {
     for (const auto& p : ans) {
         std::cout << p.first << ' ' << p.second << "\n";
     }
+
     return 0;
 }
 
@@ -114,7 +116,21 @@ template <class Cost = int>
 using Edges = std::vector<Edge<Cost>>;
 
 template <class Cost = int>
-using Graph = std::vector<std::vector<Edge<Cost>>>;
+struct Graph {
+    std::vector<std::vector<Edge<Cost>>> graph;
+
+    Graph(int n = 0) : graph(n) {}
+
+    void span(bool direct, int src, int dst, Cost cost = 1) {
+        graph[src].emplace_back(src, dst, cost);
+        if (!direct) graph[dst].emplace_back(dst, src, cost);
+    }
+
+    std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
+    std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
+
+    int size() const { return graph.size(); }
+};
 #line 4 "Graph/lowlink.cpp"
 
 template <class Cost = int>
@@ -162,6 +178,9 @@ struct Lowlink {
 #include <algorithm>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m;
     std::cin >> n >> m;
 
@@ -169,17 +188,15 @@ int main() {
     while (m--) {
         int u, v;
         std::cin >> u >> v;
-        graph[u].emplace_back(u, v);
-        graph[v].emplace_back(v, u);
+        graph.span(false, u, v);
     }
 
     Lowlink<> ll(graph);
 
     std::vector<std::pair<int, int>> ans;
+
     for (auto& e : ll.bridges) {
-        if (e.src > e.dst) {
-            std::swap(e.src, e.dst);
-        }
+        if (e.src > e.dst) std::swap(e.src, e.dst);
         ans.emplace_back(e.src, e.dst);
     }
     std::sort(ans.begin(), ans.end());
@@ -187,6 +204,7 @@ int main() {
     for (const auto& p : ans) {
         std::cout << p.first << ' ' << p.second << "\n";
     }
+
     return 0;
 }
 

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/dijkstra.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:58:51+09:00
+    - Last commit date: 2020-04-20 22:04:26+09:00
 
 
 
@@ -76,12 +76,13 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
         que.pop();
         if (d > dist[v]) continue;
 
-        for (auto e : graph[v]) {
+        for (const auto& e : graph[v]) {
             if (dist[e.dst] <= dist[v] + e.cost) continue;
             dist[e.dst] = dist[v] + e.cost;
             que.emplace(dist[e.dst], e.dst);
         }
     }
+
     return dist;
 }
 
@@ -120,7 +121,21 @@ template <class Cost = int>
 using Edges = std::vector<Edge<Cost>>;
 
 template <class Cost = int>
-using Graph = std::vector<std::vector<Edge<Cost>>>;
+struct Graph {
+    std::vector<std::vector<Edge<Cost>>> graph;
+
+    Graph(int n = 0) : graph(n) {}
+
+    void span(bool direct, int src, int dst, Cost cost = 1) {
+        graph[src].emplace_back(src, dst, cost);
+        if (!direct) graph[dst].emplace_back(dst, src, cost);
+    }
+
+    std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
+    std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
+
+    int size() const { return graph.size(); }
+};
 #line 5 "Graph/dijkstra.cpp"
 
 #include <tuple>
@@ -142,12 +157,13 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
         que.pop();
         if (d > dist[v]) continue;
 
-        for (auto e : graph[v]) {
+        for (const auto& e : graph[v]) {
             if (dist[e.dst] <= dist[v] + e.cost) continue;
             dist[e.dst] = dist[v] + e.cost;
             que.emplace(dist[e.dst], e.dst);
         }
     }
+
     return dist;
 }
 

@@ -25,23 +25,23 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/kruskal.test.cpp
+# :heavy_check_mark: Verify/diameter.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/kruskal.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-20 22:04:26+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/diameter.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-04-20 22:05:44+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/bfs.cpp.html">Graph/bfs.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/diameter.cpp.html">Graph/diameter.cpp</a>
 * :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
 
 
 ## Code
@@ -49,25 +49,27 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
-#include "../Graph/kruskal.cpp"
+#include "../Graph/graph.cpp"
+#include "../Graph/bfs.cpp"
+#include "../Graph/diameter.cpp"
 
 #include <iostream>
 
 int main() {
-    std::cin.tie();
-    std::ios::sync_with_stdio(false);
+    int n;
+    std::cin >> n;
 
-    int n, m;
-    std::cin >> n >> m;
-
-    Edges<int> edges(m);
-    for (auto& e : edges) {
-        std::cin >> e.src >> e.dst >> e.cost;
+    Graph<int> graph(n);
+    for (int i = 0; i < n - 1; ++i) {
+        int u, v, d;
+        std::cin >> u >> v >> d;
+        graph.span(false, u, v, d);
     }
 
-    std::cout << kruskal(n, edges) << "\n";
+    std::cout << diameter(graph).first << "\n";
+
     return 0;
 }
 
@@ -77,10 +79,8 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Verify/kruskal.test.cpp"
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
-
-#line 2 "Graph/kruskal.cpp"
+#line 1 "Verify/diameter.test.cpp"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
 #line 2 "Graph/graph.cpp"
 
@@ -116,73 +116,70 @@ struct Graph {
 
     int size() const { return graph.size(); }
 };
-#line 2 "DataStructure/union_find.cpp"
+#line 2 "Graph/bfs.cpp"
 
-#include <numeric>
-#line 5 "DataStructure/union_find.cpp"
+#line 4 "Graph/bfs.cpp"
 
-struct UnionFind {
-    std::vector<int> par, sz;
-    int gnum;
+#include <queue>
 
-    explicit UnionFind(int n)
-        : par(n), sz(n, 1), gnum(n) {
-        std::iota(par.begin(), par.end(), 0);
+template <class Cost>
+std::vector<int> bfs(const Graph<Cost>& graph, int s) {
+    std::vector<Cost> dist(graph.size(), -1);
+    dist[s] = 0;
+    std::queue<int> que;
+    que.push(s);
+
+    while (!que.empty()) {
+        int v = que.front();
+        que.pop();
+
+        for (const auto& e : graph[v]) {
+            if (dist[e.dst] != -1) continue;
+            dist[e.dst] = dist[v] + e.cost;
+            que.push(e.dst);
+        }
     }
 
-    int find(int v) {
-        return (par[v] == v) ? v : (par[v] = find(par[v]));
-    }
+    return dist;
+}
+#line 2 "Graph/diameter.cpp"
 
-    void unite(int u, int v) {
-        u = find(u), v = find(v);
-        if (u == v) return;
-
-        if (sz[u] < sz[v]) std::swap(u, v);
-        sz[u] += sz[v];
-        par[v] = u;
-        --gnum;
-    }
-
-    bool same(int u, int v) { return find(u) == find(v); }
-    bool ispar(int v) { return v == find(v); }
-    int size(int v) { return sz[find(v)]; }
-};
-#line 5 "Graph/kruskal.cpp"
+#line 5 "Graph/diameter.cpp"
 
 #include <algorithm>
 
 template <class Cost>
-Cost kruskal(int vnum, std::vector<Edge<Cost>>& edges) {
-    std::sort(edges.begin(), edges.end(),
-              [](const auto& lhs, const auto& rhs) { return lhs.cost < rhs.cost; });
-
-    UnionFind uf(vnum);
-    Cost sum = 0;
-    for (const auto& e : edges) {
-        if (uf.same(e.src, e.dst)) continue;
-        sum += e.cost;
-        uf.unite(e.src, e.dst);
+std::pair<int, std::pair<int, int>> diameter(const Graph<Cost>& graph) {
+    int u, v;
+    {
+        auto dist = bfs(graph, 0);
+        u = std::distance(dist.begin(),
+                          std::max_element(dist.begin(), dist.end()));
     }
-    return sum;
+
+    auto dist = bfs(graph, u);
+    v = std::distance(dist.begin(),
+                      std::max_element(dist.begin(), dist.end()));
+
+    return std::make_pair(dist[v], std::make_pair(u, v));
 }
-#line 4 "Verify/kruskal.test.cpp"
+#line 6 "Verify/diameter.test.cpp"
 
 #include <iostream>
 
 int main() {
-    std::cin.tie();
-    std::ios::sync_with_stdio(false);
+    int n;
+    std::cin >> n;
 
-    int n, m;
-    std::cin >> n >> m;
-
-    Edges<int> edges(m);
-    for (auto& e : edges) {
-        std::cin >> e.src >> e.dst >> e.cost;
+    Graph<int> graph(n);
+    for (int i = 0; i < n - 1; ++i) {
+        int u, v, d;
+        std::cin >> u >> v >> d;
+        graph.span(false, u, v, d);
     }
 
-    std::cout << kruskal(n, edges) << "\n";
+    std::cout << diameter(graph).first << "\n";
+
     return 0;
 }
 

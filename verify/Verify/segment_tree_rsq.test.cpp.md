@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_rsq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:58:51+09:00
+    - Last commit date: 2020-04-03 00:27:37+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
@@ -62,12 +62,9 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegmentTree<lint> seg(n, 0, [](auto a, auto b) { return a + b; });
-    for (int i = 0; i < n; ++i) {
-        lint x;
-        std::cin >> x;
-        seg.update(i, x);
-    }
+    std::vector<lint> xs(n);
+    for (auto& x : xs) std::cin >> x;
+    SegmentTree<lint> seg(xs, 0, [](auto a, auto b) { return a + b; });
 
     while (q--) {
         int t;
@@ -77,13 +74,15 @@ int main() {
             int i;
             lint x;
             std::cin >> i >> x;
-            seg.update(i, seg.query(i, i + 1) + x);
+            seg.update(i, seg.get(i) + x);
+
         } else {
             int l, r;
             std::cin >> l >> r;
             std::cout << seg.query(l, r) << "\n";
         }
     }
+
     return 0;
 }
 
@@ -110,11 +109,30 @@ struct SegmentTree {
     T unit;
     Merger merge;
 
-    explicit SegmentTree(int n, T unit, Merger merge)
+    explicit SegmentTree(int n, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
         dat.assign(length * 2, unit);
     }
+
+    template <class Container>
+    explicit SegmentTree(const Container& elems, const T& unit, const Merger& merge)
+        : length(1), unit(unit), merge(merge) {
+        int n = elems.size();
+        while (length < n) length <<= 1;
+        dat.assign(length * 2, unit);
+
+        std::copy(elems.begin(), elems.end(), dat.begin() + length);
+
+        for (int nidx = length - 1; nidx >= 1; --nidx) {
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
+        }
+    }
+
+    T get(int idx) { return dat[idx + length]; }
+    T whole() { return dat[1]; }
 
     T query(int ql, int qr) {
         ql = std::max(ql, 0);
@@ -133,10 +151,11 @@ struct SegmentTree {
             }
             ql >>= 1, qr >>= 1;
         }
+
         return merge(lacc, racc);
     }
 
-    void update(int nidx, T elem) {
+    void update(int nidx, const T& elem) {
         nidx += length;
         dat[nidx] = elem;
 
@@ -161,12 +180,9 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegmentTree<lint> seg(n, 0, [](auto a, auto b) { return a + b; });
-    for (int i = 0; i < n; ++i) {
-        lint x;
-        std::cin >> x;
-        seg.update(i, x);
-    }
+    std::vector<lint> xs(n);
+    for (auto& x : xs) std::cin >> x;
+    SegmentTree<lint> seg(xs, 0, [](auto a, auto b) { return a + b; });
 
     while (q--) {
         int t;
@@ -176,13 +192,15 @@ int main() {
             int i;
             lint x;
             std::cin >> i >> x;
-            seg.update(i, seg.query(i, i + 1) + x);
+            seg.update(i, seg.get(i) + x);
+
         } else {
             int l, r;
             std::cin >> l >> r;
             std::cout << seg.query(l, r) << "\n";
         }
     }
+
     return 0;
 }
 

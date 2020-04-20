@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/lazy_segment_tree_add_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-02 23:42:37+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G</a>
@@ -56,6 +56,9 @@ layout: default
 using lint = long long;
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, q;
     std::cin >> n >> q;
 
@@ -83,6 +86,7 @@ int main() {
             std::cout << seg.query(l, r + 1) << "\n";
         }
     }
+
     return 0;
 }
 
@@ -187,6 +191,9 @@ struct LazySegmentTree {
 using lint = long long;
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, q;
     std::cin >> n >> q;
 
@@ -214,6 +221,7 @@ int main() {
             std::cout << seg.query(l, r + 1) << "\n";
         }
     }
+
     return 0;
 }
 

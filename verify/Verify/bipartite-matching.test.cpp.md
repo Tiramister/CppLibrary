@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/bipartite-matching.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-20 22:04:26+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/bipartitematching">https://judge.yosupo.jp/problem/bipartitematching</a>
@@ -55,10 +55,13 @@ layout: default
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m, k;
     std::cin >> n >> m >> k;
 
-    BiMatching bm(n, m);
+    BipartiteMatching bm(n, m);
     while (k--) {
         int u, v;
         std::cin >> u >> v;
@@ -179,11 +182,11 @@ struct MaxFlow {
 };
 #line 4 "Graph/bipartite_matching.cpp"
 
-struct BiMatching {
+struct BipartiteMatching {
     MaxFlow<int, true> mf;
     int n, m, s, g;
 
-    explicit BiMatching(int n, int m)
+    explicit BipartiteMatching(int n, int m)
         : mf(n + m + 2), n(n), m(m), s(n + m), g(n + m + 1) {
         for (int u = 0; u < n; ++u) {
             mf.span(s, enc(u, false), 1);
@@ -193,7 +196,7 @@ struct BiMatching {
         }
     }
 
-    int enc(int v, bool side) {
+    int enc(int v, bool side) const {
         return v + (side ? n : 0);
     }
 
@@ -201,12 +204,11 @@ struct BiMatching {
         mf.span(enc(u, false), enc(v, true), 1);
     }
 
-    int exec() {
-        return mf.exec(s, g);
-    }
+    int exec() { return mf.exec(s, g); }
 
     std::vector<std::pair<int, int>> matching() {
         mf.exec(s, g);
+
         std::vector<std::pair<int, int>> ret;
         for (auto e : mf.edges) {
             if (e.src < e.dst &&
@@ -223,10 +225,13 @@ struct BiMatching {
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, m, k;
     std::cin >> n >> m >> k;
 
-    BiMatching bm(n, m);
+    BipartiteMatching bm(n, m);
     while (k--) {
         int u, v;
         std::cin >> u >> v;

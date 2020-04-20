@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/graph.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:58:51+09:00
+    - Last commit date: 2020-04-20 22:04:26+09:00
 
 
 
@@ -39,7 +39,9 @@ layout: default
 ## Required by
 
 * :heavy_check_mark: <a href="bellman_ford.cpp.html">Graph/bellman_ford.cpp</a>
+* :heavy_check_mark: <a href="bfs.cpp.html">Graph/bfs.cpp</a>
 * :heavy_check_mark: <a href="centroid_decomposition.cpp.html">Graph/centroid_decomposition.cpp</a>
+* :heavy_check_mark: <a href="diameter.cpp.html">Graph/diameter.cpp</a>
 * :heavy_check_mark: <a href="dijkstra.cpp.html">Graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="kruskal.cpp.html">Graph/kruskal.cpp</a>
 * :heavy_check_mark: <a href="lowlink.cpp.html">Graph/lowlink.cpp</a>
@@ -55,6 +57,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/bridges.test.cpp.html">Verify/bridges.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/centroid_decomposition_diameter.test.cpp.html">Verify/centroid_decomposition_diameter.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/diameter.test.cpp.html">Verify/diameter.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
@@ -87,7 +90,21 @@ template <class Cost = int>
 using Edges = std::vector<Edge<Cost>>;
 
 template <class Cost = int>
-using Graph = std::vector<std::vector<Edge<Cost>>>;
+struct Graph {
+    std::vector<std::vector<Edge<Cost>>> graph;
+
+    Graph(int n = 0) : graph(n) {}
+
+    void span(bool direct, int src, int dst, Cost cost = 1) {
+        graph[src].emplace_back(src, dst, cost);
+        if (!direct) graph[dst].emplace_back(dst, src, cost);
+    }
+
+    std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
+    std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
+
+    int size() const { return graph.size(); }
+};
 
 ```
 {% endraw %}
@@ -114,7 +131,21 @@ template <class Cost = int>
 using Edges = std::vector<Edge<Cost>>;
 
 template <class Cost = int>
-using Graph = std::vector<std::vector<Edge<Cost>>>;
+struct Graph {
+    std::vector<std::vector<Edge<Cost>>> graph;
+
+    Graph(int n = 0) : graph(n) {}
+
+    void span(bool direct, int src, int dst, Cost cost = 1) {
+        graph[src].emplace_back(src, dst, cost);
+        if (!direct) graph[dst].emplace_back(dst, src, cost);
+    }
+
+    std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
+    std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
+
+    int size() const { return graph.size(); }
+};
 
 ```
 {% endraw %}

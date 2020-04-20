@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/two_sat.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-20 22:04:26+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/two_sat">https://judge.yosupo.jp/problem/two_sat</a>
@@ -58,6 +58,9 @@ layout: default
 #include <string>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     std::string tmp;
     int n, m;
     std::cin >> tmp >> tmp >> n >> m;
@@ -72,14 +75,17 @@ int main() {
     auto assign = ts.exec();
     if (assign.empty()) {
         std::cout << "s UNSATISFIABLE" << std::endl;
+
     } else {
         std::cout << "s SATISFIABLE" << std::endl;
+
         std::cout << "v ";
         for (int x = 1; x <= n; ++x) {
             std::cout << (assign[x - 1] ? x : -x) << " ";
         }
         std::cout << "0\n";
     }
+
     return 0;
 }
 
@@ -113,7 +119,21 @@ template <class Cost = int>
 using Edges = std::vector<Edge<Cost>>;
 
 template <class Cost = int>
-using Graph = std::vector<std::vector<Edge<Cost>>>;
+struct Graph {
+    std::vector<std::vector<Edge<Cost>>> graph;
+
+    Graph(int n = 0) : graph(n) {}
+
+    void span(bool direct, int src, int dst, Cost cost = 1) {
+        graph[src].emplace_back(src, dst, cost);
+        if (!direct) graph[dst].emplace_back(dst, src, cost);
+    }
+
+    std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
+    std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
+
+    int size() const { return graph.size(); }
+};
 #line 2 "Graph/strongly_connected_component.cpp"
 
 #line 4 "Graph/strongly_connected_component.cpp"
@@ -214,6 +234,9 @@ struct TwoSat {
 #include <string>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     std::string tmp;
     int n, m;
     std::cin >> tmp >> tmp >> n >> m;
@@ -228,14 +251,17 @@ int main() {
     auto assign = ts.exec();
     if (assign.empty()) {
         std::cout << "s UNSATISFIABLE" << std::endl;
+
     } else {
         std::cout << "s SATISFIABLE" << std::endl;
+
         std::cout << "v ";
         for (int x = 1; x <= n; ++x) {
             std::cout << (assign[x - 1] ? x : -x) << " ";
         }
         std::cout << "0\n";
     }
+
     return 0;
 }
 

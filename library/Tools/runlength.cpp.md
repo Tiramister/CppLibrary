@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#8625e1de7be14c39b1d14dc03d822497">Tools</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Tools/runlength.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:58:51+09:00
+    - Last commit date: 2020-04-03 00:47:53+09:00
 
 
 
@@ -58,6 +58,19 @@ std::vector<std::pair<char, int>> runlength(const std::string& s) {
     return res;
 }
 
+template <class T>
+std::vector<std::pair<T, int>> runlength(const std::vector<T>& s) {
+    std::vector<std::pair<T, int>> res;
+    for (char c : s) {
+        if (res.empty() || c != res.back().first) {
+            res.emplace_back(c, 1);
+        } else {
+            ++res.back().second;
+        }
+    }
+    return res;
+}
+
 ```
 {% endraw %}
 
@@ -71,6 +84,19 @@ std::vector<std::pair<char, int>> runlength(const std::string& s) {
 
 std::vector<std::pair<char, int>> runlength(const std::string& s) {
     std::vector<std::pair<char, int>> res;
+    for (char c : s) {
+        if (res.empty() || c != res.back().first) {
+            res.emplace_back(c, 1);
+        } else {
+            ++res.back().second;
+        }
+    }
+    return res;
+}
+
+template <class T>
+std::vector<std::pair<T, int>> runlength(const std::vector<T>& s) {
+    std::vector<std::pair<T, int>> res;
     for (char c : s) {
         if (res.empty() || c != res.back().first) {
             res.emplace_back(c, 1);

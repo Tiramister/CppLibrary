@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/z_algorithm.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-02 23:42:37+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/zalgorithm">https://judge.yosupo.jp/problem/zalgorithm</a>
@@ -55,6 +55,9 @@ layout: default
 #include <string>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     std::string s;
     std::cin >> s;
 
@@ -115,6 +118,9 @@ std::vector<int> zalgo(const Container& dat) {
 #include <string>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     std::string s;
     std::cin >> s;
 

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_affine.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:11:18+09:00
+    - Last commit date: 2020-04-03 00:27:37+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -59,7 +59,9 @@ using mint = ModInt<MOD>;
 template <class T>
 struct Affine {
     T a, b;
-    explicit Affine(T a, T b) : a(a), b(b) {}
+    Affine() = default;
+    Affine(T a, T b) : a(a), b(b) {}
+
     T operator()(T x) const { return a * x + b; }
 };
 
@@ -72,14 +74,12 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
+    std::vector<affine> xs(n);
+    for (auto& x : xs) std::cin >> x.a >> x.b;
+
     SegmentTree<affine>
-        seg(n, affine(1, 0),
+        seg(xs, affine(1, 0),
             [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });
-    for (int i = 0; i < n; ++i) {
-        int a, b;
-        std::cin >> a >> b;
-        seg.update(i, affine(a, b));
-    }
 
     while (q--) {
         int t;
@@ -97,6 +97,7 @@ int main() {
             std::cout << f(x) << "\n";
         }
     }
+
     return 0;
 }
 
@@ -123,11 +124,30 @@ struct SegmentTree {
     T unit;
     Merger merge;
 
-    explicit SegmentTree(int n, T unit, Merger merge)
+    explicit SegmentTree(int n, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
         dat.assign(length * 2, unit);
     }
+
+    template <class Container>
+    explicit SegmentTree(const Container& elems, const T& unit, const Merger& merge)
+        : length(1), unit(unit), merge(merge) {
+        int n = elems.size();
+        while (length < n) length <<= 1;
+        dat.assign(length * 2, unit);
+
+        std::copy(elems.begin(), elems.end(), dat.begin() + length);
+
+        for (int nidx = length - 1; nidx >= 1; --nidx) {
+            T vl = dat[nidx * 2 + 0];
+            T vr = dat[nidx * 2 + 1];
+            dat[nidx] = merge(vl, vr);
+        }
+    }
+
+    T get(int idx) { return dat[idx + length]; }
+    T whole() { return dat[1]; }
 
     T query(int ql, int qr) {
         ql = std::max(ql, 0);
@@ -146,10 +166,11 @@ struct SegmentTree {
             }
             ql >>= 1, qr >>= 1;
         }
+
         return merge(lacc, racc);
     }
 
-    void update(int nidx, T elem) {
+    void update(int nidx, const T& elem) {
         nidx += length;
         dat[nidx] = elem;
 
@@ -230,7 +251,9 @@ using mint = ModInt<MOD>;
 template <class T>
 struct Affine {
     T a, b;
-    explicit Affine(T a, T b) : a(a), b(b) {}
+    Affine() = default;
+    Affine(T a, T b) : a(a), b(b) {}
+
     T operator()(T x) const { return a * x + b; }
 };
 
@@ -243,14 +266,12 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
+    std::vector<affine> xs(n);
+    for (auto& x : xs) std::cin >> x.a >> x.b;
+
     SegmentTree<affine>
-        seg(n, affine(1, 0),
+        seg(xs, affine(1, 0),
             [](affine f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });
-    for (int i = 0; i < n; ++i) {
-        int a, b;
-        std::cin >> a >> b;
-        seg.update(i, affine(a, b));
-    }
 
     while (q--) {
         int t;
@@ -268,6 +289,7 @@ int main() {
             std::cout << f(x) << "\n";
         }
     }
+
     return 0;
 }
 

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/sliding_window.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 22:58:51+09:00
+    - Last commit date: 2020-04-02 23:42:37+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D</a>
@@ -54,6 +54,9 @@ layout: default
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, l;
     std::cin >> n >> l;
 
@@ -63,11 +66,13 @@ int main() {
         int a;
         std::cin >> a;
         sw.push(a);
+
         if (i >= l - 1) {
             std::cout << sw.get() << " \n"[i == n - 1];
             sw.pop();
         }
     }
+
     return 0;
 }
 
@@ -118,6 +123,9 @@ struct SlidingWindow {
 #include <iostream>
 
 int main() {
+    std::cin.tie();
+    std::ios::sync_with_stdio(false);
+
     int n, l;
     std::cin >> n >> l;
 
@@ -127,11 +135,13 @@ int main() {
         int a;
         std::cin >> a;
         sw.push(a);
+
         if (i >= l - 1) {
             std::cout << sw.get() << " \n"[i == n - 1];
             sw.pop();
         }
     }
+
     return 0;
 }
 
