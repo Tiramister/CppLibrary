@@ -19,6 +19,7 @@
 "Verify/min_cost_flow.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/mod_pow.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/number_theoretical_transform.test.cpp": "2020-07-26 22:31:04 +0900",
+"Verify/potentialized_union_find.test.cpp": "2020-07-26 23:26:15 +0900",
 "Verify/prim.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/primal_dual.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/segment_tree_affine.test.cpp": "2020-07-26 22:31:04 +0900",
