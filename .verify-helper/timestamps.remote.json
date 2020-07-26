@@ -26,5 +26,9 @@
 "Verify/sliding_window.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/sparse_table_rmq.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/strongly_connected_component.test.cpp": "2020-07-26 22:31:04 +0900",
-"Verify/suffix_array.test.cpp": "2020-07-26 22:31:04 +0900"
+"Verify/suffix_array.test.cpp": "2020-07-26 22:31:04 +0900",
+"Verify/topological_sort.test.cpp": "2020-07-26 22:31:04 +0900",
+"Verify/two_sat.test.cpp": "2020-07-26 22:31:04 +0900",
+"Verify/union_find.test.cpp": "2020-07-26 22:31:04 +0900",
+"Verify/z_algorithm.test.cpp": "2020-07-26 22:31:04 +0900"
 }
