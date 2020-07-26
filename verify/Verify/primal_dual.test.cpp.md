@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/primal_dual.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:42:37+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/primal_dual.cpp.html">Graph/primal_dual.cpp</a>
-* :heavy_check_mark: <a href="../../library/Tools/heap_alias.cpp.html">Tools/heap_alias.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/primal_dual.hpp.html">Graph/primal_dual.hpp</a>
+* :heavy_check_mark: <a href="../../library/Tools/heap_alias.hpp.html">Tools/heap_alias.hpp</a>
 
 
 ## Code
@@ -50,7 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#include "../Graph/primal_dual.cpp"
+#include "../Graph/primal_dual.hpp"
 
 #include <iostream>
 
@@ -81,7 +81,7 @@ int main() {
 #line 1 "Verify/primal_dual.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#line 2 "Tools/heap_alias.cpp"
+#line 2 "Tools/heap_alias.hpp"
 
 #include <queue>
 
@@ -89,7 +89,7 @@ template <class T>
 using MaxHeap = std::priority_queue<T>;
 template <class T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-#line 2 "Graph/primal_dual.cpp"
+#line 2 "Graph/primal_dual.hpp"
 
 #include <vector>
 #include <tuple>

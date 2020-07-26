@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/sparse_table_rmq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 00:04:12+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/staticrmq">https://judge.yosupo.jp/problem/staticrmq</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/sparse_table.cpp.html">DataStructure/sparse_table.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/sparse_table.hpp.html">DataStructure/sparse_table.hpp</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "../DataStructure/sparse_table.cpp"
+#include "../DataStructure/sparse_table.hpp"
 
 #include <iostream>
 
@@ -83,7 +83,7 @@ int main() {
 #line 1 "Verify/sparse_table_rmq.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#line 2 "DataStructure/sparse_table.cpp"
+#line 2 "DataStructure/sparse_table.hpp"
 
 #include <vector>
 #include <functional>

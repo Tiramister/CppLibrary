@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/lazy_segment_tree_add_sum.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 00:48:01+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/lazy_segment_tree.cpp.html">DataStructure/lazy_segment_tree.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/lazy_segment_tree.hpp.html">DataStructure/lazy_segment_tree.hpp</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G"
 
-#include "../DataStructure/lazy_segment_tree.cpp"
+#include "../DataStructure/lazy_segment_tree.hpp"
 
 #include <iostream>
 
@@ -99,7 +99,7 @@ int main() {
 #line 1 "Verify/lazy_segment_tree_add_sum.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G"
 
-#line 2 "DataStructure/lazy_segment_tree.cpp"
+#line 2 "DataStructure/lazy_segment_tree.hpp"
 
 #include <vector>
 #include <functional>
@@ -215,7 +215,7 @@ struct LazySegmentTree {
     T fold(int ql, int qr) { return fold(ql, qr, 1, 0, length); }
 
     T get(int idx) { return fold(idx, idx + 1); }
-    T whole() { return fold(0, length); }
+    T fold_all() { return fold(0, length); }
 };
 #line 4 "Verify/lazy_segment_tree_add_sum.test.cpp"
 

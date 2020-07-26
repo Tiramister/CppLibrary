@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_affine.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 00:48:01+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
-* :heavy_check_mark: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/segment_tree.hpp.html">DataStructure/segment_tree.hpp</a>
+* :heavy_check_mark: <a href="../../library/Number/modint.hpp.html">Number/modint.hpp</a>
 
 
 ## Code
@@ -50,8 +50,8 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../DataStructure/segment_tree.cpp"
-#include "../Number/modint.cpp"
+#include "../DataStructure/segment_tree.hpp"
+#include "../Number/modint.hpp"
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;
@@ -110,7 +110,7 @@ int main() {
 #line 1 "Verify/segment_tree_affine.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#line 2 "DataStructure/segment_tree.cpp"
+#line 2 "DataStructure/segment_tree.hpp"
 
 #include <vector>
 #include <functional>
@@ -124,14 +124,16 @@ struct SegmentTree {
     T unit;
     Merger merge;
 
-    explicit SegmentTree(int n, const T& unit, const Merger& merge)
+    SegmentTree() = default;
+
+    SegmentTree(int n, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
         dat.assign(length * 2, unit);
     }
 
     template <class Container>
-    explicit SegmentTree(const Container& elems, const T& unit, const Merger& merge)
+    SegmentTree(const Container& elems, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         int n = elems.size();
         while (length < n) length <<= 1;
@@ -159,7 +161,7 @@ struct SegmentTree {
         }
     }
 
-    T fold(int ql, int qr) {
+    T fold(int ql, int qr) const {
         ql = std::max(ql, 0);
         qr = std::min(qr, length);
         ql += length, qr += length;
@@ -180,10 +182,10 @@ struct SegmentTree {
         return merge(lacc, racc);
     }
 
-    T get(int idx) { return dat[idx + length]; }
-    T whole() { return dat[1]; }
+    T get(int idx) const { return dat[idx + length]; }
+    T fold_all() const { return dat[1]; }
 };
-#line 2 "Number/modint.cpp"
+#line 2 "Number/modint.hpp"
 
 #include <iostream>
 
@@ -236,13 +238,18 @@ struct ModInt {
     // compare
     bool operator==(const ModInt& b) const { return val == b.val; }
     bool operator!=(const ModInt& b) const { return val != b.val; }
+    bool operator<(const ModInt& b) const { return val < b.val; }
+    bool operator<=(const ModInt& b) const { return val <= b.val; }
+    bool operator>(const ModInt& b) const { return val > b.val; }
+    bool operator>=(const ModInt& b) const { return val >= b.val; }
 
     // I/O
     friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 
-// constexpr int MOD = 1e9 + 7;
+// constexpr int MOD = 1000000007;
+// constexpr int MOD = 998244353;
 // using mint = ModInt<MOD>;
 #line 5 "Verify/segment_tree_affine.test.cpp"
 

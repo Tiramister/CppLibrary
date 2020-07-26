@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/kruskal.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-20 22:04:26+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/union_find.cpp.html">DataStructure/union_find.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/kruskal.cpp.html">Graph/kruskal.cpp</a>
+* :question: <a href="../../library/DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
+* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/kruskal.hpp.html">Graph/kruskal.hpp</a>
 
 
 ## Code
@@ -51,7 +51,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#include "../Graph/kruskal.cpp"
+#include "../Graph/kruskal.hpp"
 
 #include <iostream>
 
@@ -80,9 +80,9 @@ int main() {
 #line 1 "Verify/kruskal.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#line 2 "Graph/kruskal.cpp"
+#line 2 "Graph/kruskal.hpp"
 
-#line 2 "Graph/graph.cpp"
+#line 2 "Graph/graph.hpp"
 
 #include <vector>
 
@@ -111,15 +111,17 @@ struct Graph {
         if (!direct) graph[dst].emplace_back(dst, src, cost);
     }
 
+    int size() const { return graph.size(); }
+    void clear() { graph.clear(); }
+    void resize(int n) { graph.resize(n); }
+
     std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
     std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
-
-    int size() const { return graph.size(); }
 };
-#line 2 "DataStructure/union_find.cpp"
+#line 2 "DataStructure/union_find.hpp"
 
 #include <numeric>
-#line 5 "DataStructure/union_find.cpp"
+#line 5 "DataStructure/union_find.hpp"
 
 struct UnionFind {
     std::vector<int> par, sz;
@@ -148,7 +150,7 @@ struct UnionFind {
     bool ispar(int v) { return v == find(v); }
     int size(int v) { return sz[find(v)]; }
 };
-#line 5 "Graph/kruskal.cpp"
+#line 5 "Graph/kruskal.hpp"
 
 #include <algorithm>
 

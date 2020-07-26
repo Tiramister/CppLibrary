@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/suffix_array.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:42:37+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/suffixarray">https://judge.yosupo.jp/problem/suffixarray</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/String/suffix_array.cpp.html">String/suffix_array.cpp</a>
+* :heavy_check_mark: <a href="../../library/String/suffix_array.hpp.html">String/suffix_array.hpp</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
-#include "../String/suffix_array.cpp"
+#include "../String/suffix_array.hpp"
 
 #include <iostream>
 
@@ -78,7 +78,7 @@ int main() {
 #line 1 "Verify/suffix_array.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/suffixarray"
 
-#line 2 "String/suffix_array.cpp"
+#line 2 "String/suffix_array.hpp"
 
 #include <algorithm>
 #include <numeric>

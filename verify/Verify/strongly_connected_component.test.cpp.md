@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/strongly_connected_component.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-20 22:04:26+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/scc">https://judge.yosupo.jp/problem/scc</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
+* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :question: <a href="../../library/Graph/strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
 
 
 ## Code
@@ -50,7 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
-#include "../Graph/strongly_connected_component.cpp"
+#include "../Graph/strongly_connected_component.hpp"
 
 #include <iostream>
 
@@ -89,9 +89,9 @@ int main() {
 #line 1 "Verify/strongly_connected_component.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
-#line 2 "Graph/strongly_connected_component.cpp"
+#line 2 "Graph/strongly_connected_component.hpp"
 
-#line 2 "Graph/graph.cpp"
+#line 2 "Graph/graph.hpp"
 
 #include <vector>
 
@@ -120,15 +120,16 @@ struct Graph {
         if (!direct) graph[dst].emplace_back(dst, src, cost);
     }
 
+    int size() const { return graph.size(); }
+    void clear() { graph.clear(); }
+    void resize(int n) { graph.resize(n); }
+
     std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
     std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
-
-    int size() const { return graph.size(); }
 };
-#line 4 "Graph/strongly_connected_component.cpp"
+#line 4 "Graph/strongly_connected_component.hpp"
 
-#include <algorithm>
-#line 7 "Graph/strongly_connected_component.cpp"
+#line 6 "Graph/strongly_connected_component.hpp"
 
 template <class Cost = int>
 struct StronglyConnectedComponents {

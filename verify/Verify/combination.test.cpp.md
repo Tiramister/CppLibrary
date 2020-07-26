@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/combination.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:42:37+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C">https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Number/combination.cpp.html">Number/combination.cpp</a>
-* :heavy_check_mark: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :heavy_check_mark: <a href="../../library/Number/combination.hpp.html">Number/combination.hpp</a>
+* :heavy_check_mark: <a href="../../library/Number/modint.hpp.html">Number/modint.hpp</a>
 
 
 ## Code
@@ -50,8 +50,8 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
-#include "../Number/modint.cpp"
-#include "../Number/combination.cpp"
+#include "../Number/modint.hpp"
+#include "../Number/combination.hpp"
 
 constexpr int MOD = 1e9 + 7;
 using mint = ModInt<MOD>;
@@ -83,7 +83,7 @@ int main() {
 #line 1 "Verify/combination.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C"
 
-#line 2 "Number/modint.cpp"
+#line 2 "Number/modint.hpp"
 
 #include <iostream>
 
@@ -136,15 +136,20 @@ struct ModInt {
     // compare
     bool operator==(const ModInt& b) const { return val == b.val; }
     bool operator!=(const ModInt& b) const { return val != b.val; }
+    bool operator<(const ModInt& b) const { return val < b.val; }
+    bool operator<=(const ModInt& b) const { return val <= b.val; }
+    bool operator>(const ModInt& b) const { return val > b.val; }
+    bool operator>=(const ModInt& b) const { return val >= b.val; }
 
     // I/O
     friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 
-// constexpr int MOD = 1e9 + 7;
+// constexpr int MOD = 1000000007;
+// constexpr int MOD = 998244353;
 // using mint = ModInt<MOD>;
-#line 2 "Number/combination.cpp"
+#line 2 "Number/combination.hpp"
 
 #include <vector>
 

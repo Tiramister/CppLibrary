@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/level_ancestor.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 00:03:55+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/lca">https://judge.yosupo.jp/problem/lca</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/level_ancestor.cpp.html">Graph/level_ancestor.cpp</a>
+* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/level_ancestor.hpp.html">Graph/level_ancestor.hpp</a>
 
 
 ## Code
@@ -50,8 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
-#include "../Graph/graph.cpp"
-#include "../Graph/level_ancestor.cpp"
+#include "../Graph/level_ancestor.hpp"
 
 #include <iostream>
 
@@ -89,7 +88,9 @@ int main() {
 #line 1 "Verify/level_ancestor.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
-#line 2 "Graph/graph.cpp"
+#line 2 "Graph/level_ancestor.hpp"
+
+#line 2 "Graph/graph.hpp"
 
 #include <vector>
 
@@ -118,34 +119,36 @@ struct Graph {
         if (!direct) graph[dst].emplace_back(dst, src, cost);
     }
 
+    int size() const { return graph.size(); }
+    void clear() { graph.clear(); }
+    void resize(int n) { graph.resize(n); }
+
     std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
     std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
-
-    int size() const { return graph.size(); }
 };
-#line 2 "Graph/level_ancestor.cpp"
+#line 4 "Graph/level_ancestor.hpp"
 
-#line 4 "Graph/level_ancestor.cpp"
-
-template <class Cost>
+template <class Cost = int>
 struct LevelAncestor {
     Graph<Cost> tree;
     std::vector<std::vector<int>> par;
     std::vector<int> depth;
+    std::vector<Cost> cdepth;
     int kmax;
 
-    void dfs(int v, int p = -1, int d = 0) {
+    void dfs(int v, int p = -1, int d = 0, Cost c = 0) {
         par[v][0] = p;
         depth[v] = d;
+        cdepth[v] = c;
 
         for (const auto& e : tree[v]) {
             if (e.dst == p) continue;
-            dfs(e.dst, v, d + 1);
+            dfs(e.dst, v, d + 1, c + e.cost);
         }
     }
 
     LevelAncestor(const Graph<Cost>& tree, int root)
-        : tree(tree), par(tree.size()), depth(tree.size(), -1) {
+        : tree(tree), par(tree.size()), depth(tree.size(), -1), cdepth(tree.size()) {
         kmax = 0;
         while ((1 << kmax) < (int)tree.size()) ++kmax;
         for (auto& v : par) v.resize(kmax + 1);
@@ -187,8 +190,18 @@ struct LevelAncestor {
         }
         return par[u][0];
     }
+
+    int dist(int u, int v) const {
+        int p = lca(u, v);
+        return depth[u] + depth[v] - depth[p] * 2;
+    }
+
+    Cost cdist(int u, int v) const {
+        int p = lca(u, v);
+        return cdepth[u] + cdepth[v] - cdepth[p] * 2;
+    }
 };
-#line 5 "Verify/level_ancestor.test.cpp"
+#line 4 "Verify/level_ancestor.test.cpp"
 
 #include <iostream>
 

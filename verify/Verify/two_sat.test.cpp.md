@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/two_sat.test.cpp
+# :x: Verify/two_sat.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/two_sat.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-20 22:04:26+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/two_sat">https://judge.yosupo.jp/problem/two_sat</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/strongly_connected_component.cpp.html">Graph/strongly_connected_component.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/two_sat.cpp.html">Graph/two_sat.cpp</a>
+* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :question: <a href="../../library/Graph/strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
+* :x: <a href="../../library/Graph/two_sat.hpp.html">Graph/two_sat.hpp</a>
 
 
 ## Code
@@ -51,11 +51,11 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-#include "../Graph/two_sat.cpp"
+#include "../Graph/two_sat.hpp"
 
 #include <iostream>
-#include <cmath>
 #include <string>
+#include <exception>
 
 int main() {
     std::cin.tie();
@@ -73,6 +73,7 @@ int main() {
     }
 
     auto assign = ts.exec();
+
     if (assign.empty()) {
         std::cout << "s UNSATISFIABLE" << std::endl;
 
@@ -98,9 +99,11 @@ int main() {
 #line 1 "Verify/two_sat.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-#line 2 "Graph/two_sat.cpp"
+#line 2 "Graph/two_sat.hpp"
 
-#line 2 "Graph/graph.cpp"
+#line 2 "Graph/strongly_connected_component.hpp"
+
+#line 2 "Graph/graph.hpp"
 
 #include <vector>
 
@@ -129,17 +132,16 @@ struct Graph {
         if (!direct) graph[dst].emplace_back(dst, src, cost);
     }
 
+    int size() const { return graph.size(); }
+    void clear() { graph.clear(); }
+    void resize(int n) { graph.resize(n); }
+
     std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
     std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
-
-    int size() const { return graph.size(); }
 };
-#line 2 "Graph/strongly_connected_component.cpp"
+#line 4 "Graph/strongly_connected_component.hpp"
 
-#line 4 "Graph/strongly_connected_component.cpp"
-
-#include <algorithm>
-#line 7 "Graph/strongly_connected_component.cpp"
+#line 6 "Graph/strongly_connected_component.hpp"
 
 template <class Cost = int>
 struct StronglyConnectedComponents {
@@ -190,7 +192,9 @@ struct StronglyConnectedComponents {
         for (const auto& e : rgraph[v]) rdfs(e.dst);
     }
 };
-#line 5 "Graph/two_sat.cpp"
+#line 4 "Graph/two_sat.hpp"
+
+#include <iostream>
 
 struct TwoSat {
     int vnum;
@@ -219,7 +223,8 @@ struct TwoSat {
                 tid = scc.id[enc(x, true)];
 
             if (fid == tid) {
-                return std::vector<bool>();
+                assign.clear();
+                break;
             } else {
                 assign[x] = (fid < tid);
             }
@@ -229,9 +234,9 @@ struct TwoSat {
 };
 #line 4 "Verify/two_sat.test.cpp"
 
-#include <iostream>
-#include <cmath>
+#line 6 "Verify/two_sat.test.cpp"
 #include <string>
+#include <exception>
 
 int main() {
     std::cin.tie();
@@ -249,6 +254,7 @@ int main() {
     }
 
     auto assign = ts.exec();
+
     if (assign.empty()) {
         std::cout << "s UNSATISFIABLE" << std::endl;
 

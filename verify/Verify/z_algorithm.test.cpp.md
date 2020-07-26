@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/z_algorithm.test.cpp
+# :x: Verify/z_algorithm.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/z_algorithm.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:42:37+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/zalgorithm">https://judge.yosupo.jp/problem/zalgorithm</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/String/z_algorithm.cpp.html">String/z_algorithm.cpp</a>
+* :x: <a href="../../library/String/z_algorithm.hpp.html">String/z_algorithm.hpp</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#include "../String/z_algorithm.cpp"
+#include "../String/z_algorithm.hpp"
 
 #include <iostream>
 #include <string>
@@ -77,7 +77,7 @@ int main() {
 #line 1 "Verify/z_algorithm.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
-#line 2 "String/z_algorithm.cpp"
+#line 2 "String/z_algorithm.hpp"
 
 #include <vector>
 

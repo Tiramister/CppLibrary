@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/number_theoretical_transform.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:42:37+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Convolution/number_theoretical_transform.cpp.html">Convolution/number_theoretical_transform.cpp</a>
-* :heavy_check_mark: <a href="../../library/Number/modint.cpp.html">Number/modint.cpp</a>
+* :heavy_check_mark: <a href="../../library/Convolution/number_theoretical_transform.hpp.html">Convolution/number_theoretical_transform.hpp</a>
+* :heavy_check_mark: <a href="../../library/Number/modint.hpp.html">Number/modint.hpp</a>
 
 
 ## Code
@@ -50,8 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../Convolution/number_theoretical_transform.cpp"
-
+#include "../Convolution/number_theoretical_transform.hpp"
 #include <iostream>
 
 constexpr int MOD = 998244353;
@@ -85,9 +84,9 @@ int main() {
 #line 1 "Verify/number_theoretical_transform.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#line 2 "Convolution/number_theoretical_transform.cpp"
+#line 2 "Convolution/number_theoretical_transform.hpp"
 
-#line 2 "Number/modint.cpp"
+#line 2 "Number/modint.hpp"
 
 #include <iostream>
 
@@ -140,15 +139,20 @@ struct ModInt {
     // compare
     bool operator==(const ModInt& b) const { return val == b.val; }
     bool operator!=(const ModInt& b) const { return val != b.val; }
+    bool operator<(const ModInt& b) const { return val < b.val; }
+    bool operator<=(const ModInt& b) const { return val <= b.val; }
+    bool operator>(const ModInt& b) const { return val > b.val; }
+    bool operator>=(const ModInt& b) const { return val >= b.val; }
 
     // I/O
     friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 
-// constexpr int MOD = 1e9 + 7;
+// constexpr int MOD = 1000000007;
+// constexpr int MOD = 998244353;
 // using mint = ModInt<MOD>;
-#line 4 "Convolution/number_theoretical_transform.cpp"
+#line 4 "Convolution/number_theoretical_transform.hpp"
 
 #include <vector>
 
@@ -248,9 +252,7 @@ struct NumberTheoreticalTransform {
 
 // constexpr int MOD = 998244353;
 // const NumberTheoreticalTransform<MOD, 3> NTT;
-#line 4 "Verify/number_theoretical_transform.test.cpp"
-
-#line 6 "Verify/number_theoretical_transform.test.cpp"
+#line 5 "Verify/number_theoretical_transform.test.cpp"
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;

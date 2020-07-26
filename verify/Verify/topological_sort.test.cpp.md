@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Verify/topological_sort.test.cpp
+# :x: Verify/topological_sort.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/topological_sort.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-20 22:04:26+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/topological_sort.cpp.html">Graph/topological_sort.cpp</a>
+* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :x: <a href="../../library/Graph/topological_sort.hpp.html">Graph/topological_sort.hpp</a>
 
 
 ## Code
@@ -50,7 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
 
-#include "../Graph/topological_sort.cpp"
+#include "../Graph/topological_sort.hpp"
 
 #include <iostream>
 
@@ -83,9 +83,9 @@ int main() {
 #line 1 "Verify/topological_sort.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
 
-#line 2 "Graph/topological_sort.cpp"
+#line 2 "Graph/topological_sort.hpp"
 
-#line 2 "Graph/graph.cpp"
+#line 2 "Graph/graph.hpp"
 
 #include <vector>
 
@@ -114,12 +114,14 @@ struct Graph {
         if (!direct) graph[dst].emplace_back(dst, src, cost);
     }
 
+    int size() const { return graph.size(); }
+    void clear() { graph.clear(); }
+    void resize(int n) { graph.resize(n); }
+
     std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
     std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
-
-    int size() const { return graph.size(); }
 };
-#line 4 "Graph/topological_sort.cpp"
+#line 4 "Graph/topological_sort.hpp"
 
 #include <algorithm>
 

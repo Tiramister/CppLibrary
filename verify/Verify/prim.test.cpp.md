@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/prim.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-20 22:04:26+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/graph.cpp.html">Graph/graph.cpp</a>
-* :heavy_check_mark: <a href="../../library/Graph/prim.cpp.html">Graph/prim.cpp</a>
-* :heavy_check_mark: <a href="../../library/Tools/heap_alias.cpp.html">Tools/heap_alias.cpp</a>
+* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/prim.hpp.html">Graph/prim.hpp</a>
+* :heavy_check_mark: <a href="../../library/Tools/heap_alias.hpp.html">Tools/heap_alias.hpp</a>
 
 
 ## Code
@@ -51,7 +51,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#include "../Graph/prim.cpp"
+#include "../Graph/prim.hpp"
 
 #include <iostream>
 
@@ -82,9 +82,9 @@ int main() {
 #line 1 "Verify/prim.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#line 2 "Graph/prim.cpp"
+#line 2 "Graph/prim.hpp"
 
-#line 2 "Tools/heap_alias.cpp"
+#line 2 "Tools/heap_alias.hpp"
 
 #include <queue>
 
@@ -92,7 +92,7 @@ template <class T>
 using MaxHeap = std::priority_queue<T>;
 template <class T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-#line 2 "Graph/graph.cpp"
+#line 2 "Graph/graph.hpp"
 
 #include <vector>
 
@@ -121,14 +121,16 @@ struct Graph {
         if (!direct) graph[dst].emplace_back(dst, src, cost);
     }
 
+    int size() const { return graph.size(); }
+    void clear() { graph.clear(); }
+    void resize(int n) { graph.resize(n); }
+
     std::vector<Edge<Cost>>& operator[](int v) { return graph[v]; }
     std::vector<Edge<Cost>> operator[](int v) const { return graph[v]; }
-
-    int size() const { return graph.size(); }
 };
-#line 5 "Graph/prim.cpp"
+#line 5 "Graph/prim.hpp"
 
-#line 7 "Graph/prim.cpp"
+#line 7 "Graph/prim.hpp"
 
 template <class Cost, class Cap = int>
 Cost prim(const Graph<Cost>& graph) {

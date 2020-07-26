@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/ford_fulkerson.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-02 23:42:37+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Graph/ford_fulkerson.cpp.html">Graph/ford_fulkerson.cpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/ford_fulkerson.hpp.html">Graph/ford_fulkerson.hpp</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A"
 
-#include "../Graph/ford_fulkerson.cpp"
+#include "../Graph/ford_fulkerson.hpp"
 
 #include <iostream>
 
@@ -80,7 +80,7 @@ int main() {
 #line 1 "Verify/ford_fulkerson.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A"
 
-#line 2 "Graph/ford_fulkerson.cpp"
+#line 2 "Graph/ford_fulkerson.hpp"
 
 #include <vector>
 #include <limits>

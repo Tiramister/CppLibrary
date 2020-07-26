@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_rsq.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-04-21 00:48:01+09:00
+    - Last commit date: 2020-07-26 22:31:04+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/DataStructure/segment_tree.cpp.html">DataStructure/segment_tree.cpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/segment_tree.hpp.html">DataStructure/segment_tree.hpp</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 ```cpp
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#include "../DataStructure/segment_tree.cpp"
+#include "../DataStructure/segment_tree.hpp"
 
 #include <iostream>
 
@@ -95,7 +95,7 @@ int main() {
 #line 1 "Verify/segment_tree_rsq.test.cpp"
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#line 2 "DataStructure/segment_tree.cpp"
+#line 2 "DataStructure/segment_tree.hpp"
 
 #include <vector>
 #include <functional>
@@ -109,14 +109,16 @@ struct SegmentTree {
     T unit;
     Merger merge;
 
-    explicit SegmentTree(int n, const T& unit, const Merger& merge)
+    SegmentTree() = default;
+
+    SegmentTree(int n, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
         dat.assign(length * 2, unit);
     }
 
     template <class Container>
-    explicit SegmentTree(const Container& elems, const T& unit, const Merger& merge)
+    SegmentTree(const Container& elems, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         int n = elems.size();
         while (length < n) length <<= 1;
@@ -144,7 +146,7 @@ struct SegmentTree {
         }
     }
 
-    T fold(int ql, int qr) {
+    T fold(int ql, int qr) const {
         ql = std::max(ql, 0);
         qr = std::min(qr, length);
         ql += length, qr += length;
@@ -165,8 +167,8 @@ struct SegmentTree {
         return merge(lacc, racc);
     }
 
-    T get(int idx) { return dat[idx + length]; }
-    T whole() { return dat[1]; }
+    T get(int idx) const { return dat[idx + length]; }
+    T fold_all() const { return dat[1]; }
 };
 #line 4 "Verify/segment_tree_rsq.test.cpp"
 
