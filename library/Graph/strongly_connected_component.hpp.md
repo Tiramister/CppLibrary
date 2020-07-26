@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: Graph/strongly_connected_component.hpp
+# :heavy_check_mark: Graph/strongly_connected_component.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,18 +38,18 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="graph.hpp.html">Graph/graph.hpp</a>
 
 
 ## Required by
 
-* :x: <a href="two_sat.hpp.html">Graph/two_sat.hpp</a>
+* :heavy_check_mark: <a href="two_sat.hpp.html">Graph/two_sat.hpp</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
-* :x: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
 
 
 ## Code

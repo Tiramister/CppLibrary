@@ -39,7 +39,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="bfs.hpp.html">Graph/bfs.hpp</a>
-* :question: <a href="graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="graph.hpp.html">Graph/graph.hpp</a>
 
 
 ## Verified with

@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/Graph/dijkstra.hpp.html">Graph/dijkstra.hpp</a>
-* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
 * :heavy_check_mark: <a href="../../library/Tools/heap_alias.hpp.html">Tools/heap_alias.hpp</a>
 
 

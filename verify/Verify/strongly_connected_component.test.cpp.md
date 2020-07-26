@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
-* :question: <a href="../../library/Graph/strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
 
 
 ## Code

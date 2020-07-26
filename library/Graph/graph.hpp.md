@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: Graph/graph.hpp
+# :heavy_check_mark: Graph/graph.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -47,9 +47,9 @@ layout: default
 * :heavy_check_mark: <a href="level_ancestor.hpp.html">Graph/level_ancestor.hpp</a>
 * :heavy_check_mark: <a href="lowlink.hpp.html">Graph/lowlink.hpp</a>
 * :heavy_check_mark: <a href="prim.hpp.html">Graph/prim.hpp</a>
-* :question: <a href="strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
-* :x: <a href="topological_sort.hpp.html">Graph/topological_sort.hpp</a>
-* :x: <a href="two_sat.hpp.html">Graph/two_sat.hpp</a>
+* :heavy_check_mark: <a href="strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
+* :heavy_check_mark: <a href="topological_sort.hpp.html">Graph/topological_sort.hpp</a>
+* :heavy_check_mark: <a href="two_sat.hpp.html">Graph/two_sat.hpp</a>
 
 
 ## Verified with
@@ -64,8 +64,8 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/Verify/level_ancestor.test.cpp.html">Verify/level_ancestor.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
-* :x: <a href="../../verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
-* :x: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
 
 
 ## Code

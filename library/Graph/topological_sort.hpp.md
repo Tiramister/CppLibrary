@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: Graph/topological_sort.hpp
+# :heavy_check_mark: Graph/topological_sort.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,12 +38,12 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="graph.hpp.html">Graph/graph.hpp</a>
 
 
 ## Verified with
 
-* :x: <a href="../../verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
 
 
 ## Code

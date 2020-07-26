@@ -41,7 +41,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../../library/Graph/bfs.hpp.html">Graph/bfs.hpp</a>
 * :heavy_check_mark: <a href="../../library/Graph/diameter.hpp.html">Graph/diameter.hpp</a>
-* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
 
 
 ## Code

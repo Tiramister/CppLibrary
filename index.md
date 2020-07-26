@@ -51,8 +51,7 @@ layout: default
 * :heavy_check_mark: <a href="library/DataStructure/sliding_window.hpp.html">DataStructure/sliding_window.hpp</a>
 * :warning: <a href="library/DataStructure/sliding_window_aggregation.hpp.html">DataStructure/sliding_window_aggregation.hpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/sparse_table.hpp.html">DataStructure/sparse_table.hpp</a>
-* :warning: <a href="library/DataStructure/treap.cpp.html">DataStructure/treap.cpp</a>
-* :question: <a href="library/DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
 
 
 <div id="d9c6333623e6357515fcbf17be806273"></div>
@@ -74,16 +73,16 @@ layout: default
 * :heavy_check_mark: <a href="library/Graph/dijkstra.hpp.html">Graph/dijkstra.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/dinic.hpp.html">Graph/dinic.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/ford_fulkerson.hpp.html">Graph/ford_fulkerson.hpp</a>
-* :question: <a href="library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="library/Graph/graph.hpp.html">Graph/graph.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/kruskal.hpp.html">Graph/kruskal.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/level_ancestor.hpp.html">Graph/level_ancestor.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/lowlink.hpp.html">Graph/lowlink.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/min_cost_flow.hpp.html">Graph/min_cost_flow.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/prim.hpp.html">Graph/prim.hpp</a>
 * :heavy_check_mark: <a href="library/Graph/primal_dual.hpp.html">Graph/primal_dual.hpp</a>
-* :question: <a href="library/Graph/strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
-* :x: <a href="library/Graph/topological_sort.hpp.html">Graph/topological_sort.hpp</a>
-* :x: <a href="library/Graph/two_sat.hpp.html">Graph/two_sat.hpp</a>
+* :heavy_check_mark: <a href="library/Graph/strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
+* :heavy_check_mark: <a href="library/Graph/topological_sort.hpp.html">Graph/topological_sort.hpp</a>
+* :heavy_check_mark: <a href="library/Graph/two_sat.hpp.html">Graph/two_sat.hpp</a>
 
 
 <div id="b2ee912b91d69b435159c7c3f6df7f5f"></div>
@@ -103,7 +102,7 @@ layout: default
 ### String
 
 * :heavy_check_mark: <a href="library/String/suffix_array.hpp.html">String/suffix_array.hpp</a>
-* :x: <a href="library/String/z_algorithm.hpp.html">String/z_algorithm.hpp</a>
+* :heavy_check_mark: <a href="library/String/z_algorithm.hpp.html">String/z_algorithm.hpp</a>
 
 
 <div id="8625e1de7be14c39b1d14dc03d822497"></div>
@@ -155,9 +154,9 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/sparse_table_rmq.test.cpp.html">Verify/sparse_table_rmq.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/suffix_array.test.cpp.html">Verify/suffix_array.test.cpp</a>
-* :x: <a href="verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
-* :x: <a href="verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
-* :x: <a href="verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
-* :x: <a href="verify/Verify/z_algorithm.test.cpp.html">Verify/z_algorithm.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/z_algorithm.test.cpp.html">Verify/z_algorithm.test.cpp</a>
 
 

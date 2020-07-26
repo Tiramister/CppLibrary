@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
 * :heavy_check_mark: <a href="../../library/Graph/prim.hpp.html">Graph/prim.hpp</a>
 * :heavy_check_mark: <a href="../../library/Tools/heap_alias.hpp.html">Tools/heap_alias.hpp</a>
 

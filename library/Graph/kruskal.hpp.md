@@ -38,8 +38,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
-* :question: <a href="graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
+* :heavy_check_mark: <a href="graph.hpp.html">Graph/graph.hpp</a>
 
 
 ## Verified with

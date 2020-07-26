@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../library/DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
-* :question: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
+* :heavy_check_mark: <a href="../../library/Graph/graph.hpp.html">Graph/graph.hpp</a>
 * :heavy_check_mark: <a href="../../library/Graph/kruskal.hpp.html">Graph/kruskal.hpp</a>
 
 
