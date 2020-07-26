@@ -46,7 +46,7 @@ layout: default
 ### DataStructure
 
 * :heavy_check_mark: <a href="library/DataStructure/lazy_segment_tree.hpp.html">DataStructure/lazy_segment_tree.hpp</a>
-* :warning: <a href="library/DataStructure/potentialized_union_find.hpp.html">DataStructure/potentialized_union_find.hpp</a>
+* :heavy_check_mark: <a href="library/DataStructure/potentialized_union_find.hpp.html">DataStructure/potentialized_union_find.hpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/segment_tree.hpp.html">DataStructure/segment_tree.hpp</a>
 * :heavy_check_mark: <a href="library/DataStructure/sliding_window.hpp.html">DataStructure/sliding_window.hpp</a>
 * :warning: <a href="library/DataStructure/sliding_window_aggregation.hpp.html">DataStructure/sliding_window_aggregation.hpp</a>
@@ -117,13 +117,6 @@ layout: default
 * :warning: <a href="library/Tools/vector_alias.hpp.html">Tools/vector_alias.hpp</a>
 
 
-<div id="5a750f86ef41f22f852c43351e3ff383"></div>
-
-### Verify
-
-* :warning: <a href="library/Verify/potentialized_union_find.cpp.html">Verify/potentialized_union_find.cpp</a>
-
-
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/Verify/articulation_points.test.cpp.html">Verify/articulation_points.test.cpp</a>
@@ -146,6 +139,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/potentialized_union_find.test.cpp.html">Verify/potentialized_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/primal_dual.test.cpp.html">Verify/primal_dual.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/segment_tree_affine.test.cpp.html">Verify/segment_tree_affine.test.cpp</a>

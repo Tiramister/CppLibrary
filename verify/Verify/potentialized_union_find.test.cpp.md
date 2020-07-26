@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Verify/potentialized_union_find.cpp
+# :heavy_check_mark: Verify/potentialized_union_find.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/potentialized_union_find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-26 22:31:04+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/potentialized_union_find.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-07-26 23:26:15+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../DataStructure/potentialized_union_find.hpp.html">DataStructure/potentialized_union_find.hpp</a>
+* :heavy_check_mark: <a href="../../library/DataStructure/potentialized_union_find.hpp.html">DataStructure/potentialized_union_find.hpp</a>
 
 
 ## Code
@@ -88,7 +88,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Verify/potentialized_union_find.cpp"
+#line 1 "Verify/potentialized_union_find.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B"
 
 #line 2 "DataStructure/potentialized_union_find.hpp"
@@ -146,7 +146,7 @@ struct PotentializedUnionFind {
     bool ispar(int v) { return v == find(v); }
     int size(int v) { return sz[find(v)]; }
 };
-#line 4 "Verify/potentialized_union_find.cpp"
+#line 4 "Verify/potentialized_union_find.test.cpp"
 
 #include <iostream>
 
