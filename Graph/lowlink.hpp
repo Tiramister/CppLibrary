@@ -1,6 +1,6 @@
 #pragma once
 
-#include "graph.cpp"
+#include "graph.hpp"
 
 template <class Cost = int>
 struct Lowlink {

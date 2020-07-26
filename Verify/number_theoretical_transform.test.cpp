@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
-#include "../Convolution/number_theoretical_transform.cpp"
-
+#include "../Convolution/number_theoretical_transform.hpp"
 #include <iostream>
 
 constexpr int MOD = 998244353;

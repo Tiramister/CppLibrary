@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_3_A"
 
-#include "../Graph/lowlink.cpp"
+#include "../Graph/lowlink.hpp"
 
 #include <iostream>
 #include <algorithm>

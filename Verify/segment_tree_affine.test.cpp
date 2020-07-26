@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
-#include "../DataStructure/segment_tree.cpp"
-#include "../Number/modint.cpp"
+#include "../DataStructure/segment_tree.hpp"
+#include "../Number/modint.hpp"
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;

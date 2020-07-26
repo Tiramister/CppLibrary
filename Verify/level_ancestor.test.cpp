@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
 
-#include "../Graph/graph.cpp"
-#include "../Graph/level_ancestor.cpp"
+#include "../Graph/level_ancestor.hpp"
 
 #include <iostream>
 

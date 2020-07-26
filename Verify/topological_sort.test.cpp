@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B"
 
-#include "../Graph/topological_sort.cpp"
+#include "../Graph/topological_sort.hpp"
 
 #include <iostream>
 

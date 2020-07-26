@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B"
 
-#include "../DataStructure/weighted_union_find.cpp"
+#include "../DataStructure/potentialized_union_find.hpp"
 
 #include <iostream>
 
@@ -10,7 +10,7 @@ int main() {
 
     int n, q;
     std::cin >> n >> q;
-    WeightedUnionFind<int> wuf(n);
+    PotentializedUnionFind<int> puf(n);
 
     while (q--) {
         int t, u, v;
@@ -19,13 +19,13 @@ int main() {
         if (t == 0) {
             int d;
             std::cin >> d;
-            wuf.unite(v, u, d);
+            puf.unite(v, u, d);
 
         } else {
-            if (!wuf.same(u, v)) {
+            if (!puf.same(u, v)) {
                 std::cout << "?\n";
             } else {
-                std::cout << wuf.diff(u, v) << "\n";
+                std::cout << puf.diff(u, v) << "\n";
             }
         }
     }

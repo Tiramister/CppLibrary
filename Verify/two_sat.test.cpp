@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
-#include "../Graph/two_sat.cpp"
+#include "../Graph/two_sat.hpp"
 
 #include <iostream>
-#include <cmath>
 #include <string>
+#include <exception>
 
 int main() {
     std::cin.tie();
@@ -22,6 +22,7 @@ int main() {
     }
 
     auto assign = ts.exec();
+
     if (assign.empty()) {
         std::cout << "s UNSATISFIABLE" << std::endl;
 

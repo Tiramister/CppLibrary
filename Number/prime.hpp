@@ -51,4 +51,16 @@ struct Prime {
         }
         return facts;
     }
+
+    template <class T>
+    std::vector<T> divisors(T n) const {
+        std::vector<T> ret;
+        for (T p = 1; p * p <= n; ++p) {
+            if (n % p != 0) continue;
+            ret.push_back(p);
+            if (n / p == p) continue;
+            ret.push_back(n / p);
+        }
+        return ret;
+    }
 };

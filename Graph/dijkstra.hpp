@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Tools/heap_alias.cpp"
-#include "graph.cpp"
+#include "../Tools/heap_alias.hpp"
+#include "graph.hpp"
 
 #include <tuple>
 #include <limits>

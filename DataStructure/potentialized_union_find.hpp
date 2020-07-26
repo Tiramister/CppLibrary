@@ -4,12 +4,12 @@
 #include <vector>
 
 template <class Dist>
-struct WeightedUnionFind {
+struct PotentializedUnionFind {
     std::vector<int> par, sz;
     std::vector<Dist> dist;  // A[par[v]] - A[v] = dist[v]
     int gnum;
 
-    explicit WeightedUnionFind(int n)
+    explicit PotentializedUnionFind(int n)
         : par(n), sz(n, 1), dist(n, 0), gnum(n) {
         std::iota(par.begin(), par.end(), 0);
     }

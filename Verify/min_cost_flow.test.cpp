@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B"
 
-#include "../Graph/min_cost_flow.cpp"
+#include "../Graph/min_cost_flow.hpp"
 
 #include <iostream>
 

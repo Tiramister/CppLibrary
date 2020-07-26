@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E"
 
-#include "../Number/extgcd.cpp"
+#include "../Number/extended_gcd.hpp"
 
 #include <iostream>
 #include <cassert>

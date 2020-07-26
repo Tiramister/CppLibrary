@@ -1,7 +1,7 @@
 #pragma once
 
-#include "graph.cpp"
-#include "../DataStructure/union_find.cpp"
+#include "graph.hpp"
+#include "../DataStructure/union_find.hpp"
 
 #include <algorithm>
 

@@ -1,4 +1,4 @@
-#include "../Tools/heap_alias.cpp"
+#include "../Tools/heap_alias.hpp"
 
 #include <vector>
 #include <tuple>

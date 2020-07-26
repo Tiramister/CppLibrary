@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
-#include "../Graph/bipartite_matching.cpp"
+#include "../Graph/bipartite_matching.hpp"
 
 #include <iostream>
 

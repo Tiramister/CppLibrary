@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G"
 
-#include "../DataStructure/lazy_segment_tree.cpp"
+#include "../DataStructure/lazy_segment_tree.hpp"
 
 #include <iostream>
 

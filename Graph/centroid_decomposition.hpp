@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Graph/graph.cpp"
+#include "../Graph/graph.hpp"
 
 template <class Cost = int>
 struct Centroid {

@@ -114,5 +114,5 @@ struct LazySegmentTree {
     T fold(int ql, int qr) { return fold(ql, qr, 1, 0, length); }
 
     T get(int idx) { return fold(idx, idx + 1); }
-    T whole() { return fold(0, length); }
+    T fold_all() { return fold(0, length); }
 };

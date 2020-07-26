@@ -1,7 +1,7 @@
 #pragma once
 
-#include "graph.cpp"
-#include "bfs.cpp"
+#include "graph.hpp"
+#include "bfs.hpp"
 
 #include <algorithm>
 

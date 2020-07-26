@@ -1,6 +1,6 @@
 #pragma once
 
-#include "graph.cpp"
+#include "graph.hpp"
 
 #include <vector>
 #include <limits>

@@ -1,26 +1,28 @@
 #pragma once
 
-#include "graph.cpp"
+#include "graph.hpp"
 
-template <class Cost>
+template <class Cost = int>
 struct LevelAncestor {
     Graph<Cost> tree;
     std::vector<std::vector<int>> par;
     std::vector<int> depth;
+    std::vector<Cost> cdepth;
     int kmax;
 
-    void dfs(int v, int p = -1, int d = 0) {
+    void dfs(int v, int p = -1, int d = 0, Cost c = 0) {
         par[v][0] = p;
         depth[v] = d;
+        cdepth[v] = c;
 
         for (const auto& e : tree[v]) {
             if (e.dst == p) continue;
-            dfs(e.dst, v, d + 1);
+            dfs(e.dst, v, d + 1, c + e.cost);
         }
     }
 
     LevelAncestor(const Graph<Cost>& tree, int root)
-        : tree(tree), par(tree.size()), depth(tree.size(), -1) {
+        : tree(tree), par(tree.size()), depth(tree.size(), -1), cdepth(tree.size()) {
         kmax = 0;
         while ((1 << kmax) < (int)tree.size()) ++kmax;
         for (auto& v : par) v.resize(kmax + 1);
@@ -61,5 +63,15 @@ struct LevelAncestor {
             }
         }
         return par[u][0];
+    }
+
+    int dist(int u, int v) const {
+        int p = lca(u, v);
+        return depth[u] + depth[v] - depth[p] * 2;
+    }
+
+    Cost cdist(int u, int v) const {
+        int p = lca(u, v);
+        return cdepth[u] + cdepth[v] - cdepth[p] * 2;
     }
 };

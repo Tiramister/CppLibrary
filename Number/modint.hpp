@@ -51,11 +51,16 @@ struct ModInt {
     // compare
     bool operator==(const ModInt& b) const { return val == b.val; }
     bool operator!=(const ModInt& b) const { return val != b.val; }
+    bool operator<(const ModInt& b) const { return val < b.val; }
+    bool operator<=(const ModInt& b) const { return val <= b.val; }
+    bool operator>(const ModInt& b) const { return val > b.val; }
+    bool operator>=(const ModInt& b) const { return val >= b.val; }
 
     // I/O
     friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 
-// constexpr int MOD = 1e9 + 7;
+// constexpr int MOD = 1000000007;
+// constexpr int MOD = 998244353;
 // using mint = ModInt<MOD>;

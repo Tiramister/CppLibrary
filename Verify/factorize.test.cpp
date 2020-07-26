@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_A"
 
-#include "../Number/prime.cpp"
+#include "../Number/prime.hpp"
 
 #include <iostream>
 

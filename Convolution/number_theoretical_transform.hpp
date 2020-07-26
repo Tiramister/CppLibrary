@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Number/modint.cpp"
+#include "../Number/modint.hpp"
 
 #include <vector>
 

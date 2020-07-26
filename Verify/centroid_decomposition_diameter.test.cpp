@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
-#include "../Graph/centroid_decomposition.cpp"
+#include "../Graph/centroid_decomposition.hpp"
 
 #include <iostream>
 #include <algorithm>

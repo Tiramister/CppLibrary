@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A"
 
-#include "../Graph/ford_fulkerson.cpp"
+#include "../Graph/ford_fulkerson.hpp"
 
 #include <iostream>
 

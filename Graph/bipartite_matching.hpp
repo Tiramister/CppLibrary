@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dinic.cpp"
+#include "dinic.hpp"
 
 struct BipartiteMatching {
     MaxFlow<int, true> mf;

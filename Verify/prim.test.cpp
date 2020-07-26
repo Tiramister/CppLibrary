@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A"
 
-#include "../Graph/prim.cpp"
+#include "../Graph/prim.hpp"
 
 #include <iostream>
 

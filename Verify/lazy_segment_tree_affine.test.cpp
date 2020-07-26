@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
-#include "../DataStructure/lazy_segment_tree.cpp"
-#include "../Number/modint.cpp"
+#include "../DataStructure/lazy_segment_tree.hpp"
+#include "../Number/modint.hpp"
 
 constexpr int MOD = 998244353;
 using mint = ModInt<MOD>;

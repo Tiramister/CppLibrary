@@ -1,8 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_A"
 
-#include "../Graph/graph.cpp"
-#include "../Graph/bfs.cpp"
-#include "../Graph/diameter.cpp"
+#include "../Graph/graph.hpp"
+#include "../Graph/bfs.hpp"
+#include "../Graph/diameter.hpp"
 
 #include <iostream>
 

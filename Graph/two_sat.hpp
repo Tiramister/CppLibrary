@@ -1,7 +1,8 @@
 #pragma once
 
-#include "graph.cpp"
-#include "strongly_connected_component.cpp"
+#include "strongly_connected_component.hpp"
+
+#include <iostream>
 
 struct TwoSat {
     int vnum;
@@ -30,7 +31,8 @@ struct TwoSat {
                 tid = scc.id[enc(x, true)];
 
             if (fid == tid) {
-                return std::vector<bool>();
+                assign.clear();
+                break;
             } else {
                 assign[x] = (fid < tid);
             }

@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_3_D"
 
-#include "../DataStructure/sliding_window.cpp"
+#include "../DataStructure/sliding_window.hpp"
 
 #include <iostream>
 

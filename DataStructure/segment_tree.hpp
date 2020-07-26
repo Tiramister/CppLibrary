@@ -12,14 +12,16 @@ struct SegmentTree {
     T unit;
     Merger merge;
 
-    explicit SegmentTree(int n, const T& unit, const Merger& merge)
+    SegmentTree() = default;
+
+    SegmentTree(int n, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         while (length < n) length <<= 1;
         dat.assign(length * 2, unit);
     }
 
     template <class Container>
-    explicit SegmentTree(const Container& elems, const T& unit, const Merger& merge)
+    SegmentTree(const Container& elems, const T& unit, const Merger& merge)
         : length(1), unit(unit), merge(merge) {
         int n = elems.size();
         while (length < n) length <<= 1;
@@ -47,7 +49,7 @@ struct SegmentTree {
         }
     }
 
-    T fold(int ql, int qr) {
+    T fold(int ql, int qr) const {
         ql = std::max(ql, 0);
         qr = std::min(qr, length);
         ql += length, qr += length;
@@ -68,6 +70,6 @@ struct SegmentTree {
         return merge(lacc, racc);
     }
 
-    T get(int idx) { return dat[idx + length]; }
-    T whole() { return dat[1]; }
+    T get(int idx) const { return dat[idx + length]; }
+    T fold_all() const { return dat[1]; }
 };
