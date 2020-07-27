@@ -3,27 +3,20 @@
 #include <vector>
 #include <string>
 
-std::vector<std::pair<char, int>> runlength(const std::string& s) {
-    std::vector<std::pair<char, int>> res;
-    for (char c : s) {
-        if (res.empty() || c != res.back().first) {
-            res.emplace_back(c, 1);
-        } else {
-            ++res.back().second;
-        }
-    }
-    return res;
-}
+template <class It>
+std::vector<std::pair<typename It::value_type, int>> runlength(
+    It begin, It end) {
+    using T = typename It::value_type;
 
-template <class T>
-std::vector<std::pair<T, int>> runlength(const std::vector<T>& s) {
     std::vector<std::pair<T, int>> res;
-    for (char c : s) {
+    while (begin != end) {
+        const T& c = *(begin++);
         if (res.empty() || c != res.back().first) {
             res.emplace_back(c, 1);
         } else {
             ++res.back().second;
         }
     }
+
     return res;
 }
