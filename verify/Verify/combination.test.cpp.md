@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/combination.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-26 22:31:04+09:00
+    - Last commit date: 2020-08-01 08:36:58+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C">https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C</a>
@@ -67,7 +67,7 @@ int main() {
 
     mint ans = 0;
     for (int i = 0; i <= k; ++i) {
-        ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
+        ans += mint(-1).pow(k - i) * C.binom(k, i) * mint(i).pow(n);
     }
     std::cout << ans << "\n";
 
@@ -171,12 +171,12 @@ struct Combination {
         }
     }
 
-    T fact(int n) const { return f[n]; }
-    T invfact(int n) const { return invf[n]; }
+    T fact(int n) const { return n < 0 ? T(0) : f[n]; }
+    T invfact(int n) const { return n < 0 ? T(0) : invf[n]; }
     T perm(int a, int b) const {
         return a < b || b < 0 ? T(0) : f[a] * invf[a - b];
     }
-    T comb(int a, int b) const {
+    T binom(int a, int b) const {
         return a < b || b < 0 ? T(0) : f[a] * invf[a - b] * invf[b];
     }
 };
@@ -196,7 +196,7 @@ int main() {
 
     mint ans = 0;
     for (int i = 0; i <= k; ++i) {
-        ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
+        ans += mint(-1).pow(k - i) * C.binom(k, i) * mint(i).pow(n);
     }
     std::cout << ans << "\n";
 
