@@ -17,7 +17,7 @@ int main() {
 
     mint ans = 0;
     for (int i = 0; i <= k; ++i) {
-        ans += mint(-1).pow(k - i) * C.comb(k, i) * mint(i).pow(n);
+        ans += mint(-1).pow(k - i) * C.binom(k, i) * mint(i).pow(n);
     }
     std::cout << ans << "\n";
 
