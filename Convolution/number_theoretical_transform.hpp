@@ -11,7 +11,6 @@ struct NumberTheoreticalTransform {
 
     // the 2^k-th root of 1
     std::vector<mint> zetas;
-    mint unit_i;
 
     explicit NumberTheoreticalTransform() {
         int exp = MOD - 1;
@@ -21,7 +20,6 @@ struct NumberTheoreticalTransform {
             if (exp & 1) break;
             exp /= 2;
         }
-        unit_i = zetas[2];
     }
 
     // ceil(log_2 n)
@@ -31,8 +29,8 @@ struct NumberTheoreticalTransform {
         return k;
     }
 
-    // 4-radix cooley-tukey algorithm without bit reverse
-    // the size of f must be a power of 4
+    // 2-radix cooley-tukey algorithm without bit reverse
+    // the size of f must be a power of 2
     void ntt(mints& f) const {
         int n = f.size();
 

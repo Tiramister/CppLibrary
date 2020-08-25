@@ -27,7 +27,6 @@ struct FastFourierTransform {
     using cplxs = std::vector<cplx>;
 
     static constexpr Real PI = 3.14159265358979323846L;
-    const cplx unit_i{0, 1};
 
     cplxs zetas;
 
