@@ -57,7 +57,12 @@ struct ModInt {
     bool operator>=(const ModInt& b) const { return val >= b.val; }
 
     // I/O
-    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
+    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept {
+        lint v;
+        is >> v;
+        x = v;
+        return is;
+    }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 
