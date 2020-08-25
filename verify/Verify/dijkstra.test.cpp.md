@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/dijkstra.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-26 22:31:04+09:00
+    - Last commit date: 2020-08-25 16:57:26+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A</a>
@@ -55,8 +55,6 @@ layout: default
 
 #include <iostream>
 
-constexpr int INF = std::numeric_limits<int>::max();
-
 int main() {
     std::cin.tie();
     std::ios::sync_with_stdio(false);
@@ -73,7 +71,7 @@ int main() {
 
     auto dist = dijkstra(graph, s);
     for (auto d : dist) {
-        if (d == INF) {
+        if (d == -1) {
             std::cout << "INF";
         } else {
             std::cout << d;
@@ -142,13 +140,10 @@ struct Graph {
 #line 5 "Graph/dijkstra.hpp"
 
 #include <tuple>
-#include <limits>
 
 template <class Cost>
 std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
-
-    std::vector<Cost> dist(graph.size(), INF);
+    std::vector<Cost> dist(graph.size(), -1);
     dist[s] = 0;
     MinHeap<std::pair<Cost, int>> que;
     que.emplace(0, s);
@@ -161,7 +156,8 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
         if (d > dist[v]) continue;
 
         for (const auto& e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
+            if (dist[e.dst] != -1 &&
+                dist[e.dst] <= dist[v] + e.cost) continue;
             dist[e.dst] = dist[v] + e.cost;
             que.emplace(dist[e.dst], e.dst);
         }
@@ -172,8 +168,6 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
 #line 4 "Verify/dijkstra.test.cpp"
 
 #include <iostream>
-
-constexpr int INF = std::numeric_limits<int>::max();
 
 int main() {
     std::cin.tie();
@@ -191,7 +185,7 @@ int main() {
 
     auto dist = dijkstra(graph, s);
     for (auto d : dist) {
-        if (d == INF) {
+        if (d == -1) {
             std::cout << "INF";
         } else {
             std::cout << d;

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Verify/segment_tree_affine.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-26 22:31:04+09:00
+    - Last commit date: 2020-08-25 16:49:54+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
@@ -244,7 +244,12 @@ struct ModInt {
     bool operator>=(const ModInt& b) const { return val >= b.val; }
 
     // I/O
-    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept { return is >> x.val; }
+    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept {
+        lint v;
+        is >> v;
+        x = v;
+        return is;
+    }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
 };
 

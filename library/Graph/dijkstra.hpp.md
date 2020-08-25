@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4cdbd2bafa8193091ba09509cedf94fd">Graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Graph/dijkstra.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-26 22:31:04+09:00
+    - Last commit date: 2020-08-25 16:57:26+09:00
 
 
 
@@ -58,13 +58,10 @@ layout: default
 #include "graph.hpp"
 
 #include <tuple>
-#include <limits>
 
 template <class Cost>
 std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
-
-    std::vector<Cost> dist(graph.size(), INF);
+    std::vector<Cost> dist(graph.size(), -1);
     dist[s] = 0;
     MinHeap<std::pair<Cost, int>> que;
     que.emplace(0, s);
@@ -77,7 +74,8 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
         if (d > dist[v]) continue;
 
         for (const auto& e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
+            if (dist[e.dst] != -1 &&
+                dist[e.dst] <= dist[v] + e.cost) continue;
             dist[e.dst] = dist[v] + e.cost;
             que.emplace(dist[e.dst], e.dst);
         }
@@ -141,13 +139,10 @@ struct Graph {
 #line 5 "Graph/dijkstra.hpp"
 
 #include <tuple>
-#include <limits>
 
 template <class Cost>
 std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
-    constexpr Cost INF = std::numeric_limits<Cost>::max();
-
-    std::vector<Cost> dist(graph.size(), INF);
+    std::vector<Cost> dist(graph.size(), -1);
     dist[s] = 0;
     MinHeap<std::pair<Cost, int>> que;
     que.emplace(0, s);
@@ -160,7 +155,8 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
         if (d > dist[v]) continue;
 
         for (const auto& e : graph[v]) {
-            if (dist[e.dst] <= dist[v] + e.cost) continue;
+            if (dist[e.dst] != -1 &&
+                dist[e.dst] <= dist[v] + e.cost) continue;
             dist[e.dst] = dist[v] + e.cost;
             que.emplace(dist[e.dst], e.dst);
         }

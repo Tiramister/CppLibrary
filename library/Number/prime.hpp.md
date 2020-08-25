@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2ee912b91d69b435159c7c3f6df7f5f">Number</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Number/prime.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-07-26 22:31:04+09:00
+    - Last commit date: 2020-08-25 16:54:35+09:00
 
 
 
@@ -101,7 +101,7 @@ struct Prime {
     }
 
     template <class T>
-    std::vector<T> divisors(T n) const {
+    static std::vector<T> divisors(T n) {
         std::vector<T> ret;
         for (T p = 1; p * p <= n; ++p) {
             if (n % p != 0) continue;
@@ -174,7 +174,7 @@ struct Prime {
     }
 
     template <class T>
-    std::vector<T> divisors(T n) const {
+    static std::vector<T> divisors(T n) {
         std::vector<T> ret;
         for (T p = 1; p * p <= n; ++p) {
             if (n % p != 0) continue;
