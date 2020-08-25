@@ -18,7 +18,7 @@ int main() {
     for (auto& x : xs) std::cin >> x;
     for (auto& y : ys) std::cin >> y;
 
-    auto zs = NTT.ntt(xs, ys);
+    auto zs = NTT.convolute(xs, ys);
     for (auto z : zs) std::cout << z << ' ';
     std::cout << "\n";
 
