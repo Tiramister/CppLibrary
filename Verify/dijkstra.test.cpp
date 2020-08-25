@@ -4,8 +4,6 @@
 
 #include <iostream>
 
-constexpr int INF = std::numeric_limits<int>::max();
-
 int main() {
     std::cin.tie();
     std::ios::sync_with_stdio(false);
@@ -22,7 +20,7 @@ int main() {
 
     auto dist = dijkstra(graph, s);
     for (auto d : dist) {
-        if (d == INF) {
+        if (d == -1) {
             std::cout << "INF";
         } else {
             std::cout << d;
