@@ -53,7 +53,7 @@ struct Prime {
     }
 
     template <class T>
-    std::vector<T> divisors(T n) const {
+    static std::vector<T> divisors(T n) {
         std::vector<T> ret;
         for (T p = 1; p * p <= n; ++p) {
             if (n % p != 0) continue;
