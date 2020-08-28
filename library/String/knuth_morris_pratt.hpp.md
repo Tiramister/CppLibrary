@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: String/morris_pratt.hpp
+# :warning: String/knuth_morris_pratt.hpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#27118326006d3829667a400ad23d5d98">String</a>
-* <a href="{{ site.github.repository_url }}/blob/master/String/morris_pratt.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-28 19:11:16+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/String/knuth_morris_pratt.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-08-28 20:13:15+09:00
 
 
 
 
-## Verified with
+## Required by
 
-* :heavy_check_mark: <a href="../../verify/Verify/morris_pratt.test.cpp.html">Verify/morris_pratt.test.cpp</a>
+* :warning: <a href="../Verify/knuth_morris_pratt.cpp.html">Verify/knuth_morris_pratt.cpp</a>
 
 
 ## Code
@@ -60,6 +60,8 @@ struct PatternMatching {
 
         int fpos = -1;
         for (int pos = 0; pos < (int)pat.size(); ++pos) {
+            if (fpos >= 0 && pat[pos] == pat[fpos]) fail[pos] = fail[fpos];
+
             while (fpos >= 0 && pat[pos] != pat[fpos]) {
                 fpos = fail[fpos];
             }
@@ -89,7 +91,7 @@ struct PatternMatching {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "String/morris_pratt.hpp"
+#line 2 "String/knuth_morris_pratt.hpp"
 
 #include <vector>
 
@@ -103,6 +105,8 @@ struct PatternMatching {
 
         int fpos = -1;
         for (int pos = 0; pos < (int)pat.size(); ++pos) {
+            if (fpos >= 0 && pat[pos] == pat[fpos]) fail[pos] = fail[fpos];
+
             while (fpos >= 0 && pat[pos] != pat[fpos]) {
                 fpos = fail[fpos];
             }

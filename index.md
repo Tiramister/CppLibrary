@@ -105,7 +105,7 @@ layout: default
 ### String
 
 * :warning: <a href="library/String/aho_corasick.hpp.html">String/aho_corasick.hpp</a>
-* :heavy_check_mark: <a href="library/String/morris_pratt.hpp.html">String/morris_pratt.hpp</a>
+* :warning: <a href="library/String/knuth_morris_pratt.hpp.html">String/knuth_morris_pratt.hpp</a>
 * :heavy_check_mark: <a href="library/String/suffix_array.hpp.html">String/suffix_array.hpp</a>
 * :warning: <a href="library/String/trie.hpp.html">String/trie.hpp</a>
 * :heavy_check_mark: <a href="library/String/z_algorithm.hpp.html">String/z_algorithm.hpp</a>
@@ -121,6 +121,13 @@ layout: default
 * :warning: <a href="library/Tools/run_length.hpp.html">Tools/run_length.hpp</a>
 * :warning: <a href="library/Tools/timer.hpp.html">Tools/timer.hpp</a>
 * :warning: <a href="library/Tools/vector_alias.hpp.html">Tools/vector_alias.hpp</a>
+
+
+<div id="5a750f86ef41f22f852c43351e3ff383"></div>
+
+### Verify
+
+* :warning: <a href="library/Verify/knuth_morris_pratt.cpp.html">Verify/knuth_morris_pratt.cpp</a>
 
 
 ## Verify Files
@@ -144,7 +151,6 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/level_ancestor.test.cpp.html">Verify/level_ancestor.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/morris_pratt.test.cpp.html">Verify/morris_pratt.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/potentialized_union_find.test.cpp.html">Verify/potentialized_union_find.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
