@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: String/knuth_morris_pratt.hpp
+# :heavy_check_mark: String/knuth_morris_pratt.hpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -36,9 +36,9 @@ layout: default
 
 
 
-## Required by
+## Verified with
 
-* :warning: <a href="../Verify/knuth_morris_pratt.cpp.html">Verify/knuth_morris_pratt.cpp</a>
+* :heavy_check_mark: <a href="../../verify/Verify/knuth_morris_pratt.test.cpp.html">Verify/knuth_morris_pratt.test.cpp</a>
 
 
 ## Code

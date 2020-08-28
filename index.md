@@ -105,7 +105,7 @@ layout: default
 ### String
 
 * :warning: <a href="library/String/aho_corasick.hpp.html">String/aho_corasick.hpp</a>
-* :warning: <a href="library/String/knuth_morris_pratt.hpp.html">String/knuth_morris_pratt.hpp</a>
+* :heavy_check_mark: <a href="library/String/knuth_morris_pratt.hpp.html">String/knuth_morris_pratt.hpp</a>
 * :heavy_check_mark: <a href="library/String/suffix_array.hpp.html">String/suffix_array.hpp</a>
 * :warning: <a href="library/String/trie.hpp.html">String/trie.hpp</a>
 * :heavy_check_mark: <a href="library/String/z_algorithm.hpp.html">String/z_algorithm.hpp</a>
@@ -123,13 +123,6 @@ layout: default
 * :warning: <a href="library/Tools/vector_alias.hpp.html">Tools/vector_alias.hpp</a>
 
 
-<div id="5a750f86ef41f22f852c43351e3ff383"></div>
-
-### Verify
-
-* :warning: <a href="library/Verify/knuth_morris_pratt.cpp.html">Verify/knuth_morris_pratt.cpp</a>
-
-
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/Verify/articulation_points.test.cpp.html">Verify/articulation_points.test.cpp</a>
@@ -145,6 +138,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/Verify/factorize.test.cpp.html">Verify/factorize.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/ford_fulkerson.test.cpp.html">Verify/ford_fulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/gcd.test.cpp.html">Verify/gcd.test.cpp</a>
+* :heavy_check_mark: <a href="verify/Verify/knuth_morris_pratt.test.cpp.html">Verify/knuth_morris_pratt.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
 * :heavy_check_mark: <a href="verify/Verify/lazy_segment_tree_affine.test.cpp.html">Verify/lazy_segment_tree_affine.test.cpp</a>

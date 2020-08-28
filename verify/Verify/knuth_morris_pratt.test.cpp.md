@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: Verify/knuth_morris_pratt.cpp
+# :heavy_check_mark: Verify/knuth_morris_pratt.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5a750f86ef41f22f852c43351e3ff383">Verify</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Verify/knuth_morris_pratt.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-28 20:13:15+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/Verify/knuth_morris_pratt.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-08-28 20:17:14+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_B">https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_B</a>
@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../String/knuth_morris_pratt.hpp.html">String/knuth_morris_pratt.hpp</a>
+* :heavy_check_mark: <a href="../../library/String/knuth_morris_pratt.hpp.html">String/knuth_morris_pratt.hpp</a>
 
 
 ## Code
@@ -73,7 +73,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "Verify/knuth_morris_pratt.cpp"
+#line 1 "Verify/knuth_morris_pratt.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_B"
 
 #line 2 "String/knuth_morris_pratt.hpp"
@@ -114,7 +114,7 @@ struct PatternMatching {
         return ret;
     }
 };
-#line 4 "Verify/knuth_morris_pratt.cpp"
+#line 4 "Verify/knuth_morris_pratt.test.cpp"
 
 #include <iostream>
 #include <string>
