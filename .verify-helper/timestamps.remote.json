@@ -12,6 +12,7 @@
 "Verify/factorize.test.cpp": "2020-08-25 16:54:35 +0900",
 "Verify/ford_fulkerson.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/gcd.test.cpp": "2020-07-26 22:31:04 +0900",
+"Verify/knuth_morris_pratt.test.cpp": "2020-08-28 20:17:14 +0900",
 "Verify/kruskal.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/lazy_segment_tree_add_sum.test.cpp": "2020-07-26 22:31:04 +0900",
 "Verify/lazy_segment_tree_affine.test.cpp": "2020-08-25 16:49:54 +0900",
