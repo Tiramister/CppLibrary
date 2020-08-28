@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_B"
 
-#include "../String/morris_pratt.hpp"
+#include "../String/knuth_morris_pratt.hpp"
 
 #include <iostream>
 #include <string>

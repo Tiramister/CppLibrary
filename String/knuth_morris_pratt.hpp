@@ -12,6 +12,8 @@ struct PatternMatching {
 
         int fpos = -1;
         for (int pos = 0; pos < (int)pat.size(); ++pos) {
+            if (fpos >= 0 && pat[pos] == pat[fpos]) fail[pos] = fail[fpos];
+
             while (fpos >= 0 && pat[pos] != pat[fpos]) {
                 fpos = fail[fpos];
             }
