@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#fa0f0ae43fdca46d1d68255409ec0b89">Convolution</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Convolution/fast_fourier_transform.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-25 16:51:10+09:00
+    - Last commit date: 2020-08-25 17:07:38+09:00
 
 
 
@@ -70,7 +70,6 @@ struct FastFourierTransform {
     using cplxs = std::vector<cplx>;
 
     static constexpr Real PI = 3.14159265358979323846L;
-    const cplx unit_i{0, 1};
 
     cplxs zetas;
 
@@ -223,7 +222,6 @@ struct FastFourierTransform {
     using cplxs = std::vector<cplx>;
 
     static constexpr Real PI = 3.14159265358979323846L;
-    const cplx unit_i{0, 1};
 
     cplxs zetas;
 

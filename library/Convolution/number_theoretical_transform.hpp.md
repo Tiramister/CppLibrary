@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#fa0f0ae43fdca46d1d68255409ec0b89">Convolution</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Convolution/number_theoretical_transform.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-08-25 16:50:53+09:00
+    - Last commit date: 2020-08-25 17:07:38+09:00
 
 
 
@@ -64,7 +64,6 @@ struct NumberTheoreticalTransform {
 
     // the 2^k-th root of 1
     std::vector<mint> zetas;
-    mint unit_i;
 
     explicit NumberTheoreticalTransform() {
         int exp = MOD - 1;
@@ -74,7 +73,6 @@ struct NumberTheoreticalTransform {
             if (exp & 1) break;
             exp /= 2;
         }
-        unit_i = zetas[2];
     }
 
     // ceil(log_2 n)
@@ -84,8 +82,8 @@ struct NumberTheoreticalTransform {
         return k;
     }
 
-    // 4-radix cooley-tukey algorithm without bit reverse
-    // the size of f must be a power of 4
+    // 2-radix cooley-tukey algorithm without bit reverse
+    // the size of f must be a power of 2
     void ntt(mints& f) const {
         int n = f.size();
 
@@ -251,7 +249,6 @@ struct NumberTheoreticalTransform {
 
     // the 2^k-th root of 1
     std::vector<mint> zetas;
-    mint unit_i;
 
     explicit NumberTheoreticalTransform() {
         int exp = MOD - 1;
@@ -261,7 +258,6 @@ struct NumberTheoreticalTransform {
             if (exp & 1) break;
             exp /= 2;
         }
-        unit_i = zetas[2];
     }
 
     // ceil(log_2 n)
@@ -271,8 +267,8 @@ struct NumberTheoreticalTransform {
         return k;
     }
 
-    // 4-radix cooley-tukey algorithm without bit reverse
-    // the size of f must be a power of 4
+    // 2-radix cooley-tukey algorithm without bit reverse
+    // the size of f must be a power of 2
     void ntt(mints& f) const {
         int n = f.size();
 
