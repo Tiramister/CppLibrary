@@ -1,163 +1,247 @@
 ---
-layout: default
+data:
+  libraryCategories:
+  - name: Convolution
+    pages:
+    - icon: ':warning:'
+      path: Convolution/fast_fourier_transform.hpp
+      title: Convolution/fast_fourier_transform.hpp
+    - icon: ':heavy_check_mark:'
+      path: Convolution/number_theoretical_transform.hpp
+      title: Convolution/number_theoretical_transform.hpp
+  - name: DataStructure
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/lazy_segment_tree.hpp
+      title: DataStructure/lazy_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/potentialized_union_find.hpp
+      title: DataStructure/potentialized_union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/segment_tree.hpp
+      title: DataStructure/segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/sliding_window.hpp
+      title: DataStructure/sliding_window.hpp
+    - icon: ':warning:'
+      path: DataStructure/sliding_window_aggregation.hpp
+      title: DataStructure/sliding_window_aggregation.hpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/sparse_table.hpp
+      title: DataStructure/sparse_table.hpp
+    - icon: ':heavy_check_mark:'
+      path: DataStructure/union_find.hpp
+      title: DataStructure/union_find.hpp
+  - name: Geometry
+    pages:
+    - icon: ':warning:'
+      path: Geometry/type.cpp
+      title: Geometry/type.cpp
+  - name: Graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Graph/bfs.hpp
+      title: Graph/bfs.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/bipartite_matching.hpp
+      title: Graph/bipartite_matching.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/centroid_decomposition.hpp
+      title: Graph/centroid_decomposition.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/diameter.hpp
+      title: Graph/diameter.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/dijkstra.hpp
+      title: Graph/dijkstra.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/dinic.hpp
+      title: Graph/dinic.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/ford_fulkerson.hpp
+      title: Graph/ford_fulkerson.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/graph.hpp
+      title: Graph/graph.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/level_ancestor.hpp
+      title: Graph/level_ancestor.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/lowlink.hpp
+      title: Graph/lowlink.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/min_cost_flow.hpp
+      title: Graph/min_cost_flow.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/primal_dual.hpp
+      title: Graph/primal_dual.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/strongly_connected_component.hpp
+      title: Graph/strongly_connected_component.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/topological_sort.hpp
+      title: Graph/topological_sort.hpp
+    - icon: ':heavy_check_mark:'
+      path: Graph/two_sat.hpp
+      title: Graph/two_sat.hpp
+  - name: Number
+    pages:
+    - icon: ':warning:'
+      path: Number/boolean_elimination.hpp
+      title: Number/boolean_elimination.hpp
+    - icon: ':heavy_check_mark:'
+      path: Number/combination.hpp
+      title: Number/combination.hpp
+    - icon: ':heavy_check_mark:'
+      path: Number/extended_gcd.hpp
+      title: Number/extended_gcd.hpp
+    - icon: ':warning:'
+      path: Number/fixed_linear_algebra.hpp
+      title: Number/fixed_linear_algebra.hpp
+    - icon: ':heavy_check_mark:'
+      path: Number/gcd.hpp
+      title: Number/gcd.hpp
+    - icon: ':warning:'
+      path: Number/linear_algebra.hpp
+      title: Number/linear_algebra.hpp
+    - icon: ':heavy_check_mark:'
+      path: Number/modint.hpp
+      title: Number/modint.hpp
+    - icon: ':heavy_check_mark:'
+      path: Number/prime.hpp
+      title: Number/prime.hpp
+  - name: String
+    pages:
+    - icon: ':warning:'
+      path: String/aho_corasick.hpp
+      title: String/aho_corasick.hpp
+    - icon: ':heavy_check_mark:'
+      path: String/knuth_morris_pratt.hpp
+      title: String/knuth_morris_pratt.hpp
+    - icon: ':heavy_check_mark:'
+      path: String/suffix_array.hpp
+      title: String/suffix_array.hpp
+    - icon: ':warning:'
+      path: String/trie.hpp
+      title: String/trie.hpp
+    - icon: ':heavy_check_mark:'
+      path: String/z_algorithm.hpp
+      title: String/z_algorithm.hpp
+  - name: Tools
+    pages:
+    - icon: ':warning:'
+      path: Tools/compress.hpp
+      title: Tools/compress.hpp
+    - icon: ':heavy_check_mark:'
+      path: Tools/heap_alias.hpp
+      title: Tools/heap_alias.hpp
+    - icon: ':warning:'
+      path: Tools/random.hpp
+      title: Tools/random.hpp
+    - icon: ':warning:'
+      path: Tools/run_length.hpp
+      title: Tools/run_length.hpp
+    - icon: ':warning:'
+      path: Tools/timer.hpp
+      title: Tools/timer.hpp
+    - icon: ':warning:'
+      path: Tools/vector_alias.hpp
+      title: Tools/vector_alias.hpp
+  verificationCategories:
+  - name: Verify
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Verify/articulation_points.test.cpp
+      title: Verify/articulation_points.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/bipartite_matching.test.cpp
+      title: Verify/bipartite_matching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/bridges.test.cpp
+      title: Verify/bridges.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/centroid_decomposition_diameter.test.cpp
+      title: Verify/centroid_decomposition_diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/combination.test.cpp
+      title: Verify/combination.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/diameter.test.cpp
+      title: Verify/diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/dijkstra.test.cpp
+      title: Verify/dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/dinic.test.cpp
+      title: Verify/dinic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/extended_gcd.test.cpp
+      title: Verify/extended_gcd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/factorize.test.cpp
+      title: Verify/factorize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/ford_fulkerson.test.cpp
+      title: Verify/ford_fulkerson.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/gcd.test.cpp
+      title: Verify/gcd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/knuth_morris_pratt.test.cpp
+      title: Verify/knuth_morris_pratt.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/lazy_segment_tree_add_sum.test.cpp
+      title: Verify/lazy_segment_tree_add_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/lazy_segment_tree_affine.test.cpp
+      title: Verify/lazy_segment_tree_affine.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/level_ancestor.test.cpp
+      title: Verify/level_ancestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/min_cost_flow.test.cpp
+      title: Verify/min_cost_flow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/mod_pow.test.cpp
+      title: Verify/mod_pow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/number_theoretical_transform.test.cpp
+      title: Verify/number_theoretical_transform.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/potentialized_union_find.test.cpp
+      title: Verify/potentialized_union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/primal_dual.test.cpp
+      title: Verify/primal_dual.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/segment_tree_affine.test.cpp
+      title: Verify/segment_tree_affine.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/segment_tree_rsq.test.cpp
+      title: Verify/segment_tree_rsq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/sliding_window.test.cpp
+      title: Verify/sliding_window.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/sparse_table_rmq.test.cpp
+      title: Verify/sparse_table_rmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/strongly_connected_component.test.cpp
+      title: Verify/strongly_connected_component.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/suffix_array.test.cpp
+      title: Verify/suffix_array.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/topological_sort.test.cpp
+      title: Verify/topological_sort.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/two_sat.test.cpp
+      title: Verify/two_sat.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/union_find.test.cpp
+      title: Verify/union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/z_algorithm.test.cpp
+      title: Verify/z_algorithm.test.cpp
+layout: toppage
 ---
-
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="assets/css/copy-button.css" />
-
-
-# {{ site.title }}
-
-[![Actions Status]({{ site.github.repository_url }}/workflows/verify/badge.svg)]({{ site.github.repository_url }}/actions)
-<a href="{{ site.github.repository_url }}"><img src="https://img.shields.io/github/last-commit/{{ site.github.owner_name }}/{{ site.github.repository_name }}" /></a>
-
-{% if site.github.project_tagline %}{{ site.github.project_tagline }}{% else %}This documentation is automatically generated by <a href="https://github.com/online-judge-tools/verification-helper">online-judge-tools/verification-helper</a>.{% endif %}
-
-## Library Files
-
-<div id="fa0f0ae43fdca46d1d68255409ec0b89"></div>
-
-### Convolution
-
-* :warning: <a href="library/Convolution/fast_fourier_transform.hpp.html">Convolution/fast_fourier_transform.hpp</a>
-* :heavy_check_mark: <a href="library/Convolution/number_theoretical_transform.hpp.html">Convolution/number_theoretical_transform.hpp</a>
-
-
-<div id="5e248f107086635fddcead5bf28943fc"></div>
-
-### DataStructure
-
-* :heavy_check_mark: <a href="library/DataStructure/lazy_segment_tree.hpp.html">DataStructure/lazy_segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/DataStructure/potentialized_union_find.hpp.html">DataStructure/potentialized_union_find.hpp</a>
-* :heavy_check_mark: <a href="library/DataStructure/segment_tree.hpp.html">DataStructure/segment_tree.hpp</a>
-* :heavy_check_mark: <a href="library/DataStructure/sliding_window.hpp.html">DataStructure/sliding_window.hpp</a>
-* :warning: <a href="library/DataStructure/sliding_window_aggregation.hpp.html">DataStructure/sliding_window_aggregation.hpp</a>
-* :heavy_check_mark: <a href="library/DataStructure/sparse_table.hpp.html">DataStructure/sparse_table.hpp</a>
-* :heavy_check_mark: <a href="library/DataStructure/union_find.hpp.html">DataStructure/union_find.hpp</a>
-
-
-<div id="d9c6333623e6357515fcbf17be806273"></div>
-
-### Geometry
-
-* :warning: <a href="library/Geometry/type.cpp.html">Geometry/type.cpp</a>
-
-
-<div id="4cdbd2bafa8193091ba09509cedf94fd"></div>
-
-### Graph
-
-* :heavy_check_mark: <a href="library/Graph/bellman_ford.hpp.html">Graph/bellman_ford.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/bfs.hpp.html">Graph/bfs.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/bipartite_matching.hpp.html">Graph/bipartite_matching.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/centroid_decomposition.hpp.html">Graph/centroid_decomposition.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/diameter.hpp.html">Graph/diameter.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/dijkstra.hpp.html">Graph/dijkstra.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/dinic.hpp.html">Graph/dinic.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/ford_fulkerson.hpp.html">Graph/ford_fulkerson.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/graph.hpp.html">Graph/graph.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/kruskal.hpp.html">Graph/kruskal.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/level_ancestor.hpp.html">Graph/level_ancestor.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/lowlink.hpp.html">Graph/lowlink.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/min_cost_flow.hpp.html">Graph/min_cost_flow.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/prim.hpp.html">Graph/prim.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/primal_dual.hpp.html">Graph/primal_dual.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/strongly_connected_component.hpp.html">Graph/strongly_connected_component.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/topological_sort.hpp.html">Graph/topological_sort.hpp</a>
-* :heavy_check_mark: <a href="library/Graph/two_sat.hpp.html">Graph/two_sat.hpp</a>
-
-
-<div id="b2ee912b91d69b435159c7c3f6df7f5f"></div>
-
-### Number
-
-* :warning: <a href="library/Number/boolean_elimination.hpp.html">Number/boolean_elimination.hpp</a>
-* :heavy_check_mark: <a href="library/Number/combination.hpp.html">Number/combination.hpp</a>
-* :heavy_check_mark: <a href="library/Number/extended_gcd.hpp.html">Number/extended_gcd.hpp</a>
-* :warning: <a href="library/Number/fixed_linear_algebra.hpp.html">Number/fixed_linear_algebra.hpp</a>
-* :heavy_check_mark: <a href="library/Number/gcd.hpp.html">Number/gcd.hpp</a>
-* :warning: <a href="library/Number/linear_algebra.hpp.html">Number/linear_algebra.hpp</a>
-* :heavy_check_mark: <a href="library/Number/modint.hpp.html">Number/modint.hpp</a>
-* :heavy_check_mark: <a href="library/Number/prime.hpp.html">Number/prime.hpp</a>
-
-
-<div id="27118326006d3829667a400ad23d5d98"></div>
-
-### String
-
-* :warning: <a href="library/String/aho_corasick.hpp.html">String/aho_corasick.hpp</a>
-* :heavy_check_mark: <a href="library/String/knuth_morris_pratt.hpp.html">String/knuth_morris_pratt.hpp</a>
-* :heavy_check_mark: <a href="library/String/suffix_array.hpp.html">String/suffix_array.hpp</a>
-* :warning: <a href="library/String/trie.hpp.html">String/trie.hpp</a>
-* :heavy_check_mark: <a href="library/String/z_algorithm.hpp.html">String/z_algorithm.hpp</a>
-
-
-<div id="8625e1de7be14c39b1d14dc03d822497"></div>
-
-### Tools
-
-* :warning: <a href="library/Tools/compress.hpp.html">Tools/compress.hpp</a>
-* :heavy_check_mark: <a href="library/Tools/heap_alias.hpp.html">Tools/heap_alias.hpp</a>
-* :warning: <a href="library/Tools/random.hpp.html">Tools/random.hpp</a>
-* :warning: <a href="library/Tools/run_length.hpp.html">Tools/run_length.hpp</a>
-* :warning: <a href="library/Tools/timer.hpp.html">Tools/timer.hpp</a>
-* :warning: <a href="library/Tools/vector_alias.hpp.html">Tools/vector_alias.hpp</a>
-
-
-## Verify Files
-
-* :heavy_check_mark: <a href="verify/Verify/articulation_points.test.cpp.html">Verify/articulation_points.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/bellman_ford.test.cpp.html">Verify/bellman_ford.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/bipartite_matching.test.cpp.html">Verify/bipartite_matching.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/bridges.test.cpp.html">Verify/bridges.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/centroid_decomposition_diameter.test.cpp.html">Verify/centroid_decomposition_diameter.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/combination.test.cpp.html">Verify/combination.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/diameter.test.cpp.html">Verify/diameter.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/dijkstra.test.cpp.html">Verify/dijkstra.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/dinic.test.cpp.html">Verify/dinic.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/extended_gcd.test.cpp.html">Verify/extended_gcd.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/factorize.test.cpp.html">Verify/factorize.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/ford_fulkerson.test.cpp.html">Verify/ford_fulkerson.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/gcd.test.cpp.html">Verify/gcd.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/knuth_morris_pratt.test.cpp.html">Verify/knuth_morris_pratt.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/kruskal.test.cpp.html">Verify/kruskal.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/lazy_segment_tree_add_sum.test.cpp.html">Verify/lazy_segment_tree_add_sum.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/lazy_segment_tree_affine.test.cpp.html">Verify/lazy_segment_tree_affine.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/level_ancestor.test.cpp.html">Verify/level_ancestor.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/min_cost_flow.test.cpp.html">Verify/min_cost_flow.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/mod_pow.test.cpp.html">Verify/mod_pow.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/number_theoretical_transform.test.cpp.html">Verify/number_theoretical_transform.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/potentialized_union_find.test.cpp.html">Verify/potentialized_union_find.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/prim.test.cpp.html">Verify/prim.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/primal_dual.test.cpp.html">Verify/primal_dual.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/segment_tree_affine.test.cpp.html">Verify/segment_tree_affine.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/segment_tree_rsq.test.cpp.html">Verify/segment_tree_rsq.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/sliding_window.test.cpp.html">Verify/sliding_window.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/sparse_table_rmq.test.cpp.html">Verify/sparse_table_rmq.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/strongly_connected_component.test.cpp.html">Verify/strongly_connected_component.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/suffix_array.test.cpp.html">Verify/suffix_array.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/topological_sort.test.cpp.html">Verify/topological_sort.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/two_sat.test.cpp.html">Verify/two_sat.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/union_find.test.cpp.html">Verify/union_find.test.cpp</a>
-* :heavy_check_mark: <a href="verify/Verify/z_algorithm.test.cpp.html">Verify/z_algorithm.test.cpp</a>
-
-
