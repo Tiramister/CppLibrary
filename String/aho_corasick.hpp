@@ -1,3 +1,5 @@
+#pragma once
+
 #include <algorithm>
 #include <vector>
 #include <array>
@@ -7,24 +9,18 @@
 template <int K, class T>
 struct PatternsMatching {
     struct Node {
-        int c;
         std::array<int, K> nxt;
         int fail;
         std::vector<int> ids;
 
-        explicit Node(int c) : c(c), fail(0) { nxt.fill(-1); }
+        explicit Node() : fail(0) { nxt.fill(-1); }
     };
 
     std::vector<Node> nodes;
     std::function<int(T)> enc;
 
-    explicit PatternsMatching(T base) {
-        nodes.emplace_back(-1);
-        enc = [=](T c) { return c - base; };
-    }
-
-    explicit PatternsMatching(const std::function<int(T)>& enc)
-        : enc(enc) { nodes.emplace_back(-1); }
+    explicit PatternsMatching(T base)
+        : nodes(1), enc([=](T c) { return c - base; }) {}
 
     template <class Container>
     void add(const Container& s, int id) {
@@ -36,7 +32,7 @@ struct PatternsMatching {
             if (npos == -1) {
                 npos = nodes.size();
                 nodes[pos].nxt[c] = npos;
-                nodes.emplace_back(c);
+                nodes.emplace_back();
             }
             pos = npos;
         }

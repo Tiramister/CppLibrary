@@ -7,33 +7,27 @@
 template <int K, class T>
 struct Trie {
     struct Node {
-        int c;
         std::array<int, K> nxt;
-        explicit Node(int c) : c(c) { nxt.fill(-1); }
+        explicit Node() { nxt.fill(-1); }
     };
 
     std::vector<Node> nodes;
     std::function<int(T)> enc;
 
-    explicit Trie(T base) {
-        nodes.emplace_back(-1);
-        enc = [=](T c) { return c - base; };
-    }
-
-    explicit Trie(const std::function<int(T)>& enc)
-        : enc(enc) { nodes.emplace_back(-1); }
+    explicit Trie(T base)
+        : nodes(1), enc([=](T c) { return c - base; }) {}
 
     template <class Container>
     void add(const Container& s) {
         int pos = 0;
-        for (T c : s) {
-            int ci = enc(c);
+        for (T ci : s) {
+            int c = enc(ci);
 
-            int npos = nodes[pos].nxt[ci];
+            int npos = nodes[pos].nxt[c];
             if (npos == -1) {
                 npos = nodes.size();
-                nodes[pos].nxt[ci] = npos;
-                nodes.emplace_back(ci);
+                nodes[pos].nxt[c] = npos;
+                nodes.emplace_back(c);
             }
             pos = npos;
         }
