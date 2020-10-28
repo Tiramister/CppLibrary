@@ -1,32 +1,28 @@
 #pragma once
 
-#include <numeric>
 #include <vector>
 
 struct UnionFind {
-    std::vector<int> par, sz;
+    std::vector<int> par;
     int gnum;
 
-    explicit UnionFind(int n)
-        : par(n), sz(n, 1), gnum(n) {
-        std::iota(par.begin(), par.end(), 0);
-    }
+    explicit UnionFind(int n) : par(n, -1), gnum(n) {}
 
     int find(int v) {
-        return (par[v] == v) ? v : (par[v] = find(par[v]));
+        return (par[v] < 0) ? v : (par[v] = find(par[v]));
     }
 
     void unite(int u, int v) {
         u = find(u), v = find(v);
         if (u == v) return;
 
-        if (sz[u] < sz[v]) std::swap(u, v);
-        sz[u] += sz[v];
+        if (par[u] > par[v]) std::swap(u, v);
+        par[u] += par[v];
         par[v] = u;
         --gnum;
     }
 
     bool same(int u, int v) { return find(u) == find(v); }
-    bool ispar(int v) { return v == find(v); }
-    int size(int v) { return sz[find(v)]; }
+    bool ispar(int v) { return par[v] < 0; }
+    int size(int v) { return -par[find(v)]; }
 };

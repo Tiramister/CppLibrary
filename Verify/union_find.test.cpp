@@ -15,6 +15,7 @@ int main() {
     while (q--) {
         int t, u, v;
         std::cin >> t >> u >> v;
+
         if (t == 0) {
             uf.unite(u, v);
         } else {
