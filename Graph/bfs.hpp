@@ -5,7 +5,7 @@
 #include <queue>
 
 template <class Cost>
-std::vector<int> bfs(const Graph<Cost>& graph, int s) {
+std::vector<Cost> bfs(const Graph<Cost>& graph, int s) {
     std::vector<Cost> dist(graph.size(), -1);
     dist[s] = 0;
     std::queue<int> que;
