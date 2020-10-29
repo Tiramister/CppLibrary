@@ -91,11 +91,11 @@ data:
   timestamp: '2020-08-25 16:49:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/number_theoretical_transform.test.cpp
   - Verify/combination.test.cpp
+  - Verify/number_theoretical_transform.test.cpp
+  - Verify/lazy_segment_tree_affine.test.cpp
   - Verify/mod_pow.test.cpp
   - Verify/segment_tree_affine.test.cpp
-  - Verify/lazy_segment_tree_affine.test.cpp
 documentation_of: Number/modint.hpp
 layout: document
 redirect_from:

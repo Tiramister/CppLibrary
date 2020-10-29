@@ -106,8 +106,8 @@ data:
   timestamp: '2020-07-26 22:31:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/lazy_segment_tree_add_sum.test.cpp
   - Verify/lazy_segment_tree_affine.test.cpp
+  - Verify/lazy_segment_tree_add_sum.test.cpp
 documentation_of: DataStructure/lazy_segment_tree.hpp
 layout: document
 redirect_from:

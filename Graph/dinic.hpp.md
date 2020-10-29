@@ -84,8 +84,8 @@ data:
   timestamp: '2020-07-26 22:31:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/dinic.test.cpp
   - Verify/bipartite_matching.test.cpp
+  - Verify/dinic.test.cpp
 documentation_of: Graph/dinic.hpp
 layout: document
 redirect_from:
