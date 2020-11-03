@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <string>
-#include <exception>
 
 int main() {
     std::cin.tie();
@@ -18,20 +17,17 @@ int main() {
     while (m--) {
         int x, y;
         std::cin >> x >> y >> tmp;
-        ts.span(std::abs(x) - 1, x > 0, std::abs(y) - 1, y > 0);
+        ts.add(std::abs(x) - 1, x > 0, std::abs(y) - 1, y > 0);
     }
 
-    auto assign = ts.exec();
-
-    if (assign.empty()) {
-        std::cout << "s UNSATISFIABLE" << std::endl;
-
+    if (!ts.judge()) {
+        std::cout << "s UNSATISFIABLE\n";
     } else {
-        std::cout << "s SATISFIABLE" << std::endl;
+        std::cout << "s SATISFIABLE\n";
 
         std::cout << "v ";
         for (int x = 1; x <= n; ++x) {
-            std::cout << (assign[x - 1] ? x : -x) << " ";
+            std::cout << (ts.assign[x - 1] ? x : -x) << " ";
         }
         std::cout << "0\n";
     }
