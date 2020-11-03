@@ -95,7 +95,7 @@ data:
     - icon: ':warning:'
       path: Number/linear_algebra.hpp
       title: Number/linear_algebra.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Number/modint.hpp
       title: Number/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -103,7 +103,7 @@ data:
       title: Number/prime.hpp
   - name: String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: String/aho_corasick.hpp
       title: String/aho_corasick.hpp
     - icon: ':heavy_check_mark:'
@@ -141,7 +141,7 @@ data:
   verificationCategories:
   - name: Verify
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Verify/aho_corasick.test.cpp
       title: Verify/aho_corasick.test.cpp
     - icon: ':heavy_check_mark:'

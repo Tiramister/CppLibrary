@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Number/modint.hpp
     title: Number/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: String/aho_corasick.hpp
     title: String/aho_corasick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1269
@@ -115,7 +115,7 @@ data:
   path: Verify/aho_corasick.test.cpp
   requiredBy: []
   timestamp: '2020-10-29 01:25:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/aho_corasick.test.cpp
 layout: document

@@ -3,11 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Verify/aho_corasick.test.cpp
     title: Verify/aho_corasick.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"String/aho_corasick.hpp\"\n\n#include <algorithm>\n#include\
@@ -80,7 +80,7 @@ data:
   path: String/aho_corasick.hpp
   requiredBy: []
   timestamp: '2020-10-29 01:24:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/aho_corasick.test.cpp
 documentation_of: String/aho_corasick.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Convolution/number_theoretical_transform.hpp
     title: Convolution/number_theoretical_transform.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Number/modint.hpp
     title: Number/modint.hpp
   _extendedRequiredBy: []
