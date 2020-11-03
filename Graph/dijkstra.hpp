@@ -3,8 +3,6 @@
 #include "../Tools/heap_alias.hpp"
 #include "graph.hpp"
 
-#include <tuple>
-
 template <class Cost>
 std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
     std::vector<Cost> dist(graph.size(), -1);
@@ -13,9 +11,7 @@ std::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {
     que.emplace(0, s);
 
     while (!que.empty()) {
-        int v;
-        Cost d;
-        std::tie(d, v) = que.top();
+        auto [d, v] = que.top();
         que.pop();
         if (d > dist[v]) continue;
 

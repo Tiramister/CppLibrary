@@ -12,7 +12,7 @@ std::vector<Cost> bfs(const Graph<Cost>& graph, int s) {
     que.push(s);
 
     while (!que.empty()) {
-        int v = que.front();
+        auto v = que.front();
         que.pop();
 
         for (const auto& e : graph[v]) {
