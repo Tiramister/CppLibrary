@@ -37,7 +37,7 @@ struct HeavyLightDecomposition {
         sz[v] = 1;
         dep[v] = d;
 
-        if (graph[v].front().dst == p) {
+        if (!graph[v].empty() && graph[v].front().dst == p) {
             std::swap(graph[v].front(), graph[v].back());
         }
 
