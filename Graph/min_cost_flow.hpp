@@ -13,11 +13,9 @@ struct MinCostFlow {
             : src(src), dst(dst), cap(cap), cost(cost){};
     };
 
-    using Edges = std::vector<Edge>;
-    using Graph = std::vector<std::vector<int>>;
+    std::vector<Edge> edges;
+    std::vector<std::vector<int>> graph;
 
-    Edges edges;
-    Graph graph;
     std::vector<Cost> dist;
     std::vector<int> rev;
 
@@ -37,29 +35,33 @@ struct MinCostFlow {
         std::fill(dist.begin(), dist.end(), INF);
         dist[s] = 0;
 
-        for (int i = 0; i < (int)graph.size(); ++i) {
+        bool update = true;
+        while (update) {
+            update = false;
+
             for (int eidx = 0; eidx < (int)edges.size(); ++eidx) {
                 const auto& edge = edges[eidx];
                 int u = edge.src, v = edge.dst;
 
-                if (edge.cap > 0 &&
-                    dist[u] < INF &&
+                if (edge.cap > 0 && dist[u] < INF &&
                     dist[v] > dist[u] + edge.cost) {
                     dist[v] = dist[u] + edge.cost;
                     rev[v] = eidx;
+                    update = true;
                 }
             }
         }
     }
 
-    Cost exec(int s, int g, Cap flow) {
-        Cost ret = 0;
+    std::pair<Cap, Cost> flow(int s, int g, Cap flow_limit) {
+        Cap fsum = 0;
+        Cost csum = 0;
 
-        while (flow > 0) {
+        while (flow_limit > 0) {
             bellman_ford(s);
             if (dist[g] == INF) break;
 
-            Cap f = flow;
+            Cap f = flow_limit;
             int v = g;
             while (v != s) {
                 const auto& edge = edges[rev[v]];
@@ -67,8 +69,9 @@ struct MinCostFlow {
                 v = edge.src;
             }
 
-            flow -= f;
-            ret += f * dist[g];
+            flow_limit -= f;
+            fsum += f;
+            csum += f * dist[g];
 
             v = g;
             while (v != s) {
@@ -79,6 +82,10 @@ struct MinCostFlow {
                 v = edge.src;
             }
         }
-        return (flow > 0 ? -1 : ret);
+        return {fsum, csum};
+    }
+
+    std::pair<Cap, Cost> flow(int s, int g) {
+        return flow(s, g, std::numeric_limits<Cap>::max());
     }
 };

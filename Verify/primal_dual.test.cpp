@@ -8,8 +8,8 @@ int main() {
     std::cin.tie();
     std::ios::sync_with_stdio(false);
 
-    int n, m, f;
-    std::cin >> n >> m >> f;
+    int n, m, flim;
+    std::cin >> n >> m >> flim;
 
     MinCostFlow<int, int> mcf(n);
     while (m--) {
@@ -18,6 +18,7 @@ int main() {
         mcf.span(u, v, c, d);
     }
 
-    std::cout << mcf.exec(0, n - 1, f) << "\n";
+    auto [f, c] = mcf.flow(0, n - 1, flim);
+    std::cout << (f == flim ? c : -1) << "\n";
     return 0;
 }

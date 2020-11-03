@@ -14,11 +14,9 @@ struct MinCostFlow {
             : src(src), dst(dst), cap(cap), cost(cost){};
     };
 
-    using Edges = std::vector<Edge>;
-    using Graph = std::vector<std::vector<int>>;
+    std::vector<Edge> edges;
+    std::vector<std::vector<int>> graph;
 
-    Edges edges;
-    Graph graph;
     std::vector<Cost> dist, pot;
     std::vector<int> rev;
 
@@ -41,18 +39,15 @@ struct MinCostFlow {
         heap.emplace(0, s);
 
         while (!heap.empty()) {
-            int u;
-            Cost d;
-            std::tie(d, u) = heap.top();
+            auto [d, u] = heap.top();
             heap.pop();
             if (d > dist[u]) continue;
 
             for (auto eidx : graph[u]) {
                 const auto& edge = edges[eidx];
-                int v = edge.dst;
+                auto v = edge.dst;
 
-                if (edge.cap > 0 &&
-                    dist[u] < INF &&
+                if (edge.cap > 0 && dist[u] < INF &&
                     dist[v] > dist[u] + edge.cost + pot[u] - pot[v]) {
                     dist[v] = dist[u] + edge.cost + pot[u] - pot[v];
                     rev[v] = eidx;
@@ -62,11 +57,12 @@ struct MinCostFlow {
         }
     }
 
-    Cost exec(int s, int g, Cap flow) {
-        Cost ret = 0;
+    std::pair<Cap, Cost> flow(int s, int g, Cap flow_limit) {
+        Cap fsum = 0;
+        Cost csum = 0;
         std::fill(pot.begin(), pot.end(), 0);
 
-        while (flow > 0) {
+        while (flow_limit > 0) {
             dijkstra(s);
             if (dist[g] == INF) break;
 
@@ -74,7 +70,7 @@ struct MinCostFlow {
                 pot[v] = std::min(pot[v] + dist[v], INF);
             }
 
-            Cap f = flow;
+            Cap f = flow_limit;
             int v = g;
             while (v != s) {
                 const auto& edge = edges[rev[v]];
@@ -82,8 +78,9 @@ struct MinCostFlow {
                 v = edge.src;
             }
 
-            flow -= f;
-            ret += f * pot[g];
+            flow_limit -= f;
+            fsum += f;
+            csum += f * pot[g];
 
             v = g;
             while (v != s) {
@@ -94,6 +91,10 @@ struct MinCostFlow {
                 v = edge.src;
             }
         }
-        return (flow > 0 ? -1 : ret);
+        return {fsum, csum};
+    }
+
+    std::pair<Cap, Cost> flow(int s, int g) {
+        return flow(s, g, std::numeric_limits<Cap>::max());
     }
 };
