@@ -21,8 +21,8 @@ int main() {
     auto match = bm.matching();
 
     std::cout << match.size() << "\n";
-    for (auto p : match) {
-        std::cout << p.first << ' ' << p.second << "\n";
+    for (auto [u, v] : match) {
+        std::cout << u << " " << v << "\n";
     }
     return 0;
 }

@@ -18,6 +18,6 @@ int main() {
         mf.span(u, v, c);
     }
 
-    std::cout << mf.exec(0, n - 1) << "\n";
+    std::cout << mf.flow(0, n - 1) << "\n";
     return 0;
 }

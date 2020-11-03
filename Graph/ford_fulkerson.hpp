@@ -12,15 +12,11 @@ struct MaxFlow {
             : src(src), dst(dst), cap(cap){};
     };
 
-    using Edges = std::vector<Edge>;
-    using Graph = std::vector<std::vector<int>>;
-
-    Edges edges;
-    Graph graph;
+    std::vector<Edge> edges;
+    std::vector<std::vector<int>> graph;
     std::vector<bool> visited;
 
-    explicit MaxFlow(int n)
-        : graph(n), visited(n) {}
+    explicit MaxFlow(int n) : graph(n), visited(n) {}
 
     void span(int u, int v, Cap cap) {
         graph[u].push_back(edges.size());
@@ -30,7 +26,7 @@ struct MaxFlow {
         edges.emplace_back(v, u, (isDirect ? 0 : cap));
     }
 
-    int dfs(int v, int g, Cap f) {
+    Cap dfs(int v, int g, Cap f) {
         if (v == g) return f;
 
         visited[v] = true;
@@ -38,7 +34,7 @@ struct MaxFlow {
             auto& edge = edges[eidx];
 
             if (edge.cap > 0 && !visited[edge.dst]) {
-                Cap df = dfs(edge.dst, g, std::min(f, edge.cap));
+                auto df = dfs(edge.dst, g, std::min(f, edge.cap));
 
                 if (df > 0) {
                     edge.cap -= df;
@@ -51,15 +47,15 @@ struct MaxFlow {
         return 0;
     }
 
-    Cap exec(int s, int g) {
+    Cap flow(int s, int g) {
         constexpr Cap INF = std::numeric_limits<Cap>::max();
 
         Cap ret = 0;
         while (true) {
             std::fill(visited.begin(), visited.end(), false);
-            Cap flow = dfs(s, g, INF);
-            if (flow == 0) return ret;
-            ret += flow;
+            Cap f = dfs(s, g, INF);
+            if (f == 0) return ret;
+            ret += f;
         }
     }
 };
