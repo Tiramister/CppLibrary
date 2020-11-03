@@ -30,7 +30,7 @@ struct LevelAncestor {
         dfs(root);
 
         for (int k = 1; k <= kmax; ++k) {
-            for (int v = 0; v < tree.size(); ++v) {
+            for (int v = 0; v < (int)tree.size(); ++v) {
                 int p = par[v][k - 1];
                 par[v][k] = (p == -1 ? -1 : par[p][k - 1]);
             }
