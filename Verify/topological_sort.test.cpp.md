@@ -29,24 +29,24 @@ data:
     \ cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n  \
     \  }\n};\n#line 4 \"Graph/topological_sort.hpp\"\n\n#include <algorithm>\n\ntemplate\
     \ <class Cost = int>\nstruct TopologicalSort {\n    Graph<Cost> graph;\n    std::vector<bool>\
-    \ visited;\n    std::vector<int> order, id;\n\n    explicit TopologicalSort(const\
+    \ visited;\n    std::vector<int> vs, id;\n\n    explicit TopologicalSort(const\
     \ Graph<Cost>& graph)\n        : graph(graph), visited(graph.size(), false), id(graph.size())\
-    \ {\n        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);\n        std::reverse(order.begin(),\
-    \ order.end());\n\n        for (int i = 0; i < (int)graph.size(); ++i) id[order[i]]\
+    \ {\n        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);\n        std::reverse(vs.begin(),\
+    \ vs.end());\n\n        for (int i = 0; i < (int)graph.size(); ++i) id[vs[i]]\
     \ = i;\n    }\n\n    void dfs(int v) {\n        if (visited[v]) return;\n    \
     \    visited[v] = true;\n        for (const auto& e : graph[v]) dfs(e.dst);\n\
-    \        order.push_back(v);\n    }\n};\n#line 4 \"Verify/topological_sort.test.cpp\"\
+    \        vs.push_back(v);\n    }\n};\n#line 4 \"Verify/topological_sort.test.cpp\"\
     \n\n#include <iostream>\n\nint main() {\n    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\
     \n    int n, m;\n    std::cin >> n >> m;\n\n    Graph<> graph(n);\n    while (m--)\
     \ {\n        int u, v;\n        std::cin >> u >> v;\n        graph.span(true,\
-    \ u, v);\n    }\n\n    TopologicalSort<> ts(graph);\n    for (int v : ts.order)\
-    \ std::cout << v << \"\\n\";\n\n    return 0;\n}\n"
+    \ u, v);\n    }\n\n    TopologicalSort<> ts(graph);\n    for (int v : ts.vs) std::cout\
+    \ << v << \"\\n\";\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B\"\
     \n\n#include \"../Graph/topological_sort.hpp\"\n\n#include <iostream>\n\nint main()\
     \ {\n    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\n    int n,\
     \ m;\n    std::cin >> n >> m;\n\n    Graph<> graph(n);\n    while (m--) {\n  \
     \      int u, v;\n        std::cin >> u >> v;\n        graph.span(true, u, v);\n\
-    \    }\n\n    TopologicalSort<> ts(graph);\n    for (int v : ts.order) std::cout\
+    \    }\n\n    TopologicalSort<> ts(graph);\n    for (int v : ts.vs) std::cout\
     \ << v << \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - Graph/topological_sort.hpp
@@ -54,7 +54,7 @@ data:
   isVerificationFile: true
   path: Verify/topological_sort.test.cpp
   requiredBy: []
-  timestamp: '2020-10-13 21:34:07+09:00'
+  timestamp: '2020-11-03 10:05:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/topological_sort.test.cpp

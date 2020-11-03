@@ -25,28 +25,28 @@ data:
     \ cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n  \
     \  }\n};\n#line 4 \"Graph/topological_sort.hpp\"\n\n#include <algorithm>\n\ntemplate\
     \ <class Cost = int>\nstruct TopologicalSort {\n    Graph<Cost> graph;\n    std::vector<bool>\
-    \ visited;\n    std::vector<int> order, id;\n\n    explicit TopologicalSort(const\
+    \ visited;\n    std::vector<int> vs, id;\n\n    explicit TopologicalSort(const\
     \ Graph<Cost>& graph)\n        : graph(graph), visited(graph.size(), false), id(graph.size())\
-    \ {\n        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);\n        std::reverse(order.begin(),\
-    \ order.end());\n\n        for (int i = 0; i < (int)graph.size(); ++i) id[order[i]]\
+    \ {\n        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);\n        std::reverse(vs.begin(),\
+    \ vs.end());\n\n        for (int i = 0; i < (int)graph.size(); ++i) id[vs[i]]\
     \ = i;\n    }\n\n    void dfs(int v) {\n        if (visited[v]) return;\n    \
     \    visited[v] = true;\n        for (const auto& e : graph[v]) dfs(e.dst);\n\
-    \        order.push_back(v);\n    }\n};\n"
+    \        vs.push_back(v);\n    }\n};\n"
   code: "#pragma once\n\n#include \"graph.hpp\"\n\n#include <algorithm>\n\ntemplate\
     \ <class Cost = int>\nstruct TopologicalSort {\n    Graph<Cost> graph;\n    std::vector<bool>\
-    \ visited;\n    std::vector<int> order, id;\n\n    explicit TopologicalSort(const\
+    \ visited;\n    std::vector<int> vs, id;\n\n    explicit TopologicalSort(const\
     \ Graph<Cost>& graph)\n        : graph(graph), visited(graph.size(), false), id(graph.size())\
-    \ {\n        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);\n        std::reverse(order.begin(),\
-    \ order.end());\n\n        for (int i = 0; i < (int)graph.size(); ++i) id[order[i]]\
+    \ {\n        for (int v = 0; v < (int)graph.size(); ++v) dfs(v);\n        std::reverse(vs.begin(),\
+    \ vs.end());\n\n        for (int i = 0; i < (int)graph.size(); ++i) id[vs[i]]\
     \ = i;\n    }\n\n    void dfs(int v) {\n        if (visited[v]) return;\n    \
     \    visited[v] = true;\n        for (const auto& e : graph[v]) dfs(e.dst);\n\
-    \        order.push_back(v);\n    }\n};\n"
+    \        vs.push_back(v);\n    }\n};\n"
   dependsOn:
   - Graph/graph.hpp
   isVerificationFile: false
   path: Graph/topological_sort.hpp
   requiredBy: []
-  timestamp: '2020-10-13 21:34:07+09:00'
+  timestamp: '2020-11-03 10:05:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/topological_sort.test.cpp

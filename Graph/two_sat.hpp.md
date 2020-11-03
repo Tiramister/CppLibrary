@@ -44,39 +44,37 @@ data:
     \ e : graph[v]) dfs(e.dst);\n        stk.push_back(v);\n    }\n\n    void rdfs(int\
     \ v) {\n        if (id[v] >= 0) return;\n        id[v] = groups.size() - 1;\n\
     \        groups.back().push_back(v);\n        for (const auto& e : rgraph[v])\
-    \ rdfs(e.dst);\n    }\n};\n#line 4 \"Graph/two_sat.hpp\"\n\n#include <iostream>\n\
-    \nstruct TwoSat {\n    int vnum;\n    Graph<> graph;\n\n    explicit TwoSat(int\
-    \ n) : vnum(n), graph(n * 2) {}\n\n    // t=1 <=> true\n    int enc(int x, bool\
-    \ t) {\n        return x + (t ? vnum : 0);\n    }\n\n    // [tx]x V [ty]y\n  \
-    \  void span(int x, bool tx, int y, bool ty) {\n        graph[enc(x, !tx)].emplace_back(enc(x,\
-    \ !tx), enc(y, ty));\n        graph[enc(y, !ty)].emplace_back(enc(y, !ty), enc(x,\
-    \ tx));\n    }\n\n    // if unsatisfiable, return an empty vector\n    std::vector<bool>\
-    \ exec() {\n        StronglyConnectedComponents scc(graph);\n\n        std::vector<bool>\
-    \ assign(vnum);\n        for (int x = 0; x < vnum; ++x) {\n            int fid\
+    \ rdfs(e.dst);\n    }\n};\n#line 4 \"Graph/two_sat.hpp\"\n\nstruct TwoSat {\n\
+    \    int vnum;\n    Graph<> graph;\n    std::vector<bool> assign;\n\n    explicit\
+    \ TwoSat(int n) : vnum(n), graph(n * 2), assign(n) {}\n\n    int enc(int x, bool\
+    \ t) { return x + (t ? vnum : 0); }\n\n    // (v_x = tx) or (v_y = ty)\n    void\
+    \ add(int x, bool tx, int y, bool ty) {\n        graph.span(true, enc(x, !tx),\
+    \ enc(y, ty));\n        graph.span(true, enc(y, !ty), enc(x, tx));\n    }\n\n\
+    \    // assign is also updated\n    bool judge() {\n        StronglyConnectedComponents\
+    \ scc(graph);\n\n        for (int x = 0; x < vnum; ++x) {\n            int fid\
     \ = scc.id[enc(x, false)],\n                tid = scc.id[enc(x, true)];\n\n  \
-    \          if (fid == tid) {\n                assign.clear();\n              \
-    \  break;\n            } else {\n                assign[x] = (fid < tid);\n  \
-    \          }\n        }\n        return assign;\n    }\n};\n"
-  code: "#pragma once\n\n#include \"strongly_connected_component.hpp\"\n\n#include\
-    \ <iostream>\n\nstruct TwoSat {\n    int vnum;\n    Graph<> graph;\n\n    explicit\
-    \ TwoSat(int n) : vnum(n), graph(n * 2) {}\n\n    // t=1 <=> true\n    int enc(int\
-    \ x, bool t) {\n        return x + (t ? vnum : 0);\n    }\n\n    // [tx]x V [ty]y\n\
-    \    void span(int x, bool tx, int y, bool ty) {\n        graph[enc(x, !tx)].emplace_back(enc(x,\
-    \ !tx), enc(y, ty));\n        graph[enc(y, !ty)].emplace_back(enc(y, !ty), enc(x,\
-    \ tx));\n    }\n\n    // if unsatisfiable, return an empty vector\n    std::vector<bool>\
-    \ exec() {\n        StronglyConnectedComponents scc(graph);\n\n        std::vector<bool>\
-    \ assign(vnum);\n        for (int x = 0; x < vnum; ++x) {\n            int fid\
+    \          if (fid == tid) {\n                return false;\n            } else\
+    \ {\n                assign[x] = (fid < tid);\n            }\n        }\n    \
+    \    return true;\n    }\n};\n"
+  code: "#pragma once\n\n#include \"strongly_connected_component.hpp\"\n\nstruct TwoSat\
+    \ {\n    int vnum;\n    Graph<> graph;\n    std::vector<bool> assign;\n\n    explicit\
+    \ TwoSat(int n) : vnum(n), graph(n * 2), assign(n) {}\n\n    int enc(int x, bool\
+    \ t) { return x + (t ? vnum : 0); }\n\n    // (v_x = tx) or (v_y = ty)\n    void\
+    \ add(int x, bool tx, int y, bool ty) {\n        graph.span(true, enc(x, !tx),\
+    \ enc(y, ty));\n        graph.span(true, enc(y, !ty), enc(x, tx));\n    }\n\n\
+    \    // assign is also updated\n    bool judge() {\n        StronglyConnectedComponents\
+    \ scc(graph);\n\n        for (int x = 0; x < vnum; ++x) {\n            int fid\
     \ = scc.id[enc(x, false)],\n                tid = scc.id[enc(x, true)];\n\n  \
-    \          if (fid == tid) {\n                assign.clear();\n              \
-    \  break;\n            } else {\n                assign[x] = (fid < tid);\n  \
-    \          }\n        }\n        return assign;\n    }\n};\n"
+    \          if (fid == tid) {\n                return false;\n            } else\
+    \ {\n                assign[x] = (fid < tid);\n            }\n        }\n    \
+    \    return true;\n    }\n};\n"
   dependsOn:
   - Graph/strongly_connected_component.hpp
   - Graph/graph.hpp
   isVerificationFile: false
   path: Graph/two_sat.hpp
   requiredBy: []
-  timestamp: '2020-10-13 21:34:07+09:00'
+  timestamp: '2020-11-03 10:18:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/two_sat.test.cpp

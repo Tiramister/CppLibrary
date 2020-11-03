@@ -48,40 +48,36 @@ data:
     \ e : graph[v]) dfs(e.dst);\n        stk.push_back(v);\n    }\n\n    void rdfs(int\
     \ v) {\n        if (id[v] >= 0) return;\n        id[v] = groups.size() - 1;\n\
     \        groups.back().push_back(v);\n        for (const auto& e : rgraph[v])\
-    \ rdfs(e.dst);\n    }\n};\n#line 4 \"Graph/two_sat.hpp\"\n\n#include <iostream>\n\
-    \nstruct TwoSat {\n    int vnum;\n    Graph<> graph;\n\n    explicit TwoSat(int\
-    \ n) : vnum(n), graph(n * 2) {}\n\n    // t=1 <=> true\n    int enc(int x, bool\
-    \ t) {\n        return x + (t ? vnum : 0);\n    }\n\n    // [tx]x V [ty]y\n  \
-    \  void span(int x, bool tx, int y, bool ty) {\n        graph[enc(x, !tx)].emplace_back(enc(x,\
-    \ !tx), enc(y, ty));\n        graph[enc(y, !ty)].emplace_back(enc(y, !ty), enc(x,\
-    \ tx));\n    }\n\n    // if unsatisfiable, return an empty vector\n    std::vector<bool>\
-    \ exec() {\n        StronglyConnectedComponents scc(graph);\n\n        std::vector<bool>\
-    \ assign(vnum);\n        for (int x = 0; x < vnum; ++x) {\n            int fid\
+    \ rdfs(e.dst);\n    }\n};\n#line 4 \"Graph/two_sat.hpp\"\n\nstruct TwoSat {\n\
+    \    int vnum;\n    Graph<> graph;\n    std::vector<bool> assign;\n\n    explicit\
+    \ TwoSat(int n) : vnum(n), graph(n * 2), assign(n) {}\n\n    int enc(int x, bool\
+    \ t) { return x + (t ? vnum : 0); }\n\n    // (v_x = tx) or (v_y = ty)\n    void\
+    \ add(int x, bool tx, int y, bool ty) {\n        graph.span(true, enc(x, !tx),\
+    \ enc(y, ty));\n        graph.span(true, enc(y, !ty), enc(x, tx));\n    }\n\n\
+    \    // assign is also updated\n    bool judge() {\n        StronglyConnectedComponents\
+    \ scc(graph);\n\n        for (int x = 0; x < vnum; ++x) {\n            int fid\
     \ = scc.id[enc(x, false)],\n                tid = scc.id[enc(x, true)];\n\n  \
-    \          if (fid == tid) {\n                assign.clear();\n              \
-    \  break;\n            } else {\n                assign[x] = (fid < tid);\n  \
-    \          }\n        }\n        return assign;\n    }\n};\n#line 4 \"Verify/two_sat.test.cpp\"\
-    \n\n#line 6 \"Verify/two_sat.test.cpp\"\n#include <string>\n#include <exception>\n\
-    \nint main() {\n    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\n\
-    \    std::string tmp;\n    int n, m;\n    std::cin >> tmp >> tmp >> n >> m;\n\n\
-    \    TwoSat ts(n);\n    while (m--) {\n        int x, y;\n        std::cin >>\
-    \ x >> y >> tmp;\n        ts.span(std::abs(x) - 1, x > 0, std::abs(y) - 1, y >\
-    \ 0);\n    }\n\n    auto assign = ts.exec();\n\n    if (assign.empty()) {\n  \
-    \      std::cout << \"s UNSATISFIABLE\" << std::endl;\n\n    } else {\n      \
-    \  std::cout << \"s SATISFIABLE\" << std::endl;\n\n        std::cout << \"v \"\
-    ;\n        for (int x = 1; x <= n; ++x) {\n            std::cout << (assign[x\
-    \ - 1] ? x : -x) << \" \";\n        }\n        std::cout << \"0\\n\";\n    }\n\
-    \n    return 0;\n}\n"
+    \          if (fid == tid) {\n                return false;\n            } else\
+    \ {\n                assign[x] = (fid < tid);\n            }\n        }\n    \
+    \    return true;\n    }\n};\n#line 4 \"Verify/two_sat.test.cpp\"\n\n#include\
+    \ <iostream>\n#include <string>\n\nint main() {\n    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\
+    \n    std::string tmp;\n    int n, m;\n    std::cin >> tmp >> tmp >> n >> m;\n\
+    \n    TwoSat ts(n);\n    while (m--) {\n        int x, y;\n        std::cin >>\
+    \ x >> y >> tmp;\n        ts.add(std::abs(x) - 1, x > 0, std::abs(y) - 1, y >\
+    \ 0);\n    }\n\n    if (!ts.judge()) {\n        std::cout << \"s UNSATISFIABLE\\\
+    n\";\n    } else {\n        std::cout << \"s SATISFIABLE\\n\";\n\n        std::cout\
+    \ << \"v \";\n        for (int x = 1; x <= n; ++x) {\n            std::cout <<\
+    \ (ts.assign[x - 1] ? x : -x) << \" \";\n        }\n        std::cout << \"0\\\
+    n\";\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\n\n#include \"\
-    ../Graph/two_sat.hpp\"\n\n#include <iostream>\n#include <string>\n#include <exception>\n\
-    \nint main() {\n    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\n\
-    \    std::string tmp;\n    int n, m;\n    std::cin >> tmp >> tmp >> n >> m;\n\n\
-    \    TwoSat ts(n);\n    while (m--) {\n        int x, y;\n        std::cin >>\
-    \ x >> y >> tmp;\n        ts.span(std::abs(x) - 1, x > 0, std::abs(y) - 1, y >\
-    \ 0);\n    }\n\n    auto assign = ts.exec();\n\n    if (assign.empty()) {\n  \
-    \      std::cout << \"s UNSATISFIABLE\" << std::endl;\n\n    } else {\n      \
-    \  std::cout << \"s SATISFIABLE\" << std::endl;\n\n        std::cout << \"v \"\
-    ;\n        for (int x = 1; x <= n; ++x) {\n            std::cout << (assign[x\
+    ../Graph/two_sat.hpp\"\n\n#include <iostream>\n#include <string>\n\nint main()\
+    \ {\n    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\n    std::string\
+    \ tmp;\n    int n, m;\n    std::cin >> tmp >> tmp >> n >> m;\n\n    TwoSat ts(n);\n\
+    \    while (m--) {\n        int x, y;\n        std::cin >> x >> y >> tmp;\n  \
+    \      ts.add(std::abs(x) - 1, x > 0, std::abs(y) - 1, y > 0);\n    }\n\n    if\
+    \ (!ts.judge()) {\n        std::cout << \"s UNSATISFIABLE\\n\";\n    } else {\n\
+    \        std::cout << \"s SATISFIABLE\\n\";\n\n        std::cout << \"v \";\n\
+    \        for (int x = 1; x <= n; ++x) {\n            std::cout << (ts.assign[x\
     \ - 1] ? x : -x) << \" \";\n        }\n        std::cout << \"0\\n\";\n    }\n\
     \n    return 0;\n}\n"
   dependsOn:
@@ -91,7 +87,7 @@ data:
   isVerificationFile: true
   path: Verify/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2020-10-13 21:34:07+09:00'
+  timestamp: '2020-11-03 10:18:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/two_sat.test.cpp
