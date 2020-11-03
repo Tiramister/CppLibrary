@@ -65,21 +65,21 @@ data:
     \          head(graph.size()),\n          dep(graph.size()),\n          out(graph.size()),\n\
     \          time(0) {\n        dfs_sz(0, -1, 0);\n        head[0] = 0;\n      \
     \  dfs_hld(0, -1);\n    }\n\n    void dfs_sz(int v, int p, int d) {\n        par[v]\
-    \ = p;\n        sz[v] = 1;\n        dep[v] = d;\n\n        if (graph[v].front().dst\
-    \ == p) {\n            std::swap(graph[v].front(), graph[v].back());\n       \
-    \ }\n\n        for (auto& e : graph[v]) {\n            if (e.dst == p) continue;\n\
-    \n            dfs_sz(e.dst, v, d + 1);\n            sz[v] += sz[e.dst];\n\n  \
-    \          // heavy edge first\n            if (sz[graph[v].front().dst] < sz[e.dst])\
-    \ {\n                std::swap(graph[v].front(), e);\n            }\n        }\n\
-    \    }\n\n    void dfs_hld(int v, int p) {\n        id[v] = time++;\n        vs[id[v]]\
-    \ = v;\n\n        bool first = true;\n        for (auto e : graph[v]) {\n    \
-    \        if (e.dst == p) continue;\n\n            head[e.dst] = (first ? head[v]\
-    \ : e.dst);\n            first = false;\n            dfs_hld(e.dst, v);\n    \
-    \    }\n\n        out[v] = time;\n    }\n\n    int lca(int u, int v) {\n     \
-    \   while (true) {\n            if (id[u] > id[v]) std::swap(u, v);\n        \
-    \    if (head[u] == head[v]) return u;\n            v = par[head[v]];\n      \
-    \  }\n    }\n\n    int dist(int u, int v) {\n        return dep[u] + dep[v] -\
-    \ dep[lca(u, v)] * 2;\n    }\n\n    std::vector<std::pair<int, int>> path(int\
+    \ = p;\n        sz[v] = 1;\n        dep[v] = d;\n\n        if (!graph[v].empty()\
+    \ && graph[v].front().dst == p) {\n            std::swap(graph[v].front(), graph[v].back());\n\
+    \        }\n\n        for (auto& e : graph[v]) {\n            if (e.dst == p)\
+    \ continue;\n\n            dfs_sz(e.dst, v, d + 1);\n            sz[v] += sz[e.dst];\n\
+    \n            // heavy edge first\n            if (sz[graph[v].front().dst] <\
+    \ sz[e.dst]) {\n                std::swap(graph[v].front(), e);\n            }\n\
+    \        }\n    }\n\n    void dfs_hld(int v, int p) {\n        id[v] = time++;\n\
+    \        vs[id[v]] = v;\n\n        bool first = true;\n        for (auto e : graph[v])\
+    \ {\n            if (e.dst == p) continue;\n\n            head[e.dst] = (first\
+    \ ? head[v] : e.dst);\n            first = false;\n            dfs_hld(e.dst,\
+    \ v);\n        }\n\n        out[v] = time;\n    }\n\n    int lca(int u, int v)\
+    \ {\n        while (true) {\n            if (id[u] > id[v]) std::swap(u, v);\n\
+    \            if (head[u] == head[v]) return u;\n            v = par[head[v]];\n\
+    \        }\n    }\n\n    int dist(int u, int v) {\n        return dep[u] + dep[v]\
+    \ - dep[lca(u, v)] * 2;\n    }\n\n    std::vector<std::pair<int, int>> path(int\
     \ u, int v, bool is_edge) {\n        std::vector<std::pair<int, int>> segs;\n\n\
     \        while (true) {\n            if (id[u] > id[v]) std::swap(u, v);\n\n \
     \           if (head[u] == head[v]) {\n                // when edge path, the\
@@ -130,7 +130,7 @@ data:
   isVerificationFile: true
   path: Verify/hld_path.test.cpp
   requiredBy: []
-  timestamp: '2020-11-04 04:54:49+09:00'
+  timestamp: '2020-11-04 08:09:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/hld_path.test.cpp
