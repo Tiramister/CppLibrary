@@ -6,6 +6,9 @@ data:
     path: Convolution/number_theoretical_transform.hpp
     title: Convolution/number_theoretical_transform.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Verify/aho_corasick.test.cpp
+    title: Verify/aho_corasick.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/combination.test.cpp
     title: Verify/combination.test.cpp
@@ -22,7 +25,7 @@ data:
     path: Verify/segment_tree_affine.test.cpp
     title: Verify/segment_tree_affine.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Number/modint.hpp\"\n\n#include <iostream>\n\ntemplate <int\
@@ -89,9 +92,10 @@ data:
   requiredBy:
   - Convolution/number_theoretical_transform.hpp
   timestamp: '2020-08-25 16:49:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Verify/combination.test.cpp
+  - Verify/aho_corasick.test.cpp
   - Verify/number_theoretical_transform.test.cpp
   - Verify/lazy_segment_tree_affine.test.cpp
   - Verify/mod_pow.test.cpp

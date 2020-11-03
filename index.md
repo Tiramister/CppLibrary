@@ -39,7 +39,7 @@ data:
       title: Geometry/type.cpp
   - name: Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Graph/bfs.hpp
       title: Graph/bfs.hpp
     - icon: ':heavy_check_mark:'
@@ -48,9 +48,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Graph/centroid_decomposition.hpp
       title: Graph/centroid_decomposition.hpp
-    - icon: ':heavy_check_mark:'
-      path: Graph/diameter.hpp
-      title: Graph/diameter.hpp
     - icon: ':heavy_check_mark:'
       path: Graph/dijkstra.hpp
       title: Graph/dijkstra.hpp
@@ -86,9 +83,6 @@ data:
       title: Graph/two_sat.hpp
   - name: Number
     pages:
-    - icon: ':warning:'
-      path: Number/boolean_elimination.hpp
-      title: Number/boolean_elimination.hpp
     - icon: ':heavy_check_mark:'
       path: Number/combination.hpp
       title: Number/combination.hpp
@@ -98,13 +92,10 @@ data:
     - icon: ':warning:'
       path: Number/fixed_linear_algebra.hpp
       title: Number/fixed_linear_algebra.hpp
-    - icon: ':heavy_check_mark:'
-      path: Number/gcd.hpp
-      title: Number/gcd.hpp
     - icon: ':warning:'
       path: Number/linear_algebra.hpp
       title: Number/linear_algebra.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Number/modint.hpp
       title: Number/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -112,7 +103,7 @@ data:
       title: Number/prime.hpp
   - name: String
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: String/aho_corasick.hpp
       title: String/aho_corasick.hpp
     - icon: ':heavy_check_mark:'
@@ -150,6 +141,9 @@ data:
   verificationCategories:
   - name: Verify
     pages:
+    - icon: ':x:'
+      path: Verify/aho_corasick.test.cpp
+      title: Verify/aho_corasick.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/articulation_points.test.cpp
       title: Verify/articulation_points.test.cpp
@@ -166,9 +160,6 @@ data:
       path: Verify/combination.test.cpp
       title: Verify/combination.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Verify/diameter.test.cpp
-      title: Verify/diameter.test.cpp
-    - icon: ':heavy_check_mark:'
       path: Verify/dijkstra.test.cpp
       title: Verify/dijkstra.test.cpp
     - icon: ':heavy_check_mark:'
@@ -183,9 +174,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/ford_fulkerson.test.cpp
       title: Verify/ford_fulkerson.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Verify/gcd.test.cpp
-      title: Verify/gcd.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/knuth_morris_pratt.test.cpp
       title: Verify/knuth_morris_pratt.test.cpp

@@ -2,24 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Verify/aho_corasick.test.cpp
+    title: Verify/aho_corasick.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"String/aho_corasick.hpp\"\n#include <algorithm>\n#include\
+  bundledCode: "#line 2 \"String/aho_corasick.hpp\"\n\n#include <algorithm>\n#include\
     \ <vector>\n#include <array>\n#include <queue>\n#include <functional>\n\ntemplate\
-    \ <int K, class T>\nstruct PatternsMatching {\n    struct Node {\n        int\
-    \ c;\n        std::array<int, K> nxt;\n        int fail;\n        std::vector<int>\
-    \ ids;\n\n        explicit Node(int c) : c(c), fail(0) { nxt.fill(-1); }\n   \
-    \ };\n\n    std::vector<Node> nodes;\n    std::function<int(T)> enc;\n\n    explicit\
-    \ PatternsMatching(T base) {\n        nodes.emplace_back(-1);\n        enc = [=](T\
-    \ c) { return c - base; };\n    }\n\n    explicit PatternsMatching(const std::function<int(T)>&\
-    \ enc)\n        : enc(enc) { nodes.emplace_back(-1); }\n\n    template <class\
+    \ <int K, class T>\nstruct PatternsMatching {\n    struct Node {\n        std::array<int,\
+    \ K> nxt;\n        int fail;\n        std::vector<int> ids;\n\n        explicit\
+    \ Node() : fail(0) { nxt.fill(-1); }\n    };\n\n    std::vector<Node> nodes;\n\
+    \    std::function<int(T)> enc;\n\n    explicit PatternsMatching(T base)\n   \
+    \     : nodes(1), enc([=](T c) { return c - base; }) {}\n\n    template <class\
     \ Container>\n    void add(const Container& s, int id) {\n        int pos = 0;\n\
     \        for (T ci : s) {\n            int c = enc(ci);\n\n            int npos\
     \ = nodes[pos].nxt[c];\n            if (npos == -1) {\n                npos =\
-    \ nodes.size();\n                nodes[pos].nxt[c] = npos;\n                nodes.emplace_back(c);\n\
+    \ nodes.size();\n                nodes[pos].nxt[c] = npos;\n                nodes.emplace_back();\n\
     \            }\n            pos = npos;\n        }\n        nodes[pos].ids.push_back(id);\n\
     \    }\n\n    void build() {\n        std::queue<int> que;\n        for (int&\
     \ pos : nodes[0].nxt) {\n            if (pos == -1) {\n                pos = 0;\n\
@@ -42,25 +43,23 @@ data:
     \  }\n        }\n\n        return ret;\n    }\n\n    Node& operator[](int pos)\
     \ { return nodes[pos]; }\n    Node operator[](int pos) const { return nodes[pos];\
     \ }\n};\n"
-  code: "#include <algorithm>\n#include <vector>\n#include <array>\n#include <queue>\n\
-    #include <functional>\n\ntemplate <int K, class T>\nstruct PatternsMatching {\n\
-    \    struct Node {\n        int c;\n        std::array<int, K> nxt;\n        int\
-    \ fail;\n        std::vector<int> ids;\n\n        explicit Node(int c) : c(c),\
-    \ fail(0) { nxt.fill(-1); }\n    };\n\n    std::vector<Node> nodes;\n    std::function<int(T)>\
-    \ enc;\n\n    explicit PatternsMatching(T base) {\n        nodes.emplace_back(-1);\n\
-    \        enc = [=](T c) { return c - base; };\n    }\n\n    explicit PatternsMatching(const\
-    \ std::function<int(T)>& enc)\n        : enc(enc) { nodes.emplace_back(-1); }\n\
-    \n    template <class Container>\n    void add(const Container& s, int id) {\n\
-    \        int pos = 0;\n        for (T ci : s) {\n            int c = enc(ci);\n\
-    \n            int npos = nodes[pos].nxt[c];\n            if (npos == -1) {\n \
-    \               npos = nodes.size();\n                nodes[pos].nxt[c] = npos;\n\
-    \                nodes.emplace_back(c);\n            }\n            pos = npos;\n\
-    \        }\n        nodes[pos].ids.push_back(id);\n    }\n\n    void build() {\n\
-    \        std::queue<int> que;\n        for (int& pos : nodes[0].nxt) {\n     \
-    \       if (pos == -1) {\n                pos = 0;\n            } else {\n   \
-    \             que.push(pos);\n            }\n        }\n\n        while (!que.empty())\
-    \ {\n            int pos = que.front();\n            que.pop();\n\n          \
-    \  for (int c = 0; c < K; ++c) {\n                int npos = nodes[pos].nxt[c];\n\
+  code: "#pragma once\n\n#include <algorithm>\n#include <vector>\n#include <array>\n\
+    #include <queue>\n#include <functional>\n\ntemplate <int K, class T>\nstruct PatternsMatching\
+    \ {\n    struct Node {\n        std::array<int, K> nxt;\n        int fail;\n \
+    \       std::vector<int> ids;\n\n        explicit Node() : fail(0) { nxt.fill(-1);\
+    \ }\n    };\n\n    std::vector<Node> nodes;\n    std::function<int(T)> enc;\n\n\
+    \    explicit PatternsMatching(T base)\n        : nodes(1), enc([=](T c) { return\
+    \ c - base; }) {}\n\n    template <class Container>\n    void add(const Container&\
+    \ s, int id) {\n        int pos = 0;\n        for (T ci : s) {\n            int\
+    \ c = enc(ci);\n\n            int npos = nodes[pos].nxt[c];\n            if (npos\
+    \ == -1) {\n                npos = nodes.size();\n                nodes[pos].nxt[c]\
+    \ = npos;\n                nodes.emplace_back();\n            }\n            pos\
+    \ = npos;\n        }\n        nodes[pos].ids.push_back(id);\n    }\n\n    void\
+    \ build() {\n        std::queue<int> que;\n        for (int& pos : nodes[0].nxt)\
+    \ {\n            if (pos == -1) {\n                pos = 0;\n            } else\
+    \ {\n                que.push(pos);\n            }\n        }\n\n        while\
+    \ (!que.empty()) {\n            int pos = que.front();\n            que.pop();\n\
+    \n            for (int c = 0; c < K; ++c) {\n                int npos = nodes[pos].nxt[c];\n\
     \                if (npos == -1) continue;\n\n                int p = nodes[pos].fail;\n\
     \                while (nodes[p].nxt[c] == -1) p = nodes[p].fail;\n          \
     \      int fpos = next(nodes[pos].fail, c);\n\n                nodes[npos].fail\
@@ -80,9 +79,10 @@ data:
   isVerificationFile: false
   path: String/aho_corasick.hpp
   requiredBy: []
-  timestamp: '2020-08-28 19:11:58+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2020-10-29 01:24:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Verify/aho_corasick.test.cpp
 documentation_of: String/aho_corasick.hpp
 layout: document
 redirect_from:

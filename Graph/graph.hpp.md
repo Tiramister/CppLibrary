@@ -2,15 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: Graph/bfs.hpp
     title: Graph/bfs.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/centroid_decomposition.hpp
     title: Graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
-    path: Graph/diameter.hpp
-    title: Graph/diameter.hpp
   - icon: ':heavy_check_mark:'
     path: Graph/dijkstra.hpp
     title: Graph/dijkstra.hpp
@@ -39,9 +36,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/centroid_decomposition_diameter.test.cpp
     title: Verify/centroid_decomposition_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Verify/diameter.test.cpp
-    title: Verify/diameter.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/dijkstra.test.cpp
     title: Verify/dijkstra.test.cpp
@@ -86,7 +80,6 @@ data:
   path: Graph/graph.hpp
   requiredBy:
   - Graph/dijkstra.hpp
-  - Graph/diameter.hpp
   - Graph/centroid_decomposition.hpp
   - Graph/two_sat.hpp
   - Graph/level_ancestor.hpp
@@ -99,7 +92,6 @@ data:
   verifiedWith:
   - Verify/centroid_decomposition_diameter.test.cpp
   - Verify/dijkstra.test.cpp
-  - Verify/diameter.test.cpp
   - Verify/topological_sort.test.cpp
   - Verify/articulation_points.test.cpp
   - Verify/bridges.test.cpp

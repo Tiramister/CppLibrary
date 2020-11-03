@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Number/combination.hpp
     title: Number/combination.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Number/modint.hpp
     title: Number/modint.hpp
   _extendedRequiredBy: []
