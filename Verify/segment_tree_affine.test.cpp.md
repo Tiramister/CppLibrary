@@ -46,44 +46,45 @@ data:
     \ MOD>\nstruct ModInt {\n    using lint = long long;\n    int val;\n\n    // constructor\n\
     \    ModInt(lint v = 0) : val(v % MOD) {\n        if (val < 0) val += MOD;\n \
     \   };\n\n    // unary operator\n    ModInt operator+() const { return ModInt(val);\
-    \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n    ModInt inv()\
-    \ const { return this->pow(MOD - 2); }\n\n    // arithmetic\n    ModInt operator+(const\
-    \ ModInt& x) const { return ModInt(*this) += x; }\n    ModInt operator-(const\
-    \ ModInt& x) const { return ModInt(*this) -= x; }\n    ModInt operator*(const\
-    \ ModInt& x) const { return ModInt(*this) *= x; }\n    ModInt operator/(const\
-    \ ModInt& x) const { return ModInt(*this) /= x; }\n    ModInt pow(lint n) const\
-    \ {\n        auto x = ModInt(1);\n        auto b = *this;\n        while (n >\
-    \ 0) {\n            if (n & 1) x *= b;\n            n >>= 1;\n            b *=\
-    \ b;\n        }\n        return x;\n    }\n\n    // compound assignment\n    ModInt&\
-    \ operator+=(const ModInt& x) {\n        if ((val += x.val) >= MOD) val -= MOD;\n\
-    \        return *this;\n    }\n    ModInt& operator-=(const ModInt& x) {\n   \
-    \     if ((val -= x.val) < 0) val += MOD;\n        return *this;\n    }\n    ModInt&\
-    \ operator*=(const ModInt& x) {\n        val = lint(val) * x.val % MOD;\n    \
-    \    return *this;\n    }\n    ModInt& operator/=(const ModInt& x) { return *this\
-    \ *= x.inv(); }\n\n    // compare\n    bool operator==(const ModInt& b) const\
-    \ { return val == b.val; }\n    bool operator!=(const ModInt& b) const { return\
-    \ val != b.val; }\n    bool operator<(const ModInt& b) const { return val < b.val;\
-    \ }\n    bool operator<=(const ModInt& b) const { return val <= b.val; }\n   \
-    \ bool operator>(const ModInt& b) const { return val > b.val; }\n    bool operator>=(const\
-    \ ModInt& b) const { return val >= b.val; }\n\n    // I/O\n    friend std::istream&\
-    \ operator>>(std::istream& is, ModInt& x) noexcept {\n        lint v;\n      \
-    \  is >> v;\n        x = v;\n        return is;\n    }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val;\
-    \ }\n};\n\n// constexpr int MOD = 1000000007;\n// constexpr int MOD = 998244353;\n\
-    // using mint = ModInt<MOD>;\n#line 5 \"Verify/segment_tree_affine.test.cpp\"\n\
-    \nconstexpr int MOD = 998244353;\nusing mint = ModInt<MOD>;\n\ntemplate <class\
-    \ T>\nstruct Affine {\n    T a, b;\n    Affine() = default;\n    Affine(T a, T\
-    \ b) : a(a), b(b) {}\n\n    T operator()(T x) const { return a * x + b; }\n};\n\
-    \nusing affine = Affine<mint>;\n\nint main() {\n    std::cin.tie(nullptr);\n \
-    \   std::ios::sync_with_stdio(false);\n\n    int n, q;\n    std::cin >> n >> q;\n\
-    \n    std::vector<affine> xs(n);\n    for (auto& x : xs) std::cin >> x.a >> x.b;\n\
-    \n    SegmentTree<affine>\n        seg(xs, affine(1, 0),\n            [](affine\
-    \ f, affine g) { return affine(f.a * g.a, g.a * f.b + g.b); });\n\n    while (q--)\
-    \ {\n        int t;\n        std::cin >> t;\n\n        if (t == 0) {\n       \
-    \     int i, a, b;\n            std::cin >> i >> a >> b;\n            seg.update(i,\
-    \ affine(a, b));\n\n        } else {\n            int l, r, x;\n            std::cin\
-    \ >> l >> r >> x;\n            auto f = seg.fold(l, r);\n            std::cout\
-    \ << f(x) << \"\\n\";\n        }\n    }\n\n    return 0;\n}\n"
+    \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n\n    ModInt&\
+    \ operator++() { return *this += 1; }\n    ModInt& operator--() { *this -= 1;\
+    \ }\n\n    // functions\n    ModInt pow(lint n) const {\n        auto x = ModInt(1);\n\
+    \        auto b = *this;\n        while (n > 0) {\n            if (n & 1) x *=\
+    \ b;\n            n >>= 1;\n            b *= b;\n        }\n        return x;\n\
+    \    }\n    ModInt inv() const {\n        int s = val, t = MOD,\n            xs\
+    \ = 1, xt = 0;\n\n        while (t != 0) {\n            auto div = s / t;\n\n\
+    \            s -= t * div;\n            xs -= xt * div;\n\n            std::swap(s,\
+    \ t);\n            std::swap(xs, xt);\n        }\n\n        return xs;\n    }\n\
+    \n    // arithmetic\n    ModInt operator+(const ModInt& x) const { return ModInt(*this)\
+    \ += x; }\n    ModInt operator-(const ModInt& x) const { return ModInt(*this)\
+    \ -= x; }\n    ModInt operator*(const ModInt& x) const { return ModInt(*this)\
+    \ *= x; }\n    ModInt operator/(const ModInt& x) const { return ModInt(*this)\
+    \ /= x; }\n\n    ModInt& operator+=(const ModInt& x) {\n        if ((val += x.val)\
+    \ >= MOD) val -= MOD;\n        return *this;\n    }\n    ModInt& operator-=(const\
+    \ ModInt& x) {\n        if ((val -= x.val) < 0) val += MOD;\n        return *this;\n\
+    \    }\n    ModInt& operator*=(const ModInt& x) {\n        val = lint(val) * x.val\
+    \ % MOD;\n        return *this;\n    }\n    ModInt& operator/=(const ModInt& x)\
+    \ { return *this *= x.inv(); }\n\n    // comparator\n    bool operator==(const\
+    \ ModInt& b) const { return val == b.val; }\n    bool operator!=(const ModInt&\
+    \ b) const { return val != b.val; }\n\n    // I/O\n    friend std::istream& operator>>(std::istream&\
+    \ is, ModInt& x) {\n        lint v;\n        is >> v;\n        x = v;\n      \
+    \  return is;\n    }\n    friend std::ostream& operator<<(std::ostream& os, const\
+    \ ModInt& x) {\n        return os << x.val;\n    }\n};\n\n// constexpr int MOD\
+    \ = 1000000007;\n// constexpr int MOD = 998244353;\n// using mint = ModInt<MOD>;\n\
+    #line 5 \"Verify/segment_tree_affine.test.cpp\"\n\nconstexpr int MOD = 998244353;\n\
+    using mint = ModInt<MOD>;\n\ntemplate <class T>\nstruct Affine {\n    T a, b;\n\
+    \    Affine() = default;\n    Affine(T a, T b) : a(a), b(b) {}\n\n    T operator()(T\
+    \ x) const { return a * x + b; }\n};\n\nusing affine = Affine<mint>;\n\nint main()\
+    \ {\n    std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n\n   \
+    \ int n, q;\n    std::cin >> n >> q;\n\n    std::vector<affine> xs(n);\n    for\
+    \ (auto& x : xs) std::cin >> x.a >> x.b;\n\n    SegmentTree<affine>\n        seg(xs,\
+    \ affine(1, 0),\n            [](affine f, affine g) { return affine(f.a * g.a,\
+    \ g.a * f.b + g.b); });\n\n    while (q--) {\n        int t;\n        std::cin\
+    \ >> t;\n\n        if (t == 0) {\n            int i, a, b;\n            std::cin\
+    \ >> i >> a >> b;\n            seg.update(i, affine(a, b));\n\n        } else\
+    \ {\n            int l, r, x;\n            std::cin >> l >> r >> x;\n        \
+    \    auto f = seg.fold(l, r);\n            std::cout << f(x) << \"\\n\";\n   \
+    \     }\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n\n#include \"../DataStructure/segment_tree.hpp\"\n#include \"../Number/modint.hpp\"\
     \n\nconstexpr int MOD = 998244353;\nusing mint = ModInt<MOD>;\n\ntemplate <class\
@@ -105,7 +106,7 @@ data:
   isVerificationFile: true
   path: Verify/segment_tree_affine.test.cpp
   requiredBy: []
-  timestamp: '2020-08-25 16:49:54+09:00'
+  timestamp: '2020-11-03 12:40:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/segment_tree_affine.test.cpp

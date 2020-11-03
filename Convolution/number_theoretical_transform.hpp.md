@@ -18,34 +18,35 @@ data:
     \ ModInt {\n    using lint = long long;\n    int val;\n\n    // constructor\n\
     \    ModInt(lint v = 0) : val(v % MOD) {\n        if (val < 0) val += MOD;\n \
     \   };\n\n    // unary operator\n    ModInt operator+() const { return ModInt(val);\
-    \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n    ModInt inv()\
-    \ const { return this->pow(MOD - 2); }\n\n    // arithmetic\n    ModInt operator+(const\
-    \ ModInt& x) const { return ModInt(*this) += x; }\n    ModInt operator-(const\
-    \ ModInt& x) const { return ModInt(*this) -= x; }\n    ModInt operator*(const\
-    \ ModInt& x) const { return ModInt(*this) *= x; }\n    ModInt operator/(const\
-    \ ModInt& x) const { return ModInt(*this) /= x; }\n    ModInt pow(lint n) const\
-    \ {\n        auto x = ModInt(1);\n        auto b = *this;\n        while (n >\
-    \ 0) {\n            if (n & 1) x *= b;\n            n >>= 1;\n            b *=\
-    \ b;\n        }\n        return x;\n    }\n\n    // compound assignment\n    ModInt&\
-    \ operator+=(const ModInt& x) {\n        if ((val += x.val) >= MOD) val -= MOD;\n\
-    \        return *this;\n    }\n    ModInt& operator-=(const ModInt& x) {\n   \
-    \     if ((val -= x.val) < 0) val += MOD;\n        return *this;\n    }\n    ModInt&\
-    \ operator*=(const ModInt& x) {\n        val = lint(val) * x.val % MOD;\n    \
-    \    return *this;\n    }\n    ModInt& operator/=(const ModInt& x) { return *this\
-    \ *= x.inv(); }\n\n    // compare\n    bool operator==(const ModInt& b) const\
-    \ { return val == b.val; }\n    bool operator!=(const ModInt& b) const { return\
-    \ val != b.val; }\n    bool operator<(const ModInt& b) const { return val < b.val;\
-    \ }\n    bool operator<=(const ModInt& b) const { return val <= b.val; }\n   \
-    \ bool operator>(const ModInt& b) const { return val > b.val; }\n    bool operator>=(const\
-    \ ModInt& b) const { return val >= b.val; }\n\n    // I/O\n    friend std::istream&\
-    \ operator>>(std::istream& is, ModInt& x) noexcept {\n        lint v;\n      \
-    \  is >> v;\n        x = v;\n        return is;\n    }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val;\
-    \ }\n};\n\n// constexpr int MOD = 1000000007;\n// constexpr int MOD = 998244353;\n\
-    // using mint = ModInt<MOD>;\n#line 4 \"Convolution/number_theoretical_transform.hpp\"\
-    \n\n#include <vector>\n\ntemplate <int MOD, int Root>\nstruct NumberTheoreticalTransform\
-    \ {\n    using mint = ModInt<MOD>;\n    using mints = std::vector<mint>;\n\n \
-    \   // the 2^k-th root of 1\n    std::vector<mint> zetas;\n\n    explicit NumberTheoreticalTransform()\
+    \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n\n    ModInt&\
+    \ operator++() { return *this += 1; }\n    ModInt& operator--() { *this -= 1;\
+    \ }\n\n    // functions\n    ModInt pow(lint n) const {\n        auto x = ModInt(1);\n\
+    \        auto b = *this;\n        while (n > 0) {\n            if (n & 1) x *=\
+    \ b;\n            n >>= 1;\n            b *= b;\n        }\n        return x;\n\
+    \    }\n    ModInt inv() const {\n        int s = val, t = MOD,\n            xs\
+    \ = 1, xt = 0;\n\n        while (t != 0) {\n            auto div = s / t;\n\n\
+    \            s -= t * div;\n            xs -= xt * div;\n\n            std::swap(s,\
+    \ t);\n            std::swap(xs, xt);\n        }\n\n        return xs;\n    }\n\
+    \n    // arithmetic\n    ModInt operator+(const ModInt& x) const { return ModInt(*this)\
+    \ += x; }\n    ModInt operator-(const ModInt& x) const { return ModInt(*this)\
+    \ -= x; }\n    ModInt operator*(const ModInt& x) const { return ModInt(*this)\
+    \ *= x; }\n    ModInt operator/(const ModInt& x) const { return ModInt(*this)\
+    \ /= x; }\n\n    ModInt& operator+=(const ModInt& x) {\n        if ((val += x.val)\
+    \ >= MOD) val -= MOD;\n        return *this;\n    }\n    ModInt& operator-=(const\
+    \ ModInt& x) {\n        if ((val -= x.val) < 0) val += MOD;\n        return *this;\n\
+    \    }\n    ModInt& operator*=(const ModInt& x) {\n        val = lint(val) * x.val\
+    \ % MOD;\n        return *this;\n    }\n    ModInt& operator/=(const ModInt& x)\
+    \ { return *this *= x.inv(); }\n\n    // comparator\n    bool operator==(const\
+    \ ModInt& b) const { return val == b.val; }\n    bool operator!=(const ModInt&\
+    \ b) const { return val != b.val; }\n\n    // I/O\n    friend std::istream& operator>>(std::istream&\
+    \ is, ModInt& x) {\n        lint v;\n        is >> v;\n        x = v;\n      \
+    \  return is;\n    }\n    friend std::ostream& operator<<(std::ostream& os, const\
+    \ ModInt& x) {\n        return os << x.val;\n    }\n};\n\n// constexpr int MOD\
+    \ = 1000000007;\n// constexpr int MOD = 998244353;\n// using mint = ModInt<MOD>;\n\
+    #line 4 \"Convolution/number_theoretical_transform.hpp\"\n\n#include <vector>\n\
+    \ntemplate <int MOD, int Root>\nstruct NumberTheoreticalTransform {\n    using\
+    \ mint = ModInt<MOD>;\n    using mints = std::vector<mint>;\n\n    // the 2^k-th\
+    \ root of 1\n    std::vector<mint> zetas;\n\n    explicit NumberTheoreticalTransform()\
     \ {\n        int exp = MOD - 1;\n        while (true) {\n            mint zeta\
     \ = mint(Root).pow(exp);\n            zetas.push_back(zeta);\n            if (exp\
     \ & 1) break;\n            exp /= 2;\n        }\n    }\n\n    // ceil(log_2 n)\n\
@@ -119,7 +120,7 @@ data:
   isVerificationFile: false
   path: Convolution/number_theoretical_transform.hpp
   requiredBy: []
-  timestamp: '2020-08-25 17:07:38+09:00'
+  timestamp: '2020-11-03 12:40:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/number_theoretical_transform.test.cpp

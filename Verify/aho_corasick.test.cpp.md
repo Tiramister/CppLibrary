@@ -21,37 +21,38 @@ data:
     struct ModInt {\n    using lint = long long;\n    int val;\n\n    // constructor\n\
     \    ModInt(lint v = 0) : val(v % MOD) {\n        if (val < 0) val += MOD;\n \
     \   };\n\n    // unary operator\n    ModInt operator+() const { return ModInt(val);\
-    \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n    ModInt inv()\
-    \ const { return this->pow(MOD - 2); }\n\n    // arithmetic\n    ModInt operator+(const\
-    \ ModInt& x) const { return ModInt(*this) += x; }\n    ModInt operator-(const\
-    \ ModInt& x) const { return ModInt(*this) -= x; }\n    ModInt operator*(const\
-    \ ModInt& x) const { return ModInt(*this) *= x; }\n    ModInt operator/(const\
-    \ ModInt& x) const { return ModInt(*this) /= x; }\n    ModInt pow(lint n) const\
-    \ {\n        auto x = ModInt(1);\n        auto b = *this;\n        while (n >\
-    \ 0) {\n            if (n & 1) x *= b;\n            n >>= 1;\n            b *=\
-    \ b;\n        }\n        return x;\n    }\n\n    // compound assignment\n    ModInt&\
-    \ operator+=(const ModInt& x) {\n        if ((val += x.val) >= MOD) val -= MOD;\n\
-    \        return *this;\n    }\n    ModInt& operator-=(const ModInt& x) {\n   \
-    \     if ((val -= x.val) < 0) val += MOD;\n        return *this;\n    }\n    ModInt&\
-    \ operator*=(const ModInt& x) {\n        val = lint(val) * x.val % MOD;\n    \
-    \    return *this;\n    }\n    ModInt& operator/=(const ModInt& x) { return *this\
-    \ *= x.inv(); }\n\n    // compare\n    bool operator==(const ModInt& b) const\
-    \ { return val == b.val; }\n    bool operator!=(const ModInt& b) const { return\
-    \ val != b.val; }\n    bool operator<(const ModInt& b) const { return val < b.val;\
-    \ }\n    bool operator<=(const ModInt& b) const { return val <= b.val; }\n   \
-    \ bool operator>(const ModInt& b) const { return val > b.val; }\n    bool operator>=(const\
-    \ ModInt& b) const { return val >= b.val; }\n\n    // I/O\n    friend std::istream&\
-    \ operator>>(std::istream& is, ModInt& x) noexcept {\n        lint v;\n      \
-    \  is >> v;\n        x = v;\n        return is;\n    }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val;\
-    \ }\n};\n\n// constexpr int MOD = 1000000007;\n// constexpr int MOD = 998244353;\n\
-    // using mint = ModInt<MOD>;\n#line 2 \"String/aho_corasick.hpp\"\n\n#include\
-    \ <algorithm>\n#include <vector>\n#include <array>\n#include <queue>\n#include\
-    \ <functional>\n\ntemplate <int K, class T>\nstruct PatternsMatching {\n    struct\
-    \ Node {\n        std::array<int, K> nxt;\n        int fail;\n        std::vector<int>\
-    \ ids;\n\n        explicit Node() : fail(0) { nxt.fill(-1); }\n    };\n\n    std::vector<Node>\
-    \ nodes;\n    std::function<int(T)> enc;\n\n    explicit PatternsMatching(T base)\n\
-    \        : nodes(1), enc([=](T c) { return c - base; }) {}\n\n    template <class\
+    \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n\n    ModInt&\
+    \ operator++() { return *this += 1; }\n    ModInt& operator--() { *this -= 1;\
+    \ }\n\n    // functions\n    ModInt pow(lint n) const {\n        auto x = ModInt(1);\n\
+    \        auto b = *this;\n        while (n > 0) {\n            if (n & 1) x *=\
+    \ b;\n            n >>= 1;\n            b *= b;\n        }\n        return x;\n\
+    \    }\n    ModInt inv() const {\n        int s = val, t = MOD,\n            xs\
+    \ = 1, xt = 0;\n\n        while (t != 0) {\n            auto div = s / t;\n\n\
+    \            s -= t * div;\n            xs -= xt * div;\n\n            std::swap(s,\
+    \ t);\n            std::swap(xs, xt);\n        }\n\n        return xs;\n    }\n\
+    \n    // arithmetic\n    ModInt operator+(const ModInt& x) const { return ModInt(*this)\
+    \ += x; }\n    ModInt operator-(const ModInt& x) const { return ModInt(*this)\
+    \ -= x; }\n    ModInt operator*(const ModInt& x) const { return ModInt(*this)\
+    \ *= x; }\n    ModInt operator/(const ModInt& x) const { return ModInt(*this)\
+    \ /= x; }\n\n    ModInt& operator+=(const ModInt& x) {\n        if ((val += x.val)\
+    \ >= MOD) val -= MOD;\n        return *this;\n    }\n    ModInt& operator-=(const\
+    \ ModInt& x) {\n        if ((val -= x.val) < 0) val += MOD;\n        return *this;\n\
+    \    }\n    ModInt& operator*=(const ModInt& x) {\n        val = lint(val) * x.val\
+    \ % MOD;\n        return *this;\n    }\n    ModInt& operator/=(const ModInt& x)\
+    \ { return *this *= x.inv(); }\n\n    // comparator\n    bool operator==(const\
+    \ ModInt& b) const { return val == b.val; }\n    bool operator!=(const ModInt&\
+    \ b) const { return val != b.val; }\n\n    // I/O\n    friend std::istream& operator>>(std::istream&\
+    \ is, ModInt& x) {\n        lint v;\n        is >> v;\n        x = v;\n      \
+    \  return is;\n    }\n    friend std::ostream& operator<<(std::ostream& os, const\
+    \ ModInt& x) {\n        return os << x.val;\n    }\n};\n\n// constexpr int MOD\
+    \ = 1000000007;\n// constexpr int MOD = 998244353;\n// using mint = ModInt<MOD>;\n\
+    #line 2 \"String/aho_corasick.hpp\"\n\n#include <algorithm>\n#include <vector>\n\
+    #include <array>\n#include <queue>\n#include <functional>\n\ntemplate <int K,\
+    \ class T>\nstruct PatternsMatching {\n    struct Node {\n        std::array<int,\
+    \ K> nxt;\n        int fail;\n        std::vector<int> ids;\n\n        explicit\
+    \ Node() : fail(0) { nxt.fill(-1); }\n    };\n\n    std::vector<Node> nodes;\n\
+    \    std::function<int(T)> enc;\n\n    explicit PatternsMatching(T base)\n   \
+    \     : nodes(1), enc([=](T c) { return c - base; }) {}\n\n    template <class\
     \ Container>\n    void add(const Container& s, int id) {\n        int pos = 0;\n\
     \        for (T ci : s) {\n            int c = enc(ci);\n\n            int npos\
     \ = nodes[pos].nxt[c];\n            if (npos == -1) {\n                npos =\
@@ -114,7 +115,7 @@ data:
   isVerificationFile: true
   path: Verify/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2020-10-29 01:25:30+09:00'
+  timestamp: '2020-11-03 12:40:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/aho_corasick.test.cpp
