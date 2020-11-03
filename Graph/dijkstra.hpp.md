@@ -28,32 +28,31 @@ data:
     \ {\n    Graph(int n = 0) : std::vector<std::vector<Edge<Cost>>>(n) {}\n\n   \
     \ void span(bool direct, int src, int dst, Cost cost = 1) {\n        (*this)[src].emplace_back(src,\
     \ dst, cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n\
-    \    }\n};\n#line 5 \"Graph/dijkstra.hpp\"\n\n#include <tuple>\n\ntemplate <class\
-    \ Cost>\nstd::vector<Cost> dijkstra(const Graph<Cost>& graph, int s) {\n    std::vector<Cost>\
-    \ dist(graph.size(), -1);\n    dist[s] = 0;\n    MinHeap<std::pair<Cost, int>>\
-    \ que;\n    que.emplace(0, s);\n\n    while (!que.empty()) {\n        int v;\n\
-    \        Cost d;\n        std::tie(d, v) = que.top();\n        que.pop();\n  \
-    \      if (d > dist[v]) continue;\n\n        for (const auto& e : graph[v]) {\n\
-    \            if (dist[e.dst] != -1 &&\n                dist[e.dst] <= dist[v]\
-    \ + e.cost) continue;\n            dist[e.dst] = dist[v] + e.cost;\n         \
-    \   que.emplace(dist[e.dst], e.dst);\n        }\n    }\n\n    return dist;\n}\n"
+    \    }\n};\n#line 5 \"Graph/dijkstra.hpp\"\n\ntemplate <class Cost>\nstd::vector<Cost>\
+    \ dijkstra(const Graph<Cost>& graph, int s) {\n    std::vector<Cost> dist(graph.size(),\
+    \ -1);\n    dist[s] = 0;\n    MinHeap<std::pair<Cost, int>> que;\n    que.emplace(0,\
+    \ s);\n\n    while (!que.empty()) {\n        auto [d, v] = que.top();\n      \
+    \  que.pop();\n        if (d > dist[v]) continue;\n\n        for (const auto&\
+    \ e : graph[v]) {\n            if (dist[e.dst] != -1 &&\n                dist[e.dst]\
+    \ <= dist[v] + e.cost) continue;\n            dist[e.dst] = dist[v] + e.cost;\n\
+    \            que.emplace(dist[e.dst], e.dst);\n        }\n    }\n\n    return\
+    \ dist;\n}\n"
   code: "#pragma once\n\n#include \"../Tools/heap_alias.hpp\"\n#include \"graph.hpp\"\
-    \n\n#include <tuple>\n\ntemplate <class Cost>\nstd::vector<Cost> dijkstra(const\
-    \ Graph<Cost>& graph, int s) {\n    std::vector<Cost> dist(graph.size(), -1);\n\
-    \    dist[s] = 0;\n    MinHeap<std::pair<Cost, int>> que;\n    que.emplace(0,\
-    \ s);\n\n    while (!que.empty()) {\n        int v;\n        Cost d;\n       \
-    \ std::tie(d, v) = que.top();\n        que.pop();\n        if (d > dist[v]) continue;\n\
-    \n        for (const auto& e : graph[v]) {\n            if (dist[e.dst] != -1\
-    \ &&\n                dist[e.dst] <= dist[v] + e.cost) continue;\n           \
-    \ dist[e.dst] = dist[v] + e.cost;\n            que.emplace(dist[e.dst], e.dst);\n\
-    \        }\n    }\n\n    return dist;\n}\n"
+    \n\ntemplate <class Cost>\nstd::vector<Cost> dijkstra(const Graph<Cost>& graph,\
+    \ int s) {\n    std::vector<Cost> dist(graph.size(), -1);\n    dist[s] = 0;\n\
+    \    MinHeap<std::pair<Cost, int>> que;\n    que.emplace(0, s);\n\n    while (!que.empty())\
+    \ {\n        auto [d, v] = que.top();\n        que.pop();\n        if (d > dist[v])\
+    \ continue;\n\n        for (const auto& e : graph[v]) {\n            if (dist[e.dst]\
+    \ != -1 &&\n                dist[e.dst] <= dist[v] + e.cost) continue;\n     \
+    \       dist[e.dst] = dist[v] + e.cost;\n            que.emplace(dist[e.dst],\
+    \ e.dst);\n        }\n    }\n\n    return dist;\n}\n"
   dependsOn:
   - Tools/heap_alias.hpp
   - Graph/graph.hpp
   isVerificationFile: false
   path: Graph/dijkstra.hpp
   requiredBy: []
-  timestamp: '2020-10-13 21:34:07+09:00'
+  timestamp: '2020-11-03 12:01:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/dijkstra.test.cpp

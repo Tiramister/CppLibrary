@@ -89,12 +89,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Number/extended_gcd.hpp
       title: Number/extended_gcd.hpp
-    - icon: ':warning:'
-      path: Number/fixed_linear_algebra.hpp
-      title: Number/fixed_linear_algebra.hpp
-    - icon: ':warning:'
-      path: Number/linear_algebra.hpp
-      title: Number/linear_algebra.hpp
+    - icon: ':heavy_check_mark:'
+      path: Number/fixed_matrix.hpp
+      title: Number/fixed_matrix.hpp
+    - icon: ':heavy_check_mark:'
+      path: Number/matrix.hpp
+      title: Number/matrix.hpp
     - icon: ':heavy_check_mark:'
       path: Number/modint.hpp
       title: Number/modint.hpp
@@ -172,6 +172,9 @@ data:
       path: Verify/factorize.test.cpp
       title: Verify/factorize.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/fixed_matrix_pow.test.cpp
+      title: Verify/fixed_matrix_pow.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/ford_fulkerson.test.cpp
       title: Verify/ford_fulkerson.test.cpp
     - icon: ':heavy_check_mark:'
@@ -186,6 +189,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/level_ancestor.test.cpp
       title: Verify/level_ancestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/matrix_pow.test.cpp
+      title: Verify/matrix_pow.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/min_cost_flow.test.cpp
       title: Verify/min_cost_flow.test.cpp

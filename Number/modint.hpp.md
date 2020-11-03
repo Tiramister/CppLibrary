@@ -13,8 +13,14 @@ data:
     path: Verify/combination.test.cpp
     title: Verify/combination.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Verify/fixed_matrix_pow.test.cpp
+    title: Verify/fixed_matrix_pow.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/lazy_segment_tree_affine.test.cpp
     title: Verify/lazy_segment_tree_affine.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/matrix_pow.test.cpp
+    title: Verify/matrix_pow.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/mod_pow.test.cpp
     title: Verify/mod_pow.test.cpp
@@ -95,10 +101,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/combination.test.cpp
+  - Verify/matrix_pow.test.cpp
   - Verify/aho_corasick.test.cpp
   - Verify/number_theoretical_transform.test.cpp
   - Verify/lazy_segment_tree_affine.test.cpp
   - Verify/mod_pow.test.cpp
+  - Verify/fixed_matrix_pow.test.cpp
   - Verify/segment_tree_affine.test.cpp
 documentation_of: Number/modint.hpp
 layout: document

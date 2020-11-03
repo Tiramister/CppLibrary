@@ -23,14 +23,14 @@ data:
     \  }\n};\n#line 4 \"Graph/bfs.hpp\"\n\n#include <queue>\n\ntemplate <class Cost>\n\
     std::vector<Cost> bfs(const Graph<Cost>& graph, int s) {\n    std::vector<Cost>\
     \ dist(graph.size(), -1);\n    dist[s] = 0;\n    std::queue<int> que;\n    que.push(s);\n\
-    \n    while (!que.empty()) {\n        int v = que.front();\n        que.pop();\n\
+    \n    while (!que.empty()) {\n        auto v = que.front();\n        que.pop();\n\
     \n        for (const auto& e : graph[v]) {\n            if (dist[e.dst] != -1)\
     \ continue;\n            dist[e.dst] = dist[v] + e.cost;\n            que.push(e.dst);\n\
     \        }\n    }\n\n    return dist;\n}\n"
   code: "#pragma once\n\n#include \"graph.hpp\"\n\n#include <queue>\n\ntemplate <class\
     \ Cost>\nstd::vector<Cost> bfs(const Graph<Cost>& graph, int s) {\n    std::vector<Cost>\
     \ dist(graph.size(), -1);\n    dist[s] = 0;\n    std::queue<int> que;\n    que.push(s);\n\
-    \n    while (!que.empty()) {\n        int v = que.front();\n        que.pop();\n\
+    \n    while (!que.empty()) {\n        auto v = que.front();\n        que.pop();\n\
     \n        for (const auto& e : graph[v]) {\n            if (dist[e.dst] != -1)\
     \ continue;\n            dist[e.dst] = dist[v] + e.cost;\n            que.push(e.dst);\n\
     \        }\n    }\n\n    return dist;\n}\n"
@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: Graph/bfs.hpp
   requiredBy: []
-  timestamp: '2020-10-29 01:25:41+09:00'
+  timestamp: '2020-11-03 12:01:27+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Graph/bfs.hpp
