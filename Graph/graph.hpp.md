@@ -12,6 +12,9 @@ data:
     path: Graph/dijkstra.hpp
     title: Graph/dijkstra.hpp
   - icon: ':heavy_check_mark:'
+    path: Graph/heavy_light_decomposition.hpp
+    title: Graph/heavy_light_decomposition.hpp
+  - icon: ':heavy_check_mark:'
     path: Graph/level_ancestor.hpp
     title: Graph/level_ancestor.hpp
   - icon: ':heavy_check_mark:'
@@ -39,6 +42,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/dijkstra.test.cpp
     title: Verify/dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/hld_lca.test.cpp
+    title: Verify/hld_lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/hld_path.test.cpp
+    title: Verify/hld_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/hld_subtree.test.cpp
+    title: Verify/hld_subtree.test.cpp
   - icon: ':heavy_check_mark:'
     path: Verify/level_ancestor.test.cpp
     title: Verify/level_ancestor.test.cpp
@@ -79,6 +91,7 @@ data:
   isVerificationFile: false
   path: Graph/graph.hpp
   requiredBy:
+  - Graph/heavy_light_decomposition.hpp
   - Graph/dijkstra.hpp
   - Graph/centroid_decomposition.hpp
   - Graph/two_sat.hpp
@@ -94,10 +107,13 @@ data:
   - Verify/dijkstra.test.cpp
   - Verify/topological_sort.test.cpp
   - Verify/articulation_points.test.cpp
+  - Verify/hld_lca.test.cpp
   - Verify/bridges.test.cpp
   - Verify/two_sat.test.cpp
   - Verify/strongly_connected_component.test.cpp
+  - Verify/hld_path.test.cpp
   - Verify/level_ancestor.test.cpp
+  - Verify/hld_subtree.test.cpp
 documentation_of: Graph/graph.hpp
 layout: document
 redirect_from:

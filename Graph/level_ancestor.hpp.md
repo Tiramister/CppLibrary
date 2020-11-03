@@ -34,10 +34,10 @@ data:
     \ -1), cdepth(tree.size()) {\n        kmax = 0;\n        while ((1 << kmax) <\
     \ (int)tree.size()) ++kmax;\n        for (auto& v : par) v.resize(kmax + 1);\n\
     \n        dfs(root);\n\n        for (int k = 1; k <= kmax; ++k) {\n          \
-    \  for (int v = 0; v < tree.size(); ++v) {\n                int p = par[v][k -\
-    \ 1];\n                par[v][k] = (p == -1 ? -1 : par[p][k - 1]);\n         \
-    \   }\n        }\n    }\n\n    int climb(int v, int d) const {\n        for (int\
-    \ k = kmax; k >= 0 && v != -1; --k) {\n            if ((1 << k) > d) continue;\n\
+    \  for (int v = 0; v < (int)tree.size(); ++v) {\n                int p = par[v][k\
+    \ - 1];\n                par[v][k] = (p == -1 ? -1 : par[p][k - 1]);\n       \
+    \     }\n        }\n    }\n\n    int climb(int v, int d) const {\n        for\
+    \ (int k = kmax; k >= 0 && v != -1; --k) {\n            if ((1 << k) > d) continue;\n\
     \n            v = par[v][k];\n            d -= (1 << k);\n        }\n        return\
     \ v;\n    }\n\n    int lca(int u, int v) const {\n        if (depth[u] < depth[v])\
     \ std::swap(u, v);\n\n        if (depth[u] > depth[v]) {\n            u = climb(u,\
@@ -60,10 +60,10 @@ data:
     \ -1), cdepth(tree.size()) {\n        kmax = 0;\n        while ((1 << kmax) <\
     \ (int)tree.size()) ++kmax;\n        for (auto& v : par) v.resize(kmax + 1);\n\
     \n        dfs(root);\n\n        for (int k = 1; k <= kmax; ++k) {\n          \
-    \  for (int v = 0; v < tree.size(); ++v) {\n                int p = par[v][k -\
-    \ 1];\n                par[v][k] = (p == -1 ? -1 : par[p][k - 1]);\n         \
-    \   }\n        }\n    }\n\n    int climb(int v, int d) const {\n        for (int\
-    \ k = kmax; k >= 0 && v != -1; --k) {\n            if ((1 << k) > d) continue;\n\
+    \  for (int v = 0; v < (int)tree.size(); ++v) {\n                int p = par[v][k\
+    \ - 1];\n                par[v][k] = (p == -1 ? -1 : par[p][k - 1]);\n       \
+    \     }\n        }\n    }\n\n    int climb(int v, int d) const {\n        for\
+    \ (int k = kmax; k >= 0 && v != -1; --k) {\n            if ((1 << k) > d) continue;\n\
     \n            v = par[v][k];\n            d -= (1 << k);\n        }\n        return\
     \ v;\n    }\n\n    int lca(int u, int v) const {\n        if (depth[u] < depth[v])\
     \ std::swap(u, v);\n\n        if (depth[u] > depth[v]) {\n            u = climb(u,\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: false
   path: Graph/level_ancestor.hpp
   requiredBy: []
-  timestamp: '2020-10-13 21:34:07+09:00'
+  timestamp: '2020-11-04 04:32:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/level_ancestor.test.cpp

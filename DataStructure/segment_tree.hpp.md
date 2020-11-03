@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Verify/hld_path.test.cpp
+    title: Verify/hld_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Verify/hld_subtree.test.cpp
+    title: Verify/hld_subtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Verify/segment_tree_affine.test.cpp
     title: Verify/segment_tree_affine.test.cpp
   - icon: ':heavy_check_mark:'
@@ -71,6 +77,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/segment_tree_rsq.test.cpp
+  - Verify/hld_path.test.cpp
+  - Verify/hld_subtree.test.cpp
   - Verify/segment_tree_affine.test.cpp
 documentation_of: DataStructure/segment_tree.hpp
 layout: document

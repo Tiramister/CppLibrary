@@ -61,6 +61,9 @@ data:
       path: Graph/graph.hpp
       title: Graph/graph.hpp
     - icon: ':heavy_check_mark:'
+      path: Graph/heavy_light_decomposition.hpp
+      title: Graph/heavy_light_decomposition.hpp
+    - icon: ':heavy_check_mark:'
       path: Graph/level_ancestor.hpp
       title: Graph/level_ancestor.hpp
     - icon: ':heavy_check_mark:'
@@ -177,6 +180,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: Verify/ford_fulkerson.test.cpp
       title: Verify/ford_fulkerson.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/hld_lca.test.cpp
+      title: Verify/hld_lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/hld_path.test.cpp
+      title: Verify/hld_path.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/hld_subtree.test.cpp
+      title: Verify/hld_subtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/knuth_morris_pratt.test.cpp
       title: Verify/knuth_morris_pratt.test.cpp
