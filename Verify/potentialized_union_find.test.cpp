@@ -25,7 +25,7 @@ int main() {
             if (!puf.same(u, v)) {
                 std::cout << "?\n";
             } else {
-                std::cout << puf.diff(u, v) << "\n";
+                std::cout << puf.diff(v, u) << "\n";
             }
         }
     }

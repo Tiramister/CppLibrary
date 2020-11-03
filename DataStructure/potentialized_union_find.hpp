@@ -1,24 +1,21 @@
 #pragma once
 
-#include <numeric>
 #include <vector>
 
 template <class Dist>
 struct PotentializedUnionFind {
-    std::vector<int> par, sz;
+    std::vector<int> par;
     std::vector<Dist> dist;  // A[par[v]] - A[v] = dist[v]
     int gnum;
 
     explicit PotentializedUnionFind(int n)
-        : par(n), sz(n, 1), dist(n, 0), gnum(n) {
-        std::iota(par.begin(), par.end(), 0);
-    }
+        : par(n, -1), dist(n, 0), gnum(n) {}
 
     int find(int v) {
-        if (par[v] == v) {
+        if (par[v] < 0) {
             return v;
         } else {
-            int p = find(par[v]);
+            auto p = find(par[v]);
             dist[v] += dist[par[v]];
             return par[v] = p;
         }
@@ -26,30 +23,30 @@ struct PotentializedUnionFind {
 
     // A[u] - A[v] = d
     void unite(int u, int v, Dist d) {
-        find(u), find(v);
+        auto pu = find(u), pv = find(v);
         d += dist[u];
         d -= dist[v];
-        u = par[u], v = par[v];
+        u = pu, v = pv;
         if (u == v) return;
 
-        if (sz[u] < sz[v]) {
+        if (par[u] > par[v]) {
             std::swap(u, v);
             d = -d;
         }
 
-        sz[u] += sz[v];
+        par[u] += par[v];
         par[v] = u;
         dist[v] = d;
         --gnum;
     }
 
-    // A[v] - A[u]
+    // A[u] - A[v]
     Dist diff(int u, int v) {
         find(u), find(v);
-        return dist[u] - dist[v];
+        return dist[v] - dist[u];
     }
 
     bool same(int u, int v) { return find(u) == find(v); }
     bool ispar(int v) { return v == find(v); }
-    int size(int v) { return sz[find(v)]; }
+    int size(int v) { return -par[find(v)]; }
 };
