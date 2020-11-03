@@ -15,13 +15,11 @@ struct ModInt {
     // unary operator
     ModInt operator+() const { return ModInt(val); }
     ModInt operator-() const { return ModInt(MOD - val); }
-    ModInt inv() const { return this->pow(MOD - 2); }
 
-    // arithmetic
-    ModInt operator+(const ModInt& x) const { return ModInt(*this) += x; }
-    ModInt operator-(const ModInt& x) const { return ModInt(*this) -= x; }
-    ModInt operator*(const ModInt& x) const { return ModInt(*this) *= x; }
-    ModInt operator/(const ModInt& x) const { return ModInt(*this) /= x; }
+    ModInt& operator++() { return *this += 1; }
+    ModInt& operator--() { *this -= 1; }
+
+    // functions
     ModInt pow(lint n) const {
         auto x = ModInt(1);
         auto b = *this;
@@ -32,8 +30,29 @@ struct ModInt {
         }
         return x;
     }
+    ModInt inv() const {
+        int s = val, t = MOD,
+            xs = 1, xt = 0;
 
-    // compound assignment
+        while (t != 0) {
+            auto div = s / t;
+
+            s -= t * div;
+            xs -= xt * div;
+
+            std::swap(s, t);
+            std::swap(xs, xt);
+        }
+
+        return xs;
+    }
+
+    // arithmetic
+    ModInt operator+(const ModInt& x) const { return ModInt(*this) += x; }
+    ModInt operator-(const ModInt& x) const { return ModInt(*this) -= x; }
+    ModInt operator*(const ModInt& x) const { return ModInt(*this) *= x; }
+    ModInt operator/(const ModInt& x) const { return ModInt(*this) /= x; }
+
     ModInt& operator+=(const ModInt& x) {
         if ((val += x.val) >= MOD) val -= MOD;
         return *this;
@@ -48,22 +67,20 @@ struct ModInt {
     }
     ModInt& operator/=(const ModInt& x) { return *this *= x.inv(); }
 
-    // compare
+    // comparator
     bool operator==(const ModInt& b) const { return val == b.val; }
     bool operator!=(const ModInt& b) const { return val != b.val; }
-    bool operator<(const ModInt& b) const { return val < b.val; }
-    bool operator<=(const ModInt& b) const { return val <= b.val; }
-    bool operator>(const ModInt& b) const { return val > b.val; }
-    bool operator>=(const ModInt& b) const { return val >= b.val; }
 
     // I/O
-    friend std::istream& operator>>(std::istream& is, ModInt& x) noexcept {
+    friend std::istream& operator>>(std::istream& is, ModInt& x) {
         lint v;
         is >> v;
         x = v;
         return is;
     }
-    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) noexcept { return os << x.val; }
+    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
+        return os << x.val;
+    }
 };
 
 // constexpr int MOD = 1000000007;
