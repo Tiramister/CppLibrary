@@ -34,9 +34,9 @@ data:
       title: DataStructure/union_find.hpp
   - name: Geometry
     pages:
-    - icon: ':warning:'
-      path: Geometry/type.cpp
-      title: Geometry/type.cpp
+    - icon: ':heavy_check_mark:'
+      path: Geometry/geometry.hpp
+      title: Geometry/geometry.hpp
   - name: Graph
     pages:
     - icon: ':warning:'
@@ -142,6 +142,47 @@ data:
       path: Tools/vector_alias.hpp
       title: Tools/vector_alias.hpp
   verificationCategories:
+  - name: Verify/Geometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/area.test.cpp
+      title: Verify/Geometry/area.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/ccw.test.cpp
+      title: Verify/Geometry/ccw.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/contain_polygon.test.cpp
+      title: Verify/Geometry/contain_polygon.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/convex_cut.test.cpp
+      title: Verify/Geometry/convex_cut.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/convex_hull.test.cpp
+      title: Verify/Geometry/convex_hull.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/diameter.test.cpp
+      title: Verify/Geometry/diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/distance.test.cpp
+      title: Verify/Geometry/distance.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/intersect.test.cpp
+      title: Verify/Geometry/intersect.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/intersection.test.cpp
+      title: Verify/Geometry/intersection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/is_convex.test.cpp
+      title: Verify/Geometry/is_convex.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/parallel_orthogonal.test.cpp
+      title: Verify/Geometry/parallel_orthogonal.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/projection.test.cpp
+      title: Verify/Geometry/projection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/reflection.test.cpp
+      title: Verify/Geometry/reflection.test.cpp
   - name: Verify
     pages:
     - icon: ':heavy_check_mark:'
