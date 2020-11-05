@@ -51,8 +51,8 @@ data:
     \ cost(cost){};\n\n    bool operator<(const Edge<Cost>& e) const { return cost\
     \ < e.cost; }\n    bool operator>(const Edge<Cost>& e) const { return cost > e.cost;\
     \ }\n};\n\ntemplate <class Cost = int>\nstruct Graph : public std::vector<std::vector<Edge<Cost>>>\
-    \ {\n    Graph(int n = 0) : std::vector<std::vector<Edge<Cost>>>(n) {}\n\n   \
-    \ void span(bool direct, int src, int dst, Cost cost = 1) {\n        (*this)[src].emplace_back(src,\
+    \ {\n    using std::vector<std::vector<Edge<Cost>>>::vector;\n\n    void span(bool\
+    \ direct, int src, int dst, Cost cost = 1) {\n        (*this)[src].emplace_back(src,\
     \ dst, cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n\
     \    }\n};\n#line 4 \"Graph/heavy_light_decomposition.hpp\"\n\n#line 6 \"Graph/heavy_light_decomposition.hpp\"\
     \n\ntemplate <class Cost>\nstruct HeavyLightDecomposition {\n    // indexing\n\
@@ -128,7 +128,7 @@ data:
   isVerificationFile: true
   path: Verify/hld_subtree.test.cpp
   requiredBy: []
-  timestamp: '2020-11-04 08:09:31+09:00'
+  timestamp: '2020-11-05 12:15:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/hld_subtree.test.cpp

@@ -47,19 +47,21 @@ data:
     \ ModInt& x) {\n        return os << x.val;\n    }\n};\n\n// constexpr int MOD\
     \ = 1000000007;\n// constexpr int MOD = 998244353;\n// using mint = ModInt<MOD>;\n\
     #line 2 \"Number/matrix.hpp\"\n\n#include <vector>\n\ntemplate <class T>\nstruct\
-    \ Matrix : public std::vector<std::vector<T>> {\n    int h, w;\n    // constructor\n\
-    \    Matrix(int h, int w, T val = 0)\n        : h(h), w(w) {\n        this->resize(h);\n\
-    \        for (auto& v : *this) v.resize(w, val);\n    }\n\n    static Matrix id(int\
-    \ n) {\n        Matrix m(n, n);\n        for (int i = 0; i < n; ++i) m[i][i] =\
-    \ 1;\n        return m;\n    }\n\n    // arithmetic\n    Matrix operator*(const\
-    \ Matrix& m) const { return Matrix(*this) *= m; }\n    Matrix& operator*=(const\
-    \ Matrix& m) {\n        Matrix nmat(h, w);\n        for (int i = 0; i < h; ++i)\
-    \ {\n            for (int j = 0; j < m.w; ++j) {\n                for (int k =\
-    \ 0; k < w; ++k) {\n                    nmat[i][j] += (*this)[i][k] * m[k][j];\n\
-    \                }\n            }\n        }\n        return *this = nmat;\n \
-    \   }\n\n    template <class U>\n    Matrix pow(U k) {\n        Matrix ret = id(h);\n\
-    \        Matrix a = *this;\n\n        while (k > 0) {\n            if (k & 1)\
-    \ ret *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
+    \ Matrix : public std::vector<std::vector<T>> {\n    // constructor\n    using\
+    \ std::vector<std::vector<T>>::vector;\n\n    Matrix(int h, int w, T val = 0)\
+    \ {\n        this->resize(h);\n        for (auto& v : *this) v.resize(w, val);\n\
+    \    }\n\n    static Matrix id(int n) {\n        Matrix m(n, n);\n        for\
+    \ (int i = 0; i < n; ++i) m[i][i] = 1;\n        return m;\n    }\n\n    // arithmetic\n\
+    \    Matrix operator*(const Matrix& m) const { return Matrix(*this) *= m; }\n\
+    \    Matrix& operator*=(const Matrix& m) {\n        int h1 = this->size(),\n \
+    \           h2 = m.size(),\n            w2 = m.front().size();\n\n        Matrix\
+    \ nmat(h1, w2);\n        for (int i = 0; i < h1; ++i) {\n            for (int\
+    \ j = 0; j < w2; ++j) {\n                for (int k = 0; k < h2; ++k) {\n    \
+    \                nmat[i][j] += (*this)[i][k] * m[k][j];\n                }\n \
+    \           }\n        }\n        return *this = nmat;\n    }\n\n    template\
+    \ <class U>\n    Matrix pow(U k) {\n        Matrix ret = id(this->size());\n \
+    \       Matrix a = *this;\n\n        while (k > 0) {\n            if (k & 1) ret\
+    \ *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
     \ ret;\n    }\n};\n#line 5 \"Verify/matrix_pow.test.cpp\"\n\n#line 7 \"Verify/matrix_pow.test.cpp\"\
     \n\nconstexpr int MOD = 1000000007;\nusing mint = ModInt<MOD>;\nusing lint = long\
     \ long;\n\nint main() {\n    Matrix<mint> m(6, 6);\n    for (int i = 0; i < 6;\
@@ -79,7 +81,7 @@ data:
   isVerificationFile: true
   path: Verify/matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 12:40:54+09:00'
+  timestamp: '2020-11-05 12:15:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/matrix_pow.test.cpp

@@ -19,11 +19,10 @@ data:
     \ cost = 1)\n        : src(src), dst(dst), cost(cost){};\n\n    bool operator<(const\
     \ Edge<Cost>& e) const { return cost < e.cost; }\n    bool operator>(const Edge<Cost>&\
     \ e) const { return cost > e.cost; }\n};\n\ntemplate <class Cost = int>\nstruct\
-    \ Graph : public std::vector<std::vector<Edge<Cost>>> {\n    Graph(int n = 0)\
-    \ : std::vector<std::vector<Edge<Cost>>>(n) {}\n\n    void span(bool direct, int\
-    \ src, int dst, Cost cost = 1) {\n        (*this)[src].emplace_back(src, dst,\
-    \ cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n  \
-    \  }\n};\n#line 4 \"Graph/level_ancestor.hpp\"\n\ntemplate <class Cost = int>\n\
+    \ Graph : public std::vector<std::vector<Edge<Cost>>> {\n    using std::vector<std::vector<Edge<Cost>>>::vector;\n\
+    \n    void span(bool direct, int src, int dst, Cost cost = 1) {\n        (*this)[src].emplace_back(src,\
+    \ dst, cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n\
+    \    }\n};\n#line 4 \"Graph/level_ancestor.hpp\"\n\ntemplate <class Cost = int>\n\
     struct LevelAncestor {\n    Graph<Cost> tree;\n    std::vector<std::vector<int>>\
     \ par;\n    std::vector<int> depth;\n    std::vector<Cost> cdepth;\n    int kmax;\n\
     \n    void dfs(int v, int p = -1, int d = 0, Cost c = 0) {\n        par[v][0]\
@@ -80,7 +79,7 @@ data:
   isVerificationFile: false
   path: Graph/level_ancestor.hpp
   requiredBy: []
-  timestamp: '2020-11-04 04:32:11+09:00'
+  timestamp: '2020-11-05 12:15:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/level_ancestor.test.cpp

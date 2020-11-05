@@ -22,11 +22,10 @@ data:
     \ = 1)\n        : src(src), dst(dst), cost(cost){};\n\n    bool operator<(const\
     \ Edge<Cost>& e) const { return cost < e.cost; }\n    bool operator>(const Edge<Cost>&\
     \ e) const { return cost > e.cost; }\n};\n\ntemplate <class Cost = int>\nstruct\
-    \ Graph : public std::vector<std::vector<Edge<Cost>>> {\n    Graph(int n = 0)\
-    \ : std::vector<std::vector<Edge<Cost>>>(n) {}\n\n    void span(bool direct, int\
-    \ src, int dst, Cost cost = 1) {\n        (*this)[src].emplace_back(src, dst,\
-    \ cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n  \
-    \  }\n};\n#line 4 \"Graph/lowlink.hpp\"\n\ntemplate <class Cost = int>\nstruct\
+    \ Graph : public std::vector<std::vector<Edge<Cost>>> {\n    using std::vector<std::vector<Edge<Cost>>>::vector;\n\
+    \n    void span(bool direct, int src, int dst, Cost cost = 1) {\n        (*this)[src].emplace_back(src,\
+    \ dst, cost);\n        if (!direct) (*this)[dst].emplace_back(dst, src, cost);\n\
+    \    }\n};\n#line 4 \"Graph/lowlink.hpp\"\n\ntemplate <class Cost = int>\nstruct\
     \ Lowlink {\n    Graph<Cost> graph;\n    int time;\n    std::vector<int> order,\
     \ low;\n\n    std::vector<int> artics;\n    std::vector<Edge<Cost>> bridges;\n\
     \n    explicit Lowlink(const Graph<Cost>& graph)\n        : graph(graph), order(graph.size(),\
@@ -61,7 +60,7 @@ data:
   isVerificationFile: false
   path: Graph/lowlink.hpp
   requiredBy: []
-  timestamp: '2020-10-13 21:34:07+09:00'
+  timestamp: '2020-11-05 12:15:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/articulation_points.test.cpp

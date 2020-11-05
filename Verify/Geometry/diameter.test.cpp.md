@@ -74,43 +74,44 @@ data:
     Real dist(const Segment& s, const Segment& t) {\n    if (intersect(s, t, true))\
     \ return 0;\n    return std::min({dist(s, t.p), dist(s, t.q),\n              \
     \       dist(t, s.p), dist(t, s.q)});\n}\n\n/* -------------------- Polygon --------------------\
-    \ */\nstruct Polygon : public std::vector<Point> {\n    explicit Polygon(int n\
-    \ = 0) : std::vector<Point>(n) {}\n\n    Real area() const {\n        Real sum\
-    \ = 0;\n        for (int i = 0; i < (int)size(); ++i) {\n            sum += cross((*this)[i],\
-    \ (*this)[(i + 1) % size()]);\n        }\n        return sum / 2;\n    }\n\n \
-    \   bool isconvex() const {\n        for (int i = 0; i < (int)size(); ++i) {\n\
-    \            if (pos(Segment((*this)[i], (*this)[(i + 1) % size()]),\n       \
-    \             (*this)[(i + 2) % size()]) == CLOCKWISE) return false;\n       \
-    \ }\n        return true;\n    }\n};\n\n// position of a point relative to a polygon\n\
-    enum Contain {\n    OUT,\n    ON,\n    IN\n};\n\nContain contain(const Polygon&\
-    \ g, const Point& p) {\n    bool in = false;\n    for (int i = 0; i < (int)g.size();\
-    \ ++i) {\n        if (pos(Segment(g[i], g[(i + 1) % g.size()]), p) == ON_SEGMENT)\
-    \ return ON;\n\n        auto a = g[i] - p, b = g[(i + 1) % g.size()] - p;\n  \
-    \      if (a > b) std::swap(a, b);\n\n        if (cmp(a.x, 0) <= 0 &&\n      \
-    \      cmp(b.x, 0) > 0 &&\n            cmp(cross(a, b), 0) < 0) in = !in;\n  \
-    \  }\n    return in ? IN : OUT;\n}\n\n// linear: choose colinear points\nPolygon\
-    \ convexhull(Polygon& g, bool linear) {\n    std::sort(g.begin(), g.end());\n\
-    \    int n = g.size();\n\n    Polygon h(n * 2);\n    int k = 0;\n\n    for (int\
-    \ i = 0; i < n; ++i) {\n        while (k >= 2 &&\n               cmp(cross(h[k\
-    \ - 1] - h[k - 2], g[i] - h[k - 2]), 0) < !linear) {\n            --k;\n     \
-    \   }\n        h[k++] = g[i];\n    }\n\n    int t = k + 1;\n    for (int i = n\
-    \ - 2; i >= 0; --i) {\n        while (k >= t &&\n               cmp(cross(h[k\
-    \ - 1] - h[k - 2], g[i] - h[k - 2]), 0) < !linear) {\n            --k;\n     \
-    \   }\n        h[k++] = g[i];\n    }\n\n    h.resize(k - 1);\n    h.shrink_to_fit();\n\
-    \    return h;\n}\n\n// g must be convex\nReal diameter(const Polygon& g) {\n\
-    \    Real ret = 0;\n    int j = 0;\n    for (int i = 0; i < (int)g.size(); ++i)\
-    \ {\n        while (j < (int)g.size() - 1 &&\n               cmp(dist(g[i], g[j\
-    \ + 1]), dist(g[i], g[j])) > 0) ++j;\n        ret = std::max(ret, dist(g[i], g[j]));\n\
-    \    }\n    return ret;\n}\n\n// left side, g must be convex\nPolygon convex_cut(const\
-    \ Polygon& g, const Segment& s) {\n    Polygon h;\n    for (int i = 0; i < (int)g.size();\
-    \ ++i) {\n        if (pos(s, g[i]) != CLOCKWISE) h.push_back(g[i]);\n\n      \
-    \  Segment t(g[i], g[(i + 1) % g.size()]);\n        if (pos(s, t.p) * pos(s, t.q)\
-    \ == -1) {\n            h.push_back(intersection(s, t));\n        }\n    }\n \
-    \   return h;\n}\n\nbool intersect(const Polygon& g, const Segment& s) {\n   \
-    \ auto area = convex_cut(g, s).area();\n    return cmp(area, 0) == 0 || cmp(area,\
-    \ g.area()) == 0;\n}\n\n}  // namespace geo\n#line 5 \"Verify/Geometry/diameter.test.cpp\"\
-    \n\n#line 7 \"Verify/Geometry/diameter.test.cpp\"\n#include <iomanip>\n\nint main()\
-    \ {\n    std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n    std::cout\
+    \ */\nstruct Polygon : public std::vector<Point> {\n    using std::vector<Point>::vector;\n\
+    \n    explicit Polygon(int n = 0) : std::vector<Point>(n) {}\n\n    Real area()\
+    \ const {\n        Real sum = 0;\n        for (int i = 0; i < (int)size(); ++i)\
+    \ {\n            sum += cross((*this)[i], (*this)[(i + 1) % size()]);\n      \
+    \  }\n        return sum / 2;\n    }\n\n    bool isconvex() const {\n        for\
+    \ (int i = 0; i < (int)size(); ++i) {\n            if (pos(Segment((*this)[i],\
+    \ (*this)[(i + 1) % size()]),\n                    (*this)[(i + 2) % size()])\
+    \ == CLOCKWISE) return false;\n        }\n        return true;\n    }\n};\n\n\
+    // position of a point relative to a polygon\nenum Contain {\n    OUT,\n    ON,\n\
+    \    IN\n};\n\nContain contain(const Polygon& g, const Point& p) {\n    bool in\
+    \ = false;\n    for (int i = 0; i < (int)g.size(); ++i) {\n        if (pos(Segment(g[i],\
+    \ g[(i + 1) % g.size()]), p) == ON_SEGMENT) return ON;\n\n        auto a = g[i]\
+    \ - p, b = g[(i + 1) % g.size()] - p;\n        if (a > b) std::swap(a, b);\n\n\
+    \        if (cmp(a.x, 0) <= 0 &&\n            cmp(b.x, 0) > 0 &&\n           \
+    \ cmp(cross(a, b), 0) < 0) in = !in;\n    }\n    return in ? IN : OUT;\n}\n\n\
+    // linear: choose colinear points\nPolygon convexhull(Polygon& g, bool linear)\
+    \ {\n    std::sort(g.begin(), g.end());\n    int n = g.size();\n\n    Polygon\
+    \ h(n * 2);\n    int k = 0;\n\n    for (int i = 0; i < n; ++i) {\n        while\
+    \ (k >= 2 &&\n               cmp(cross(h[k - 1] - h[k - 2], g[i] - h[k - 2]),\
+    \ 0) < !linear) {\n            --k;\n        }\n        h[k++] = g[i];\n    }\n\
+    \n    int t = k + 1;\n    for (int i = n - 2; i >= 0; --i) {\n        while (k\
+    \ >= t &&\n               cmp(cross(h[k - 1] - h[k - 2], g[i] - h[k - 2]), 0)\
+    \ < !linear) {\n            --k;\n        }\n        h[k++] = g[i];\n    }\n\n\
+    \    h.resize(k - 1);\n    h.shrink_to_fit();\n    return h;\n}\n\n// g must be\
+    \ convex\nReal diameter(const Polygon& g) {\n    Real ret = 0;\n    int j = 0;\n\
+    \    for (int i = 0; i < (int)g.size(); ++i) {\n        while (j < (int)g.size()\
+    \ - 1 &&\n               cmp(dist(g[i], g[j + 1]), dist(g[i], g[j])) > 0) ++j;\n\
+    \        ret = std::max(ret, dist(g[i], g[j]));\n    }\n    return ret;\n}\n\n\
+    // left side, g must be convex\nPolygon convex_cut(const Polygon& g, const Segment&\
+    \ s) {\n    Polygon h;\n    for (int i = 0; i < (int)g.size(); ++i) {\n      \
+    \  if (pos(s, g[i]) != CLOCKWISE) h.push_back(g[i]);\n\n        Segment t(g[i],\
+    \ g[(i + 1) % g.size()]);\n        if (pos(s, t.p) * pos(s, t.q) == -1) {\n  \
+    \          h.push_back(intersection(s, t));\n        }\n    }\n    return h;\n\
+    }\n\nbool intersect(const Polygon& g, const Segment& s) {\n    auto area = convex_cut(g,\
+    \ s).area();\n    return cmp(area, 0) == 0 || cmp(area, g.area()) == 0;\n}\n\n\
+    }  // namespace geo\n#line 5 \"Verify/Geometry/diameter.test.cpp\"\n\n#line 7\
+    \ \"Verify/Geometry/diameter.test.cpp\"\n#include <iomanip>\n\nint main() {\n\
+    \    std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n    std::cout\
     \ << std::fixed << std::setprecision(10);\n\n    int n;\n    std::cin >> n;\n\n\
     \    geo::Polygon g(n);\n    for (auto& p : g) std::cin >> p;\n    std::cout <<\
     \ geo::diameter(g) << \"\\n\";\n\n    return 0;\n}\n"
@@ -126,7 +127,7 @@ data:
   isVerificationFile: true
   path: Verify/Geometry/diameter.test.cpp
   requiredBy: []
-  timestamp: '2020-11-05 11:40:34+09:00'
+  timestamp: '2020-11-05 12:15:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/Geometry/diameter.test.cpp

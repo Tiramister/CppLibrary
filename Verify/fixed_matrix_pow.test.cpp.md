@@ -48,13 +48,14 @@ data:
     \ = 1000000007;\n// constexpr int MOD = 998244353;\n// using mint = ModInt<MOD>;\n\
     #line 2 \"Number/fixed_matrix.hpp\"\n\n#include <array>\n\ntemplate <class T,\
     \ int D>\nstruct Matrix : public std::array<std::array<T, D>, D> {\n    // constructor\n\
-    \    Matrix(T val = 0) {\n        for (auto& v : *this) v.fill(val);\n    }\n\n\
-    \    static Matrix id() {\n        Matrix m;\n        for (int i = 0; i < D; ++i)\
-    \ m[i][i] = 1;\n        return m;\n    }\n\n    // arithmetic\n    Matrix operator*(const\
-    \ Matrix& m) const { return Matrix(*this) *= m; }\n    Matrix& operator*=(const\
-    \ Matrix& m) {\n        Matrix nmat;\n        for (auto& v : nmat) v.fill(0);\n\
-    \n        for (int i = 0; i < D; ++i) {\n            for (int j = 0; j < D; ++j)\
-    \ {\n                for (int k = 0; k < D; ++k) {\n                    nmat[i][j]\
+    \    using std::array<std::array<T, D>, D>::array;\n\n    Matrix(T val = 0) {\n\
+    \        for (auto& v : *this) v.fill(val);\n    }\n\n    static Matrix id() {\n\
+    \        Matrix m;\n        for (int i = 0; i < D; ++i) m[i][i] = 1;\n       \
+    \ return m;\n    }\n\n    // arithmetic\n    Matrix operator*(const Matrix& m)\
+    \ const { return Matrix(*this) *= m; }\n    Matrix& operator*=(const Matrix& m)\
+    \ {\n        Matrix nmat;\n        for (auto& v : nmat) v.fill(0);\n\n       \
+    \ for (int i = 0; i < D; ++i) {\n            for (int j = 0; j < D; ++j) {\n \
+    \               for (int k = 0; k < D; ++k) {\n                    nmat[i][j]\
     \ += (*this)[i][k] * m[k][j];\n                }\n            }\n        }\n \
     \       return *this = nmat;\n    }\n\n    template <class U>\n    Matrix pow(U\
     \ k) {\n        Matrix ret = id();\n        Matrix a = *this;\n\n        while\
@@ -78,7 +79,7 @@ data:
   isVerificationFile: true
   path: Verify/fixed_matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 12:40:54+09:00'
+  timestamp: '2020-11-05 12:15:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/fixed_matrix_pow.test.cpp
