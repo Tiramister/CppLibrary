@@ -10,11 +10,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B
-  bundledCode: "#line 1 \"Verify/Geometry/is_convex.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B\"\n\n#line\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_A
+  bundledCode: "#line 1 \"Verify/Geometry/intersect_circle.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_A\"\n\n#line\
     \ 2 \"Geometry/geometry.hpp\"\n\n#include <iostream>\n#include <algorithm>\n#include\
     \ <vector>\n#include <cmath>\n\nnamespace geo {\n\nusing Real = long double;\n\
     constexpr Real EPS = 1e-10;\nconstexpr Real PI = 3.14159265358979323846L;\n\n\
@@ -130,29 +130,28 @@ data:
     \ d = dist(a.p, b.p);\n    auto theta = std::acos((a.r * a.r + d * d - b.r * b.r)\
     \ / (a.r * d * 2));\n    auto phi = (b.p - a.p).arg();\n\n    ps.push_back(a.p\
     \ + polar(a.r, phi + theta));\n    if (c == 2) ps.push_back(a.p + polar(a.r, phi\
-    \ - theta));\n\n    return ps;\n}\n\n}  // namespace geo\n#line 4 \"Verify/Geometry/is_convex.test.cpp\"\
-    \n\n#line 6 \"Verify/Geometry/is_convex.test.cpp\"\n\nint main() {\n    std::cin.tie(nullptr);\n\
-    \    std::ios::sync_with_stdio(false);\n\n    int n;\n    std::cin >> n;\n\n \
-    \   geo::Polygon g(n);\n    for (auto& p : g) std::cin >> p;\n    std::cout <<\
-    \ g.isconvex() << \"\\n\";\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B\"\
+    \ - theta));\n\n    return ps;\n}\n\n}  // namespace geo\n#line 4 \"Verify/Geometry/intersect_circle.test.cpp\"\
+    \n\n#line 6 \"Verify/Geometry/intersect_circle.test.cpp\"\n\nint main() {\n  \
+    \  std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n\n    geo::Circle\
+    \ a, b;\n    std::cin >> a >> b;\n    std::cout << geo::intersect(a, b) << \"\\\
+    n\";\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_A\"\
     \n\n#include \"../../Geometry/geometry.hpp\"\n\n#include <iostream>\n\nint main()\
     \ {\n    std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n\n   \
-    \ int n;\n    std::cin >> n;\n\n    geo::Polygon g(n);\n    for (auto& p : g)\
-    \ std::cin >> p;\n    std::cout << g.isconvex() << \"\\n\";\n\n    return 0;\n\
-    }\n"
+    \ geo::Circle a, b;\n    std::cin >> a >> b;\n    std::cout << geo::intersect(a,\
+    \ b) << \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - Geometry/geometry.hpp
   isVerificationFile: true
-  path: Verify/Geometry/is_convex.test.cpp
+  path: Verify/Geometry/intersect_circle.test.cpp
   requiredBy: []
   timestamp: '2020-11-05 15:24:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/Geometry/is_convex.test.cpp
+documentation_of: Verify/Geometry/intersect_circle.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/Geometry/is_convex.test.cpp
-- /verify/Verify/Geometry/is_convex.test.cpp.html
-title: Verify/Geometry/is_convex.test.cpp
+- /verify/Verify/Geometry/intersect_circle.test.cpp
+- /verify/Verify/Geometry/intersect_circle.test.cpp.html
+title: Verify/Geometry/intersect_circle.test.cpp
 ---

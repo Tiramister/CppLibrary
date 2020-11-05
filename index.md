@@ -160,6 +160,15 @@ data:
       path: Verify/Geometry/convex_hull.test.cpp
       title: Verify/Geometry/convex_hull.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/crosspoint_circle_line.test.cpp
+      title: Verify/Geometry/crosspoint_circle_line.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/crosspoint_circles.test.cpp
+      title: Verify/Geometry/crosspoint_circles.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Verify/Geometry/crosspoint_segments.test.cpp
+      title: Verify/Geometry/crosspoint_segments.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Verify/Geometry/diameter.test.cpp
       title: Verify/Geometry/diameter.test.cpp
     - icon: ':heavy_check_mark:'
@@ -169,8 +178,8 @@ data:
       path: Verify/Geometry/intersect.test.cpp
       title: Verify/Geometry/intersect.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Verify/Geometry/intersection.test.cpp
-      title: Verify/Geometry/intersection.test.cpp
+      path: Verify/Geometry/intersect_circle.test.cpp
+      title: Verify/Geometry/intersect_circle.test.cpp
     - icon: ':heavy_check_mark:'
       path: Verify/Geometry/is_convex.test.cpp
       title: Verify/Geometry/is_convex.test.cpp

@@ -10,37 +10,39 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B
+    ERROR: '0.000001'
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_E
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B
-  bundledCode: "#line 1 \"Verify/Geometry/is_convex.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B\"\n\n#line\
-    \ 2 \"Geometry/geometry.hpp\"\n\n#include <iostream>\n#include <algorithm>\n#include\
-    \ <vector>\n#include <cmath>\n\nnamespace geo {\n\nusing Real = long double;\n\
-    constexpr Real EPS = 1e-10;\nconstexpr Real PI = 3.14159265358979323846L;\n\n\
-    int cmp(Real a, Real b) {\n    return std::abs(a - b) < EPS ? 0\n           :\
-    \ a > b               ? 1\n                                 : -1;\n}\n\n/* --------------------\
-    \ Point -------------------- */\nstruct Point {\n    Real x, y;\n\n    explicit\
-    \ Point(Real x = 0, Real y = 0) : x(x), y(y) {}\n\n    Point operator-() const\
-    \ { return Point(-x, -y); }\n\n    Point operator+(const Point& p) const { return\
-    \ Point(*this) += p; }\n    Point operator-(const Point& p) const { return Point(*this)\
-    \ -= p; }\n    Point& operator+=(const Point& p) {\n        x += p.x, y += p.y;\n\
-    \        return *this;\n    }\n    Point& operator-=(const Point& p) {\n     \
-    \   x -= p.x, y -= p.y;\n        return *this;\n    }\n\n    Point operator*(Real\
-    \ k) const { return Point(*this) *= k; }\n    Point& operator*=(Real k) {\n  \
-    \      x *= k, y *= k;\n        return *this;\n    }\n\n    bool operator==(const\
-    \ Point& p) const { return cmp(x, p.x) == 0 && cmp(y, p.y) == 0; }\n    bool operator!=(const\
-    \ Point& p) const { return !(*this == p); }\n    bool operator<(const Point& p)\
-    \ const { return cmp(x, p.x) < 0 ||\n                                        \
-    \          (cmp(x, p.x) == 0 && cmp(y, p.y) < 0); }\n    bool operator>(const\
-    \ Point& p) const { return cmp(x, p.x) > 0 ||\n                              \
-    \                    (cmp(x, p.x) == 0 && cmp(y, p.y) > 0); }\n\n    Real norm()\
-    \ const { return x * x + y * y; }\n    Real abs() const { return std::hypot(x,\
-    \ y); }\n    Real arg() const { return std::atan2(y, x); }\n\n    Point rotate(Real\
-    \ theta) const {\n        return Point(x * std::cos(theta) - y * std::sin(theta),\n\
-    \                     x * std::sin(theta) + y * std::cos(theta));\n    }\n\n \
-    \   friend std::istream& operator>>(std::istream& is, Point& p) {\n        return\
-    \ is >> p.x >> p.y;\n    }\n};\n\nPoint polar(Real r, Real theta) { return Point(std::cos(theta),\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_E
+  bundledCode: "#line 1 \"Verify/Geometry/crosspoint_circles.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_E\"\n#define\
+    \ ERROR 0.000001\n\n#line 2 \"Geometry/geometry.hpp\"\n\n#include <iostream>\n\
+    #include <algorithm>\n#include <vector>\n#include <cmath>\n\nnamespace geo {\n\
+    \nusing Real = long double;\nconstexpr Real EPS = 1e-10;\nconstexpr Real PI =\
+    \ 3.14159265358979323846L;\n\nint cmp(Real a, Real b) {\n    return std::abs(a\
+    \ - b) < EPS ? 0\n           : a > b               ? 1\n                     \
+    \            : -1;\n}\n\n/* -------------------- Point -------------------- */\n\
+    struct Point {\n    Real x, y;\n\n    explicit Point(Real x = 0, Real y = 0) :\
+    \ x(x), y(y) {}\n\n    Point operator-() const { return Point(-x, -y); }\n\n \
+    \   Point operator+(const Point& p) const { return Point(*this) += p; }\n    Point\
+    \ operator-(const Point& p) const { return Point(*this) -= p; }\n    Point& operator+=(const\
+    \ Point& p) {\n        x += p.x, y += p.y;\n        return *this;\n    }\n   \
+    \ Point& operator-=(const Point& p) {\n        x -= p.x, y -= p.y;\n        return\
+    \ *this;\n    }\n\n    Point operator*(Real k) const { return Point(*this) *=\
+    \ k; }\n    Point& operator*=(Real k) {\n        x *= k, y *= k;\n        return\
+    \ *this;\n    }\n\n    bool operator==(const Point& p) const { return cmp(x, p.x)\
+    \ == 0 && cmp(y, p.y) == 0; }\n    bool operator!=(const Point& p) const { return\
+    \ !(*this == p); }\n    bool operator<(const Point& p) const { return cmp(x, p.x)\
+    \ < 0 ||\n                                                  (cmp(x, p.x) == 0\
+    \ && cmp(y, p.y) < 0); }\n    bool operator>(const Point& p) const { return cmp(x,\
+    \ p.x) > 0 ||\n                                                  (cmp(x, p.x)\
+    \ == 0 && cmp(y, p.y) > 0); }\n\n    Real norm() const { return x * x + y * y;\
+    \ }\n    Real abs() const { return std::hypot(x, y); }\n    Real arg() const {\
+    \ return std::atan2(y, x); }\n\n    Point rotate(Real theta) const {\n       \
+    \ return Point(x * std::cos(theta) - y * std::sin(theta),\n                  \
+    \   x * std::sin(theta) + y * std::cos(theta));\n    }\n\n    friend std::istream&\
+    \ operator>>(std::istream& is, Point& p) {\n        return is >> p.x >> p.y;\n\
+    \    }\n};\n\nPoint polar(Real r, Real theta) { return Point(std::cos(theta),\
     \ std::sin(theta)) * r; }\nReal dist(const Point& p, const Point& q) { return\
     \ (p - q).abs(); }\nReal dot(const Point& p, const Point& q) { return p.x * q.x\
     \ + p.y * q.y; }\nReal cross(const Point& p, const Point& q) { return p.x * q.y\
@@ -130,29 +132,34 @@ data:
     \ d = dist(a.p, b.p);\n    auto theta = std::acos((a.r * a.r + d * d - b.r * b.r)\
     \ / (a.r * d * 2));\n    auto phi = (b.p - a.p).arg();\n\n    ps.push_back(a.p\
     \ + polar(a.r, phi + theta));\n    if (c == 2) ps.push_back(a.p + polar(a.r, phi\
-    \ - theta));\n\n    return ps;\n}\n\n}  // namespace geo\n#line 4 \"Verify/Geometry/is_convex.test.cpp\"\
-    \n\n#line 6 \"Verify/Geometry/is_convex.test.cpp\"\n\nint main() {\n    std::cin.tie(nullptr);\n\
-    \    std::ios::sync_with_stdio(false);\n\n    int n;\n    std::cin >> n;\n\n \
-    \   geo::Polygon g(n);\n    for (auto& p : g) std::cin >> p;\n    std::cout <<\
-    \ g.isconvex() << \"\\n\";\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_3_B\"\
-    \n\n#include \"../../Geometry/geometry.hpp\"\n\n#include <iostream>\n\nint main()\
-    \ {\n    std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n\n   \
-    \ int n;\n    std::cin >> n;\n\n    geo::Polygon g(n);\n    for (auto& p : g)\
-    \ std::cin >> p;\n    std::cout << g.isconvex() << \"\\n\";\n\n    return 0;\n\
-    }\n"
+    \ - theta));\n\n    return ps;\n}\n\n}  // namespace geo\n#line 5 \"Verify/Geometry/crosspoint_circles.test.cpp\"\
+    \n\n#line 7 \"Verify/Geometry/crosspoint_circles.test.cpp\"\n#include <iomanip>\n\
+    #line 9 \"Verify/Geometry/crosspoint_circles.test.cpp\"\n\nint main() {\n    std::cin.tie(nullptr);\n\
+    \    std::ios::sync_with_stdio(false);\n    std::cout << std::fixed << std::setprecision(10);\n\
+    \n    geo::Circle a, b;\n    std::cin >> a >> b;\n\n    auto ps = geo::crosspoint(a,\
+    \ b);\n    if (ps.size() == 1) ps.push_back(ps.front());\n    std::sort(ps.begin(),\
+    \ ps.end());\n    for (auto p : ps) std::cout << p.x << \" \" << p.y << \" \"\
+    ;\n    std::cout << \"\\n\";\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_7_E\"\
+    \n#define ERROR 0.000001\n\n#include \"../../Geometry/geometry.hpp\"\n\n#include\
+    \ <iostream>\n#include <iomanip>\n#include <algorithm>\n\nint main() {\n    std::cin.tie(nullptr);\n\
+    \    std::ios::sync_with_stdio(false);\n    std::cout << std::fixed << std::setprecision(10);\n\
+    \n    geo::Circle a, b;\n    std::cin >> a >> b;\n\n    auto ps = geo::crosspoint(a,\
+    \ b);\n    if (ps.size() == 1) ps.push_back(ps.front());\n    std::sort(ps.begin(),\
+    \ ps.end());\n    for (auto p : ps) std::cout << p.x << \" \" << p.y << \" \"\
+    ;\n    std::cout << \"\\n\";\n\n    return 0;\n}\n"
   dependsOn:
   - Geometry/geometry.hpp
   isVerificationFile: true
-  path: Verify/Geometry/is_convex.test.cpp
+  path: Verify/Geometry/crosspoint_circles.test.cpp
   requiredBy: []
   timestamp: '2020-11-05 15:24:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Verify/Geometry/is_convex.test.cpp
+documentation_of: Verify/Geometry/crosspoint_circles.test.cpp
 layout: document
 redirect_from:
-- /verify/Verify/Geometry/is_convex.test.cpp
-- /verify/Verify/Geometry/is_convex.test.cpp.html
-title: Verify/Geometry/is_convex.test.cpp
+- /verify/Verify/Geometry/crosspoint_circles.test.cpp
+- /verify/Verify/Geometry/crosspoint_circles.test.cpp.html
+title: Verify/Geometry/crosspoint_circles.test.cpp
 ---
