@@ -9,6 +9,7 @@ namespace geo {
 
 using Real = long double;
 constexpr Real EPS = 1e-10;
+constexpr Real PI = 3.14159265358979323846L;
 
 int cmp(Real a, Real b) {
     return std::abs(a - b) < EPS ? 0
@@ -21,7 +22,6 @@ struct Point {
     Real x, y;
 
     explicit Point(Real x = 0, Real y = 0) : x(x), y(y) {}
-    static Point polar(Real r, Real theta) { return Point(std::cos(theta), std::sin(theta)) * r; }
 
     Point operator-() const { return Point(-x, -y); }
 
@@ -63,6 +63,7 @@ struct Point {
     }
 };
 
+Point polar(Real r, Real theta) { return Point(std::cos(theta), std::sin(theta)) * r; }
 Real dist(const Point& p, const Point& q) { return (p - q).abs(); }
 Real dot(const Point& p, const Point& q) { return p.x * q.x + p.y * q.y; }
 Real cross(const Point& p, const Point& q) { return p.x * q.y - p.y * q.x; }
@@ -130,7 +131,7 @@ bool intersect(const Segment& s, const Segment& t, bool end) {
            pos(t, s.p) * pos(t, s.q) < end;
 }
 
-Point intersection(const Segment& s, const Segment& t) {
+Point crosspoint(const Segment& s, const Segment& t) {
     auto c1 = cross(t.diff(), s.diff());
     auto c2 = cross(t.diff(), s.p - t.p);
     return s.p + s.diff() * (-c2 / c1);
@@ -154,6 +155,7 @@ struct Polygon : public std::vector<Point> {
 
     explicit Polygon(int n = 0) : std::vector<Point>(n) {}
 
+    // requirement: vertices are aligned in counter-clockwise order
     Real area() const {
         Real sum = 0;
         for (int i = 0; i < (int)size(); ++i) {
@@ -223,7 +225,7 @@ Polygon convexhull(Polygon& g, bool linear) {
     return h;
 }
 
-// g must be convex
+// requirement: g is convex
 Real diameter(const Polygon& g) {
     Real ret = 0;
     int j = 0;
@@ -235,7 +237,8 @@ Real diameter(const Polygon& g) {
     return ret;
 }
 
-// left side, g must be convex
+// left side
+// requirement: g is convex
 Polygon convex_cut(const Polygon& g, const Segment& s) {
     Polygon h;
     for (int i = 0; i < (int)g.size(); ++i) {
@@ -243,15 +246,77 @@ Polygon convex_cut(const Polygon& g, const Segment& s) {
 
         Segment t(g[i], g[(i + 1) % g.size()]);
         if (pos(s, t.p) * pos(s, t.q) == -1) {
-            h.push_back(intersection(s, t));
+            h.push_back(crosspoint(s, t));
         }
     }
     return h;
 }
 
+// requirement: g is convex
 bool intersect(const Polygon& g, const Segment& s) {
     auto area = convex_cut(g, s).area();
     return cmp(area, 0) == 0 || cmp(area, g.area()) == 0;
+}
+
+/* -------------------- Circle -------------------- */
+
+struct Circle {
+    Point p;
+    Real r;
+    explicit Circle(const Point& p = Point(), Real r = 0) : p(p), r(r) {}
+
+    // center -> radius
+    friend std::istream& operator>>(std::istream& is, Circle& a) {
+        return is >> a.p >> a.r;
+    }
+};
+
+// the number of common tangents
+// requirement: a != b
+int intersect(const Circle& a, const Circle& b) {
+    auto d = dist(a.p, b.p);
+
+    return cmp(d, a.r + b.r) > 0              ? 4
+           : cmp(d, a.r + b.r) == 0           ? 3
+           : cmp(d, std::abs(a.r - b.r)) > 0  ? 2
+           : cmp(d, std::abs(a.r - b.r)) == 0 ? 1
+                                              : 0;
+}
+
+// s is treated as a line
+std::vector<Point> crosspoint(const Circle& a, const Segment& s) {
+    std::vector<Point> ps;
+
+    auto d = dist(proj(s, a.p), a.p);
+    if (cmp(d, a.r) == 0) {
+        ps.push_back(proj(s, a.p));
+
+    } else if (cmp(d, a.r) < 0) {
+        auto p = proj(s, a.p);
+        auto v = s.q - s.p;
+        v *= std::sqrt(a.r * a.r - d * d) / v.abs();
+
+        ps.push_back(p + v);
+        ps.push_back(p - v);
+    }
+    return ps;
+}
+
+// requirement: a != b
+std::vector<Point> crosspoint(const Circle& a, const Circle& b) {
+    std::vector<Point> ps;
+
+    auto c = intersect(a, b);
+    if (c == 0 || c == 4) return ps;
+
+    auto d = dist(a.p, b.p);
+    auto theta = std::acos((a.r * a.r + d * d - b.r * b.r) / (a.r * d * 2));
+    auto phi = (b.p - a.p).arg();
+
+    ps.push_back(a.p + polar(a.r, phi + theta));
+    if (c == 2) ps.push_back(a.p + polar(a.r, phi - theta));
+
+    return ps;
 }
 
 }  // namespace geo

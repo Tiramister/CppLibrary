@@ -16,7 +16,7 @@ int main() {
     while (q--) {
         geo::Segment s, t;
         std::cin >> s >> t;
-        auto p = geo::intersection(s, t);
+        auto p = geo::crosspoint(s, t);
         std::cout << p.x << " " << p.y << "\n";
     }
 
