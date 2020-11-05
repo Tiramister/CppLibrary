@@ -150,6 +150,8 @@ Real dist(const Segment& s, const Segment& t) {
 
 /* -------------------- Polygon -------------------- */
 struct Polygon : public std::vector<Point> {
+    using std::vector<Point>::vector;
+
     explicit Polygon(int n = 0) : std::vector<Point>(n) {}
 
     Real area() const {

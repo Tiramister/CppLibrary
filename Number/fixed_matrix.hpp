@@ -5,6 +5,8 @@
 template <class T, int D>
 struct Matrix : public std::array<std::array<T, D>, D> {
     // constructor
+    using std::array<std::array<T, D>, D>::array;
+
     Matrix(T val = 0) {
         for (auto& v : *this) v.fill(val);
     }

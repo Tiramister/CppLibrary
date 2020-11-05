@@ -4,10 +4,10 @@
 
 template <class T>
 struct Matrix : public std::vector<std::vector<T>> {
-    int h, w;
     // constructor
-    Matrix(int h, int w, T val = 0)
-        : h(h), w(w) {
+    using std::vector<std::vector<T>>::vector;
+
+    Matrix(int h, int w, T val = 0) {
         this->resize(h);
         for (auto& v : *this) v.resize(w, val);
     }
@@ -21,10 +21,14 @@ struct Matrix : public std::vector<std::vector<T>> {
     // arithmetic
     Matrix operator*(const Matrix& m) const { return Matrix(*this) *= m; }
     Matrix& operator*=(const Matrix& m) {
-        Matrix nmat(h, w);
-        for (int i = 0; i < h; ++i) {
-            for (int j = 0; j < m.w; ++j) {
-                for (int k = 0; k < w; ++k) {
+        int h1 = this->size(),
+            h2 = m.size(),
+            w2 = m.front().size();
+
+        Matrix nmat(h1, w2);
+        for (int i = 0; i < h1; ++i) {
+            for (int j = 0; j < w2; ++j) {
+                for (int k = 0; k < h2; ++k) {
                     nmat[i][j] += (*this)[i][k] * m[k][j];
                 }
             }
@@ -34,7 +38,7 @@ struct Matrix : public std::vector<std::vector<T>> {
 
     template <class U>
     Matrix pow(U k) {
-        Matrix ret = id(h);
+        Matrix ret = id(this->size());
         Matrix a = *this;
 
         while (k > 0) {

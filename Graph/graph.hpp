@@ -17,7 +17,7 @@ struct Edge {
 
 template <class Cost = int>
 struct Graph : public std::vector<std::vector<Edge<Cost>>> {
-    Graph(int n = 0) : std::vector<std::vector<Edge<Cost>>>(n) {}
+    using std::vector<std::vector<Edge<Cost>>>::vector;
 
     void span(bool direct, int src, int dst, Cost cost = 1) {
         (*this)[src].emplace_back(src, dst, cost);
