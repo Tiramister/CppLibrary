@@ -37,8 +37,13 @@ struct Point {
     }
 
     Point operator*(Real k) const { return Point(*this) *= k; }
+    Point operator/(Real k) const { return Point(*this) /= k; }
     Point& operator*=(Real k) {
         x *= k, y *= k;
+        return *this;
+    }
+    Point& operator/=(Real k) {
+        x /= k, y /= k;
         return *this;
     }
 
@@ -49,7 +54,10 @@ struct Point {
     bool operator>(const Point& p) const { return cmp(x, p.x) > 0 ||
                                                   (cmp(x, p.x) == 0 && cmp(y, p.y) > 0); }
 
-    Real norm() const { return x * x + y * y; }
+    friend std::istream& operator>>(std::istream& is, Point& p) {
+        return is >> p.x >> p.y;
+    }
+
     Real abs() const { return std::hypot(x, y); }
     Real arg() const { return std::atan2(y, x); }
 
@@ -57,13 +65,12 @@ struct Point {
         return Point(x * std::cos(theta) - y * std::sin(theta),
                      x * std::sin(theta) + y * std::cos(theta));
     }
-
-    friend std::istream& operator>>(std::istream& is, Point& p) {
-        return is >> p.x >> p.y;
-    }
+    Point normal() const { return Point(-y, x); }
+    Point unit() const { return *this / abs(); }
 };
 
 Point polar(Real r, Real theta) { return Point(std::cos(theta), std::sin(theta)) * r; }
+
 Real dist(const Point& p, const Point& q) { return (p - q).abs(); }
 Real dot(const Point& p, const Point& q) { return p.x * q.x + p.y * q.y; }
 Real cross(const Point& p, const Point& q) { return p.x * q.y - p.y * q.x; }
@@ -74,14 +81,12 @@ struct Segment {
 
     explicit Segment(const Point& p = Point(), const Point& q = Point()) : p(p), q(q) {}
 
-    Real norm() const { return (p - q).norm(); }
-    Real length() const { return (p - q).abs(); }
-
-    Point diff() const { return q - p; }
-
     friend std::istream& operator>>(std::istream& is, Segment& s) {
         return is >> s.p >> s.q;
     }
+
+    Real length() const { return (p - q).abs(); }
+    Point diff() const { return q - p; }
 };
 
 bool orthogonal(const Segment& s, const Segment& t) {
@@ -93,8 +98,8 @@ bool parallel(const Segment& s, const Segment& t) {
 }
 
 Point proj(const Segment& s, const Point& p) {
-    Real ratio = dot(s.diff(), p - s.p) / s.norm();
-    return s.p + s.diff() * ratio;
+    auto v = s.diff().unit();
+    return s.p + v * dot(v, p - s.p);
 }
 
 Point refl(const Segment& s, const Point& p) {
@@ -155,13 +160,20 @@ struct Polygon : public std::vector<Point> {
 
     explicit Polygon(int n = 0) : std::vector<Point>(n) {}
 
-    // requirement: vertices are aligned in counter-clockwise order
+    std::vector<Segment> segments() const {
+        std::vector<Segment> segs;
+        for (int i = 0; i < (int)size(); ++i) {
+            segs.emplace_back((*this)[i], (*this)[(i + 1) % size()]);
+        }
+        return segs;
+    }
+
     Real area() const {
         Real sum = 0;
         for (int i = 0; i < (int)size(); ++i) {
             sum += cross((*this)[i], (*this)[(i + 1) % size()]);
         }
-        return sum / 2;
+        return std::abs(sum) / 2;
     }
 
     bool isconvex() const {
@@ -255,7 +267,7 @@ Polygon convex_cut(const Polygon& g, const Segment& s) {
 // requirement: g is convex
 bool intersect(const Polygon& g, const Segment& s) {
     auto area = convex_cut(g, s).area();
-    return cmp(area, 0) == 0 || cmp(area, g.area()) == 0;
+    return cmp(area, 0) != 0 && cmp(area, g.area()) != 0;
 }
 
 /* -------------------- Circle -------------------- */
