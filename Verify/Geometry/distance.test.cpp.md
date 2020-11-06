@@ -29,34 +29,35 @@ data:
     \ Point& p) {\n        x += p.x, y += p.y;\n        return *this;\n    }\n   \
     \ Point& operator-=(const Point& p) {\n        x -= p.x, y -= p.y;\n        return\
     \ *this;\n    }\n\n    Point operator*(Real k) const { return Point(*this) *=\
-    \ k; }\n    Point& operator*=(Real k) {\n        x *= k, y *= k;\n        return\
-    \ *this;\n    }\n\n    bool operator==(const Point& p) const { return cmp(x, p.x)\
-    \ == 0 && cmp(y, p.y) == 0; }\n    bool operator!=(const Point& p) const { return\
-    \ !(*this == p); }\n    bool operator<(const Point& p) const { return cmp(x, p.x)\
-    \ < 0 ||\n                                                  (cmp(x, p.x) == 0\
-    \ && cmp(y, p.y) < 0); }\n    bool operator>(const Point& p) const { return cmp(x,\
-    \ p.x) > 0 ||\n                                                  (cmp(x, p.x)\
-    \ == 0 && cmp(y, p.y) > 0); }\n\n    Real norm() const { return x * x + y * y;\
-    \ }\n    Real abs() const { return std::hypot(x, y); }\n    Real arg() const {\
-    \ return std::atan2(y, x); }\n\n    Point rotate(Real theta) const {\n       \
-    \ return Point(x * std::cos(theta) - y * std::sin(theta),\n                  \
-    \   x * std::sin(theta) + y * std::cos(theta));\n    }\n\n    friend std::istream&\
-    \ operator>>(std::istream& is, Point& p) {\n        return is >> p.x >> p.y;\n\
-    \    }\n};\n\nPoint polar(Real r, Real theta) { return Point(std::cos(theta),\
-    \ std::sin(theta)) * r; }\nReal dist(const Point& p, const Point& q) { return\
+    \ k; }\n    Point operator/(Real k) const { return Point(*this) /= k; }\n    Point&\
+    \ operator*=(Real k) {\n        x *= k, y *= k;\n        return *this;\n    }\n\
+    \    Point& operator/=(Real k) {\n        x /= k, y /= k;\n        return *this;\n\
+    \    }\n\n    bool operator==(const Point& p) const { return cmp(x, p.x) == 0\
+    \ && cmp(y, p.y) == 0; }\n    bool operator!=(const Point& p) const { return !(*this\
+    \ == p); }\n    bool operator<(const Point& p) const { return cmp(x, p.x) < 0\
+    \ ||\n                                                  (cmp(x, p.x) == 0 && cmp(y,\
+    \ p.y) < 0); }\n    bool operator>(const Point& p) const { return cmp(x, p.x)\
+    \ > 0 ||\n                                                  (cmp(x, p.x) == 0\
+    \ && cmp(y, p.y) > 0); }\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, Point& p) {\n        return is >> p.x >> p.y;\n    }\n\n    Real abs() const\
+    \ { return std::hypot(x, y); }\n    Real arg() const { return std::atan2(y, x);\
+    \ }\n\n    Point rotate(Real theta) const {\n        return Point(x * std::cos(theta)\
+    \ - y * std::sin(theta),\n                     x * std::sin(theta) + y * std::cos(theta));\n\
+    \    }\n    Point normal() const { return Point(-y, x); }\n    Point unit() const\
+    \ { return *this / abs(); }\n};\n\nPoint polar(Real r, Real theta) { return Point(std::cos(theta),\
+    \ std::sin(theta)) * r; }\n\nReal dist(const Point& p, const Point& q) { return\
     \ (p - q).abs(); }\nReal dot(const Point& p, const Point& q) { return p.x * q.x\
     \ + p.y * q.y; }\nReal cross(const Point& p, const Point& q) { return p.x * q.y\
     \ - p.y * q.x; }\n\n/* -------------------- Segment -------------------- */\n\
     struct Segment {\n    Point p, q;\n\n    explicit Segment(const Point& p = Point(),\
-    \ const Point& q = Point()) : p(p), q(q) {}\n\n    Real norm() const { return\
-    \ (p - q).norm(); }\n    Real length() const { return (p - q).abs(); }\n\n   \
-    \ Point diff() const { return q - p; }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, Segment& s) {\n        return is >> s.p >> s.q;\n    }\n};\n\nbool orthogonal(const\
-    \ Segment& s, const Segment& t) {\n    return cmp(dot(s.diff(), t.diff()), 0)\
-    \ == 0;\n}\n\nbool parallel(const Segment& s, const Segment& t) {\n    return\
-    \ cmp(cross(s.diff(), t.diff()), 0) == 0;\n}\n\nPoint proj(const Segment& s, const\
-    \ Point& p) {\n    Real ratio = dot(s.diff(), p - s.p) / s.norm();\n    return\
-    \ s.p + s.diff() * ratio;\n}\n\nPoint refl(const Segment& s, const Point& p) {\n\
+    \ const Point& q = Point()) : p(p), q(q) {}\n\n    friend std::istream& operator>>(std::istream&\
+    \ is, Segment& s) {\n        return is >> s.p >> s.q;\n    }\n\n    Real length()\
+    \ const { return (p - q).abs(); }\n    Point diff() const { return q - p; }\n\
+    };\n\nbool orthogonal(const Segment& s, const Segment& t) {\n    return cmp(dot(s.diff(),\
+    \ t.diff()), 0) == 0;\n}\n\nbool parallel(const Segment& s, const Segment& t)\
+    \ {\n    return cmp(cross(s.diff(), t.diff()), 0) == 0;\n}\n\nPoint proj(const\
+    \ Segment& s, const Point& p) {\n    auto v = s.diff().unit();\n    return s.p\
+    \ + v * dot(v, p - s.p);\n}\n\nPoint refl(const Segment& s, const Point& p) {\n\
     \    auto t = proj(s, p);\n    return t + (t - p);\n}\n\n// position of a point\
     \ relative to a segment\nenum Position {\n    ON_SEGMENT = 0,\n    COUNTER_CLOCKWISE\
     \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_FRONT = 2,\n    ONLINE_BACK = -2\n};\n\
@@ -76,17 +77,19 @@ data:
     \ return 0;\n    return std::min({dist(s, t.p), dist(s, t.q),\n              \
     \       dist(t, s.p), dist(t, s.q)});\n}\n\n/* -------------------- Polygon --------------------\
     \ */\nstruct Polygon : public std::vector<Point> {\n    using std::vector<Point>::vector;\n\
-    \n    explicit Polygon(int n = 0) : std::vector<Point>(n) {}\n\n    // requirement:\
-    \ vertices are aligned in counter-clockwise order\n    Real area() const {\n \
-    \       Real sum = 0;\n        for (int i = 0; i < (int)size(); ++i) {\n     \
-    \       sum += cross((*this)[i], (*this)[(i + 1) % size()]);\n        }\n    \
-    \    return sum / 2;\n    }\n\n    bool isconvex() const {\n        for (int i\
-    \ = 0; i < (int)size(); ++i) {\n            if (pos(Segment((*this)[i], (*this)[(i\
-    \ + 1) % size()]),\n                    (*this)[(i + 2) % size()]) == CLOCKWISE)\
-    \ return false;\n        }\n        return true;\n    }\n};\n\n// position of\
-    \ a point relative to a polygon\nenum Contain {\n    OUT,\n    ON,\n    IN\n};\n\
-    \nContain contain(const Polygon& g, const Point& p) {\n    bool in = false;\n\
-    \    for (int i = 0; i < (int)g.size(); ++i) {\n        if (pos(Segment(g[i],\
+    \n    explicit Polygon(int n = 0) : std::vector<Point>(n) {}\n\n    std::vector<Segment>\
+    \ segments() const {\n        std::vector<Segment> segs;\n        for (int i =\
+    \ 0; i < (int)size(); ++i) {\n            segs.emplace_back((*this)[i], (*this)[(i\
+    \ + 1) % size()]);\n        }\n        return segs;\n    }\n\n    Real area()\
+    \ const {\n        Real sum = 0;\n        for (int i = 0; i < (int)size(); ++i)\
+    \ {\n            sum += cross((*this)[i], (*this)[(i + 1) % size()]);\n      \
+    \  }\n        return std::abs(sum) / 2;\n    }\n\n    bool isconvex() const {\n\
+    \        for (int i = 0; i < (int)size(); ++i) {\n            if (pos(Segment((*this)[i],\
+    \ (*this)[(i + 1) % size()]),\n                    (*this)[(i + 2) % size()])\
+    \ == CLOCKWISE) return false;\n        }\n        return true;\n    }\n};\n\n\
+    // position of a point relative to a polygon\nenum Contain {\n    OUT,\n    ON,\n\
+    \    IN\n};\n\nContain contain(const Polygon& g, const Point& p) {\n    bool in\
+    \ = false;\n    for (int i = 0; i < (int)g.size(); ++i) {\n        if (pos(Segment(g[i],\
     \ g[(i + 1) % g.size()]), p) == ON_SEGMENT) return ON;\n\n        auto a = g[i]\
     \ - p, b = g[(i + 1) % g.size()] - p;\n        if (a > b) std::swap(a, b);\n\n\
     \        if (cmp(a.x, 0) <= 0 &&\n            cmp(b.x, 0) > 0 &&\n           \
@@ -111,7 +114,7 @@ data:
     \ == -1) {\n            h.push_back(crosspoint(s, t));\n        }\n    }\n   \
     \ return h;\n}\n\n// requirement: g is convex\nbool intersect(const Polygon& g,\
     \ const Segment& s) {\n    auto area = convex_cut(g, s).area();\n    return cmp(area,\
-    \ 0) == 0 || cmp(area, g.area()) == 0;\n}\n\n/* -------------------- Circle --------------------\
+    \ 0) != 0 && cmp(area, g.area()) != 0;\n}\n\n/* -------------------- Circle --------------------\
     \ */\n\nstruct Circle {\n    Point p;\n    Real r;\n    explicit Circle(const\
     \ Point& p = Point(), Real r = 0) : p(p), r(r) {}\n\n    // center -> radius\n\
     \    friend std::istream& operator>>(std::istream& is, Circle& a) {\n        return\
@@ -150,7 +153,7 @@ data:
   isVerificationFile: true
   path: Verify/Geometry/distance.test.cpp
   requiredBy: []
-  timestamp: '2020-11-05 15:24:29+09:00'
+  timestamp: '2020-11-06 15:35:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/Geometry/distance.test.cpp
