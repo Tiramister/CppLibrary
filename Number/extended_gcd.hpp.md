@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/extended_gcd.test.cpp
     title: Verify/extended_gcd.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

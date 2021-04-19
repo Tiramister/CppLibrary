@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/knuth_morris_pratt.test.cpp
     title: Verify/knuth_morris_pratt.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

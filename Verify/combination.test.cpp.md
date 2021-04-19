@@ -9,6 +9,7 @@ data:
     title: Number/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -22,46 +23,47 @@ data:
     \    ModInt(lint v = 0) : val(v % MOD) {\n        if (val < 0) val += MOD;\n \
     \   };\n\n    // unary operator\n    ModInt operator+() const { return ModInt(val);\
     \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n\n    ModInt&\
-    \ operator++() { return *this += 1; }\n    ModInt& operator--() { *this -= 1;\
-    \ }\n\n    // functions\n    ModInt pow(lint n) const {\n        auto x = ModInt(1);\n\
-    \        auto b = *this;\n        while (n > 0) {\n            if (n & 1) x *=\
-    \ b;\n            n >>= 1;\n            b *= b;\n        }\n        return x;\n\
-    \    }\n    ModInt inv() const {\n        int s = val, t = MOD,\n            xs\
-    \ = 1, xt = 0;\n\n        while (t != 0) {\n            auto div = s / t;\n\n\
-    \            s -= t * div;\n            xs -= xt * div;\n\n            std::swap(s,\
-    \ t);\n            std::swap(xs, xt);\n        }\n\n        return xs;\n    }\n\
-    \n    // arithmetic\n    ModInt operator+(const ModInt& x) const { return ModInt(*this)\
-    \ += x; }\n    ModInt operator-(const ModInt& x) const { return ModInt(*this)\
-    \ -= x; }\n    ModInt operator*(const ModInt& x) const { return ModInt(*this)\
-    \ *= x; }\n    ModInt operator/(const ModInt& x) const { return ModInt(*this)\
-    \ /= x; }\n\n    ModInt& operator+=(const ModInt& x) {\n        if ((val += x.val)\
-    \ >= MOD) val -= MOD;\n        return *this;\n    }\n    ModInt& operator-=(const\
-    \ ModInt& x) {\n        if ((val -= x.val) < 0) val += MOD;\n        return *this;\n\
-    \    }\n    ModInt& operator*=(const ModInt& x) {\n        val = lint(val) * x.val\
-    \ % MOD;\n        return *this;\n    }\n    ModInt& operator/=(const ModInt& x)\
-    \ { return *this *= x.inv(); }\n\n    // comparator\n    bool operator==(const\
-    \ ModInt& b) const { return val == b.val; }\n    bool operator!=(const ModInt&\
-    \ b) const { return val != b.val; }\n\n    // I/O\n    friend std::istream& operator>>(std::istream&\
-    \ is, ModInt& x) {\n        lint v;\n        is >> v;\n        x = v;\n      \
-    \  return is;\n    }\n    friend std::ostream& operator<<(std::ostream& os, const\
-    \ ModInt& x) {\n        return os << x.val;\n    }\n};\n\n// constexpr int MOD\
-    \ = 1000000007;\n// constexpr int MOD = 998244353;\n// using mint = ModInt<MOD>;\n\
-    #line 2 \"Number/combination.hpp\"\n\n#include <vector>\n\ntemplate <class T>\n\
-    struct Combination {\n    int max_n;\n    std::vector<T> f, invf;\n\n    explicit\
-    \ Combination(int n)\n        : max_n(n), f(n + 1), invf(n + 1) {\n        f[0]\
-    \ = 1;\n        for (int i = 1; i <= n; ++i) {\n            f[i] = f[i - 1] *\
-    \ i;\n        }\n\n        invf[max_n] = f[max_n].inv();\n        for (int i =\
-    \ max_n - 1; i >= 0; --i) {\n            invf[i] = invf[i + 1] * (i + 1);\n  \
-    \      }\n    }\n\n    T fact(int n) const { return n < 0 ? T(0) : f[n]; }\n \
-    \   T invfact(int n) const { return n < 0 ? T(0) : invf[n]; }\n    T perm(int\
-    \ a, int b) const {\n        return a < b || b < 0 ? T(0) : f[a] * invf[a - b];\n\
-    \    }\n    T binom(int a, int b) const {\n        return a < b || b < 0 ? T(0)\
-    \ : f[a] * invf[a - b] * invf[b];\n    }\n};\n#line 5 \"Verify/combination.test.cpp\"\
-    \n\nconstexpr int MOD = 1e9 + 7;\nusing mint = ModInt<MOD>;\n\nconst Combination<mint>\
-    \ C(1000);\n\nint main() {\n    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\
-    \n    int n, k;\n    std::cin >> n >> k;\n\n    mint ans = 0;\n    for (int i\
-    \ = 0; i <= k; ++i) {\n        ans += mint(-1).pow(k - i) * C.binom(k, i) * mint(i).pow(n);\n\
-    \    }\n    std::cout << ans << \"\\n\";\n\n    return 0;\n}\n"
+    \ operator++() { return *this += 1; }\n    ModInt& operator--() { return *this\
+    \ -= 1; }\n\n    // functions\n    ModInt pow(lint n) const {\n        auto x\
+    \ = ModInt(1);\n        auto b = *this;\n        while (n > 0) {\n           \
+    \ if (n & 1) x *= b;\n            n >>= 1;\n            b *= b;\n        }\n \
+    \       return x;\n    }\n    ModInt inv() const {\n        int s = val, t = MOD,\n\
+    \            xs = 1, xt = 0;\n\n        while (t != 0) {\n            auto div\
+    \ = s / t;\n\n            s -= t * div;\n            xs -= xt * div;\n\n     \
+    \       std::swap(s, t);\n            std::swap(xs, xt);\n        }\n\n      \
+    \  return xs;\n    }\n\n    // arithmetic\n    ModInt operator+(const ModInt&\
+    \ x) const { return ModInt(*this) += x; }\n    ModInt operator-(const ModInt&\
+    \ x) const { return ModInt(*this) -= x; }\n    ModInt operator*(const ModInt&\
+    \ x) const { return ModInt(*this) *= x; }\n    ModInt operator/(const ModInt&\
+    \ x) const { return ModInt(*this) /= x; }\n\n    ModInt& operator+=(const ModInt&\
+    \ x) {\n        if ((val += x.val) >= MOD) val -= MOD;\n        return *this;\n\
+    \    }\n    ModInt& operator-=(const ModInt& x) {\n        if ((val -= x.val)\
+    \ < 0) val += MOD;\n        return *this;\n    }\n    ModInt& operator*=(const\
+    \ ModInt& x) {\n        val = lint(val) * x.val % MOD;\n        return *this;\n\
+    \    }\n    ModInt& operator/=(const ModInt& x) { return *this *= x.inv(); }\n\
+    \n    // comparator\n    bool operator==(const ModInt& b) const { return val ==\
+    \ b.val; }\n    bool operator!=(const ModInt& b) const { return val != b.val;\
+    \ }\n\n    // I/O\n    friend std::istream& operator>>(std::istream& is, ModInt&\
+    \ x) {\n        lint v;\n        is >> v;\n        x = v;\n        return is;\n\
+    \    }\n    friend std::ostream& operator<<(std::ostream& os, const ModInt& x)\
+    \ {\n        return os << x.val;\n    }\n};\n\nusing modint1000000007 = ModInt<1000000007>;\n\
+    using modint998244353 = ModInt<998244353>;\n#line 2 \"Number/combination.hpp\"\
+    \n\n#include <vector>\n\ntemplate <class T>\nstruct Combination {\n    int max_n;\n\
+    \    std::vector<T> f, invf;\n\n    explicit Combination(int n)\n        : max_n(n),\
+    \ f(n + 1), invf(n + 1) {\n        f[0] = 1;\n        for (int i = 1; i <= n;\
+    \ ++i) {\n            f[i] = f[i - 1] * i;\n        }\n\n        invf[max_n] =\
+    \ f[max_n].inv();\n        for (int i = max_n - 1; i >= 0; --i) {\n          \
+    \  invf[i] = invf[i + 1] * (i + 1);\n        }\n    }\n\n    T fact(int n) const\
+    \ { return n < 0 ? T(0) : f[n]; }\n    T invfact(int n) const { return n < 0 ?\
+    \ T(0) : invf[n]; }\n    T perm(int a, int b) const {\n        return a < b ||\
+    \ b < 0 ? T(0) : f[a] * invf[a - b];\n    }\n    T binom(int a, int b) const {\n\
+    \        return a < b || b < 0 ? T(0) : f[a] * invf[a - b] * invf[b];\n    }\n\
+    };\n#line 5 \"Verify/combination.test.cpp\"\n\nconstexpr int MOD = 1e9 + 7;\n\
+    using mint = ModInt<MOD>;\n\nconst Combination<mint> C(1000);\n\nint main() {\n\
+    \    std::cin.tie();\n    std::ios::sync_with_stdio(false);\n\n    int n, k;\n\
+    \    std::cin >> n >> k;\n\n    mint ans = 0;\n    for (int i = 0; i <= k; ++i)\
+    \ {\n        ans += mint(-1).pow(k - i) * C.binom(k, i) * mint(i).pow(n);\n  \
+    \  }\n    std::cout << ans << \"\\n\";\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_5_C\"\
     \n\n#include \"../Number/modint.hpp\"\n#include \"../Number/combination.hpp\"\n\
     \nconstexpr int MOD = 1e9 + 7;\nusing mint = ModInt<MOD>;\n\nconst Combination<mint>\
@@ -75,7 +77,7 @@ data:
   isVerificationFile: true
   path: Verify/combination.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 12:40:54+09:00'
+  timestamp: '2021-04-20 01:42:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/combination.test.cpp

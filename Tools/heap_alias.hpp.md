@@ -15,6 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/primal_dual.test.cpp
     title: Verify/primal_dual.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -58,8 +59,8 @@ data:
   timestamp: '2020-07-26 22:31:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/dijkstra.test.cpp
   - Verify/primal_dual.test.cpp
+  - Verify/dijkstra.test.cpp
 documentation_of: Tools/heap_alias.hpp
 layout: document
 redirect_from:

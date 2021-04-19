@@ -15,6 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/hld_subtree.test.cpp
     title: Verify/hld_subtree.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -105,8 +106,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Verify/hld_lca.test.cpp
-  - Verify/hld_path.test.cpp
   - Verify/hld_subtree.test.cpp
+  - Verify/hld_path.test.cpp
 documentation_of: Graph/heavy_light_decomposition.hpp
 layout: document
 redirect_from:

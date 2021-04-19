@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/primal_dual.test.cpp
     title: Verify/primal_dual.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

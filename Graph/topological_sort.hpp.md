@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/topological_sort.test.cpp
     title: Verify/topological_sort.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

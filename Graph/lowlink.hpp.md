@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/bridges.test.cpp
     title: Verify/bridges.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

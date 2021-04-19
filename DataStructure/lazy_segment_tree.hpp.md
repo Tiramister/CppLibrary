@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/lazy_segment_tree_affine.test.cpp
     title: Verify/lazy_segment_tree_affine.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

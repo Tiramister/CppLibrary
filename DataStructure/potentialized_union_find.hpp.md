@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/potentialized_union_find.test.cpp
     title: Verify/potentialized_union_find.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

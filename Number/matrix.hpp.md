@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/matrix_pow.test.cpp
     title: Verify/matrix_pow.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

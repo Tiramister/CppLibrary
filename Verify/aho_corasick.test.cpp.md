@@ -9,6 +9,7 @@ data:
     title: String/aho_corasick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -22,65 +23,66 @@ data:
     \    ModInt(lint v = 0) : val(v % MOD) {\n        if (val < 0) val += MOD;\n \
     \   };\n\n    // unary operator\n    ModInt operator+() const { return ModInt(val);\
     \ }\n    ModInt operator-() const { return ModInt(MOD - val); }\n\n    ModInt&\
-    \ operator++() { return *this += 1; }\n    ModInt& operator--() { *this -= 1;\
-    \ }\n\n    // functions\n    ModInt pow(lint n) const {\n        auto x = ModInt(1);\n\
-    \        auto b = *this;\n        while (n > 0) {\n            if (n & 1) x *=\
-    \ b;\n            n >>= 1;\n            b *= b;\n        }\n        return x;\n\
-    \    }\n    ModInt inv() const {\n        int s = val, t = MOD,\n            xs\
-    \ = 1, xt = 0;\n\n        while (t != 0) {\n            auto div = s / t;\n\n\
-    \            s -= t * div;\n            xs -= xt * div;\n\n            std::swap(s,\
-    \ t);\n            std::swap(xs, xt);\n        }\n\n        return xs;\n    }\n\
-    \n    // arithmetic\n    ModInt operator+(const ModInt& x) const { return ModInt(*this)\
-    \ += x; }\n    ModInt operator-(const ModInt& x) const { return ModInt(*this)\
-    \ -= x; }\n    ModInt operator*(const ModInt& x) const { return ModInt(*this)\
-    \ *= x; }\n    ModInt operator/(const ModInt& x) const { return ModInt(*this)\
-    \ /= x; }\n\n    ModInt& operator+=(const ModInt& x) {\n        if ((val += x.val)\
-    \ >= MOD) val -= MOD;\n        return *this;\n    }\n    ModInt& operator-=(const\
-    \ ModInt& x) {\n        if ((val -= x.val) < 0) val += MOD;\n        return *this;\n\
-    \    }\n    ModInt& operator*=(const ModInt& x) {\n        val = lint(val) * x.val\
-    \ % MOD;\n        return *this;\n    }\n    ModInt& operator/=(const ModInt& x)\
-    \ { return *this *= x.inv(); }\n\n    // comparator\n    bool operator==(const\
-    \ ModInt& b) const { return val == b.val; }\n    bool operator!=(const ModInt&\
-    \ b) const { return val != b.val; }\n\n    // I/O\n    friend std::istream& operator>>(std::istream&\
-    \ is, ModInt& x) {\n        lint v;\n        is >> v;\n        x = v;\n      \
-    \  return is;\n    }\n    friend std::ostream& operator<<(std::ostream& os, const\
-    \ ModInt& x) {\n        return os << x.val;\n    }\n};\n\n// constexpr int MOD\
-    \ = 1000000007;\n// constexpr int MOD = 998244353;\n// using mint = ModInt<MOD>;\n\
-    #line 2 \"String/aho_corasick.hpp\"\n\n#include <algorithm>\n#include <vector>\n\
-    #include <array>\n#include <queue>\n#include <functional>\n\ntemplate <int K,\
-    \ class T>\nstruct PatternsMatching {\n    struct Node {\n        std::array<int,\
-    \ K> nxt;\n        int fail;\n        std::vector<int> ids;\n\n        explicit\
-    \ Node() : fail(0) { nxt.fill(-1); }\n    };\n\n    std::vector<Node> nodes;\n\
-    \    std::function<int(T)> enc;\n\n    explicit PatternsMatching(T base)\n   \
-    \     : nodes(1), enc([=](T c) { return c - base; }) {}\n\n    template <class\
-    \ Container>\n    void add(const Container& s, int id) {\n        int pos = 0;\n\
-    \        for (T ci : s) {\n            int c = enc(ci);\n\n            int npos\
-    \ = nodes[pos].nxt[c];\n            if (npos == -1) {\n                npos =\
-    \ nodes.size();\n                nodes[pos].nxt[c] = npos;\n                nodes.emplace_back();\n\
-    \            }\n            pos = npos;\n        }\n        nodes[pos].ids.push_back(id);\n\
-    \    }\n\n    void build() {\n        std::queue<int> que;\n        for (int&\
-    \ pos : nodes[0].nxt) {\n            if (pos == -1) {\n                pos = 0;\n\
-    \            } else {\n                que.push(pos);\n            }\n       \
-    \ }\n\n        while (!que.empty()) {\n            int pos = que.front();\n  \
-    \          que.pop();\n\n            for (int c = 0; c < K; ++c) {\n         \
-    \       int npos = nodes[pos].nxt[c];\n                if (npos == -1) continue;\n\
-    \n                int p = nodes[pos].fail;\n                while (nodes[p].nxt[c]\
-    \ == -1) p = nodes[p].fail;\n                int fpos = next(nodes[pos].fail,\
-    \ c);\n\n                nodes[npos].fail = fpos;\n                std::copy(nodes[fpos].ids.begin(),\
-    \ nodes[fpos].ids.end(),\n                          std::back_inserter(nodes[npos].ids));\n\
-    \n                que.push(npos);\n            }\n        }\n    }\n\n    int\
-    \ next(int pos, int c) const {\n        while (nodes[pos].nxt[c] == -1) pos =\
-    \ nodes[pos].fail;\n        return nodes[pos].nxt[c];\n    }\n\n    // (id, end\
-    \ of matching)\n    template <class Container>\n    std::vector<std::pair<int,\
-    \ int>> matching(const Container& s) const {\n        std::vector<std::pair<int,\
-    \ int>> ret;\n\n        int pos = 0;\n        for (int i = 0; i < (int)s.size();\
-    \ ++i) {\n            pos = next(pos, enc(s[i]));\n            for (auto id :\
-    \ nodes[pos].ids) {\n                ret.emplace_back(id, i + 1);\n          \
-    \  }\n        }\n\n        return ret;\n    }\n\n    Node& operator[](int pos)\
-    \ { return nodes[pos]; }\n    Node operator[](int pos) const { return nodes[pos];\
-    \ }\n};\n#line 5 \"Verify/aho_corasick.test.cpp\"\n\n#line 7 \"Verify/aho_corasick.test.cpp\"\
-    \n#include <numeric>\n#include <string>\n\nusing lint = long long;\nusing mint\
-    \ = ModInt<1000000007>;\n\nint main() {\n    std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n\
+    \ operator++() { return *this += 1; }\n    ModInt& operator--() { return *this\
+    \ -= 1; }\n\n    // functions\n    ModInt pow(lint n) const {\n        auto x\
+    \ = ModInt(1);\n        auto b = *this;\n        while (n > 0) {\n           \
+    \ if (n & 1) x *= b;\n            n >>= 1;\n            b *= b;\n        }\n \
+    \       return x;\n    }\n    ModInt inv() const {\n        int s = val, t = MOD,\n\
+    \            xs = 1, xt = 0;\n\n        while (t != 0) {\n            auto div\
+    \ = s / t;\n\n            s -= t * div;\n            xs -= xt * div;\n\n     \
+    \       std::swap(s, t);\n            std::swap(xs, xt);\n        }\n\n      \
+    \  return xs;\n    }\n\n    // arithmetic\n    ModInt operator+(const ModInt&\
+    \ x) const { return ModInt(*this) += x; }\n    ModInt operator-(const ModInt&\
+    \ x) const { return ModInt(*this) -= x; }\n    ModInt operator*(const ModInt&\
+    \ x) const { return ModInt(*this) *= x; }\n    ModInt operator/(const ModInt&\
+    \ x) const { return ModInt(*this) /= x; }\n\n    ModInt& operator+=(const ModInt&\
+    \ x) {\n        if ((val += x.val) >= MOD) val -= MOD;\n        return *this;\n\
+    \    }\n    ModInt& operator-=(const ModInt& x) {\n        if ((val -= x.val)\
+    \ < 0) val += MOD;\n        return *this;\n    }\n    ModInt& operator*=(const\
+    \ ModInt& x) {\n        val = lint(val) * x.val % MOD;\n        return *this;\n\
+    \    }\n    ModInt& operator/=(const ModInt& x) { return *this *= x.inv(); }\n\
+    \n    // comparator\n    bool operator==(const ModInt& b) const { return val ==\
+    \ b.val; }\n    bool operator!=(const ModInt& b) const { return val != b.val;\
+    \ }\n\n    // I/O\n    friend std::istream& operator>>(std::istream& is, ModInt&\
+    \ x) {\n        lint v;\n        is >> v;\n        x = v;\n        return is;\n\
+    \    }\n    friend std::ostream& operator<<(std::ostream& os, const ModInt& x)\
+    \ {\n        return os << x.val;\n    }\n};\n\nusing modint1000000007 = ModInt<1000000007>;\n\
+    using modint998244353 = ModInt<998244353>;\n#line 2 \"String/aho_corasick.hpp\"\
+    \n\n#include <algorithm>\n#include <vector>\n#include <array>\n#include <queue>\n\
+    #include <functional>\n\ntemplate <int K, class T>\nstruct PatternsMatching {\n\
+    \    struct Node {\n        std::array<int, K> nxt;\n        int fail;\n     \
+    \   std::vector<int> ids;\n\n        explicit Node() : fail(0) { nxt.fill(-1);\
+    \ }\n    };\n\n    std::vector<Node> nodes;\n    std::function<int(T)> enc;\n\n\
+    \    explicit PatternsMatching(T base)\n        : nodes(1), enc([=](T c) { return\
+    \ c - base; }) {}\n\n    template <class Container>\n    void add(const Container&\
+    \ s, int id) {\n        int pos = 0;\n        for (T ci : s) {\n            int\
+    \ c = enc(ci);\n\n            int npos = nodes[pos].nxt[c];\n            if (npos\
+    \ == -1) {\n                npos = nodes.size();\n                nodes[pos].nxt[c]\
+    \ = npos;\n                nodes.emplace_back();\n            }\n            pos\
+    \ = npos;\n        }\n        nodes[pos].ids.push_back(id);\n    }\n\n    void\
+    \ build() {\n        std::queue<int> que;\n        for (int& pos : nodes[0].nxt)\
+    \ {\n            if (pos == -1) {\n                pos = 0;\n            } else\
+    \ {\n                que.push(pos);\n            }\n        }\n\n        while\
+    \ (!que.empty()) {\n            int pos = que.front();\n            que.pop();\n\
+    \n            for (int c = 0; c < K; ++c) {\n                int npos = nodes[pos].nxt[c];\n\
+    \                if (npos == -1) continue;\n\n                int p = nodes[pos].fail;\n\
+    \                while (nodes[p].nxt[c] == -1) p = nodes[p].fail;\n          \
+    \      int fpos = next(nodes[pos].fail, c);\n\n                nodes[npos].fail\
+    \ = fpos;\n                std::copy(nodes[fpos].ids.begin(), nodes[fpos].ids.end(),\n\
+    \                          std::back_inserter(nodes[npos].ids));\n\n         \
+    \       que.push(npos);\n            }\n        }\n    }\n\n    int next(int pos,\
+    \ int c) const {\n        while (nodes[pos].nxt[c] == -1) pos = nodes[pos].fail;\n\
+    \        return nodes[pos].nxt[c];\n    }\n\n    // (id, end of matching)\n  \
+    \  template <class Container>\n    std::vector<std::pair<int, int>> matching(const\
+    \ Container& s) const {\n        std::vector<std::pair<int, int>> ret;\n\n   \
+    \     int pos = 0;\n        for (int i = 0; i < (int)s.size(); ++i) {\n      \
+    \      pos = next(pos, enc(s[i]));\n            for (auto id : nodes[pos].ids)\
+    \ {\n                ret.emplace_back(id, i + 1);\n            }\n        }\n\n\
+    \        return ret;\n    }\n\n    Node& operator[](int pos) { return nodes[pos];\
+    \ }\n    Node operator[](int pos) const { return nodes[pos]; }\n};\n#line 5 \"\
+    Verify/aho_corasick.test.cpp\"\n\n#line 7 \"Verify/aho_corasick.test.cpp\"\n#include\
+    \ <numeric>\n#include <string>\n\nusing lint = long long;\nusing mint = ModInt<1000000007>;\n\
+    \nint main() {\n    std::cin.tie(nullptr);\n    std::ios::sync_with_stdio(false);\n\
     \n    int n;\n    lint l, r;\n    std::cin >> n >> l >> r;\n\n    PatternsMatching<10,\
     \ char> pm('0');\n    {\n        lint a = 1, b = 1;\n        while (a <= r) {\n\
     \            if (l <= a && a <= r)\n                pm.add(std::to_string(a),\
@@ -115,7 +117,7 @@ data:
   isVerificationFile: true
   path: Verify/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2020-11-03 12:40:54+09:00'
+  timestamp: '2021-04-20 01:42:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Verify/aho_corasick.test.cpp

@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/dinic.test.cpp
     title: Verify/dinic.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -84,8 +85,8 @@ data:
   timestamp: '2020-11-03 10:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/bipartite_matching.test.cpp
   - Verify/dinic.test.cpp
+  - Verify/bipartite_matching.test.cpp
 documentation_of: Graph/dinic.hpp
 layout: document
 redirect_from:

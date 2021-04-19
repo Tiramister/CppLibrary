@@ -3,6 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -16,7 +17,7 @@ data:
     \        int pos = 0;\n        for (T ci : s) {\n            int c = enc(ci);\n\
     \n            int npos = nodes[pos].nxt[c];\n            if (npos == -1) {\n \
     \               npos = nodes.size();\n                nodes[pos].nxt[c] = npos;\n\
-    \                nodes.emplace_back(c);\n            }\n            pos = npos;\n\
+    \                nodes.emplace_back();\n            }\n            pos = npos;\n\
     \        }\n    }\n\n    template <class Container>\n    int find(const Container&\
     \ s) const {\n        int pos = 0;\n        for (char c : s) {\n            int\
     \ ci = enc(c);\n            pos = nodes[pos].nxt[ci];\n            if (pos ==\
@@ -31,8 +32,8 @@ data:
     \    void add(const Container& s) {\n        int pos = 0;\n        for (T ci :\
     \ s) {\n            int c = enc(ci);\n\n            int npos = nodes[pos].nxt[c];\n\
     \            if (npos == -1) {\n                npos = nodes.size();\n       \
-    \         nodes[pos].nxt[c] = npos;\n                nodes.emplace_back(c);\n\
-    \            }\n            pos = npos;\n        }\n    }\n\n    template <class\
+    \         nodes[pos].nxt[c] = npos;\n                nodes.emplace_back();\n \
+    \           }\n            pos = npos;\n        }\n    }\n\n    template <class\
     \ Container>\n    int find(const Container& s) const {\n        int pos = 0;\n\
     \        for (char c : s) {\n            int ci = enc(c);\n            pos = nodes[pos].nxt[ci];\n\
     \            if (pos == -1) return -1;\n        }\n        return pos;\n    }\n\
@@ -42,7 +43,7 @@ data:
   isVerificationFile: false
   path: String/trie.hpp
   requiredBy: []
-  timestamp: '2020-10-29 01:24:28+09:00'
+  timestamp: '2021-04-20 01:42:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: String/trie.hpp

@@ -15,6 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/segment_tree_rsq.test.cpp
     title: Verify/segment_tree_rsq.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -76,10 +77,10 @@ data:
   timestamp: '2020-07-26 22:31:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Verify/segment_tree_rsq.test.cpp
-  - Verify/hld_path.test.cpp
-  - Verify/hld_subtree.test.cpp
   - Verify/segment_tree_affine.test.cpp
+  - Verify/hld_subtree.test.cpp
+  - Verify/hld_path.test.cpp
+  - Verify/segment_tree_rsq.test.cpp
 documentation_of: DataStructure/segment_tree.hpp
 layout: document
 redirect_from:

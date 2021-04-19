@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/level_ancestor.test.cpp
     title: Verify/level_ancestor.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

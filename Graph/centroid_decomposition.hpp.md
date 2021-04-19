@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Verify/centroid_decomposition_diameter.test.cpp
     title: Verify/centroid_decomposition_diameter.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
