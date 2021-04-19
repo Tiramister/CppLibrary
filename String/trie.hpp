@@ -27,7 +27,7 @@ struct Trie {
             if (npos == -1) {
                 npos = nodes.size();
                 nodes[pos].nxt[c] = npos;
-                nodes.emplace_back(c);
+                nodes.emplace_back();
             }
             pos = npos;
         }
