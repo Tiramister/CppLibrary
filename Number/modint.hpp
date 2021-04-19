@@ -17,7 +17,7 @@ struct ModInt {
     ModInt operator-() const { return ModInt(MOD - val); }
 
     ModInt& operator++() { return *this += 1; }
-    ModInt& operator--() { *this -= 1; }
+    ModInt& operator--() { return *this -= 1; }
 
     // functions
     ModInt pow(lint n) const {
@@ -83,6 +83,5 @@ struct ModInt {
     }
 };
 
-// constexpr int MOD = 1000000007;
-// constexpr int MOD = 998244353;
-// using mint = ModInt<MOD>;
+using modint1000000007 = ModInt<1000000007>;
+using modint998244353 = ModInt<998244353>;
